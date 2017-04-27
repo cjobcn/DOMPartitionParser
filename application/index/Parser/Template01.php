@@ -4,10 +4,12 @@ namespace app\index\Parser;
 class Template01 extends AbstractParser {
     //模块标题
     protected $titles = array(
+        array('target', '职业发展意向：'),
         array('evaluation', '自我评价:'), 
-        array('education', '教育经历：'), 
+        array('education', '教育经历：'),
+        array('projects', '项目经历：'),
         array('career', '工作经历：'), 
-        array('additioon', '附加信息:'), 
+        array('addition', '附加信息:'),
         array('history', '历史版本:'), 
     );
 
@@ -25,20 +27,19 @@ class Template01 extends AbstractParser {
         array('work_begin', '工作年限：'), 
         array('current', '目前职业概况：'), 
         array('industry', '所在行业：'), 
-        array('lsat_company', '公司名称：'), 
+        array('last_company', '公司名称：'),
         array('last_position', '所任职位：'), 
         array('current_salary', '目前薪金：'), 
-        array('bonus', '绩效奖金：'), 
-        array('target', '职业发展意向：'), 
+        array('bonus', '绩效奖金：'),
         array('target_industry', '期望行业：'), 
         array('target_position', '期望职位：'), 
         array('target_city', '期望地点：'), 
-        array('targte_salary', '期望月薪：'), 
+        array('target_salary', '期望月薪：'),
     );
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        return preg_match('/简历编号:\d{8}/',$content);
+        return preg_match('/简历编号：\d{8}\D/',$content);
     }
 
     //对简历内容预处理,使其可以被解析
@@ -62,14 +63,13 @@ class Template01 extends AbstractParser {
         list($data, $blocks) = $this->domParse($content, 'td', false);
         //dump($data);
         //dump($blocks);
-        $end = $blocks[0][1]-2?:count($data)-1;
-
+        $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
-        $record['update_time'] = strtotime($record['update_time']);
+        if(isset($record['update_time']))
+            $record['update_time'] = strtotime($record['update_time']);
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
-
         //dump($record);
         return $record;
     }

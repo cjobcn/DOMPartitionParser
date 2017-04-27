@@ -191,7 +191,7 @@ abstract class AbstractParser {
         $i = 0;
         while($i < $length) {
             $KV = $this->parseElement($data, $i);
-            if($KV){
+            if($KV && !$record[$KV[0]]){
                 $record[$KV[0]] = $KV[1];
             }
             $i++;

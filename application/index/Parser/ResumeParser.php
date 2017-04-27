@@ -4,9 +4,9 @@ namespace app\index\Parser;
 class ResumeParser {
 
     protected $templateIDs = array(
-        '01' => '/简历编号：\d{8}/',                //猎聘网
-        '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  
-        '03' => '/<title>我的简历<\/title>/',  
+        '01' => '/简历编号：\d{8}\D/',                //猎聘网
+        '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
+        '03' => '/<title>我的简历<\/title>/',
         '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
         '05' => '/猎聘网logo/',                              //猎聘网
         '06' => '/<title>.+?举贤网.+?<\/title>/i',            //举贤网
@@ -17,6 +17,7 @@ class ResumeParser {
         '11' => '/resume-preview-left/i',
         '12' => '/来源ID:([A-Z]{2}\d{9}R\d{11})|<title>简历<\/title>.+?来源ID:(\w*?)(?=<br>)/s',
     );
+
     /**
      * 读取文档
      * @param $path
@@ -84,6 +85,7 @@ class ResumeParser {
      */
     public function parse($resume) {
         $templateClass = $this->getTemplateClass($resume);
+        //dump($templateClass);
         $record = null;
         if($templateClass){
             $template = new $templateClass();

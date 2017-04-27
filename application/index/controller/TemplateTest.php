@@ -11,12 +11,13 @@ class TemplateTest extends Controller {
 		//echo $content;
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content);
-		return json($record);
+		dump($record);
+		//return json($record);
     }
 
     public function getResume() {       
 		$Parser = new ResumeParser();
-		$path = $this->templateDir.'/'.$this->path[$this->templateId][$this->pathIndex];
+		$path = $this->templateDir.'/'.$this->templateId.'/'.$this->path[$this->templateId][$this->pathIndex];
 		//dump($path);
 	    $content = $Parser->readDocument($path);
 		//dump($content);
@@ -42,22 +43,26 @@ class TemplateTest extends Controller {
 		
 	}
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '01';
+	protected $templateId = '04';
     protected $pathIndex = 0;
 
     protected $path = array(
         '01' => array(
-            '00110225.html'
+            '00110225.html',
+            '10102.html',
         ),
 		'02' => array(
-			'G:/ShareFolder/补漏/0046 html 10万/100/20151115071952872.html',
-			'G:/ShareFolder/补漏/0046 html 10万/99/20151115071250685.html',
-			'G:/ShareFolder/补漏/0046 html 10万/98/20151115062800372.html',
+			'20151115071952872.html',
+			'20151115071250685.html',
+			'20151115062800372.html',
 		),
 		'03' => array(
-			'G:/ShareFolder/第四批/018html10万/5/1/100313.html',
-			'G:/ShareFolder/第四批/019html10万/2/1/160073.html',
+			'100313.html',
+			'160073.html',
 		),
+        '04' => array(
+            '180790.html',
+        ),
 		'12' => array(
 			'G:/ShareFolder/第三批/001 10万/19/jm504786709r90250000000-房京文.html'
 		),

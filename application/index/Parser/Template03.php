@@ -2,7 +2,7 @@
 /*
  * 通用模板格式
  */
-namespace app\indexParser;
+namespace app\index\Parser;
 
 class Template03 extends AbstractParser {
      //区块标题
