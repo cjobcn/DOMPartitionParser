@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<body>
+<div>
+<table width="80%" rules="all" frame="box">
+<tr>
+    <th>data</th>
+    <th>keyword</th>
+    <th>titles</th>
+</tr>
+{volist name="data" id="vo"}
+<tr>
+    <td><span>{$vo}</span></td>
+    <td><input class="keyword" type='text'/></td>
+    <td><input class="title" type='text'/></td>
+</tr>
+{/volist}
+</table>
+<button id="export">导出</button>
+</div>
+<textarea id="keywords" rows="50" cols="100">
+</textarea>
+
+
+<script src="__PUBLIC__/js/jquery-2.2.3.min.js"></script>
+<script>
+    $(function(){
+        $(".keyword,.title").focusin(function(){
+            
+            $(this).parent().parent().find('span').css('color', 'red');
+        }).focusout(function(){
+                $(this).parent().parent().find('span').removeAttr('style');
+            
+        });
+        $("#export").click(function(){
+            var keywords = [];
+            var titles = [];
+            $(".keyword").each(function(){
+                var $self = $(this);
+                var key = $self.val().trim();
+                if(key){
+                    var name = $self.parent().prev().text();
+                    keywords.push("array('" + key +"', '" + name + "'), ");
+                }              
+            });
+            $(".title").each(function(){
+                var $self = $(this);
+                var key = $self.val().trim();
+                if(key){
+                    var name = $self.parent().prev().prev().text();
+                    titles.push("array('" + key +"', '" + name + "'), ");
+                }              
+            });
+        
+            keywords = "$rules = array(\n" + keywords.join('\n') + "\n);";
+            titles = "$titles = array(\n" + titles.join('\n') + "\n);";
+
+            value = keywords + '\n' + titles;
+            //console.log(keywords);
+            $("#keywords").val(value);
+        });
+    });
+</script>
+</body>
+</html>
