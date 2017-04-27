@@ -14,13 +14,32 @@ class Parser extends Controller {
 
     //简历解析
     public function resume() {
+        header('Access-Control-Allow-Origin:*');
         $request = request();
         if($request->isPost()) {
-            $content = $request->post('name');
+            $content = $request->post('content');
+
             //$type = $request->post('type');
             $Parser = new ResumeParser();
-            $record = $Parser->parse($content);
-            return json($record);
+            $content = $Parser->convert2UTF8($content);
+            $data = $Parser->parse($content);
+
+            if($data){
+                $info = array(
+                    'data' => $data,
+                    'status' => 1,
+                );
+            }else{
+                $info = array(
+                    'status' => 0,
+                );
+            }
+            return json($info);
+        }else{
+            $info = array(
+                'status' => -1,
+            );
+            return json($info);
         }
     }
 }
