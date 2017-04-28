@@ -30,7 +30,8 @@ class Template05 extends AbstractParser {
         array('marriage', '婚姻状况：'), 
         array('work_status', '职业状态：'), 
         array('city', '所在地：'), 
-        array('nationality', '国籍：'), 
+        array('nationality', '国籍：'),
+        array('residence', '户籍：'),
 
         array('industry', '所在行业：'), 
         array('last_company', '公司名称：'), 
@@ -45,7 +46,8 @@ class Template05 extends AbstractParser {
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        return preg_match('/猎聘网logo/',$content);
+        $pattern = '/简历编号：\d{8}|猎聘通/';
+        return preg_match($pattern,$content);
     }
 
     //对简历内容预处理,使内容可以被解析
@@ -69,17 +71,18 @@ class Template05 extends AbstractParser {
     //根据模板解析简历
     public function parse($content) {
         $record = array();
-        //判断内容与模板是否匹配
-        if(!$this->isMatched($content)) return false;
         //预处理
         $content = $this->preprocess($content);
 
         list($data, $blocks) = $this->domParse($content,'div');
         //dump($blocks);
         //dump($data);
-        if(!$blocks) return false;
+        $end = $blocks[0][1]-2?:count($data)-1;
         //其他解析
-        $this->basic($data,0,$blocks[0][1]-1, $record);
+        $this->basic($data,0,$end, $record);
+        if(isset($record['update_time'])){
+            $record['update_time'] = strtotime($record['update_time']);
+        }
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
@@ -96,11 +99,15 @@ class Template05 extends AbstractParser {
     }
 
     public function career($data, $start, $end, &$record) {
-        $rules = array(
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $rules1 = array(
             array('nature', '公司性质：', 0),
             array('size', '公司规模：', 0),
             array('industry', '公司行业：', 0),
             array('desciption', '公司描述：', 0),
+        );
+        $rules2 = array(
             array('city', '所在地区：'),
             array('duty', '工作职责：'),
             array('department', '所在部门：'),
@@ -109,20 +116,31 @@ class Template05 extends AbstractParser {
             array('salary', '薪酬情况：'),
             array('duty', '工作职责：')
         );
-        $pattern = '/^(?P<start_time>\d{4}\D+\d{1,2})\D+(?P<end_time>\d{4}\D+\d{1,2}|至今) (?P<company>.+?) (（\d+.+）)$/';
-        $sequence = array('pattern',array('position'));
-        $conditions = array(
-            'rules' => $rules,
-            'pattern' => $pattern,
-            'sequence' => $sequence
-        );
-        $record['career'] = $this->blockParse($data, $start, $end, $conditions);
-
-        foreach($record['career'] as $i => $job){
-            preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (.+)/', $job['position'], $match);
-            $record['career'][$i]['position'] = $match[3];
+        $pattern1 = '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (?P<company>.+?) (（\d+.+）)$/';
+        $pattern2 = '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (.+)/';
+        $i = 0;
+        $j = 0;
+        $jobs = array();
+        while($i < $length) {
+            if(preg_match($pattern1, $data[$i], $match)){
+                $job = array();
+                $job['company'] = $match['company'];
+            }elseif($KV = $this->parseElement($data, $i, $rules1)){
+                $job[$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }elseif(preg_match($pattern2, $data[$i], $match)){
+                $job['position'] = $match[3];
+                $job['start_time'] = Utility::str2time($match[1]);
+                $job['end_time'] = Utility::str2time($match[2]);
+                $jobs[$j++] = $job;
+            }elseif($KV = $this->parseElement($data, $i, $rules2)) {
+                $jobs[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }
+            $i++;
         }
-        return $record['career'];    
+        $record['career'] = $jobs;
+        return $jobs;
     }
 
     public function projects($data, $start, $end, &$record) {

@@ -37,7 +37,8 @@ class Template06 extends AbstractParser {
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        return preg_match('/<title>.+?举贤网.+?<\/title>/', substr($content,0,1000));
+        $pattern = '/<title>.+?举贤网.+?<\/title>/i';
+        return preg_match($pattern, $content);
     }
 
      //对简历内容预处理,使其可以被解析
@@ -93,6 +94,7 @@ class Template06 extends AbstractParser {
         $keys = array('company');
         $i = 0;
         $j = 0;
+        $k = 0;
         $jobs = array();
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)){
@@ -123,6 +125,7 @@ class Template06 extends AbstractParser {
         $data = array_slice($data,$start, $length);
         $i = 0;
         $j = 0;
+        $k = 0;
         $education = array();
         $keys = array('school', 'major', 'degree', 'class');
         while($i < $length) {
@@ -157,6 +160,7 @@ class Template06 extends AbstractParser {
         $keys = array('name');
         $i = 0;
         $j = 0;
+        $k = 0;
         $projects = array();
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)){
@@ -181,24 +185,4 @@ class Template06 extends AbstractParser {
         $record['projects'] = $projects;
         return $projects;
     }
-
-    // public function career($data, $start, $end, &$record) {
-    //      $rules = array(
-    //         array('nature', '公司性质：'),
-    //         array('size', '公司规模：'),
-    //         array('position', '担任职位：', 2),
-    //         array('city', '工作地点：'),
-    //         array('duty', '职位职责：'),
-    //         array('department', '所在部门：')
-    //     );
-    //     $pattern = '/^(?P<start_time>\d{4}\D+\d{1,2})\D+(?P<end_time>\d{4}\D+\d{1,2}|至今)/';
-    //     $sequence = array('pattern',array('company'));
-    //     $conditions = array(
-    //         'rules' => $rules,
-    //         'pattern' => $pattern,
-    //         'sequence' => $sequence
-    //     );
-    //     $record['career'] = $this->blockParse($data, $start, $end, $conditions);
-    //     return $record['career'];
-    // }
 }

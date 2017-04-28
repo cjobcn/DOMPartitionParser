@@ -70,7 +70,7 @@ class Template03 extends AbstractParser {
         list($data, $blocks) = $this->domParse($content, 'div');
         //dump($blocks);
         //dump($data);
-        $end = $blocks[0][1]-2?:count($data)-1;
+        //$end = $blocks[0][1]-2?:count($data)-1;
         //其他解析
         
         //各模块解析
@@ -87,12 +87,14 @@ class Template03 extends AbstractParser {
         return $this->domParse($content, 'div', true, false);
     }
 
+    //工作经历解析
     public function career($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $sequence = array('company', 'position', 'industry', '', 'nature', 'size' ,'salary','duty');
         $i = 0;
         $j = 0;
+        $k = 0;
         $jobs = array();
         while($i < $length) {
             //正则匹配
@@ -115,11 +117,13 @@ class Template03 extends AbstractParser {
         return $jobs;
     }
 
+    //教育经历解析
     public function education($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $i = 0;
         $j = 0;
+        $k = 0;
         $education = array();
         $sequence = array('school','major','degree');
         while($i < $length) {
@@ -144,6 +148,7 @@ class Template03 extends AbstractParser {
         return $education;
     }
 
+    //项目经历解析
     public function projects($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
@@ -154,6 +159,7 @@ class Template03 extends AbstractParser {
         $sequence = array('name');
         $i = 0;
         $j = 0;
+        $k = 0;
         $projects = array();
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/', $data[$i], $match)){
@@ -178,5 +184,4 @@ class Template03 extends AbstractParser {
         $record['projects'] = $projects;
         return $projects;
     }
-
 }

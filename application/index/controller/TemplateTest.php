@@ -7,6 +7,7 @@ class TemplateTest extends Controller {
 
 	//测试解析结果
     public function test() {
+        dump('1120003797811071');
         $content = $this->getResume();
 		//echo $content;
 		$ResumeParser = new ResumeParser();
@@ -43,8 +44,8 @@ class TemplateTest extends Controller {
 		
 	}
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '04';
-    protected $pathIndex = 0;
+	protected $templateId = '05';
+    protected $pathIndex = 1;
 
     protected $path = array(
         '01' => array(
@@ -63,6 +64,18 @@ class TemplateTest extends Controller {
         '04' => array(
             '180790.html',
         ),
+		'05' => array(
+            '15821698556-男-上海_上海-1944886465.html',
+            '简历编号18840522-罗杭金-设计总监-猎聘网简历.html'
+        ),
+		'06' => array(
+
+        ),
+		'07' => array(),
+		'08' => array(),
+		'09' => array(),
+		'10' => array(),
+		'11' => array(),
 		'12' => array(
 			'G:/ShareFolder/第三批/001 10万/19/jm504786709r90250000000-房京文.html'
 		),

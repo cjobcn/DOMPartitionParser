@@ -25,7 +25,7 @@ class Template01 extends AbstractParser {
         array('marriage', '婚姻状况：'), 
         array('city', '所在地：'), 
         array('work_begin', '工作年限：'), 
-        array('current', '目前职业概况：'), 
+        array('work_status', '目前职业概况：'),
         array('industry', '所在行业：'), 
         array('last_company', '公司名称：'),
         array('last_position', '所任职位：'), 
