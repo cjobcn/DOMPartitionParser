@@ -13,6 +13,7 @@ class Template12 extends AbstractParser {
 
     //关键字解析规则
     protected $rules = array(
+        array('true_id', '来源ID:', 0),
         array('name', '姓名:', 0), 
         array('sex', '性别:', 0), 
         array('birth_year', '出生日期:', 0), 
@@ -22,7 +23,8 @@ class Template12 extends AbstractParser {
         array('work_begin', '参加工作时间:', 0), 
         array('residence', '户口所在地:', 0), 
         array('city', '现居住城市:', 0), 
-        array('phone', '手机号码:', 0), 
+        array('phone', '手机号码:', 0),
+        array('qq', 'QQ:', 0),
         array('address', '地址:', 0), 
         array('email', 'Email:', 0), 
         array('postcode', '邮编:', 0), 
@@ -34,12 +36,13 @@ class Template12 extends AbstractParser {
         array('self_str', '简介:'), 
         array('photo', '照片:', 0),
         array('homepage', '主页:', 0),
-        array('update_time', '更新日期:', 0), 
+        array('update_time', '更新日期:', 0),
     );
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        
+        $pattern = '/来源ID:[\d\w]+<br>/';
+        return preg_match($pattern, $content);
     }
 
      //对简历内容预处理,使其可以被解析
@@ -69,11 +72,12 @@ class Template12 extends AbstractParser {
         list($data, $blocks) = $this->domParse($content, 'div', false);
         //dump($blocks);
         //dump($data);
-        if(!$blocks) return false;
+        $end = $blocks[0][1] - 2?:count($data) - 1;
         //其他解析
         $i = 0;
-        while($i < $blocks[0][1] - 2) {
-            if($KV = $this->parseElement($data, $i, $rules)) {
+        $currentKey = '';
+        while($i <= $end) {
+            if($KV = $this->parseElement($data, $i)) {
                 $record[$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
@@ -83,6 +87,9 @@ class Template12 extends AbstractParser {
                 }                    
             }
             $i++;
+        }
+        if(isset($record['update_time'])){
+            $record['update_time'] = strtotime($record['update_time']);
         }
         //各模块解析
         foreach($blocks as $block){
@@ -145,6 +152,7 @@ class Template12 extends AbstractParser {
         );
         $j = 0;
         $i = 0;
+        $currentKey = '';
         $projects = array();
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)\|(.+)/', $data[$i], $match)) {

@@ -8,7 +8,8 @@ class Template11 extends AbstractParser {
         array('evaluation', '自我评价'), 
         array('career', '工作经历'),
         array('projects', '项目经历'),
-        array('education', '教育经历'), 
+        array('education', '教育经历'),
+        array('school_situation', '在校学习情况'),
         array('practices', '在校实践经验'),
         array('training', '培训经历'), 
         array('certs', '证书'), 
@@ -16,36 +17,41 @@ class Template11 extends AbstractParser {
         array('skills', '专业技能'), 
         array('prizes', '获得荣誉'),
         array('others', '附件'),
+        array('interest', '兴趣爱好'),
         array('resume_content', '简历内容')
     );
 
     //关键字解析规则
     protected $rules = array(
+        array('update_time', '简历更新时间：'),
+        array('true_id', 'ID:'),
         array('name', '姓名：'),
-        array('city', '现居住地：'), 
-        array('phone', '手机：'), 
+        array('city', '现居住地：'),
+        array('postcode', '邮编：'),
+        array('phone', '手机：'),
+        array('residence', '户口：'),
         array('email', 'E-mail：'), 
-
-        array('targte_city', '期望工作地区：'), 
+        array('ID' , '身份证：'),
+        array('target_city', '期望工作地区：'),
         array('target_salary', '期望月薪：'), 
-        array('work_status', '目前状况：'), 
-        array('work_properity', '期望工作性质：'), 
+        array('work_status', '目前状况：'),
         array('target_position', '期望从事职业：'), 
         array('target_industry', '期望从事行业：'),
     );
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        
+        $pattern = '/<div id="userName" class="main-title-fl fc6699cc"/';
+        return preg_match($pattern, $content);
     }
 
     //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $patterns = array(
-            '/<(td|h3|h2|h5)/i',
-            '/<\/td|h3|h2|h5>/i',
+            '/<(td|h3|h2|h5|em)/i',
+            '/<\/(td|h3|h2|h5|em)>/i',
             '/\||<br.*?>/i',
-            '/<div.+?id=\"userName\".+?>/is',
+            '/<div id="userName" [^>]+>/is',
         );
         $replacements = array(
             '<div',
@@ -60,28 +66,39 @@ class Template11 extends AbstractParser {
     //根据模板解析简历
     public function parse($content) {
         $record = array();
-        //判断内容与模板是否匹配
-        //if(!$this->isMatched($content)) return false;
         //预处理
         $content = $this->preprocess($content);
 
         list($data, $blocks) = $this->domParse($content, 'div');
         //dump($blocks);
         //dump($data);
-        if(!$blocks) return false;
+        $end = $blocks[0][1] - 2?:count($data) - 1;
+        $this->basic($data, 0 , $end, $record);
         //其他解析
         $i = 0;
-        while($i < $blocks[0][1] - 2) {
-            if(preg_match('/男|女/', $data[$i], $match)){
-                $record['sex'] = $match[0];
-                if(preg_match('/(\d{4})\s*年/', $data[$i], $match)) {
-                    $record['birth_year'] = $match[1];
+        while($i <= $end ) {
+            if(isset($record['sex']))
+                if(preg_match('/男|女/', $data[$i], $match)){
+                    $record['sex'] = $match[0];
+                    if(preg_match('/(\d{4})\s*年/', $data[$i], $match)) {
+                        $record['birth_year'] = $match[1];
+                    }
                 }
-                break;
-            }
+            if(!isset($record['phone']))
+                if(preg_match($this->pattern['phone'],$data[$i], $match)){
+                    $record['phone'] = $match[0];
+                }
+            if(!isset($record['email']))
+                if(preg_match($this->pattern['email'],$data[$i], $match)){
+                    $record['email'] = $match[0];
+                }
             $i++;
         }
-        $this->basic($data, 0 , $blocks[0][1] - 2, $record);
+        if(!isset($record['update_time'])){
+            if(preg_match('/resumeUpdateTime.innerHTML = "(.+?)";/',$content,$match));
+                $record['update_time'] = Utility::str2time($match[1]);
+        }
+
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
@@ -105,9 +122,10 @@ class Template11 extends AbstractParser {
             array('size', '规模：'), 
             array('duty', '工作描述：'), 
         );
-        $sequence = array('industry');
         $i = 0;
         $j = 0;
+        $k = 0;
+        $currentKey = '';
         $jobs = array();
         while($i < $length) {
             //正则匹配
@@ -123,6 +141,12 @@ class Template11 extends AbstractParser {
                 $jobs[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
+                if($currentKey == 'nature') {
+                    $jobs[$j-1]['industry'] = $data[$i-1];
+                    if(!isset($jobs[$j-1]['salary']) && $i-1 > $k+1){
+                        $jobs[$j-1]['position'] = $data[$k+1];
+                    }
+                }
             }elseif(preg_match('/元\/月/', $data[$i])){
                 $jobs[$j-1]['salary'] = $data[$i];
                 $m = $i - 1;
@@ -135,13 +159,8 @@ class Template11 extends AbstractParser {
                     $m--;
                 }
             }else{
-                switch($currentKey) {
-                    case 'duty':
+                if($currentKey == 'duty') {
                     $jobs[$j-1][$currentKey] .= $data[$i];
-                    break;
-                    case 'nature':
-                    $jobs[$j-1][$currentKey] = $data[$i-1];
-                    break;
                 }                       
             }
             $i++;
@@ -163,10 +182,12 @@ class Template11 extends AbstractParser {
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);
                 $info = explode(' ', $match[3]);
-                $edu['school'] = $info[0];
-                $edu['major'] = $info[1];
-                $edu['degree'] = $info[2];
-                $education[$j++] = $edu;
+                if(count($info) > 1){
+                    $edu['school'] = $info[0];
+                    $edu['major'] = $info[1];
+                    $edu['degree'] = $info[2];
+                    $education[$j++] = $edu;
+                }
             }
             $i++;
         }
@@ -182,9 +203,13 @@ class Template11 extends AbstractParser {
         $j = 0;
         $projects = array();
         $rules = array(
+            array('soft', '软件环境：'),
+            array('hard', '硬件环境：'),
+            array('dev', '开发工具：'),
             array('duty', '责任描述：' ),
             array('description', '项目描述：'),
         );
+        $currentKey = '';
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (.+)/', $data[$i], $match)) {
                 $project = array();
@@ -196,7 +221,7 @@ class Template11 extends AbstractParser {
                 $projects[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
-            }else{
+            }elseif($currentKey){
                 $projects[$j-1][$currentKey] .= $data[$i];             
             }
             $i++;

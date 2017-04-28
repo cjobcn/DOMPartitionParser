@@ -4,6 +4,13 @@ use app\index\DiDom\Document;
 
 abstract class AbstractParser {
 
+    //通用正则
+    protected $pattern = array(
+        'phone' => '/^1[3|4|5|7|8][0-9]{9}$/',
+        'email' => '/^\w+([-+.]\w*)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/',
+        'time_range' => '/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/'
+    );
+
     //区块标题（空格已被处理，不要包含空格）
     //格式：array("区块处理方法名", "区块标题关键字")
     //同模块处理方法名的不同关键字使用“|”隔开

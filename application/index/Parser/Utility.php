@@ -90,9 +90,9 @@ class Utility {
 
     //字符串转时间戳
     static public function str2time($str) {
-        if(!is_string) return false;
+        if(!is_string($str)) return false;
         //如果是现在或至今，取时间戳最大值
-        if(preg_match('/^\D+$/',$str)) 
+        if(preg_match('/^至今|现在$/',$str))
             return $UP_TO_NOW = 2147483647;
         $str = preg_replace('/\D+/', '-', $str);
         $str = preg_replace(array('/^-/','/-$/'), '', $str);

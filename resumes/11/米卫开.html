@@ -1,0 +1,675 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>智联简历</title>
+    <link href="http://img00.zhaopin.cn/2012/css/rd/common.css" rel="stylesheet" type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/rd/rdnew_2.css" rel="stylesheet" type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/rd/rdnewlayer.css" rel="stylesheet"
+        type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/ui/jquery.zlzp.popupdiv.css" type="text/css"
+        rel="stylesheet" />
+    <link href="/css/sendinfo.css" type="text/css" rel="stylesheet" />
+    <style media="print">
+        .resume-preview{
+            color:#000;
+        }
+        .resume-body-left{
+            width:auto;
+        }
+        .resume-preview-left {
+            box-shadow:none;
+            border:none;
+        }
+        .resume-preview-right,.nav-body-top
+        {
+            display:none;
+        }
+        h3 {
+            border-bottom:2px solid #ccc;
+        }
+        .similar-resume{
+            display:none
+        }
+
+    </style>
+   
+</head>
+<body>
+    <div class="resume-preview clearfix">
+        
+
+
+<div class="resume-body-left">
+    <div class="resume-preview-head" id="resumeContentHead">
+        <img alt="" src="http://img02.zhaopin.cn/2012/img/rd/logo.png" width="133" height="71"
+            align="right" class="headerlogo" />
+            <div class="resume-preview-title">
+                <span class="resume-preview-list">简历名称：<strong id="resumeName"></strong> </span>
+                <br />
+                <span class="resume-preview-list">期望从事职业： <strong id="desireIndustry"></strong></span>
+                <br />
+                <span class="resume-preview-list">简历更新时间： <strong id="resumeUpdateTime"></strong>
+                </span>
+            </div>
+            <div class="resume-preview-center">
+<form action="/ResumePreview/resume/_Detail?extId=JM112821412R90250000000&amp;version=1&amp;coverLetterVersion=0&amp;uniqueId=3700883019" data-ajax="true" data-ajax-mode="replace" data-ajax-success="changeLanguageTag" data-ajax-update="#resumeDetail" id="frmResumeDetail" method="post">                    <div class="center-left">
+                        <div class="resume-left-tips">
+                            <div class="resume-left-tips-span">
+                                <span class="resume-left-tips-id">ID:JM112821412R90250000000</span></div>
+
+<div class="resume-left-tips-span" id="tagDiv">
+    
+        <span class="editor-layer-icon check smpevent"  title="" id="tagClassHeader" data-smpaction="addtags" data-smpposition="resumedetail"></span>
+        <span class="resume-left-tips-id tips-id-color smpevent" id="addTagHeader" data-smpaction="addtags" data-smpposition="resumedetail">添加标签</span>
+        <span class="check-close" title="" id="deleteTagHeader" dev_guid="3700883019" style="display:none"></span>
+</div>
+                        </div>
+                    </div>
+                    <!--<div class="center-right">你可能对这些简历感兴趣</div>-->
+                    <input type="hidden" value="Chinese" name ="language" id="language" />
+                    <input type="hidden" value="Chinese" name ="anotherLanguage" id="anotherLanguage" />
+</form>            </div>
+            <input type="hidden" id="guid" name="guid" value="3700883019" />
+    </div>
+
+<style type="text/css">
+    .posR
+    {
+        position: relative;
+        border: 1px solid #ccc;
+        height: 32px;
+    }
+    .nameMatching, .nameMatchings
+    {
+        line-height: 32px;
+        font-size: 12px;
+        float: left;
+        font-weight: normal;
+    }
+    .nameMatching
+    {
+        margin-left: 28px;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/Pmatching.png) no-repeat 7px 7px;
+        padding-left: 50px;
+        height: 22px;
+        padding-top: 10px;
+    }
+    .nameMatching .star
+    {
+        width: 50px;
+        height: 9px;
+        display: block;
+        font-size: 0;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/matching-mark.png) no-repeat;
+    }
+    .nameMatching .star5
+    {
+        background-position: 0 0;
+    }
+    .nameMatching .star4
+    {
+        background-position: 0 -9px;
+    }
+    .nameMatching .star3
+    {
+        background-position: 0 -18px;
+    }
+    .nameMatching .star2
+    {
+        background-position: 0 -27px;
+    }
+    .nameMatching .star1
+    {
+        background-position: 0 -36px;
+    }
+    .nameMatching .star0
+    {
+        background-position: 0 -45px;
+    }
+    
+    .nameMatchings
+    {
+        cursor: pointer;
+        margin-left: 10px;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/Pcell.png) no-repeat 0 7px;
+        height: 22px;
+        width: 35px;
+    }
+</style>
+<script type="text/javascript">
+    function showMatchDesc(id, rootcompanyId, name) {
+        $(".MatchingDescriptionBtn").match({
+            url: "http://rd2.zhaopin.com/s/resuadmi/resumematchingdescription.asp",
+            type: "Get",
+            data: { id: id, rootcompanyId: rootcompanyId, name: name },
+            callback: "matchingcallback"
+        });
+    }
+</script>
+<link type="text/css" rel="stylesheet" href="http://img00.zhaopin.cn/2012/css/rd/rdmatching.css">
+<div id="resumeDetail">
+    <div class="resume-preview-main">
+        <div class="resume-preview-left">
+
+            <div id="resumeContentBody">
+                <div class="resume-preview-main-title posR">
+                        <div id="userName" class="main-title-fl fc6699cc" alt="米卫开">米卫开</div>
+ 
+
+    
+    
+</div>
+        <div class="summary">
+            <a target="_blank" href="http://my.zhaopin.com/pic/2012/11/24/AA44B8A5A55D45388999E037BF7184D7.jpg"><img alt="" src="http://my.zhaopin.com/pic/2012/11/24/AA44B8A5A55D45388999E037BF7184D7.jpg" width="93" height="131" align="right" class="headerImg" /></a>
+            <div class="summary-top">
+                <span>女&nbsp;&nbsp;&nbsp;&nbsp;40岁(1975年8月)&nbsp;&nbsp;&nbsp;&nbsp;15年工作经验&nbsp;&nbsp;&nbsp;&nbsp;大专&nbsp;&nbsp;&nbsp;&nbsp;已婚</span>
+                <br />
+                现居住地：广州 | 户口：广州 | 团员
+            </div>
+            <div class="summary-bottom">
+        <br />
+身份证：441827197508175628<br />手机：13533437559<br />E-mail：<a href="mailto:13533437559@139.COM">13533437559@139.COM</a>
+
+
+        </div>
+        </div>
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">求职意向</h3>
+                <div class="resume-preview-top">
+                    <table cellpadding="0" cellspacing="0" >
+                        <tr valign="top">
+                            <td width="85" align="right">期望工作地区：</td>
+                            <td>广州</td>
+                        </tr>   
+                        <tr valign="top">
+                            <td width="85" align="right">期望月薪：</td>
+                            <td>15000-25000元/月</td>
+                        </tr>   
+                        <tr valign="top">
+                            <td width="85" align="right">目前状况：</td>
+                            <td>我目前在职，正考虑换个新环境（如有合适的工作机会，到岗时间一个月左右）</td>
+                        </tr>
+                        <tr valign="top">
+                            <td width="85" align="right">期望工作性质：</td>
+                            <td>全职</td>
+                        </tr>                        
+                        <tr valign="top">
+                            <td width="85" align="right">期望从事职业：</td>
+                            <td>销售管理</td>                   
+                        </tr>
+                        <tr valign="top">
+                            <td width="85" align="right">期望从事行业：</td>
+                            <td>耐用消费品（服饰/纺织/皮革/家具/家电）</td>
+                        </tr>   
+                    </table>
+                </div>
+	        </div>
+        
+                <div class="resume-preview-all">
+                    <h3 class="fc6699cc">自我评价</h3>          
+                    <div class="resume-preview-dl rd-break">1、10年的零售终端管理经验，对市场营销工作和品牌管理有深刻认知；对企业品牌管理有系统规划与建设能力，具有娴熟的品牌业务操作技巧，有较强的市场感知能力、敏锐地把握市场动态、市场方向的能力，有良好的战略意识。 2、工作努力，积极进取，责任心强；高度的工作热情，良好的团队合作精神；较强的观察力和应变能力；出色的人际沟通能力、团队建设能力、组织开拓能力。 3、应变能力、学习能力强，能承受较大的工作压力，能在较短时间内适应高压力的工作。</div>
+                </div>   
+        
+            <div class="resume-preview-all workExperience">
+                <h3 class="fc6699cc">工作经历</h3>
+                    <h2>2012.12 - 2013.10&nbsp;&nbsp;广州淑女屋服饰有限公司&nbsp;&nbsp;（10个月）</h2>
+                    <h5>营运总监 | 市场总监 | 15000-25000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：民营 | 规模：100-499人
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td>1、负责建设和发展营运团队，组织开展员工队伍培训、考核评价及人才梯队建设工作，满足公司业务拓展需要;负责下辖相关岗位的人员招募及培训鉴定;<br />2、整体负责品牌营运管理，包括旗舰店、商场专柜等在内的品牌管理、服务规范、营业培训、形象管理及商品与价格管理工作。<br />3、负责所辖区域的整体市场工作计划的制定、部署及监督实施，提升品牌在所辖区域的知名度和认同度;负责所辖区域的库存控制及管理;负责建立、完善运营相关系统及工作标准;负责公司各项规章制度在所辖区域的贯彻执行。负责推动所辖区域的渠道拓展;负责协调处理所辖区域外部公共关系(重要客户等)。<br />4、负责公司市场部门(营运、品牌策划)制度规范，负责组织及监管市场部关于对外合作、渠道管理。<br />5、协调、策划、组织与合作实施工作，大型重点装修工程洽谈、管控，行业品牌竞争格局分析与竞争策略规划。<br /> <br /></td>
+                                </tr>
+                            </table>
+                        </div>    
+                    <h2>2008.05 - 2012.12&nbsp;&nbsp;广州市淑女屋服饰有限公司&nbsp;&nbsp;（4年7个月）</h2>
+                    <h5>市场部 | 品牌营运总监/经理 | 10001-15000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：股份制企业 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td> 1、负责销售团队建立与规划、优化部门的组织架构、进行职责分工实现组织精简、高效。 <br />2、负责辖区拓展、直营销售管理，制定拓展、直营销售计划，提升终端店铺管理。 <br />3、负责营销管理、市场拓展的实际工作。 <br />4、 对区域内主导公司及下属办事处人员进行定编、定岗、定责，制定下属的岗位描述，规范区域经营活动中各环节的规章制度，并使之有效执行。 <br />5、 编制辖区月、季、年度各店的营销计划，及时调整所辖区域的人员结构，营销所必备的设施配置，保证营销计划的实现。 <br />6、负责将系统的年度目标分解，并对区域主管完成目标进行监督和评估，及时跟进销售情况，带领团队完成销售目标。 <br />7、负责组织、制订公司的营运管理制度，使每项工作有章可循。 <br />8、定期对市场营销环境、目标、计划、业务活动进行核查分析，及时调整营销策略和计划，制订预防和纠正措施，确保完成营销目标和营销计划。 <br />9、负责品牌市场开拓和维护，分析和预测市场占有情况。 <br />10、落实公司各项销售政策,推动销售业绩提升并达成区域年度销售。 <br />11、负责辖区各季订货，订单质量的审核；制定商品上柜的推广及追[踪分析，策划清销库存的企划。</td>
+                                </tr>
+                            </table>
+                                        <table cellpadding="0" cellspacing="0" >
+                                            <tr valign="top">
+                                              <td width="60">管理经验：</td>
+                                              <td>汇报对象：总经理 | 下属人数：156人 | 直接下属：部门主管 | 年收入：16万/年<br />业绩描述：1、在品牌全面遭遇退场的危难之时，快速组建有冲满激情和战斗力的的营销团队，使品牌在辖区重新崛起。使品牌2008年前在各大百货排名均倒数成为历史，在所有物业的排名均有较高的提升，部份物业持续排名在前三名。 <br />2、重新开拓品牌后，业绩同比百倍的增长，08年业绩同比增长分别365%、09年同比增长345%、10年同比增长88%；11年同比增长38%，12年1-11月份同比增长15%的销售指标，连续5年达成并超越公司下达的年度销售指标。 <br />3、业绩百倍的增长、店铺形象的打造、具激情顽强战斗力的营销团队使品牌在辖区建立了全面全新的市场地位。 <br />4、完善并构建了商品管理体系；库存的消化及优化整体资源结构、参与制定公司品牌订货及发展战略、推广战略。 <br />5、参与制订公司营销企划及品牌建设思路，并细化、督促区域市场实施。 <br />6、监督辖区企划及推广项执行情况（根据年度营销计划），组织实施及检查执行情况。 <br />7、建立区域市场品牌推广管理及营运培训机制。 <br />8、制定品牌年度营销计划并协调组织实施。<br />离职原因：尝试更大的挑战空间和发展平台</td>
+                                            </tr>
+                                        </table>   
+                        </div>    
+                    <h2>2004.06 - 2008.04&nbsp;&nbsp;广州淑女屋服饰有限公司&nbsp;&nbsp;（3年10个月）</h2>
+                    <h5>市场部 | 区划经理 | 10001-15000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：股份制企业 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td>1、根据公司下达的营销策略，制定辖区年度销售计划并分解及督导实施； <br />2、制定相应的市场销售计划、完成辖区内店铺拓展、VIP管理的计划和相应的跟进执行计划，以保证完成市场开拓及日常营销管理。 <br />3、 对销售计划的成效及销售人员的工作表现进行评估，组织制订区域店铺各种竞赛活动的策划组织与推动店铺服务，有效实施方案； <br />4、关注公司的新款和畅销款的销售情况，并向上级汇报业绩情况，根据店铺的销售实况做出调整。协助商品部货品调配及检查监督工作； <br />5、组织品牌员工的招聘和培训工作，制度有效的激励方案； <br />6、 筹办“自然元素”品牌秋冬季新品发布置会，并协助客户服务部跟进客户订货工作； 7、协助及参“淑女屋”时装发布会，及对外宣传活动； <br />8、 协助营运部门完成“店铺营运手册”，同时负责收集，整理各部门反馈的意见以便日后修改； <br />9、 配合营运部门开展零售部各层级绩效评估,并向公司提出改善方案。 <br />10、 密切关注所辖地区商圈变化，确保品牌入驻当地优质之商厦及抢占最佳的营销场地。 <br />11、 制定战略、策略，并推进实施，并在实施过程中进行协调、控制、调整和修正，以保证目标的实现</td>
+                                </tr>
+                            </table>
+                                        <table cellpadding="0" cellspacing="0" >
+                                            <tr valign="top">
+                                              <td width="60">管理经验：</td>
+                                              <td>汇报对象：总监 | 下属人数：126人 | 直接下属：部门经理 | 年收入：12万/年<br />业绩描述：1、 根据公司发展计划、供货安排及本地区的具体条件，制定所直接负责品牌年度、季度月度营销计划及促销方案，上报各品牌营销经理制定的年度、季度月度、营销计划及促销企划。 <br />2、关注地区的市场变化，及时、有效地调整所直接负责品牌货品，督促市管主管有效地完成相关市场工作，完成总部下达的各项任务，保证市场的正常运作。 <br />3、随时检查下属各品牌、各店各项工作的落实情况。 <br />4、负责品牌的市场开拓及日常营销管理。 <br />5、组建富有战斗力、有激情的营销团队并协助区域总经理快速开拓辖区市场。<br />离职原因：内部移动，晋升</td>
+                                            </tr>
+                                        </table>   
+                        </div>    
+                    <h2>2002.02 - 2004.06&nbsp;&nbsp;深圳市淑女屋时装有限公司&nbsp;&nbsp;（2年4个月）</h2>
+                    <h5>市场部 | 市场部主管 | 6001-8000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：民营 | 规模：1000-9999人
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td>1、 负责华南二区淑女屋、自然元素品牌等四品牌店铺的管理，指导督导开展包括店铺销售计划制定等各项工作。 <br />2、 华南二区品牌店铺的订、退货申请，计划与组织执行店铺的货品上、下柜和调整，保证店铺货品的合理配置。 <br />3、负责华南二区店铺的形象管理，指导下属在按公司陈列标准下结合地区实际商品情况、销售计划进行卖场的陈列规划、各期商品陈列标准的制定并实施，提升商品价值感，促进产品快速销售，提升品牌形象。 <br />4、监督店铺日常管理，密切关注竞合品牌的动态与信息，关注员工状态，做好人员管理。 <br />5、曾长期出差负责广东地区“二级市场”（如：顺德，佛山，江门,上海等）的拓展工作，区域内店铺开/撤场工作,熟悉商场密切关注本地区商圈变化，掌握相关信息。</td>
+                                </tr>
+                            </table>
+                                        <table cellpadding="0" cellspacing="0" >
+                                            <tr valign="top">
+                                              <td width="60">管理经验：</td>
+                                              <td>汇报对象：部门经理 | 下属人数：132人 | 直接下属：部门主管 | 年收入：9万/年<br />业绩描述：1、负责管理地区的营销、货品及行政事务；在保证地区销售业绩的状况下确保地区所有工作的正常化进行。<br />2、根据市场变化及公司要求与地区经理共同拟定淑女屋、自然元素在该地区市场拓展计划（开店、撤店、调整经营场地）。<br />3、 对淑女屋、自然元素品牌市场督导、店长、店员业务技能培训，对所属相关岗位配合市场工作业绩考评。<br />4、 根据地区经理核准的销售计划、各专卖店的近期营销业绩，将销售计划分解到各专卖店。<br />5、 密切关注市场动态，及时准确地分析商品畅、滞销原因，并拟定具体货品调动方案，抢占第一销售时机。<br />6、 根据总部的促销计划，结合本地区的具体情况，拟定具体的促销实施方案。<br />7、 对营销人员进行现场的销售业务培训，并定期制定业务培训计划并负责实施。<br />8、 负责给地区经理提供第一手的市场资料，配合地区经理完成各项相关工作。<br />离职原因：内部移动，晋升</td>
+                                            </tr>
+                                        </table>   
+                        </div>    
+                    <h2>2001.02 - 2002.09&nbsp;&nbsp;深圳市淑女屋时装有限公司&nbsp;&nbsp;（1年7个月）</h2>
+                    <h5>市场部 | 市场督导 | 4001-6000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：民营
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td>1、 根据总部核准的销售计划、各专卖店的近期营销业绩，将销售计划分解到各专卖店。 2、 密切关注市场动态，及时准确地分析商品畅、滞销原因，并拟定具体货品调动方案，抢占第一销售时机。 <br />3、 根据总部的促销计划，结合本地区的具体情况，拟定具体的促销实施方案。 <br />4、 对营销人员进行现场的销售业务培训，并定期制定业务培训计划并负责实施。<br />5、 负责给市场主管提供第一手的市场资料，配合市场主管完成各项相关工作。 <br />6、 负责分管地区专卖店的店面形象和行为形象，对专卖店店面形象及店员形象负责。 7、 亲自参与实施每一季、每主题店面形象布置，并反馈照片。 <br />8、 做好店内货品的陈列，橱窗及模特的出样与布置。 <br />9、 及时反馈各店面形象情况以及新店开业所需形象物品并做好相应的形象实施工作。 10、 监督指导专卖店小姐对形象规范的执行，并进行考核。 <br />11、 配合公司及商场做相关的工作（如促销宣传活动时表演服装的搭配）。 <br />12、做好装饰品的建帐、登记、分配、回收工作，并填写装饰品分配表格。 <br />13、负责所分管各地的新店开业的相关事宜，配合地区主理人做好装修的验收工作。 14、负责本地区货品计划的分配与落实，及时分析商品畅、滞销原因，并制定出指导方案；负责对下属店长进行业务培训；负责地区货品计划、货品调配等工作；配合地区主理人，结合市场的具体情况制定切实可行的营销策略，促使地区货品达到理想的出清率。</td>
+                                </tr>
+                            </table>
+                        </div>    
+                    <h2>1999.06 - 2001.12&nbsp;&nbsp;上海巧帛服饰有限公司&nbsp;&nbsp;（2年6个月）</h2>
+                    <h5>销售部 | 大店长 | 4001-6000元/月</h5>
+                    <div class="resume-preview-dl">
+                        耐用消费品（服饰/纺织/皮革/家具/家电） | 企业性质：民营 | 规模：20人以下
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td>1、负责品牌店铺的管理，指导店长开展包括店铺销售计划制定等各项工作。 <br />2、负责店铺的形象管理，指导下属在按公司陈列标准下结合店铺实际商品情况、销售计划进行卖场的陈列规划、提升商品价值感，促进产品快速销售，提升品牌形象。 <br />3、监督店铺日常管理，密切关注竞合品牌的动态与信息，关注员工状态，做好人员管理。 <br />4、根据公司制定销售计划并分阶段完成销售目标。 <br />5、定期培训下属，销售分析，资讯分享，提高下属基本素质。 <br />6、指导统筹促销活动，达到良好效果。 <br />7、制定、主持店长会议。 <br />8、推出各式激励游戏及培训，激励员工士气。<br />9、后勤支持沟通。 <br />10、组织公司营运部门交流活动。</td>
+                                </tr>
+                            </table>
+                        </div>    
+            </div>
+        
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">项目经历</h3>
+                        <h2>2009.08 - 2011.12&nbsp;&nbsp;拓展</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>品牌有华南二区专柜/专卖店拓展</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>二年时间从一个专柜拓展到三十多个专柜/专卖店</td>
+                                </tr>  
+                        </table>
+                    </div>
+                        <h2>2008.08 - 至今&nbsp;&nbsp;品牌营运</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>品牌在区域的拓展、销售等一切负责</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>品牌营运</td>
+                                </tr>  
+                        </table>
+                    </div>
+                        <h2>2008.06 - 至今&nbsp;&nbsp;业绩排名</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>强化品牌在行业里的竞争力。</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>2008年前自然元素在各大百货排名均在倒数，甚至出现崩盘的状况，接管该品牌后，在所有物业的排名均有较高的提升，部份物业持续排名在前三名。</td>
+                                </tr>  
+                        </table>
+                    </div>
+                        <h2>2005.03 - 2005.03&nbsp;&nbsp;培训</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>对百货员工形象、百货基本陈列进行培训</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>受新光百货邀请，对百货中高层以及终端员工进行了深入的培训，得到一至的好评</td>
+                                </tr>  
+                        </table>
+                    </div>
+                        <h2>2003.10 - 2003.10&nbsp;&nbsp;品牌推广</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>秋冬装发布会</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>1、2009年10月组织品牌在天河城进行了一场时装发布会，使业内人士深深领略到公司品牌的企业文化和设计内涵，使品牌的市场地位和美誉度得到提升。<br />2、2008组织口牌在天河城中庭进行了一场独具一格的静态情景模式推广，让业内人士以及各大百货负责人深深体现了品牌浓厚的企业文化和设计内涵。<br />3、2009年组织品牌北京路广百进行了一场时尚、经典的秋冬新品发布会，使行内人员以及各大物业再一次体现到时尚领头羊的精神和精髓。<br /></td>
+                                </tr>  
+                        </table>
+                    </div>
+                        <h2>2001.06 - 2009.10&nbsp;&nbsp;区域品牌营运</h2>
+                    <div class="resume-preview-dl">
+                        <table cellpadding="0" cellspacing="0" >
+                            
+                            
+                                <tr valign="top">
+                                    <td width="60">责任描述：</td>
+                                    <td>对区域三品牌营运，其中包括商品运作、销售、品牌形象、工程</td>
+                                </tr>
+                            
+                                <tr valign="top">
+                                    <td width="60">项目描述：</td>
+                                    <td>对区域淑女屋、自然元素、床上用品整体运作；<br />1、货品配置、流通合理，达到公司如期的效果，使货品的周转期、周转率得到高效的提升。<br />2、为其三品牌策划有效的促销方案，使货品在上柜期得到有效的流通，同时使销售在公司全国评定中名列前茅。<br />3、对品牌区域中层干部、终端员工形象、店铺货品陈列、以及7S管理得到物业及公司一致的好评；<br />4、对区域中层干部、营销人员的业务技能--FAB、SNS法则，7S管理等进行培训；<br />5、对店铺开业前后中的图纸审核、装修工作进行跟踪，落实；<br /></td>
+                                </tr>  
+                        </table>
+                    </div>
+            </div>
+        
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">教育经历</h3>
+                <div class="resume-preview-dl educationContent">
+1993.10 - 1996.07&nbsp;&nbsp;清远附城电大&nbsp;&nbsp;市场营销&nbsp;&nbsp;大专<br />
+1990.09 - 1993.07&nbsp;&nbsp;广州清新太平三中&nbsp;&nbsp;高中&nbsp;&nbsp;高中<br />
+1987.09 - 1990.07&nbsp;&nbsp;广州清新三坑河岗中学&nbsp;&nbsp;初中&nbsp;&nbsp;初中<br />
+1982.09 - 1987.07&nbsp;&nbsp;清新湴塘小学&nbsp;&nbsp;小学&nbsp;&nbsp;其他<br />
+                </div>
+            </div>
+    
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">培训经历</h3>
+                            <h2>2010.06 - 2010.07&nbsp;&nbsp;营销突围策略</h2>    
+                            <div class="resume-preview-top resume-line-height">
+                                <table cellpadding="0" cellspacing="0" >
+                                        <tr valign="top">
+                                            <td width="60">培训机构：</td>
+                                            <td>中大</td>                   
+                                        </tr>   
+                                        <tr valign="top">
+                                            <td width="60">培训地点：</td>
+                                            <td>中大</td>                   
+                                        </tr>   
+                                        <tr valign="top">
+                                            <td width="60">所获证书：</td>
+                                            <td>优秀学员</td>                   
+                                        </tr>
+                                        <tr valign="top">
+                                            <td width="60">培训描述：</td>
+                                            <td>1、 困境中的企业营销 ； <br />2、突围危机——利用市场杠杆发展业务； <br />3、突破市场低迷的利器：建立核心竞争力与品牌 ； <br />4、营销目标的定制与计划的执行； <br />5、危机下的如何保持市场领先地位； <br />6、降低营销成本：再造营销组织与流程重组 ；</td>
+                                        </tr>
+                                </table>
+                            </div> 
+                            <h2>2009.08 - 2009.09&nbsp;&nbsp;《专业销售技术沙盘训练》、《金牌导购技术沙盘训练》、《SPIN顾问式销售技术》</h2>    
+                            <div class="resume-preview-top resume-line-height">
+                                <table cellpadding="0" cellspacing="0" >
+                                        <tr valign="top">
+                                            <td width="60">培训机构：</td>
+                                            <td>深圳时尚服饰学院</td>                   
+                                        </tr>   
+                                        <tr valign="top">
+                                            <td width="60">培训地点：</td>
+                                            <td>深圳华侨城</td>                   
+                                        </tr>   
+                                        <tr valign="top">
+                                            <td width="60">所获证书：</td>
+                                            <td>优秀学员</td>                   
+                                        </tr>
+                                        <tr valign="top">
+                                            <td width="60">培训描述：</td>
+                                            <td>《专业销售技术沙盘训练》、《金牌导购技术沙盘训练》、《SPIN顾问式销售技术》、《专业销售/导购/商务礼仪训练》、《销售/职业心态与素质建设》、《销售/职业团队意识拓展训练》、《营销博弈：中小企业的活法》、《服饰店铺销售沙盘训练营》、《服饰店铺金牌店长训练营》、《百货超市店铺销售训练营》、《打造金牌终端——加盟商训练营》、《决胜终端之服饰订货会培训》等课程。</td>
+                                        </tr>
+                                </table>
+                            </div> 
+            </div>
+    
+    
+     
+    
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">语言能力</h3>
+                <div class="resume-preview-dl resume-preview-line-height">
+国语、粤语：听说能力<br />
+                </div>
+            </div>
+
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">专业技能</h3>
+                <div class="resume-preview-dl">
+服装／服饰：熟练 | 12个月<br />
+                </div>
+            </div>
+     
+        
+    
+            <div id="commentBlock">
+
+            </div>
+
+
+        </div>
+<div class="resume-preview-right">
+
+            <div class="resume-preview-button previewLayer1 smpevent" data-smpaction="savetocomputer" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon1"></span>保存到我的电脑</div>
+            <div class="resume-preview-button previewLayer2 smpevent" data-smpaction="forwardemail" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon2"></span>转发简历到邮箱</div>
+            <div class="resume-preview-button previewLayer3 smpevent" data-smpaction="movefavoritefolder" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon3"></span>移到简历夹</div>
+           <div class="resume-preview-button previewLayer4 smpevent" data-smpaction="recommendposition" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon4"></span>推荐职位</div>
+            <div class="resume-preview-button previewLayer5 smpevent" data-smpaction="sendmessage" data-smpposition="resumedetail" rdmodule="sendInfoFac" id="sendInfoTrigger" sender="广州天贝动漫科技有限公司" reply="313748662@qq.com" cvbox="document.getElementById('sendNotify')" tdindex="-1">
+                <span class="resume-preview-button-span preview-icon5"></span>发通知信</div>
+            <div class="resume-preview-button previewLayer6 smpevent" data-smpaction="movetoresumebank" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon6"></span>保存到人才储备</div>
+            <div class="resume-preview-button previewLayer7" isdelete="2">
+                <span class="resume-preview-button-span preview-icon7"></span>放入回收箱</div>
+            <div class="resume-preview-button previewLayer9 smpevent" data-smpaction="addcomments" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon9"></span>添加评语</div>
+            <div class="resume-preview-button previewLayer14 smpevent" data-smpaction="addtags" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon13"></span>添加标签</div>
+            <div class="resume-preview-button previewLayer8 smpevent" data-smpaction="printresume" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon8"></span>打印简历</div>
+
+    <a class="similar-button-gray previewLayer_xsjl" style="display:none" target="_blank"><span class="preview-icon_xsjl resume-preview-button-span preview-icon-similar-gray">
+    </span><span id="xsjl_count">相似简历(<img id="xsjldd" src="http://img02.zhaopin.cn/2012/img/rd/xsjldd.gif" />)</span>
+        <span class="new-icon"></span></a>
+    <!--<div class="resume-preview-button previewLayer10">
+        <span class="resume-preview-button-span preview-icon10"></span>返回顶部</div>-->
+</div>
+<div class="back-to">
+</div>
+<div class="szmr_over">
+    <div class="szmr_overts">
+        <div id="subWindowMain" class="tanchuang_main">
+        </div>
+    </div>
+</div>
+<div id="downfile" style="display: none">
+</div>
+    </div>
+    </div>
+</div>
+
+    <input type="checkbox" name="chkid_sendinfo" userinfo_forsend="米卫开$611282141$13533437559@139.COM$13533437559$3700883019$" id="sendNotify" checked="checked" style="display:none;" />    
+<!--随手聘-->
+<input type="hidden" name="posttype" id="posttype" value="0" />
+<input type="hidden" name="labeltype" id="labeltype" value="0" />
+<input type="hidden" name="positionid" id="positionid" value="0" />
+
+
+<input type="hidden" name="resume_id" id="resume_id" value="187333489" />
+<input type="hidden" name="extId" id="extId" value="JM112821412R90250000000" />    
+<input type="hidden" name="resume_version" id="resume_version" value="1" />    
+<input type="hidden" name="resume_language" id="resume_language" value="1" />
+<input type="hidden" name="resume_Name" id="resume_Name" value="服装销售管理 12年 广州" />
+<input type="hidden" name="resumeUserId" id="resumeUserId" value="611282141" />
+<input type="hidden" name="currentCompanyName" id="currentCompanyName" value="广州天贝动漫科技有限公司" />
+<!-- Trace Data Block Start -->
+<input type="hidden" name="dda_kpi" id="dda_kpi" value="M3" />
+<input type="hidden" name="dda_operatorid" id="dda_operatorid" value="204940603" />
+<input type="hidden" name="dda_companyid" id="dda_companyid" value="112568703" />
+<input type="hidden" name="dda_custom" id="dda_custom" value="" />
+<input type="hidden" name="dda_ownerid" id="dda_ownerid" value="3700883019" />
+<input type="hidden" name="dda_cvid" id="dda_cvid" value="JM112821412R90250000000_1" />
+<input type="hidden" name="dda_position" id="dda_position" value="resumedetail" />
+<input type="hidden" name="dda_action" id="dda_action" value="viewdetail" />
+<input type="hidden" name="dda_xtable" id="dda_xtable" value="2" />
+<input type="hidden" name="dda_type" id="dda_type" value="cvinterview" />
+<!-- Trace Data Block End   -->
+<a id="fileLink" href="" style="display:none"></a>
+
+<script type="text/javascript" language="javascript">
+    var desire = document.getElementById("desireIndustry");
+    if (desire != null) {
+        desire.innerHTML = "销售管理";
+    }
+
+    var resumeName = document.getElementById("resumeName");
+    if (resumeName != null) {
+        resumeName.innerHTML = "服装销售管理 12年 广州";
+    }
+
+    var resumeUpdateTime = document.getElementById("resumeUpdateTime");
+    if (resumeUpdateTime != null) {
+        resumeUpdateTime.innerHTML = "2013年09月29日";    
+    }
+
+   
+</script>
+
+
+
+</div>
+
+    <div id="smilarresume" class="similar-resume" style="display:none">
+        <h1>相似简历</h1>
+        <table width="100%" cellspacing="0" cellpadding="0">
+             <thead>
+                <tr>
+                    <td nowrap>简历名称</td>
+                    <td nowrap width="135">职位名称</td>
+                    <td nowrap width="30">学历</td>
+                    <td nowrap width="30">性别</td>
+                    <td nowrap width="30">年龄</td>
+                    <td nowrap width="70">期望月薪</td>
+                    <td nowrap width="30">状态</td>
+                    <td nowrap width="60">现居住地</td>
+                    <td nowrap class="similar-td-padding" width="68">更新时间</td>
+                </tr>
+             </thead>
+             <tbody id="sr_tobdy">
+             </tbody>
+             <tfoot>
+                <tr>
+                    <td colspan="10">
+                        <a id="sr_all" target="_blank"></a>
+                        <div class="satisfaction-ul">
+                            <span>您对“相似简历”的功能是否满意？</span>
+                            <span id="smilarResumeFeedback"><a class="satisfaction-yes" href="javascript:void(0);">满意</a><a class="satisfaction-no" href="javascript:void(0)">不满意</a></span>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div><input type="hidden" name="viewSource" id="viewSource" value="1" />
+<input type="hidden" name="keyword_search" id="keyword_search" value="" />
+<input type="hidden" name="college_search" id="college_search" value="" />
+<input type="hidden" name="company_search" id="company_search" value="" />
+<input type="hidden" name="dda_source" id="dda_source" value="" />
+    </div>
+    <div class="editor-layer-add">
+        <div class="editor-layer-icon cvLabelColor1 dev_label_icon_list" dev_classname="cvLabelColor1">
+        </div>
+        <div class="editor-layer-icon cvLabelColor2 dev_label_icon_list" dev_classname="cvLabelColor2">
+        </div>
+        <div class="editor-layer-icon cvLabelColor3 dev_label_icon_list" dev_classname="cvLabelColor3">
+        </div>
+        <div class="editor-layer-icon cvLabelColor4 dev_label_icon_list" dev_classname="cvLabelColor4">
+        </div>
+        <div class="editor-layer-icon cvLabelColor5 dev_label_icon_list" dev_classname="cvLabelColor5">
+        </div>
+        <div class="editor-layer-icon cvLabelColor6 dev_label_icon_list" dev_classname="cvLabelColor6">
+        </div>
+        <div class="editor-layer-icon cvLabelColor7 dev_label_icon_list" dev_classname="cvLabelColor7">
+        </div>
+        <div class="editor-layer-icon cvLabelColor8 dev_label_icon_list" dev_classname="cvLabelColor8">
+        </div>
+        <div class="editor-layer-icon cvLabelColor9 dev_label_icon_list" dev_classname="cvLabelColor9">
+        </div>
+        <div class="editor-layer-icon cvLabelColor10 dev_label_icon_list" dev_classname="cvLabelColor10">
+        </div>
+        <div class="editor-layer-icon cvLabelColor11 dev_label_icon_list" dev_classname="cvLabelColor11">
+        </div>
+        <div class="editor-layer-icon cvLabelColor12 dev_label_icon_list" dev_classname="cvLabelColor12">
+        </div>
+    </div>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/zlzp.app.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.popupdiv.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.popupbase.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/common.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/utilscript.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/fnresuadmi.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.autocomplete.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/za/smp.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/common/js/za/ga.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/previewlayer.js?t=20150206.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/rd2/js/fktResumeActive.js"></script>
+
+        
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                //SMP监控
+                smppv.pageView();
+            });
+
+            
+        </script>
+    </body>
+    </html>
