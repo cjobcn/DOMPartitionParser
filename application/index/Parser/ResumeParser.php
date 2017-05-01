@@ -106,6 +106,21 @@ class ResumeParser {
             $template = new $templateClass();
             $data = $template->getDomArray($resume);
         }
+
+        return $data;
+    }
+
+
+    /**
+     * 获取正则分割后的数组
+     * @param $resume
+     * @return array
+     */
+    public function getPregArray($resume) {
+        $Parser = new CommonParser();
+        $resume = $Parser->preprocess($resume);
+        //dump($resume);
+        $data = $Parser->pregParse($resume, false, false);
         return $data;
     }
 }

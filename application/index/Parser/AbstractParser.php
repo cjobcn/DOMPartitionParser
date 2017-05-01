@@ -26,13 +26,13 @@ abstract class AbstractParser {
     protected $keywords = '';
 
     //判断模板是否匹配
-    abstract protected function isMatched($content);
+    //abstract protected function isMatched($content);
 
     //根据模板解析简历
     abstract public function parse($content);
 
     //获取DOM数组
-    abstract public function getDomArray($content);
+    //abstract public function getDomArray($content);
 
     public function __construct() {
         $keywords = array_column($this->rules,1);
@@ -96,6 +96,48 @@ abstract class AbstractParser {
         }
         if($j > 0)
             $blocks[$j-1][2] = count($data) - 1;       
+        // dump($blocks);
+        //dump($data);
+        return $partition?array($data, $blocks):$data;
+    }
+
+    public function pregParse($content, $all = false, $partition = true) {
+        $titles = $this->titles;
+        $separators = array(
+            '<\/.+?>',
+            '\|',
+            '<br.*?>',
+            '\r\n'
+        );
+        $pattern = '/'.implode('|',$separators).'/is';
+        $htmls = preg_split($pattern,$content);
+        $data = array();
+        $blocks = array();
+        $i = 0;
+        $j = 0;
+        foreach($htmls as $value) {
+            $text = html_entity_decode(strip_tags($value));
+            $text = str_replace(array(chr(194).chr(160),'　'),' ',$text);
+            $plainText = preg_replace('/\s/','',$text);
+            if($plainText || $all){
+                $data[$i] = trim($text);
+                if($partition) {
+                    foreach($titles as $key=>$title){
+                        $text = preg_replace('/\s+/','',$text);
+                        if(preg_match('/^('.$title[1].')$/', $text)){
+                            $blocks[$j] = array($title[0], $i + 1);
+                            if($j > 0)
+                                $blocks[$j-1][2] = $i - 1;
+                            $j ++;
+                            unset($titles[$key]);
+                        }
+                    }
+                }
+                $i ++ ;
+            }
+        }
+        if($j > 0)
+            $blocks[$j-1][2] = count($data) - 1;
         // dump($blocks);
         //dump($data);
         return $partition?array($data, $blocks):$data;

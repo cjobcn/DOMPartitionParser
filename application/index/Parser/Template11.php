@@ -2,7 +2,7 @@
 namespace app\index\Parser;
 
 class Template11 extends AbstractParser {
-     //区块标题
+    //区块标题
     protected $titles = array(
         array('target', '求职意向'), 
         array('evaluation', '自我评价'), 

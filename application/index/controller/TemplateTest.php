@@ -12,6 +12,9 @@ class TemplateTest extends Controller {
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content);
 		dump($record);
+		$str = $record['career'][0]['duty'][0];
+		dump($str);
+		dump(ord($str));
 		//return json($record);
     }
 
@@ -42,9 +45,21 @@ class TemplateTest extends Controller {
 		return $this->fetch('dom');
 		
 	}
+
+    public function preg() {
+        $Parser = new ResumeParser();
+        $content = $this->getResume();
+
+        $data = $Parser->getPregArray($content);
+        //dump($data);
+        $this->assign('data',$data);
+        return $this->fetch('dom');
+
+    }
+
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '11';
-    protected $pathIndex = 3;
+	protected $templateId = '10';
+    protected $pathIndex = 5;
 
     protected $path = array(
         '01' => array(
@@ -73,7 +88,14 @@ class TemplateTest extends Controller {
 		'07' => array(),
 		'08' => array(),
 		'09' => array(),
-		'10' => array(),
+		'10' => array(
+		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
+            '(Zhaopin.com) 应聘 python工程师-南京-闫运.htm',
+            '36_199.Html',
+            '39_60.Html',
+            '346881.html',
+            '375825.html'
+        ),
 		'11' => array(
 		    'JM005403686R90250000000.html',
             '周莉娜.html',
