@@ -12,9 +12,6 @@ class TemplateTest extends Controller {
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content);
 		dump($record);
-		$str = $record['career'][0]['duty'][0];
-		dump($str);
-		dump(ord($str));
 		//return json($record);
     }
 
@@ -58,8 +55,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '10';
-    protected $pathIndex = 5;
+	protected $templateId = '09';
+    protected $pathIndex = 4;
 
     protected $path = array(
         '01' => array(
@@ -87,7 +84,13 @@ class TemplateTest extends Controller {
         ),
 		'07' => array(),
 		'08' => array(),
-		'09' => array(),
+		'09' => array(
+		    '51job_常珂(17637850).htm',
+            '51job_洪颖(7848354).mht57038.htm',
+            '13482013240-男-上海_上海-1086136892.html',
+            '100501.html',
+            '0_20151226153102565.html'
+        ),
 		'10' => array(
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
             '(Zhaopin.com) 应聘 python工程师-南京-闫运.htm',

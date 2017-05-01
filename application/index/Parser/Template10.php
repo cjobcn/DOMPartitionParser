@@ -55,7 +55,7 @@ class Template10 extends AbstractParser {
         $content = $this->preprocess($content);
 
         //list($data, $blocks) = $this->domParse($content,'td', true);
-        list($data, $blocks) = $this->pregParse($content,false);
+        list($data, $blocks) = $this->pregParse($content);
         //dump($blocks);
         //dump($data);
         //if(!$blocks) return false;
