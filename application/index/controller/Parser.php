@@ -31,8 +31,9 @@ class Parser extends Controller {
                     'status' => 1,
                 );
             }else{
-                ParserLog::toSupport($content);
+                $file = ParserLog::toSupport($content);
                 $info = array(
+                    'data' => $file,
                     'status' => 0,
                 );
             }
