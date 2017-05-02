@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
 
@@ -28,6 +29,7 @@ class TemplateTest extends Controller {
 	//查看简历内容
 	public function resume() {
 		$content = $this->getResume();
+		ParserLog::toSupport($content);
 		echo $content;
 	}
 

@@ -7,6 +7,7 @@
  */
 namespace app\index\controller;
 
+use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
 
@@ -30,6 +31,7 @@ class Parser extends Controller {
                     'status' => 1,
                 );
             }else{
+                ParserLog::toSupport($content);
                 $info = array(
                     'status' => 0,
                 );
