@@ -11,7 +11,7 @@ namespace app\index\Parser;
 
 class ParserLog {
 
-    const  LOG_DIR = 'E:/to_support/';
+    const  LOG_DIR = 'G:/to_support/';
     const  SAME_NAME_MAX = 100;
 
     static function toSupport($content) {
