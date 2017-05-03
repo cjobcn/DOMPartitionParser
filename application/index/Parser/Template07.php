@@ -124,8 +124,8 @@ class Template07 extends AbstractParser {
             if(preg_match('/#h5#(.+)/', $data[$i], $match)){
                 $job['company'] = $match[1];
             }elseif(preg_match('/(\d{4}年\d{1,2}月)\D+(\d{4}年\d{1,2}月|现在)/',$data[$i], $match)){
-                $job['start_time'] = $match[1];
-                $job['end_time'] = $match[2];
+                $job['start_time'] = Utility::str2time($match[1]);
+                $job['end_time'] = Utility::str2time($match[2]);
                 $position = explode('/',$data[++$i]);
                 $job['position'] = $this->clean($position[0]);
                 if($position[1])
@@ -156,8 +156,8 @@ class Template07 extends AbstractParser {
         while($i < $length) {
             $edu = array();
             if(preg_match('/(\d{4}年\d{1,2}月)\D+(\d{4}年\d{1,2}月|现在)/',$data[$i], $match)) {
-                $edu['start_time'] = $match[1];
-                $edu['end_time'] = $match[2];
+                $edu['start_time'] = Utility::str2time($match[1]);
+                $edu['end_time'] = Utility::str2time($match[2]);
                 $edu['school'] = $data[++$i];
                 $major = explode(' ',$data[++$i]);
                 $edu['major'] = $major[0];
