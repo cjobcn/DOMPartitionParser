@@ -57,8 +57,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '09';
-    protected $pathIndex = 4;
+	protected $templateId = '06';
+    protected $pathIndex = 2;
 
     protected $path = array(
         '01' => array(
@@ -82,10 +82,16 @@ class TemplateTest extends Controller {
             '简历编号18840522-罗杭金-设计总监-猎聘网简历.html'
         ),
 		'06' => array(
+            '13716043902-男-北京_北京-484876634.html',
+            '13810051957-男-北京_北京-1969920255.html',
+            '13603062236-男-广东_深圳-电子通信_地产_销售_市场_总监_经理--大专.htm'
+        ),
+		'07' => array(
 
         ),
-		'07' => array(),
-		'08' => array(),
+		'08' => array(
+
+        ),
 		'09' => array(
 		    '51job_常珂(17637850).htm',
             '51job_洪颖(7848354).mht57038.htm',

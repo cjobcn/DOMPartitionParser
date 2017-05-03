@@ -43,7 +43,14 @@ class Template06 extends AbstractParser {
 
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
-        $content = str_replace(array('td'),'div',$content);
+        $redundancy = array(
+            '<head>.+?<\/head>',
+            '<script.*?>.+?<\/script>',
+            '<style.*?>.+?<\/style>',
+            '\r\n'
+        );
+        $pattern = '/'.implode('|', $redundancy).'/is';
+        $content = preg_replace($pattern, '', $content);
         return $content;
     }
 
@@ -51,11 +58,11 @@ class Template06 extends AbstractParser {
     public function parse($content) {
         $record = array();
         //判断内容与模板是否匹配
-        if(!$this->isMatched($content)) return false;
+        //if(!$this->isMatched($content)) return false;
         //预处理
         $content = $this->preprocess($content);
 
-        list($data, $blocks) = $this->domParse($content, 'div');
+        list($data, $blocks) = $this->pregParse($content);
         //dump($blocks);
         //dump($data);
         if(!$blocks) return false;
@@ -73,7 +80,7 @@ class Template06 extends AbstractParser {
     //获取DOM数组
     public function getDomArray($content) {
         $content = $this->preprocess($content);
-        return $this->domParse($content, 'td', true, false);
+        return $this->pregParse($content, false, false);
     }
 
     public function evaluation($data, $start, $end, &$record) {
@@ -83,36 +90,52 @@ class Template06 extends AbstractParser {
     public function career($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
-        $rules = array(
+        $rules1 = array(
             array('nature', '公司性质：'),
             array('size', '公司规模：'),
+        );
+        $rules2 = array(
             array('position', '担任职位：', 2),
             array('city', '工作地点：'),
             array('duty', '职位职责：'),
             array('department', '所在部门：')
         );
-        $keys = array('company');
+        $sequence = array('company');
         $i = 0;
         $j = 0;
         $k = 0;
         $jobs = array();
+        $job = array();
+        $currentKey = '';
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)){
                 $job = array();
-                $job['start_time'] = $match[1];
-                $job['end_time'] = $match[2];
-                $jobs[$j++] = $job;
+                $job['start_time'] = Utility::str2time($match[1]);
+                $job['end_time'] = Utility::str2time($match[2]);
                 $k = 1;
-            }elseif($KV = $this->parseElement($data, $i, $rules)) {
+            }elseif($KV = $this->parseElement($data, $i, $rules1)) {
+                $job[$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }elseif($KV = $this->parseElement($data, $i, $rules2)) {
+                if($KV[0] == 'position') {
+                    $jobs[$j++] = $job;
+                    if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i+1], $match)){
+                        $jobs[$j-1]['start_time'] = Utility::str2time($match[1]);
+                        $jobs[$j-1]['end_time'] = Utility::str2time($match[2]);
+                    }
+                }
                 $jobs[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
+                $currentKey = $KV[0];
             }elseif($k > 0){
-                if($keys[$k-1]){
-                    $jobs[$j-1][$keys[$k-1]] = $data[$i];
-                    $k++;
-                }else{
+                if($key = $sequence[$k-1]){
+                    $job[$key] = $data[$i];
                     $k = 0;
-                }     
+                }
+            }elseif($currentKey){
+
+                $jobs[$j-1][$currentKey] .= '|'.$data[$i];
+
             }
             $i++;                                
         }
@@ -157,13 +180,14 @@ class Template06 extends AbstractParser {
             array('company', '所在公司：'),
             array('desciption', '项目描述：'),
         );
-        $keys = array('name');
+        $sequence = array('name');
         $i = 0;
         $j = 0;
         $k = 0;
         $projects = array();
+        $currentKey = '';
         while($i < $length) {
-            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)){
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)$/', $data[$i], $match)){
                 $project = array();
                 $project['start_time'] = Utility::str2time($match[1]);
                 $project['end_time'] = Utility::str2time($match[2]);
@@ -172,13 +196,14 @@ class Template06 extends AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $projects[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
+                $currentKey = $KV[0];
             }elseif($k > 0){
-                if($keys[$k-1]){
-                    $projects[$j-1][$keys[$k-1]] = $data[$i];
-                    $k++;
-                }else{
+                if($key = $sequence[$k-1]){
+                    $projects[$j-1][$key] = $data[$i];
                     $k = 0;
-                }     
+                }
+            }elseif($currentKey){
+                $projects[$j-1][$currentKey] .= '|'.$data[$i];
             }
             $i++;                                
         }

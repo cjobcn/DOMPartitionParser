@@ -111,6 +111,7 @@ abstract class AbstractParser {
         );
         $pattern = '/'.implode('|',$separators).'/is';
         $htmls = preg_split($pattern,$content);
+        //dump($htmls);
         $data = array();
         $blocks = array();
         $i = 0;
@@ -118,9 +119,9 @@ abstract class AbstractParser {
         foreach($htmls as $value) {
             $text = html_entity_decode(strip_tags($value));
             $text = str_replace(array(chr(194).chr(160),'　'),' ',$text);
-            $plainText = preg_replace('/\s/','',$text);
-            if($plainText || $all){
-                $data[$i] = trim($text);
+            $text = trim($text);
+            if($text || $all){
+                $data[$i] = $text;
                 if($partition) {
                     foreach($titles as $key=>$title){
                         $text = preg_replace('/\s+/','',$text);
@@ -205,7 +206,7 @@ abstract class AbstractParser {
     public function parseElement($data, $i, $rules = array(), $keywords = "") {
         $key = $this->parseKeyword($data[$i],$value, $rules);
         if(!$keywords){
-            $keywords = implode(',',array_column($rules, 1));
+            $keywords = implode('|',array_column($rules, 1));
         }
         if($key){
             if(is_string($value)){

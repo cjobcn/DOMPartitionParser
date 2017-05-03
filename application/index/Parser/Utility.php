@@ -92,7 +92,7 @@ class Utility {
     static public function str2time($str) {
         if(!is_string($str)) return false;
         //如果是现在或至今，取时间戳最大值
-        if(preg_match('/^至今|现在$/',$str))
+        if(preg_match('/^至今|现在|3000\.01$/',$str))
             return $UP_TO_NOW = 2147483647;
         $str = preg_replace('/\D+/', '-', $str);
         $str = preg_replace(array('/^-/','/-$/'), '', $str);
