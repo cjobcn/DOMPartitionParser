@@ -11,6 +11,14 @@ abstract class AbstractParser {
         'time_range' => '/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/'
     );
 
+    //分割符
+    protected $separators = array(
+        '<\/.+?>',      //html结束标签
+        '\|',           // |
+        '<br.*?>',      // 换行标签
+       // '\r\n'
+    );
+
     //区块标题（空格已被处理，不要包含空格）
     //格式：array("区块处理方法名", "区块标题关键字")
     //同模块处理方法名的不同关键字使用“|”隔开
@@ -103,12 +111,7 @@ abstract class AbstractParser {
 
     public function pregParse($content, $all = false, $partition = true) {
         $titles = $this->titles;
-        $separators = array(
-            '<\/.+?>',
-            '\|',
-            '<br.*?>',
-            '\r\n'
-        );
+        $separators = $this->separators;
         $pattern = '/'.implode('|',$separators).'/is';
         $htmls = preg_split($pattern,$content);
         //dump($htmls);
