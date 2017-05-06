@@ -51,20 +51,74 @@ class CommonParser extends AbstractParser {
 
     public function preprocess($content) {
         $redundancy = array(
-            '<head>.+?<\/head>',
-            '<script.*?>.+?<\/script>',
-            '<style.*?>.+?<\/style>'
+            '/<head>.+?<\/head>/is',
+            '/<script.*?>.+?<\/script>/is',
+            '/<style.*?>.+?<\/style>/is'
         );
-        $pattern = '/'.implode('|', $redundancy).'/is';
-        $content = preg_replace($pattern, '', $content);
+        $content = preg_replace($redundancy, '', $content);
         return $content;
     }
 
     public function parse($content) {
+        $record = array();
+        //预处理
         $content = $this->preprocess($content);
+        //分隔网页数据
         list($data, $blocks) = $this->pregParse($content);
         dump($data);
         dump($blocks);
+
+        //其他解析
+        $end = $blocks[0][1]-2?:count($data)-1;
+        $this->basic($data,0, $end, $record);
+        //各模块解析
+        foreach($blocks as $block){
+            $this->$block[0]($data, $block[1], $block[2],$record);
+        }
     }
+
+    //工作经历
+    public function career($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        $j = 0;
+        $jobs = array();
+        while($i < $length){
+            $i++;
+        }
+        $record['career'] = $jobs;
+        return $jobs;
+    }
+
+    //项目经历
+    public function projects($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        $j = 0;
+        $projects = array();
+        while($i < $length){
+            $i++;
+        }
+        $record['projects'] = $projects;
+        return $projects;
+    }
+
+    //教育经历
+    public function education($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        $j = 0;
+        $education = array();
+        while($i < $length){
+            $i++;
+        }
+        $record['education'] = $education;
+        return $education;
+    }
+
+
 
 }

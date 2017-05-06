@@ -109,9 +109,17 @@ abstract class AbstractParser {
         return $partition?array($data, $blocks):$data;
     }
 
-    public function pregParse($content, $all = false, $partition = true) {
+    /**
+     * 正则分割
+     * @param $content
+     * @param bool $all
+     * @param bool $partition
+     * @param array $separators
+     * @return array
+     */
+    public function pregParse($content, $all = false, $partition = true, $separators = array()) {
         $titles = $this->titles;
-        $separators = $this->separators;
+        if(!$separators) $separators = $this->separators;
         $pattern = '/'.implode('|',$separators).'/is';
         $htmls = preg_split($pattern,$content);
         //dump($htmls);
@@ -205,7 +213,14 @@ abstract class AbstractParser {
         return false;
     }
 
-    //解析数组元素，获取键-值对-偏移量
+    /**
+     * 解析数组元素，获取键-值对-偏移量
+     * @param array $data
+     * @param int $i
+     * @param array $rules
+     * @param string $keywords
+     * @return array|bool
+     */
     public function parseElement($data, $i, $rules = array(), $keywords = "") {
         $key = $this->parseKeyword($data[$i],$value, $rules);
         if(!$keywords){

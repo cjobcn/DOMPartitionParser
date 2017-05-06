@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\index\Parser\DataExtracter;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
@@ -53,6 +54,14 @@ class TemplateTest extends Controller {
         //dump($data);
         $this->assign('data',$data);
         return $this->fetch('dom');
+
+    }
+
+    public function xiace() {
+        $extracter = new DataExtracter();
+        $rawData = '邮箱：112353@qq.com 手机：17717291341';
+        $data = $extracter->extract($rawData);
+        dump($data);
 
     }
 

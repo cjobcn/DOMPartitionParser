@@ -67,7 +67,7 @@ class Template07 extends AbstractParser {
         //dump($data);
         if(!$blocks) return false;
         $i = 0;
-        $end = $blocks[0][1] - 1;
+        $end = $blocks[0][1] - 2;
         //其他解析
         preg_match('/<h2>(.+?)<\/h2>/i',$content, $match);
         $record['name'] = $match[1];

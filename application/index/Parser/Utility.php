@@ -54,9 +54,9 @@ class Utility {
             '￥','~', '`'   
         );
         if($type == 'TODBC'){
-            return str_replace( $sbc, $dbc, $str ); //半角到全角
+            return str_replace( $sbc, $dbc, $str ); //全角到半角
         }elseif($type == 'TOSBC'){
-            return str_replace( $dbc, $sbc, $str ); //全角到半角
+            return str_replace( $dbc, $sbc, $str ); //半角到全角
         }else{
             return $str;
         }
