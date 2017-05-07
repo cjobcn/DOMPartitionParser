@@ -13,7 +13,7 @@ class TemplateTest extends Controller {
 		//echo $content;
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content);
-		dump($record);
+		echo(json_encode($record));
 		//return json($record);
     }
 

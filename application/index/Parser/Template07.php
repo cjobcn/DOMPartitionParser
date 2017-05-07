@@ -9,7 +9,7 @@ class Template07 extends AbstractParser {
         array('projects', '项目经验'),
         array('education', '教育背景'), 
         array('trainings', '培训经历'),
-        array('languages', '外语/方言'),
+        array('languages', '外语\/方言'),
         array('addition', '职业技能与特长'),
     );
 
@@ -159,10 +159,12 @@ class Template07 extends AbstractParser {
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);
                 $edu['school'] = $data[++$i];
-                $major = explode(' ',$data[++$i]);
-                $edu['major'] = $major[0];
-                $edu['degree'] = end($major);
-                $education[$j++] = $edu;
+                if($edu['school']){
+                    $major = explode(' ',$data[++$i]);
+                    $edu['major'] = $major[0];
+                    $edu['degree'] = end($major);
+                    $education[$j++] = $edu;
+                }
             }else{
                 $education[$j-1]['class'] = str_replace('#br#', "\r\n", $data[$i]);
             }
