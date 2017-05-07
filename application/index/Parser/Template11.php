@@ -96,7 +96,7 @@ class Template11 extends AbstractParser {
         }
         if(!isset($record['update_time'])){
             if(preg_match('/resumeUpdateTime.innerHTML = "(.+?)";/',$content,$match));
-                $record['update_time'] = Utility::str2time($match[1]);
+                $record['update_time'] = $match[1];
         }
 
         //各模块解析

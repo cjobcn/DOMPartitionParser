@@ -73,7 +73,7 @@ class Template07 extends AbstractParser {
         $record['name'] = $match[1];
         while($i < $end) {
             if(preg_match('/更新日期 (\d{4}\D\d{2}\D\d{2})/', $data[$i], $match)) {
-                $record['update_time'] = strtotime($match[1]);
+                $record['update_time'] = $match[1];
             }elseif(strpos($data[$i], "#br#") !== false){
                 $basic = explode("#br#", $data[$i]);
                 $this->basic($basic, 0, count($basic) - 1, $record);

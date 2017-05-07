@@ -90,6 +90,10 @@ class ResumeParser {
         if($templateClass){
             $template = new $templateClass();
             $record = $template->parse($resume);
+            if($record){
+                $Converter = new DataConverter();
+                $Converter->multiConvert($record);
+            }
         }
         return $record;
     }

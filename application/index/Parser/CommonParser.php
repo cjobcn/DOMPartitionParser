@@ -69,8 +69,32 @@ class CommonParser extends AbstractParser {
         dump($blocks);
 
         //其他解析
-        $end = $blocks[0][1]-2?:count($data)-1;
-        $this->basic($data,0, $end, $record);
+        $length = $blocks[0][1]-1?:count($data)-1;
+        $basic = array_slice($data,0, $length);
+        $i = 0;
+        //关键字提取
+        while($i < $length) {
+            $KV = $this->parseElement($data, $i);
+            if($KV && !isset($record[$KV[0]])) {
+                unset($basic[$i]);
+                $record[$KV[0]] = $KV[1];
+                if($KV[2] > 0){
+                    $i = $i + $KV[2];
+                    unset($basic[$i]);
+                }
+            }
+            $i++;
+        }
+        $restKeywords = array_diff(array_keys($record),array_column($this->rules,0));
+        //正则提取
+        $Extracter = new DataExtracter();
+        foreach($basic as $originValue) {
+            foreach($restKeywords as $keyword) {
+                if($res = $Extracter->extract($keyword, $originValue)) {
+                    $record[$res[0]] = $res[1];
+                }
+            }
+        }
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);

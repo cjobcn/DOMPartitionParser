@@ -102,9 +102,6 @@ class Template09 extends AbstractParser {
             $i++;
         }
         $this->basic($data,0,$blocks[0][1]-1,$record);
-        if(isset($record['update_time'])){
-            $record['update_time'] = strtotime($record['update_time']);
-        }
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);

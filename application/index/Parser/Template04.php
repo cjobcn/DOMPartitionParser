@@ -57,7 +57,7 @@ class Template04 extends AbstractParser {
         if(!$blocks) return false;
         for($i=0;$i<$blocks[0][1];$i++) {
             if(preg_match('/(?<=最后更新简历时间：)\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/',$data[$i],$match))
-                $record['update_time'] = strtotime($match[0]);
+                $record['update_time'] = $match[0];
         }
         
         foreach($blocks as $block){

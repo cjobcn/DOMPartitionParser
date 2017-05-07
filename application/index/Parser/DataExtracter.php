@@ -20,8 +20,27 @@ class DataExtracter {
         'email' => 'email',
     );
 
-    public function extract($data) {
+    public function extract($keyName,$originData) {
+        $map = $this->MethodMap;
+        $method = $map[$keyName];
+        if($method){
+            $value = $this->$method($originData);
+            if($value)
+                return array($keyName, $value);
+        }
+        //未提取
+        return false;
 
+    }
+
+    //电子邮件
+    public function email($originData) {
+        $pattern = '/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/';
+        if(preg_match($pattern, $originData, $match)) {
+            return $match[0];
+        }else{
+            return false;
+        }
     }
 
 

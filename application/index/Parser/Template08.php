@@ -74,7 +74,7 @@ class Template08 extends AbstractParser {
             if(preg_match('/#h3#(.+)/', $data[$i], $match)) {
                 $record['name'] = $match[1];
             }elseif(preg_match('/更新日期：(\d{4})\D+(\d{1,2})\D+(\d{1,2})/', $data[$i], $match)){
-                $record['update_time'] = strtotime($match[1].'/'.$match[2].'/'.$match[3]);
+                $record['update_time'] = $match[1].'-'.$match[2].'-'.$match[3];
             }
             $i++;
         }

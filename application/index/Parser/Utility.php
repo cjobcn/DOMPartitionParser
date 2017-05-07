@@ -91,6 +91,13 @@ class Utility {
     //字符串转时间戳
     static public function str2time($str) {
         if(!is_string($str)) return false;
+        if(preg_match('/\d{4}(\D+\d{1,2}){1,2}|至今|现在/', $str, $match)){
+            $str = $match[0];
+            //dump($str);
+        }else{
+            //格式不对
+            return false;
+        }
         //如果是现在或至今，取时间戳最大值
         if(preg_match('/^至今|现在|3000\.01$/',$str))
             return $UP_TO_NOW = 2147483647;

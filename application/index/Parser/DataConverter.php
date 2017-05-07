@@ -18,6 +18,7 @@ class DataConverter {
     //属性到转换方法的映射关系
     protected $MethodMap = array(
         'update_time' => 'str2time',
+        'email'       => 'email',
     );
 
     /**
@@ -43,10 +44,22 @@ class DataConverter {
      * @param $rawData array
      */
     public function multiConvert(&$rawData) {
-
+        foreach($rawData as $key => $value) {
+            $res = $this->convert($key, $value);
+            $rawData[$res[0]] = $res[1];
+        }
     }
 
     public function str2time($rawData) {
-        return strtotime($rawData);
+        return Utility::str2time($rawData)?:0;
+    }
+
+    public function email($rawData) {
+        $pattern = '/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/';
+        if(preg_match($pattern, $rawData, $match)) {
+            return $match[0];
+        }else{
+            return '';
+        }
     }
 }
