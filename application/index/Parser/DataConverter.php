@@ -102,4 +102,14 @@ class DataConverter {
             return '';
         }
     }
+
+    //年龄
+    public function age($rawData) {
+        $pattern = '/\d{2}/';
+        if(preg_match($pattern, $rawData, $match)) {
+            return intval($match[0]);
+        }else{
+            return '';
+        }
+    }
 }
