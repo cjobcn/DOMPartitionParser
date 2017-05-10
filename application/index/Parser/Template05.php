@@ -143,8 +143,8 @@ class Template05 extends AbstractParser {
     public function projects($data, $start, $end, &$record) {
         $rules = array(
             array('position', '项目职务：'),
-            array('compamy', '所在公司：'),
-            array('desciption', '项目简介：'),
+            array('company', '所在公司：'),
+            array('description', '项目简介：'),
             array('duty', '项目职责：'),
             array('performance', '项目业绩：'),
         );

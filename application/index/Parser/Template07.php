@@ -23,7 +23,7 @@ class Template07 extends AbstractParser {
         array('residence', '户口所在地：'), 
         array('industry', '现从事行业：'), 
         array('last_position', '现从事职业：'), 
-        array('targey_salary', '期望薪水：'), 
+        array('target_salary', '期望薪水：'),
         array('target_industry', '期望从事行业：'), 
         array('target_position', '期望从事职业：'), 
         array('target_city', '期望工作地区：'), 
@@ -112,7 +112,7 @@ class Template07 extends AbstractParser {
         );
         $rules2 = array(
             array('city', '工作地点：', 0), 
-            array('reportto', '汇报对象：', 0), 
+            array('report_to', '汇报对象：', 0),
             array('duty', '工作职责和业绩：'),
             array('left_reason', '离职\/换岗原因：')
         );

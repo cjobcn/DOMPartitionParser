@@ -27,7 +27,7 @@ class Template10 extends AbstractParser {
         array('target_position', '期望从事职业：'),
         array('target_industry', '期望从事行业：'),
         array('target_city', '期望工作地区：'),
-        array('targte_salary', '期望月薪：'), 
+        array('target_salary', '期望月薪：'),
         array('work_status', '目前状况：'),
     );
 

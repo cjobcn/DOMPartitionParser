@@ -124,7 +124,7 @@ class Template09 extends AbstractParser {
             array('industry', '所属行业：'), 
             array('description', '公司描述：'),
             array('performance', '工作业绩：'), 
-            array('reportto', '汇报对象：'), 
+            array('report_to', '汇报对象：'),
             array('underlings', '下属人数：'), 
             array('referees', '证明人：'), 
             array('left_reason', '离职原因：'), 

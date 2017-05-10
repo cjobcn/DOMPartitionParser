@@ -128,7 +128,7 @@ class Template08 extends AbstractParser {
             array('position_class', '职位类别：'), 
             array('position_level', '职位级别：'), 
             array('duty', '职责和业绩：'),
-            array('reportto', '汇报人：'), 
+            array('report_to', '汇报人：'),
             array('underlings', '下属：'), 
         );
         $keywords = implode(',',array_column($rules, 1));
@@ -175,7 +175,7 @@ class Template08 extends AbstractParser {
 
     public function projects($data, $start, $end, &$record) {
         $rules = array(
-            array('desciption', '项目描述：'),
+            array('description', '项目描述：'),
             array('duty', '项目职责：'),
         );
         $sequence = array('pattern', array('name'));
