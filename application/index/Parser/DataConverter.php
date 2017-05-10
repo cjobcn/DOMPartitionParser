@@ -50,10 +50,12 @@ class DataConverter {
         }
     }
 
+    //转化为时间戳
     public function str2time($rawData) {
         return Utility::str2time($rawData)?:0;
     }
 
+    //标准化电子邮件
     public function email($rawData) {
         $pattern = '/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/';
         if(preg_match($pattern, $rawData, $match)) {

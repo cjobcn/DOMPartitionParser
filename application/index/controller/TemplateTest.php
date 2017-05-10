@@ -1,6 +1,6 @@
 <?php
 namespace app\index\controller;
-use app\index\Parser\DataExtracter;
+use app\index\Parser\DataExtractor;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
@@ -58,15 +58,15 @@ class TemplateTest extends Controller {
     }
 
     public function xiace() {
-        $extracter = new DataExtracter();
+        $extractor = new DataExtractor();
         $rawData = '邮箱：112353@qq.com 手机：17717291341';
-        $data = $extracter->extract($rawData);
+        $data = $extractor->extract('email', $rawData);
         dump($data);
 
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '07';
+	protected $templateId = '11';
     protected $pathIndex = 0;
 
     protected $path = array(

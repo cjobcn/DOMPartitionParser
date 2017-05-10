@@ -138,7 +138,7 @@ class Template extends AbstractParser {
         $data = array_slice($data,$start, $length);
         $rules = array(
             array('company', '所在公司：'),
-            array('desciption', '项目描述：'),
+            array('description', '项目描述：'),
         );
         $sequence = array('name');
         $i = 0;

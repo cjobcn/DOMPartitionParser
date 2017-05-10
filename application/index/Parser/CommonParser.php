@@ -87,10 +87,10 @@ class CommonParser extends AbstractParser {
         }
         $restKeywords = array_diff(array_keys($record),array_column($this->rules,0));
         //正则提取
-        $Extracter = new DataExtracter();
+        $Extractor = new DataExtractor();
         foreach($basic as $originValue) {
             foreach($restKeywords as $keyword) {
-                if($res = $Extracter->extract($keyword, $originValue)) {
+                if($res = $Extractor->extract($keyword, $originValue)) {
                     $record[$res[0]] = $res[1];
                 }
             }
