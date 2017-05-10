@@ -66,8 +66,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '05';
-    protected $pathIndex = 1;
+	protected $templateId = '11';
+    protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(

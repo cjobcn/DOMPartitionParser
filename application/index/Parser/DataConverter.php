@@ -22,6 +22,8 @@ class DataConverter {
         'phone'       => 'phone'
     );
 
+    protected $rawData = array();
+
     /**
      * 数据转换
      * @param $keyName string 属性名
@@ -45,6 +47,7 @@ class DataConverter {
      * @param $rawData array
      */
     public function multiConvert(&$rawData) {
+        $this->rawData = $rawData;
         foreach($rawData as $key => $value) {
             $value = $this->str2Empty($value);
             if($value === '')
@@ -85,6 +88,16 @@ class DataConverter {
         $pattern = '/1[3|4|5|7|8][0-9]{9}/';
         if(preg_match($pattern, $rawData, $match)) {
             return $match[0];
+        }else{
+            return '';
+        }
+    }
+
+    //出生年份
+    public function birthYear($rawData) {
+        $pattern = '/(?:20|19)\d{2}/';
+        if(preg_match($pattern, $rawData, $match)) {
+            return intval($match[0]);
         }else{
             return '';
         }
