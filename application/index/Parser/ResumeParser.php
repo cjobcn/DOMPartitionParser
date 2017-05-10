@@ -4,11 +4,11 @@ namespace app\index\Parser;
 class ResumeParser {
 
     protected $templateIDs = array(
-        //'01' => '/简历编号：\d{8}\D/',                //猎聘网
+        '01' => '/简历编号(：|: )\d{8}[^\D\|]/',                //猎聘网
         '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
         '03' => '/<title>我的简历<\/title>/',
         '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
-        '05' => '/简历编号：\d{8}\D|猎聘通/',                    //猎聘网
+        '05' => '/简历编号:\d{8}\|猎聘通/',                    //猎聘网
         '06' => '/<title>.+?举贤网.+?<\/title>/i',            //举贤网
         '07' => '/编号\s+\d{16}/',                           //中华英才
         '08' => '/简历编号：\d{16}/',
@@ -19,7 +19,7 @@ class ResumeParser {
     );
 
     /**
-     * 读取文档(windwos下需要将路径转为GBK)
+     * 读取文档(windows下需要将路径转为GBK)
      * @param $path
      * @return bool|string
      */

@@ -13,7 +13,7 @@ class TemplateTest extends Controller {
 		//echo $content;
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content);
-		echo(json_encode($record));
+		dump($record);
 		//return json($record);
     }
 
@@ -66,10 +66,13 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '11';
-    protected $pathIndex = 0;
+	protected $templateId = '05';
+    protected $pathIndex = 1;
 
     protected $path = array(
+        '00' => array(
+            '00109094.html',
+        ),
         '01' => array(
             '00110225.html',
             '10102.html',

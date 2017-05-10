@@ -19,6 +19,7 @@ class DataConverter {
     protected $MethodMap = array(
         'update_time' => 'str2time',
         'email'       => 'email',
+        'phone'       => 'phone'
     );
 
     /**
@@ -45,9 +46,23 @@ class DataConverter {
      */
     public function multiConvert(&$rawData) {
         foreach($rawData as $key => $value) {
-            $res = $this->convert($key, $value);
-            $rawData[$res[0]] = $res[1];
+            $value = $this->str2Empty($value);
+            if($value === '')
+                $rawData[$key] = $value;
+            else{
+                $res = $this->convert($key, $value);
+                $rawData[$res[0]] = $res[1];
+            }
         }
+    }
+
+    //“未填”等信息转为空
+    public function str2Empty($rawData) {
+        $emptyValue = array('未填', '未设置');
+        if(in_array($rawData, $emptyValue))
+            return '';
+        else
+            return $rawData;
     }
 
     //转化为时间戳
@@ -58,6 +73,16 @@ class DataConverter {
     //标准化电子邮件
     public function email($rawData) {
         $pattern = '/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/';
+        if(preg_match($pattern, $rawData, $match)) {
+            return $match[0];
+        }else{
+            return '';
+        }
+    }
+
+    //标准化手机号
+    public function phone($rawData) {
+        $pattern = '/1[3|4|5|7|8][0-9]{9}/';
         if(preg_match($pattern, $rawData, $match)) {
             return $match[0];
         }else{

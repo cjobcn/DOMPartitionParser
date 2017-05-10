@@ -19,6 +19,7 @@ class Template05 extends AbstractParser {
 
     //关键字解析规则
     protected $rules = array(
+        array('true_id', '简历编号：'),
         array('update_time', '最新登录：'), 
         array('name', '姓名：'), 
         array('sex', '性别：'), 
@@ -46,8 +47,7 @@ class Template05 extends AbstractParser {
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        $pattern = '/简历编号：\d{8}|猎聘通/';
-        return preg_match($pattern,$content);
+
     }
 
     //对简历内容预处理,使内容可以被解析
@@ -102,13 +102,13 @@ class Template05 extends AbstractParser {
             array('nature', '公司性质：', 0),
             array('size', '公司规模：', 0),
             array('industry', '公司行业：', 0),
-            array('desciption', '公司描述：', 0),
+            array('description', '公司描述：', 0),
         );
         $rules2 = array(
             array('city', '所在地区：'),
             array('duty', '工作职责：'),
             array('department', '所在部门：'),
-            array('reportto', '汇报对象：'),
+            array('report_to', '汇报对象：'),
             array('underlings', '下属人数：'),
             array('salary', '薪酬情况：'),
             array('duty', '工作职责：')
