@@ -7,7 +7,6 @@
  */
 namespace app\index\controller;
 
-use app\index\Parser\ParseCommon;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
