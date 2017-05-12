@@ -7,12 +7,12 @@
  */
 namespace app\index\controller;
 
+use app\index\Parser\ParseCommon;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
 
 class Parser extends Controller {
-
     //简历解析
     public function resume() {
         header('Access-Control-Allow-Origin:*');
@@ -32,11 +32,21 @@ class Parser extends Controller {
                     'status' => 1,
                 );
             }else{
-                $file = ParserLog::toSupport($content);
-                $info = array(
-                    'data' => $file,
-                    'status' => 0,
-                );
+                //通用解析
+                $Parser = new \app\index\Irregular\ParseCommon();
+                $data = $Parser->parse($content);
+                if($data){
+                    $info = array(
+                        'data' => $data,
+                        'status' => 2,
+                    );
+                }else{
+                    $file = ParserLog::toSupport($content);
+                    $info = array(
+                        'data' => $file,
+                        'status' => 0,
+                    );
+                }
             }
             return json($info);
         }else{
