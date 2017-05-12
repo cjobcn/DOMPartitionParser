@@ -19,7 +19,9 @@ class DataConverter {
     protected $MethodMap = array(
         'update_time' => 'str2time',
         'email'       => 'email',
-        'phone'       => 'phone'
+        'phone'       => 'phone',
+        'birth_year'  => 'birthYear',
+        'age'         => 'age',
     );
 
     protected $rawData = array();
@@ -112,4 +114,5 @@ class DataConverter {
             return '';
         }
     }
+
 }
