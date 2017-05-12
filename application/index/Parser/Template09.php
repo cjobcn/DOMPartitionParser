@@ -86,10 +86,12 @@ class Template09 extends AbstractParser {
         //其他解析
         $i = 0;
         while($i < $blocks[0][1]-1){
-            if(preg_match('/\(ID:\d{7,8}\)/',$data[$i])){
+            if(preg_match('/\(ID:(\d{7,})\)/',$data[$i],$match)){
+                $record['true_id'] = $match[1];
                 if(!$this->isKeyword($data[$i-2]))
                     $record['name'] = $data[$i-2];
-                preg_match('/男|女/',$data[$i-1],$match);
+            }
+            if(preg_match('/男|女/',$data[$i-1],$match)){
                 $record['sex'] = $match[0];
                 preg_match('/\d{4}(?=年)/',$data[$i-1],$match);
                 $record['birth_year'] = $match[0];

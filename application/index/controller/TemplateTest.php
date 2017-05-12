@@ -66,8 +66,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '11';
-    protected $pathIndex = 0;
+	protected $templateId = '09';
+    protected $pathIndex = 5;
 
     protected $path = array(
         '00' => array(
@@ -108,7 +108,8 @@ class TemplateTest extends Controller {
             '51job_洪颖(7848354).mht57038.htm',
             '13482013240-男-上海_上海-1086136892.html',
             '100501.html',
-            '0_20151226153102565.html'
+            '0_20151226153102565.html',
+            '51job_曹潇彬(320245978).html'
         ),
 		'10' => array(
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
