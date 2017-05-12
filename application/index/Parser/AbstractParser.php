@@ -82,7 +82,6 @@ abstract class AbstractParser {
             }
             //将全角空格(E38080)和UTF8空格(C2A0)替换成半角空方
             $text = str_replace(array(chr(194).chr(160),'　'),' ',$td->text());
-            $text = str_replace('，',',',$text);
             $text = preg_replace('/\s+/',' ',$text);
             $text = trim($text);
             if($text || $all){
@@ -131,7 +130,6 @@ abstract class AbstractParser {
         foreach($htmls as $value) {
             $text = html_entity_decode(strip_tags($value));
             $text = str_replace(array(chr(194).chr(160),'　'),' ',$text);
-            $text = str_replace('，',',',$text);
             $text = trim($text);
             if($text || $all){
                 $data[$i] = $text;
