@@ -90,8 +90,7 @@ class Template09 extends AbstractParser {
                 $record['true_id'] = $match[1];
                 if(!$this->isKeyword($data[$i-2]))
                     $record['name'] = $data[$i-2];
-            }
-            if(preg_match('/男|女/',$data[$i-1],$match)){
+                preg_match('/男|女/',$data[$i-1],$match);
                 $record['sex'] = $match[0];
                 preg_match('/\d{4}(?=年)/',$data[$i-1],$match);
                 $record['birth_year'] = $match[0];
