@@ -81,10 +81,13 @@ class ResumeParser {
     /**
      * 解析简历
      * @param $resume
+     * @param $templateId string  简历模板编号
      * @return mixed
      */
-    public function parse($resume) {
-        $templateClass = $this->getTemplateClass($resume);
+    public function parse($resume, &$templateId = '') {
+        $namespace = __NAMESPACE__;
+        $templateId = $this->getTemplateID($resume);
+        $templateClass = $namespace.'\Template'.$templateId;
         //dump($templateClass);
         $record = null;
         if($templateClass){

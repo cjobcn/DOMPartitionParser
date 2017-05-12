@@ -23,10 +23,11 @@ class Parser extends Controller {
             //$type = $request->post('type');
             $Parser = new ResumeParser();
             $content = $Parser->convert2UTF8($content);
-            $data = $Parser->parse($content);
+            $data = $Parser->parse($content, $templateId);
 
             if($data){
                 $info = array(
+                    'template' => $templateId,
                     'data' => $data,
                     'status' => 1,
                 );
