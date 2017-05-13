@@ -9,6 +9,7 @@ namespace app\index\controller;
 
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
+use app\index\Irregular\ParseCommon;
 use think\Controller;
 
 class Parser extends Controller {
@@ -18,12 +19,12 @@ class Parser extends Controller {
         $request = request();
         if($request->isPost()) {
             $content = $request->post('content');
-
+            if(!$content)
+                return json(array('status' => -2));
             //$type = $request->post('type');
             $Parser = new ResumeParser();
             $content = $Parser->convert2UTF8($content);
             $data = $Parser->parse($content, $templateId);
-
             if($data){
                 $info = array(
                     'template' => $templateId,
@@ -31,8 +32,9 @@ class Parser extends Controller {
                     'status' => 1,
                 );
             }else{
+                ParserLog::toSupport($content);
                 //通用解析
-                $Parser = new \app\index\Irregular\ParseCommon();
+                $Parser = new ParseCommon();
                 $data = $Parser->parse($content);
                 if($data){
                     $info = array(
@@ -40,19 +42,17 @@ class Parser extends Controller {
                         'status' => 2,
                     );
                 }else{
-                    $file = ParserLog::toSupport($content);
                     $info = array(
-                        'data' => $file,
                         'status' => 0,
                     );
                 }
             }
-            return json($info);
+
         }else{
             $info = array(
                 'status' => -1,
             );
-            return json($info);
         }
+        return json($info);
     }
 }
