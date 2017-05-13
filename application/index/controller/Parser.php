@@ -18,12 +18,12 @@ class Parser extends Controller {
         header('Access-Control-Allow-Origin:*');
         $request = request();
         if($request->isPost()) {
-            $content = $request->post('content');
-            if(!$content)
+            $originContent = $request->post('content');
+            if(!$originContent)
                 return json(array('status' => -2));
             //$type = $request->post('type');
             $Parser = new ResumeParser();
-            $content = $Parser->convert2UTF8($content);
+            $content = $Parser->convert2UTF8($originContent);
             $data = $Parser->parse($content, $templateId);
             if($data){
                 $info = array(
@@ -32,7 +32,7 @@ class Parser extends Controller {
                     'status' => 1,
                 );
             }else{
-                ParserLog::toSupport($content);
+                ParserLog::toSupport($originContent);
                 //通用解析
                 $Parser = new ParseCommon();
                 $data = $Parser->parse($content);
