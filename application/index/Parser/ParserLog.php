@@ -26,8 +26,8 @@ class ParserLog {
         while($i < self::SAME_NAME_MAX){
             if(file_exists($filePath)){
                 $i++;
-                $filename = $filename.'_'.$i;
-                $filePath = self::LOG_DIR.$filename.$ext;
+                $file = $filename.'_'.$i;
+                $filePath = self::LOG_DIR.$file.$ext;
             }else{
                 file_put_contents($filePath, $content);
                 break;
