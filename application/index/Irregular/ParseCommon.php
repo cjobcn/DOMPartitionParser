@@ -7,9 +7,9 @@ class ParseCommon{
 
 	//返回姓名
 	public function getName($CN_ENG_array){
-		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
-		$lastName = iconv("gb2312", "utf-8//IGNORE",$lastName);
-		//vde($CN_ENG_array);
+//		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
+//		$lastName = iconv("gb2312", "utf-8//IGNORE",$lastName);
+		//dump($CN_ENG_array);die;
 		for($i = 0; $i < count($CN_ENG_array); $i++){
 			if(strstr($CN_ENG_array[$i],"姓名") && $CN_ENG_array[$i+1]=="曾用名"){
 				$name = $CN_ENG_array[$i+2];
@@ -36,20 +36,36 @@ class ParseCommon{
 			//vde($CN_ENG_array);
 			foreach($CN_ENG_array as $key=>$value) {
 				if($key<10){
-					if(strlen($value) == 3 && strstr($lastName,substr($value,0,3))){//如果匹配到一个字符为姓氏则看之后的第一位和第二位是不是一个字
+					if(strlen($value) == 3){//如果匹配到一个字符为姓氏则看之后的第一位和第二位是不是一个字
 						//vde($value);
-						//如果后面第一位和第二位都是一个字且不是性别则判断姓名为三个字取三个字
-						if(strlen($CN_ENG_array[$key+1])==3 && strlen($CN_ENG_array[$key+2])==3 && $CN_ENG_array[$key+2]!="男" && $CN_ENG_array[$key+2]!="女"){
-							$name = $CN_ENG_array[$key].$CN_ENG_array[$key+1].$CN_ENG_array[$key+2];
-							break;
-						}elseif(strlen($CN_ENG_array[$key+1])==3){//如果后面第二位不是一个字只取前两个字
-							$name = $CN_ENG_array[$key].$CN_ENG_array[$key+1];
-							break;
+						//匹配百家姓相似查询
+						$keyWord = substr($value,0,3);
+						if(!strstr('年月日号',$keyWord)) {
+							$wherename['FName'] = array('like', '%' . $keyWord . '%');
+							$likeLastName = Db::table('sj_fname')->where($wherename)->find();
+							if ($likeLastName) {
+								//如果后面第一位和第二位都是一个字且不是性别则判断姓名为三个字取三个字
+								if (strlen($CN_ENG_array[$key + 1]) == 3 && strlen($CN_ENG_array[$key + 2]) == 3 && $CN_ENG_array[$key + 2] != "男" && $CN_ENG_array[$key + 2] != "女") {
+									$name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1] . $CN_ENG_array[$key + 2];
+									break;
+								} elseif (strlen($CN_ENG_array[$key + 1]) == 3) {//如果后面第二位不是一个字只取前两个字
+									$name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1];
+									break;
+								}
+							}
 						}
-					}elseif((strlen($value) == 6 or strlen($value) == 9)&&strstr($lastName,substr($value,0,3))) {//如果遇到两个字或三个字且第一个字是姓氏则认为是名字
+					}elseif((strlen($value) == 6 or strlen($value) == 9)) {//如果遇到两个字或三个字且第一个字是姓氏则认为是名字
 						//vde($value);
-						$name = $value;
-						break;
+						//匹配百家姓相似查询
+						$keyWord = substr($value,0,3);
+						if(!strstr('年月日号',$keyWord)){
+							$wherename['FName'] = array('like','%'.$keyWord.'%');
+							$likeLastName = Db::table('sj_fname')->where($wherename)->find();
+							if($likeLastName){
+								$name = $value;
+								break;
+							}
+						}
 					}
 				}
 			}
@@ -817,7 +833,7 @@ class ParseCommon{
 		//提取中英文数组
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
 		//获得姓名
-		$resume['real_name'] = $this->getName($CN_ENG_array[0]);
+		$resume['name'] = $this->getName($CN_ENG_array[0]);
 
 		//获得所在城市
 		$resume['target_city'] = $this->getCity($CN_ENG_array[0], $resume['last_company']);

@@ -10,6 +10,7 @@ namespace app\index\controller;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use app\index\Irregular\ParseCommon;
+use app\index\Irregular\ParserIrregularLog;
 use think\Controller;
 
 class Parser extends Controller {
@@ -42,6 +43,8 @@ class Parser extends Controller {
                         'status' => 2,
                     );
                 }else{
+                    //存储没有解析出来的简历文档（由于简历名字提取原因暂时不用）
+                    ParserIrregularLog::toSupportIrregular($originContent);
                     $info = array(
                         'status' => 0,
                     );
