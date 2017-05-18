@@ -86,7 +86,7 @@ class Template09 extends AbstractParser {
         //其他解析
         $i = 0;
         while($i < $blocks[0][1]-1){
-            if(preg_match('/\(ID:(\d{7,})\)/',$data[$i],$match)){
+            if(preg_match('/\(ID:(\d{5,})\)/',$data[$i],$match)){
                 $record['true_id'] = $match[1];
                 if(!$this->isKeyword($data[$i-2]))
                     $record['name'] = $data[$i-2];
