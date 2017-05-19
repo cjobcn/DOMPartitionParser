@@ -81,7 +81,7 @@ class Template09 extends AbstractParser {
 
         list($data, $blocks) = $this->domParse($content,'td', false);
         //dump($blocks);
-            dump($data);
+        //dump($data);
         if(!$blocks) return false;
         //其他解析
         $i = 0;
