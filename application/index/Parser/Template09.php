@@ -27,8 +27,8 @@ class Template09 extends AbstractParser {
     protected $rules = array(
         array('update_time', '更新时间：'),
         array('resume_keywords', '简历关键字：'),
-        array('name', '姓名：'), 
-        array('sex', '性别：'), 
+        array('name', '姓名：'),
+        array('sex', '性别：'),
         array('birth_year', '出生日期：'), 
         array('city', '居住地：'), 
         array('work_year', '工作年限：'), 
@@ -88,8 +88,12 @@ class Template09 extends AbstractParser {
         while($i < $blocks[0][1]-1){
             if(preg_match('/\(ID:(\d{5,})\)/',$data[$i],$match)){
                 $record['true_id'] = $match[1];
-                if(!$this->isKeyword($data[$i-2]))
+                if(!$this->isKeyword($data[$i-2])){
                     $record['name'] = $data[$i-2];
+                    if(preg_match('/匹配度/',$record['name'])){
+                        $record['name'] = $data[$i-3];
+                    }
+                }
                 preg_match('/男|女/',$data[$i-1],$match);
                 $record['sex'] = $match[0];
                 preg_match('/\d{4}(?=年)/',$data[$i-1],$match);
