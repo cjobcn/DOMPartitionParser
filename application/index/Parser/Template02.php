@@ -97,7 +97,7 @@ class Template02 extends AbstractParser {
             array('salary', '薪酬状况：'), 
             array('city', '工作地点：'), 
             array('department', '所在部门：'), 
-            array('reportto', '汇报对象：'), 
+            array('report_to', '汇报对象：'),
             array('underlings', '下属人数：'), 
             array('duty', '工作职责：'), 
             array('performance', '工作业绩：'),

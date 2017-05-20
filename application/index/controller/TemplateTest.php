@@ -66,12 +66,13 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '09';
-    protected $pathIndex = 5;
+	protected $templateId = '13';
+    protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(
             '00109094.html',
+            '1495079827.html'
         ),
         '01' => array(
             '00110225.html',
@@ -91,7 +92,9 @@ class TemplateTest extends Controller {
         ),
 		'05' => array(
             '15821698556-男-上海_上海-1944886465.html',
-            '简历编号18840522-罗杭金-设计总监-猎聘网简历.html'
+            '简历编号18840522-罗杭金-设计总监-猎聘网简历.html',
+            '1495079828_1.html',
+
         ),
 		'06' => array(
             '13716043902-男-北京_北京-484876634.html',
@@ -109,7 +112,9 @@ class TemplateTest extends Controller {
             '13482013240-男-上海_上海-1086136892.html',
             '100501.html',
             '0_20151226153102565.html',
-            '51job_曹潇彬(320245978).html'
+            '51job_曹潇彬(320245978).html',
+            '1495080076.html',
+
         ),
 		'10' => array(
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
@@ -131,5 +136,11 @@ class TemplateTest extends Controller {
             '335202968-王宁.html',
 
 		),
+        '13' => array(
+            '1495079819.html',
+            '1495079822.html',
+            '1495079828.html',
+            '1495079821.html',
+        ),
     );
 }

@@ -66,6 +66,8 @@ class Template extends AbstractParser {
         $sequence = array();
         $i = 0;
         $j = 0;
+        $k = 0;
+        $currentKey = '';
         $jobs = array();
         while($i < $length) {
             //正则匹配
@@ -102,6 +104,7 @@ class Template extends AbstractParser {
         $data = array_slice($data,$start, $length);
         $i = 0;
         $j = 0;
+        $k = 0;
         $education = array();
         $rules = array(
             array('major', '专业：'), 
@@ -143,6 +146,7 @@ class Template extends AbstractParser {
         $sequence = array('name');
         $i = 0;
         $j = 0;
+        $k = 0;
         $projects = array();
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/', $data[$i], $match)){
