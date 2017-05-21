@@ -14,7 +14,7 @@ class ResumeParser {
         '08' => '/简历编号：\d{16}/',
         '09' => '/基 本 信 息|个 人 简 历|\(ID:\d{5,}\)/',     //51job(前程无忧)
         '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',       //智联招聘
-        '11' => '/<div id="userName" class="main-title-fl fc6699cc"/',    //智联招聘
+        '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',    //智联招聘
         '12' => '/来源ID:[\d\w]+<br>/',     //已被处理过的简历
         '13' => '/<title>简历ID：\d{5,}<\/title>.+?51job/s',  //新版51job
     );

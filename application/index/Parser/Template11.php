@@ -11,7 +11,7 @@ class Template11 extends AbstractParser {
         array('education', '教育经历'),
         array('school_situation', '在校学习情况'),
         array('practices', '在校实践经验'),
-        array('training', '培训经历'), 
+        array('trainings', '培训经历'),
         array('certs', '证书'), 
         array('languages', '语言能力'), 
         array('skills', '专业技能'), 
@@ -51,7 +51,7 @@ class Template11 extends AbstractParser {
             '/<(td|h3|h2|h5|em)/i',
             '/<\/(td|h3|h2|h5|em)>/i',
             '/\||<br.*?>/i',
-            '/<div id="userName" [^>]+>/is',
+            '/<div[^>]+class="main-title-fl fc6699cc"[^>]*>/is',
         );
         $replacements = array(
             '<div',
@@ -77,13 +77,21 @@ class Template11 extends AbstractParser {
         //其他解析
         $i = 0;
         while($i <= $end ) {
-            if(isset($record['sex']))
+
+            if(!isset($record['sex'])){
                 if(preg_match('/男|女/', $data[$i], $match)){
                     $record['sex'] = $match[0];
                     if(preg_match('/(\d{4})\s*年/', $data[$i], $match)) {
                         $record['birth_year'] = $match[1];
                     }
+                    if(preg_match('/未婚|已婚/', $data[$i], $match)){
+                        $record['marriage'] = $match[0];
+                    }
+                    if(preg_match('/(\d+)年工作经验/', $data[$i], $match)){
+                        $record['work_year'] = intval($match[1]);
+                    }
                 }
+            }
             if(!isset($record['phone']))
                 if(preg_match($this->pattern['phone'],$data[$i], $match)){
                     $record['phone'] = $match[0];
@@ -114,13 +122,30 @@ class Template11 extends AbstractParser {
         return $this->domParse($content, 'div', true, false);
     }
 
+    public function basic($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        while($i < $length) {
+            $KV = $this->parseElement($data, $i);
+            if($KV){
+                $record[$KV[0]] = $KV[1];
+            }
+            $i++;
+        }
+    }
+
     public function career($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
             array('nature', '企业性质：'), 
             array('size', '规模：'), 
-            array('duty', '工作描述：'), 
+            array('duty', '工作描述：'),
+            array('report_to', '汇报对象：', 0),
+            array('underlings', '下属人数：', 0),
+            array('salary', '年收入：', 0),
+            array('performance', '业绩描述：', 0),
         );
         $i = 0;
         $j = 0;
@@ -182,13 +207,15 @@ class Template11 extends AbstractParser {
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);
                 $info = explode(' ', $match[3]);
-                if(count($info) > 1){
-                    $edu['school'] = $info[0];
-                    $edu['major'] = $info[1];
-                    $edu['degree'] = $info[2];
+                if(($info_length = count($info)) > 1){
+                    $edu['school'] = implode(' ', array_slice($info, 0 ,$info_length-2));
+                    $edu['major'] = $info[$info_length - 2];
+                    $edu['degree'] = $info[$info_length - 1];
                     $education[$j++] = $edu;
                 }
+
             }
+            //dump($data[$i]);
             $i++;
         }
         //dump($education);
