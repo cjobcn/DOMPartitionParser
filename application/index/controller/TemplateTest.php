@@ -30,7 +30,7 @@ class TemplateTest extends Controller {
 	//查看简历内容
 	public function resume() {
 		$content = $this->getResume();
-		ParserLog::toSupport($content);
+		//ParserLog::toSupport($content);
 		echo $content;
 	}
 

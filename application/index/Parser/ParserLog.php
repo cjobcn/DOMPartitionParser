@@ -18,16 +18,20 @@ class ParserLog {
         if(!file_exists(self::LOG_DIR)){
             mkdir(self::LOG_DIR);
         }
-        $filename = time();        //时间戳作为文件名
+        $current_dir = self::LOG_DIR.date("Y-m-d").'/';
+        if(!file_exists($current_dir)){
+            mkdir($current_dir);
+        }
+        $filename = time();         //时间戳作为文件名
         $ext = '.html';
         $i = 0;
-        $filePath = self::LOG_DIR.$filename.$ext;
+        $filePath = $current_dir.$filename.$ext;
         //dump($filePath);
         while($i < self::SAME_NAME_MAX){
             if(file_exists($filePath)){
                 $i++;
                 $file = $filename.'_'.$i;
-                $filePath = self::LOG_DIR.$file.$ext;
+                $filePath = $current_dir.$file.$ext;
             }else{
                 file_put_contents($filePath, $content);
                 break;
