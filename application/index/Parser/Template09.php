@@ -25,7 +25,7 @@ class Template09 extends AbstractParser {
 
     //关键字解析规则
     protected $rules = array(
-        array('update_time', '更新时间：'),
+        array('update_time', '更新时间：|投递时间：'),
         array('resume_keywords', '简历关键字：'),
         array('name', '姓名：'),
         array('sex', '性别：'),
