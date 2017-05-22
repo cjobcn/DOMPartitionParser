@@ -93,6 +93,10 @@ class Template09 extends AbstractParser {
                     if(preg_match('/匹配度/',$record['name'])){
                         $record['name'] = $data[$i-3];
                     }
+                    if(preg_match('/流程状态：/',$record['name'])){
+                        preg_match('/(?<=流程状态：).+?(?= 标签：)/',$record['name'],$name);
+                        $record['name'] = $name[0];
+                    }
                 }
                 preg_match('/男|女/',$data[$i-1],$match);
                 $record['sex'] = $match[0];
