@@ -102,14 +102,13 @@ class Template10 extends AbstractParser {
     public function getDomArray($content) {
         $content = $this->preprocess($content);
         //return $this->domParse($content, 'td', true, false);
-        return list($data, $blocks) = $this->pregParse($content,false, false);
+        return $this->pregParse($content,false, false);
     }
 
     public function evaluation($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $i = 0;
-        $j = 0;
         $currentKey = 'self_str';
         while($i < $length){
             if($KV = $this->parseElement($data, $i)) {
