@@ -122,7 +122,7 @@ class Template11 extends AbstractParser {
         return $this->domParse($content, 'div', true, false);
     }
 
-    public function basic($data, $start, $end, &$record) {
+    public function target($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $i = 0;

@@ -66,11 +66,12 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '11';
+	protected $templateId = '00';
     protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(
+            '智联招聘_蒋莹_中文_20131226_40902574.html',
             '1495075697.html',
             '00109094.html',
             '1495079827.html'

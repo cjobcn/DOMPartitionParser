@@ -61,6 +61,7 @@ class Template10 extends AbstractParser {
         //if(!$blocks) return false;
         //其他解析
         $end = $blocks[0][1] - 2?:count($data) - 1;
+        $this->basic($data, 0, $end, $record);
         $i = 0;
         $patterns = array(
             array('sex', '/男|女/'),
@@ -80,7 +81,6 @@ class Template10 extends AbstractParser {
             }
             $i++;
         }
-        $this->basic($data, 0, $end, $record);
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
