@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+<title>会员简历|个人会员管理|猎聘网-Lietou.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link href="http://s.liepin.com/css/6.0/css_c_goldcard_cv.css" rel="stylesheet" type="text/css" />
+<link href="http://s.liepin.com/css/center/main.css" rel="stylesheet" type="text/css" />
+<script src="http://s.liepin.com/js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+<script src="http://s.liepin.com/js/facebox/facebox.js"></script>
+<style type="text/css">
+p{ padding:0px; margin:0px;line-height: 22px;}
+</style>
+
+<script>
+function refreshCV(resId)
+{
+   $.ajax({ 
+      type:'get',
+      url:'/resmng/refreshcv.do?res_id='+resId,
+      dataType:'json',
+      success:function(data){
+          alert(data.msg);
+          window.location.reload();
+      },
+      error:function(){
+        alert("系统错误请稍候再试！");
+      }
+  }); 
+}
+function whyRefresh()
+{
+    jQuery.facebox({ajax:"/membercmng/why_refreshcv.html"});
+}
+function singleAudit(resId, resCategory)
+{
+  var str = "";
+  if(resCategory == "0")
+  {
+      str = "初级人才";
+  }
+  else if(resCategory == "1")
+  {
+      str = "中级人才";
+  }
+  else if(resCategory == "2")
+  {
+      str = "高级人才";
+  }
+  else
+  {
+      return;
+  }
+  if(confirm("确信要置为" + str + "？"))
+  {
+    $.ajax({ 
+      type:'get',
+      url:'/resmng/singleaudit.do?res_id='+resId+'&res_category='+resCategory + '&time=' +  new Date().getTime(),
+      dataType:'json',
+      success:function(data){
+        if(data.flag == "1")
+        {
+          window.location.reload();
+        }
+        else
+        {
+          alert("设置失败！");
+        }
+      },
+      error:function(){
+        alert("系统错误请稍候再试！");
+      }
+    }); 
+  }
+}
+function doDelete(resId)
+{
+    if(confirm("确信要删除该简历吗？"))
+    {
+        location.href="/resmng/deleteresume.do?res_id=" + resId;
+    }
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="header_l">
+  <div class="colcont_head">
+    <table width="100%" border="0">
+      <tr>
+        <td width="12">&nbsp;</td>
+        <td width="33%" height="75" valign="middle"><img src="http://s.liepin.com/images/6.0/f_03.gif" width="230" height="54" /></td>
+        <td width="66%" align="right" valign="bottom"><table width="100%" border="0">
+            <tr>
+              <td align="right">简历编号：00130181 | 简历保密情况： 姓
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                   名
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                   电话
+                 <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                  邮件
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                | 最后更新：2008-06-19 12:23</td>
+              <td align="right">&nbsp;</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id="contain">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="115" rowspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+    <td align="center" background="http://s.liepin.com/images/6.0/goldcard/ddd.gif">&nbsp;</td>
+    <td rowspan="2" valign="top" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="755" align="center" background="http://s.liepin.com/images/6.0/goldcard/ddd3.gif"><table width="98%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="6">&nbsp;</td>
+        <td align="left"><table width="98%" border="0" bgcolor="#FFFFFF">
+          <tr>
+            <td ><table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+              <tr>
+                <td align="center" valign="top"><table width="98%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">个人信息：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td width="75%" colspan="4" align="right"></td>
+                        <td width="25%" height="140" rowspan="6" align="center" valign="middle">
+                          <table height="127" cellspacing="1" cellpadding="0" width="104" bgcolor="#cccccc" border="0">
+                          <tbody>
+                            <tr>
+                              <td valign="center" align="middle" bgcolor="#e8e8e8"><img src="http://p.liepin.com/user/photo/default.gif" alt="" width="94" height="113" /></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       </td>
+                      </tr>
+                      <tr>
+                        <td width="12%" height="28" align="right">姓名：</td>
+                        <td width="38%" align="left">
+                        朱鹰</td>
+                        <td width="12%" align="right">性别： </td>
+                        <td width="13%" align="left" colspan="2">女</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">手机号码：</td>
+                        <td align="left">
+                        13641996102</td>
+                        <td align="right">年龄： </td>
+                        <td align="left" colspan="2">35岁</td>
+                        </tr>
+                      <tr>
+                        <td height="28" align="right">电子邮件：</td>
+                        <td align="left">
+                        MIMI157@SOHU.COM</td>
+                        <td align="right">教育程度：</td>
+                        <td align="left" colspan="2">本科</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">婚姻状况：</td>
+                        <td align="left">
+                        未填</td>
+                        <td align="right">所在地：</td>
+                        <td align="left" colspan="2">上海</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">备用电话：</td>
+                        <td align="left">
+                        未填写</td>
+                        <td align="right">工作年限：</td>
+                        <td align="left" colspan="2">1999年</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">所属分类：</td>
+                        <td colspan="4" align="left">
+                          <font color="red">中级人才</font>
+                          <a href="javascript:singleAudit('130181','0');">置为初级人才</a>
+                          <a href="javascript:singleAudit('130181','1');">置为中级人才</a>
+                          <a href="javascript:singleAudit('130181','2');">置为高级人才</a>
+                          <a href="/resmng/editresume.do?res_id=130181&url=%2Fresmng%2Fresdetail.do%3Fres_id%3D130181">编辑</a>
+                          <a href="javascript:doDelete('130181')">放入回收站</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="106" align="center" valign="top">
+                <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">目前职业概况：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <tr>
+                    <td height="20" align="center">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td width="12%" height="28" align="right" height="26">所在行业：</td>
+                          <td width="38%" align="left">银行</td>
+                          <td width="12%" align="right">公司名称：</td>
+                          <td width="38%" align="left">未设置</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">公司性质：</td>
+                          <td align="left">未设置</td>
+                          <td align="right">公司规模：</td>
+                          <td align="left">未填</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">所任职位：</td>
+                          <td align="left">财务分析员</td>
+                          <td align="right">目前薪金：</td>
+                          <td align="left">未填</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">绩效奖金：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">绩效提成：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">其它福利：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">职业发展意向：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <tr>
+                    <td height="20" align="center">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td height="28" width="12%" align="right">期望行业：</td>
+                          <td align="left">银行;贸易·进出口;基金·证券·期货·投资</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望职位：</td>
+                          <td align="left">财务分析员;财务助理·会计助理;统计</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望地点：</td>
+                          <td align="left">上海</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望月薪：</td>
+                          <td align="left">未填</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">自我评价:</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top"><table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    自我评价： 工作认真,善与人相处,具有团队精神</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">教育经历：</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top">
+                        <table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    1999年9月   -   2003年7月 上海电视大学 <br /> 金融 经济学类（经济学/财政金融/会计） 本科 <br />  1995年9月   -   1999年7月 上海电视大学 <br /> 财务会计 经济学类（经济学/财政金融/会计） 大专 <br />  1994年9月   -   1996年7月 上海交通大学成教院 <br /> 国际商务 工商管理类（营销/国际贸易/旅游/物流） 大专</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="1" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">工作经历：</td>
+                    </tr>
+                    <tr>
+                      <td height="1" ></td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top">
+                      <table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    上海伊而国际时装有限公司<br />公司简单描述： 外贸纺织进出口企业(A类)<br />出口额1亿美金以上 <br />公司性质： 外商独资．外企办事处 <br />公司规模： 500 - 999人 2000年5月   -   现在： 报关业务员          /报关部 <br /> 工作地点：上海  <br /> 工作职责和业绩：  <br /> 出口操作、出口单证、出口核销、外汇结汇 <br /> 离职/换岗原因：公司动迁  <br /><br />上海杨记塑料制品有限公司<br />1998年3月   -   1999年12月： 业务员 <br /> 工作地点：上海  <br /> 工作职责和业绩：  <br /> 可以独立完成工作指标 1998年3月   -   1999年12月： 业务代表          /业务部 <br /> 工作地点：上海  <br /> 离职/换岗原因：公司内部斗争</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">历史版本:</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top"><table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td align="left">
+                                    <table width="600" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td height="10" colspan="2"></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2" align="left" class="text">
+                                          
+                                          [无]
+                                          </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          
+        </table></td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td height="21" align="center" background="http://s.liepin.com/images/6.0/goldcard/ff.gif">&nbsp;</td>
+    <td valign="top" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" bgcolor="#FFFFFF"><table width="80%" border="0">
+      
+      <tr>
+        <td width="475" height="50" align="right">&nbsp;</td>
+        <td width="10">&nbsp;</td>
+        <td width="285" align="left">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+<div id="footer_1">
+  <div id="bom"> <a href="http://www.lietou.com/other/aboutus.shtml" title="猎聘网" target=_blank>关于猎聘网</a> | <a href="http://www.lietou.com/other/partner.shtml" target=_blank>合作伙伴</a> | <a href="http://www.lietou.com/other/product.shtml" target=_blank>产品服务</a> | <a href="http://www.lietou.com/other/notice.shtml" target=_blank>网站公告</a> | <a href="http://www.lietou.com/other/terms.shtml" target=_blank>服务条款</a> | <a href="http://www.lietou.com/other/link.jsp" target=_blank>友情链接</a> | <a href="http://www.lietou.com/other/hr.shtml" target=_blank>人才招募</a> | <a href="http://www.lietou.com/other/media.shtml" target=_blank>媒体报道</a> | <a href="http://www.lietou.com/other/declare.shtml" target=_blank>网站声明</a> | <a href="http://www.lietou.com/other/contactus.shtml" target=_blank>联系我们</a><br /> Copyright &copy; 2000-2009 lietou.com All Rights Reserved 京ICP证070419号 人才服务许可证:RC0710280 </div>
+</div>
+</body>
+</html>

@@ -201,7 +201,7 @@ abstract class AbstractParser {
                     return $rule[0];
                 }
             }else{
-                if(preg_match('/^'.$rule[1].'$/', $keyword)) {
+                if(preg_match('/^('.$rule[1].')$/', $keyword)) {
                     $value = 1;
                     return $rule[0];
                 }elseif(preg_match('/^('.$rule[1].')(.+)/', $keyword, $data)){

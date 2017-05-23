@@ -72,7 +72,6 @@ class Template01 extends AbstractParser {
         //dump($blocks);
         $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
-
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
         }

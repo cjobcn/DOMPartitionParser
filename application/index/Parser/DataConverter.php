@@ -22,6 +22,7 @@ class DataConverter {
         'phone'       => 'phone',
         'birth_year'  => 'birthYear',
         'age'         => 'age',
+        'work_year'   => 'workYear',
     );
 
     protected $rawData = array();
@@ -108,6 +109,16 @@ class DataConverter {
     //年龄
     public function age($rawData) {
         $pattern = '/\d{2}/';
+        if(preg_match($pattern, $rawData, $match)) {
+            return intval($match[0]);
+        }else{
+            return '';
+        }
+    }
+
+    //工作经验
+    public function workYear($rawData) {
+        $pattern = '/\d+/';
         if(preg_match($pattern, $rawData, $match)) {
             return intval($match[0]);
         }else{
