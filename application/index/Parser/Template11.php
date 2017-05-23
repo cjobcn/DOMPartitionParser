@@ -41,7 +41,7 @@ class Template11 extends AbstractParser {
 
     //判断模板是否匹配
     protected function isMatched($content) {
-        $pattern = '/<div id="userName" class="main-title-fl fc6699cc"/';
+        $pattern = '/<div (id="userName" )?class="main-title-fl fc6699cc"/';
         return preg_match($pattern, $content);
     }
 
