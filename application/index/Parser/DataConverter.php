@@ -118,9 +118,9 @@ class DataConverter {
 
     //工作经验
     public function workYear($rawData) {
-        $pattern = '/\d+/';
+        $pattern = '/\d+年(以上)?/';
         if(preg_match($pattern, $rawData, $match)) {
-            return intval($match[0]);
+            return $match[0];
         }else{
             return '';
         }

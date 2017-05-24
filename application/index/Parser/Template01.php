@@ -89,11 +89,11 @@ class Template01 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('city', '- ?所在地区：', 0),
-            array('report_to', '- ?汇报对象：', 0),
-            array('underlings', '- ?下属人数：', 0),
-            array('duty', '- ?工作职责：|主要工作:'),
-            array('performance', '- ?工作业绩：'),
+            array('city', '-所在地区：', 0),
+            array('report_to', '-汇报对象：', 0),
+            array('underlings', '-下属人数：', 0),
+            array('duty', '-工作职责：|主要工作:'),
+            array('performance', '-工作业绩：'),
         );
         $i = 0;
         $j = 0;
@@ -165,6 +165,37 @@ class Template01 extends AbstractParser {
         //dump($education);
         $record['education'] = $education;
         return $education;
+    }
+
+    public function projects($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        //需要去除空格符
+        $rules = array(
+            array('position', '-项目职务：', 0),
+            array('company', '-所在公司：', 0),
+            array('description', '-项目简介：', 0),
+            array('duty', '-项目职责：'),
+            array('performance', '-项目业绩：'),
+        );
+        $i = 0;
+        $j = 0;
+        $projects = array();
+        while($i < $length) {
+            if(preg_match('/(.+?)(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)：/', $data[$i], $match)){
+                $project = array();
+                $project['name'] = $match[1];
+                $project['start_time'] = Utility::str2time($match[2]);
+                $project['end_time'] = Utility::str2time($match[3]);
+                $projects[$j++] = $project;
+            }elseif($KV = $this->parseElement($data, $i, $rules)) {
+                $projects[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }
+            $i++;
+        }
+        $record['projects'] = $projects;
+        return $projects;
     }
 
 }

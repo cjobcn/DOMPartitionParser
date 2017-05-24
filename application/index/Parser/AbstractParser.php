@@ -188,6 +188,7 @@ abstract class AbstractParser {
     public function parseKeyword($keyword, &$value, $rules = '') {
         $value = null;
         if(!$rules) $rules = $this->rules;
+        //去除空格（所以规则中不能有空格）
         $keyword = preg_replace('/\s+/','',$keyword);
         foreach($rules as $rule) {
             if(isset($rule[2])) {

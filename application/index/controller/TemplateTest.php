@@ -71,6 +71,8 @@ class TemplateTest extends Controller {
 
     protected $path = array(
         '00' => array(
+            '1495077986.html',
+            '1495077992.html',
             '1495433609.html',
             '智联招聘_蒋莹_中文_20131226_40902574.html',
             '1495075697.html',
