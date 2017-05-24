@@ -126,7 +126,7 @@ class Template13 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('description', '工作描述：'),
+            array('duty', '工作描述：'),
         );
         $natures = '外资（欧美）,外资（非欧美）,合资,国企,民营公司,上市公司,创业公司,外企代表处,政府机关,事业单位,非营利机构';
         $i = 0;

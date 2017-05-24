@@ -1,0 +1,361 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>简历详情信息</title>
+<link href="http://121.41.112.72:12885/js/plugins/tipsy/css/tipsy.css" rel="stylesheet" type="text/css" />
+<link href="http://121.41.112.72:12885/js/plugins/art/skins/black.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://121.41.112.72:12885/js/plugins/calendar/css/calendar-win2k-1.css" />
+<link rel="stylesheet" href="http://121.41.112.72:12885/js/plugins/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" media="screen" href="http://121.41.112.72:12885/css/plugins/showLoading.css" />
+<script type="text/javascript" src="http://121.41.112.72:12885/js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/art/jquery.artDialog.source.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/art/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/custom/resume.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/tipsy/jquery.tipsy.js"></script>
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<style>
+body{font-size:12px;}
+p{line-height: 20px; padding:0px; margin:0px;}
+.messagelist h4 { font-size: 11px; color: #333; font-weight: normal; padding: 8px 10px; border-bottom: 1px solid #ccc; text-transform: uppercase; }
+.messagelist .link { padding: 8px 10px; background: #eee; font-size: 11px; border-top: 1px solid #ccc; }
+.messagelist ul { list-style: none; padding:0px; margin:0px;}
+.messagelist ul li { display: block; border-bottom: 1px dotted #ccc; padding: 5px 10px; }
+.messagelist ul li:last-child { border-bottom: 0; }
+.messagelist ul li.current { background: #fff; color: #333; }
+.messagelist ul li.current a { color: #6385ae; font-weight: bold; }
+.messagelist ul li a { display: block; color: #333; }
+.messagelist ul li a:hover { text-decoration: none; }
+.messagelist ul li span { color: #666; display: block; font-size: 11px; }
+.messagelist ul li small { font-size: 11px; color: #666; }
+.messagelist ul li:hover { background: #e8f3fe; }
+</style>
+<script>
+function showMenu(btnId, divId) {
+	var btn = $(btnId);
+	var offset = btn.offset();
+		$(divId).css({left:offset.left + "px", top:offset.top + btn.outerHeight() + "px"}).slideDown("fast");
+	$("body").bind("mousedown", onBodyDown);
+}
+
+function hideMenu() {
+	$("#applyShowResumeDiv").fadeOut("fast");
+	$("body").unbind("mousedown", onBodyDown);
+}
+
+function onBodyDown(event) {
+	if ($(event.target).parents("#applyShowResumeDiv").length==0) {
+		hideMenu();
+	}
+}
+function applyShowResume(){
+	showMenu("#applyShowResumeBtn","#applyShowResumeDiv");
+}
+function applyShowResumeConfirm(){
+	var applyResumeReason = $("#applyResumeReason");
+	var applyProjectId = $("#applyProjectId");
+	var applyProjectName = $("#applyProjectName");
+	if(applyProjectId.val()==""){
+		alert("请选择相关项目.");
+		return false;
+	}
+	var _confirm = $.dialog.confirm("你确认要申请查看此简历的联系方式吗？", function(){
+		$.post("../applyContact/4357481?rand=" + new Date(), {"applyResumeReason":applyResumeReason.val(),"applyProjectId":applyProjectId.val(),"applyProjectName":applyProjectName.val()}, function(data){
+			if(data=="success"){
+				$.dialog.alert("申请发送成功，等待所有者确认！");
+			}else if(data=="ok"){
+				window.location.reload();
+			}else{
+				$.dialog.alert(data);
+			}
+		});
+	});
+}
+function modifyOwnerUser(){
+	var ownerUserId = $("#selectOwnerUserList").val();
+	var _confirm = $.dialog.confirm("你确认此操作吗？", function(){
+   		$.get("../modifyOwnerUser/4357481?rand="+new Date(), {"ownerUserId":ownerUserId}, function(result){
+   			if(result=='success'){
+   				$.dialog.alert("恭喜您，操作成功！", function(){
+   					window.location.reload();
+   				});
+   			}else{
+   				$.dialog.alert(result);
+   				_confirm.close();
+   			}
+   		});
+	});
+}
+$(function(){
+	$('#userHelp').tipsy({html:true, fade: true, gravity: 'se'});
+	$("#createFavorite").click(function(){
+		$.dialog.prompt('请输入收藏夹名称', function(data){
+			if(data==""){
+				$.dialog.alert("请输入您新增收藏夹名称");
+				return false;
+			}
+			$.post("/resume/favorite/save?rand=" + new Date(), {id:0, fName:data}, function(result){
+				if(result=="success"){
+					showFavoriteDiv();
+				}else{
+					$.dialog.alert(result);
+				}
+			});
+		});
+	});
+	$("#applyProjectName").click(function(){
+		var detailDialog = $.dialog.open("/projectResume/selectProject/4357481?handle=apply",{
+			title:	"选择项目",
+			id:		"resume_select_project_4357481",
+			lock:	false,
+			width:	'880px',
+			height:	'500px'
+		});
+		return false;
+	});
+});
+</script>
+</head>
+
+<body style="background:#fff; padding:10px;">
+<h1>何jing</h1>
+
+<p>
+编号：4357481&nbsp;&nbsp;性别：&nbsp;&nbsp;学历：&nbsp;&nbsp;出生年：
+<input type="button" id="setFavoriteBtn" value="加入简历收藏夹" onClick="showFavoriteDivResume();" />
+<div id="resumeFavoriteDiv" style="display:none; width:auto; min-width:280px; position: absolute; background: #f7f7f7; BORDER: #ccc 1px solid; z-index: 300;">
+	<div style="padding:10px;">
+		<input type="hidden" id="favoriteResuId" value="4357481" />
+		<input type="text" name="keyword" id="resumeFavoriteKeyword" value="" class="sf" style="width:120px;" />&nbsp;<input type="button" id="searchFavorite" class="button button_white" value=" 查询 " onClick="searchFavorite()" />&nbsp;<input type="button" id="createFavorite" class="button button_white" value="创建收藏夹" />
+	</div>
+	<div id="resumeFavoriteResult"></div>
+</div>
+</p>
+
+
+
+
+
+<p>联系方式：13426202384&nbsp;&nbsp;邮箱：
+</p>
+
+
+<p>创建者：管理员8&nbsp;&nbsp;创建时间：2016-09-29 22:42&nbsp;&nbsp;&nbsp;&nbsp;所有者：
+
+
+<select id="selectOwnerUserList" style="padding:0;">
+   	
+	<option value="1">管理员</option>
+	
+</select>
+&nbsp;&nbsp;<input type="button" value="更改所有者" class="iconlink2" onClick="modifyOwnerUser();" />
+
+</p>
+<p>当前所在公司：  微软 </p>
+<p style="margin-top:10px; padding-top:10px; border-top: 1px solid #ccc; word-spacing: break-word; word-break: normal; word-break:break-all; font-size:14px; line-height: 23px;">
+<div class="resume-main"><!--默认简历模板-->     <br />
+    <div><br />
+        <div class="container-title"><br />
+            <h3><span class="ico-list"></span>基本信息</h3><br />
+			            <br />
+			        </div><br />
+        <div class="resume-infor"><br />
+             <ul class="other-list clearfix"><br />
+    <li><span class="tit"><span class="star">*</span>姓名：</span>&nbsp;何jing</li><br />
+	<br />
+	<li><span class="tit"><span class="star">*</span>性别：</span>&nbsp;</li><br />
+    <li class="clear-l"><span class="tit"><span class="star">*</span>年龄：</span>&nbsp;</li>    <br />
+    <li><span class="tit">手机：</span>&nbsp;13426202384</li><br />
+	<li><span class="tit">电话：</span>&nbsp;</li><br />
+    <li class="clear-l"><span class="tit">邮箱：</span>&nbsp;</li> <br />
+    <li><span class="tit">QQ：</span>&nbsp;</li> <br />
+    <li><span class="tit">微信：</span>&nbsp;</li><br />
+    <li class="clear-l"><span class="tit"><span class="star">*</span>婚姻：</span>&nbsp;</li><br />
+	<li><span class="tit">籍贯：</span>&nbsp;</li><br />
+	<li><span class="tit">住址：</span>&nbsp;</li><br />
+	<li class="clear-l"><span class="tit">Skype：</span>&nbsp;</li> <br />
+	<li><span class="tit">Gtalk：</span>&nbsp;</li> <br />
+	<li><span class="tit">Msn：</span>&nbsp;</li> <br />
+    </ul>        </div><br />
+        <div class="edit-common hidden"><!--编辑基本信息--><br />
+        </div><br />
+    </div><br />
+	<br />
+	 <div><br />
+        <div class="container-title"><br />
+            <h3><span class="ico-list"></span>目前薪资</h3><br />
+			            <br />
+			        </div><br />
+        <div class="resume-infor"><br />
+               <ul class="other-list clearfix"><br />
+        <li><br />
+			            <label class="tit">底薪</label><br />
+			        </li><br />
+		<br />
+				<br />
+				<br />
+        <li ><br />
+			            <label class="tit">年终奖</label><br />
+			        </li><br />
+		<br />
+        <li ><br />
+			            <label class="tit">股票</label><br />
+			        </li><br />
+		<br />
+				<br />
+        <li  class="clear-l" ><br />
+			            <label class="tit">其他</label><br />
+						        </li><br />
+<br />
+        <li ><br />
+			            <label class="tit">Total</label><br />
+			        </li><br />
+		<li class="clear-l" style="width: 80%"><br />
+            <label class="tit">备注</label><br />
+			        </li><br />
+		<li class="clear-l" style="width:80%"><br />
+            <label class="tit"><span class="star">*</span>推荐报告</label><br />
+    		        </li><br />
+    </ul>        </div><br />
+        <div class="edit-common hidden"><!--编辑基本信息--><br />
+        </div><br />
+    </div><br />
+	<br />
+	 <div><br />
+        <div class="container-title"><br />
+            <h3><span class="ico-list"></span>期望薪资</h3><br />
+			            <br />
+			        </div><br />
+        <div class="resume-infor"><br />
+           	<br />
+<ul class="other-list clearfix"><br />
+    <li><br />
+        <label class="tit tit-space">底薪</label><br />
+		    </li><br />
+    <li><br />
+        <label class="tit tit-space">股票</label><br />
+		    </li><br />
+    <li><br />
+        <label class="tit tit-space">其他</label><br />
+            </li><br />
+	<li class="clear-l"><br />
+        <label class="tit">Total</label><br />
+				    </li><br />
+	<br />
+	<li class="clear-l" style="width:80%"><br />
+        <label class="tit">备注</label><br />
+		    </li><br />
+	<li class="clear-l" style="width:80%"><br />
+        <label class="tit"><span class="star">*</span>推荐报告</label><br />
+		    </li><br />
+</ul>        </div><br />
+        <div class="edit-common hidden"><!--编辑基本信息--><br />
+        </div><br />
+    </div><br />
+	<br />
+	 <div><br />
+        <div class="container-title"><br />
+            <h3><span class="ico-list"></span>目前工作</h3><br />
+			            <br />
+			        </div><br />
+        <div class="resume-infor"><br />
+               <ul class="other-list clearfix"><br />
+        <li><br />
+            <label class="tit">公司</label><br />
+				微软<br />
+        </li><br />
+		<li><br />
+            <label class="tit">部门</label><br />
+				<br />
+        </li><br />
+        <li><br />
+            <label class="tit">职位</label><br />
+				<br />
+        </li><br />
+        <li class="clear-l"><br />
+            <label class="tit">级别</label><br />
+				<br />
+        </li><br />
+    </ul>        </div><br />
+        <div class="edit-common hidden"><!--编辑基本信息--><br />
+        </div><br />
+    </div><br />
+<br />
+    <div ><br />
+        <div class="container-title"><br />
+            <h3><span class="ico-list"></span>求职</h3><br />
+			            <br />
+			        </div><br />
+        <div class="intention"><br />
+             <ul class="commonlist-3"><br />
+	<li><br />
+        <label class="tit tit-space"><span class="star">*</span>擅长领域</label><br />
+        <div class="common-col-10"><br />
+        	<ul class="common-selectlabel-choose clearfix"><br />
+				            </ul><br />
+        </div><br />
+    </li><br />
+	<li><br />
+        <label class="tit"><span class="star">*</span>优势/评估</label><br />
+        <div class="common-col-10"><br />
+        	<br />
+        </div><br />
+    </li><br />
+	<li><br />
+        <label class="tit tit-space">求职动机</label><br />
+        <div class="common-col-10"><br />
+        	<ul class="common-selectlabel-choose clearfix"><br />
+                           </ul><br />
+       </div><br />
+   </li> <br />
+   <li><br />
+        <div class="common-col-10"><br />
+        	<br />
+        </div><br />
+    </li><br />
+	<li><br />
+        <label class="tit tit-space">期望地区</label><br />
+        <div class="common-col-10"><br />
+        	<ul class="common-selectlabel-choose clearfix"><br />
+        		            </ul><br />
+        </div><br />
+    </li><br />
+</ul>        </div><br />
+        <div class="edit-common hidden"></div><!--编辑求职意向--><br />
+    </div><br />
+	<br />
+	 <div class="container-title"><br />
+        <h3><span class="ico-list"></span><span class="star">*</span>教育经历</h3><br />
+		        <br />
+		    </div><br />
+    <div class="common-space"><br />
+            </div><br />
+<br />
+    <div class="container-title"><br />
+        <h3><span class="ico-list"></span><span class="star">*</span>工作经历</h3><br />
+		        <br />
+		    </div><br />
+    <div class="common-space"><br />
+            </div><br />
+	<br />
+    <div class="container-title"><br />
+        <h3><span class="ico-list"></span><span class="star">*</span>项目经历</h3><br />
+				        <br />
+				    </div><br />
+    <div class="common-space"><br />
+            </div><br />
+   <br />
+</div>
+
+</p>
+</body>
+</html>
