@@ -43,10 +43,10 @@ class ParserLog {
     static function classify($dirName) {
         $patterns = array(
             '14' => '/121\.41\.112\.72\:12885/',
-            'json'=> '/^\{/\"',
+            'json'=> '/^\{\"/',
         );
         $path = self::LOG_DIR.$dirName.'/';
-        dump($path);
+        //dump($path);
         //$path = $dirName;
         $dir = dir($path);
         if(!$dir) {
