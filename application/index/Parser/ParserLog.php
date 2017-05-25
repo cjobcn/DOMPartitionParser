@@ -45,7 +45,7 @@ class ParserLog {
             '14' => '/121\.41\.112\.72\:12885/',
             'json'=> '/^\{\"/',
             'English' => '/Career Objective|Self-Assessment|Work Experience|Education/',
-            'wujiegou' => '/.barp/',
+            'wujiegou' => '/\.barp/',
         );
         $path = self::LOG_DIR.$dirName.'/';
         //dump($path);
