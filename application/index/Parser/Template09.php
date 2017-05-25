@@ -9,9 +9,9 @@ class Template09 extends AbstractParser {
     protected $titles = array(
         //array('basic', '基本信息|个人简历'), 
         array('evaluation', '自我评价'), 
-        array('target', '求职意向'), 
-        array('career', '工作经验'), 
-        array('projects', '项目经验'), 
+        array('target', '求职意向'),
+        array('career', '工作经验|工作经历'),
+        array('projects', '项目经验'),
         array('education', '教育经历'), 
         array('trainings', '培训经历'),
         array('certs', '证书'),
@@ -31,13 +31,13 @@ class Template09 extends AbstractParser {
         array('sex', '性别：'),
         array('birth_year', '出生日期：'), 
         array('city', '居住地：'), 
-        array('work_year', '工作年限：'), 
+        array('work_year', '工作年限：|工作经验：'),
         array('residence', '户口：'), 
         
         array('address', '地址：'), 
         array('postcode', '邮编：'), 
         array('email', '电子邮件：|E-mail：'), 
-        array('phone', '移动电话：|电话：'), 
+        array('phone', '移动电话：|电话：|手机：'),
 
         array('current_salary', '目前年薪：|目前薪资：'), 
         array('base_front', '基本工资：'), 
@@ -61,6 +61,14 @@ class Template09 extends AbstractParser {
         array('school',  '学校：'),
     );
 
+    //分割符
+    protected $separators = array(
+        '<\/.+?>',      //html结束标签
+        '\|',           // |
+        '\/?<br.*?>',      // 换行标签
+        // '\r\n'
+    );
+
     //判断模板是否匹配
     protected function isMatched($content) {
         
@@ -68,6 +76,13 @@ class Template09 extends AbstractParser {
 
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
+        $redundancy = array(
+            '/<head>.+?<\/head>/is',
+            '/<script.*?>.+?<\/script>/is',
+            '/<style.*?>.+?<\/style>/is'
+        );
+        $content = preg_replace($redundancy, '', $content);
+        $content = preg_replace(array('/\?/', '/<a name="basic_position">/'), array(' ', '姓名：'), $content);
         return $content;
     }
 
@@ -78,42 +93,59 @@ class Template09 extends AbstractParser {
         //if(!$this->isMatched($content)) return false;
         //预处理
         $content = $this->preprocess($content);
-
-        list($data, $blocks) = $this->domParse($content,'td', false);
+        //判断是否是word转换的html文档，如果是采用DOM解析，否则采用PREG解析
+        if(preg_match('/urn:schemas-microsoft-com:office:office/',$content)){
+            list($data, $blocks) = $this->domParse($content, 'td', false);
+        }else{
+            list($data, $blocks) = $this->pregParse($content);
+        }
         //dump($blocks);
         //dump($data);
-        if(!$blocks) return false;
         //其他解析
+        $length = $blocks[0][1]?$blocks[0][1] - 1:count($data);
+        $this->basic($data,0,$length ,$record);
+        if(isset($record['address'])) {
+            if(preg_match('/(.+?)（邮编：(\d+)）/s',$record['address'], $match)) {
+                $record['address'] = trim($match[1]);
+                $record['postcode'] = $match[2];
+            }
+        }
+        $patterns = array(
+            array('true_id', '/\(ID:(\d{5,})\)/', 1),
+            array('sex', '/男|女/'),
+            array('marriage', '/未婚|已婚/'),
+            array('birth_year', '/(\d{4})\s*年/', 1),
+            array('work_year', '/(.+?年(以上)?)工作经验/', 1),
+        );
         $i = 0;
-        while($i < $blocks[0][1]-1){
-            if(preg_match('/\(ID:(\d{5,})\)/',$data[$i],$match)){
-                $record['true_id'] = $match[1];
-                if(!$this->isKeyword($data[$i-2])){
-                    $record['name'] = $data[$i-2];
-                    if(preg_match('/匹配度/',$record['name'])){
-                        $record['name'] = $data[$i-3];
-                    }
-                    if(preg_match('/流程状态：/',$record['name'])){
-                        preg_match('/(?<=流程状态：).+?(?= 标签：)/',$record['name'],$name);
-                        $record['name'] = $name[0];
-                    }
+        $extracted = array();
+        while($i < $length){
+            foreach($patterns as $key=>$pattern){
+                if(preg_match($pattern[1], $data[$i], $match)) {
+                    $index = $pattern[2]?:0;
+                    $record[$pattern[0]] = $match[$index];
+                    $extracted[] = $i;
                 }
-                preg_match('/男|女/',$data[$i-1],$match);
-                $record['sex'] = $match[0];
-                preg_match('/\d{4}(?=年)/',$data[$i-1],$match);
-                $record['birth_year'] = $match[0];
-                preg_match('/\d{3}cm/i',$data[$i-1],$match);
-                $record['height'] = $match[0];
-                preg_match('/已婚|未婚/',$data[$i-1],$match);
-                $record['marriage'] = $match[0];
-                break;
             }
             $i++;
         }
-        $this->basic($data,0,$blocks[0][1]-1,$record);
+        if(!isset($record['name'])) {
+            $k = $extracted[0] - 1;
+            if (!$this->isKeyword($data[$k])) {
+                $record['name'] = $data[$k];
+                if (preg_match('/匹配度/', $record['name'])) {
+                    $record['name'] = $data[$k - 1];
+                }
+                if (preg_match('/流程状态：/', $record['name'])) {
+                    preg_match('/(?<=流程状态：).+?(?= 标签：)/', $record['name'], $name);
+                    $record['name'] = $name[0];
+                }
+            }
+        }
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
+            //dump($record);
         }
 
         //dump($record);
@@ -123,7 +155,24 @@ class Template09 extends AbstractParser {
     //获取DOM数组
     public function getDomArray($content) {
         $content = $this->preprocess($content);
-        return $this->domParse($content, 'td', false, false);
+        if(preg_match('/urn:schemas-microsoft-com:office:office/',$content)){
+            return $this->domParse($content, 'td', false, false);
+        }else{
+            return $this->pregParse($content, false, false);
+        }
+    }
+
+    public function basic($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        while($i < $length) {
+            $KV = $this->parseElement($data, $i);
+            if($KV){
+                $record[$KV[0]] = $KV[1];
+            }
+            $i++;
+        }
     }
 
     public function career($data, $start, $end, &$record) {

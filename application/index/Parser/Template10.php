@@ -25,7 +25,7 @@ class Template10 extends AbstractParser {
         array('residence', '户口：'),
         array('city', '现居住于|现居住地：'),
         array('address', '地址：'),
-        array('email', 'E-mail:'),
+        array('email', 'E-mail:|E-mail：'),
         array('postcode', '邮编：'),
         array('phone', '手机：'),
         array('target_position', '期望从事职业：'),
@@ -72,7 +72,7 @@ class Template10 extends AbstractParser {
             array('marriage', '/未婚|已婚/'),
             array('birth_year', '/(\d{4})\s*年/', 1),
             array('phone', '/(\d{11})\s*\(手机\)/', 1),
-            array('work_year', '/(\d+)年工作经验/', 1),
+            array('work_year', '/(.+?年)工作经验/', 1),
         );
         while($i <= $end) {
             foreach($patterns as $key=>$pattern){

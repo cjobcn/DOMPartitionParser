@@ -12,7 +12,8 @@ class TemplateTest extends Controller {
         $content = $this->getResume();
 		//echo $content;
 		$ResumeParser = new ResumeParser();
-		$record = $ResumeParser->parse($content);
+		$record = $ResumeParser->parse($content,$templateId);
+		dump($templateId);
 		dump($record);
 		//return json($record);
     }
@@ -67,13 +68,12 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '11';
-    protected $pathIndex = 0;
+	protected $templateId = '09';
+    protected $pathIndex = 1;
 
     protected $path = array(
         '00' => array(
-            '1495077986.html',
-            '1495077992.html',
+            '00109094.html',
             '1495433609.html',
             '智联招聘_蒋莹_中文_20131226_40902574.html',
             '1495075697.html',
@@ -81,6 +81,8 @@ class TemplateTest extends Controller {
             '1495079827.html'
         ),
         '01' => array(
+            '1495621402.html',
+            '1495077986.html',
             '00110225.html',
             '10102.html',
         ),
@@ -119,8 +121,8 @@ class TemplateTest extends Controller {
             '100501.html',
             '0_20151226153102565.html',
             '51job_曹潇彬(320245978).html',
-            '1495080076.html',
-
+            '1495621211.html',
+            '1495622019.html'
         ),
 		'10' => array(
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
@@ -137,7 +139,8 @@ class TemplateTest extends Controller {
 		    'JM005403686R90250000000.html',
             '周莉娜.html',
             '米卫开.html',
-            'JR148209749R90000000000.htm'
+            'JR148209749R90000000000.htm',
+            '1495077992.html',
         ),
 		'12' => array(
 			'jm501718846r90250000000-薛明转.html',
@@ -155,6 +158,9 @@ class TemplateTest extends Controller {
             '1495623578.html',
             '1495436749.html',
             '1495436748.html'
+        ),
+        'to_support' => array(
+            '1495621843.html'
         ),
     );
 }

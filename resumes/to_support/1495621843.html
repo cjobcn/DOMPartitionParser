@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>钟莹莹的简历 | 预览简历</title>
+<script src="http://jianli.zhaopinchina.com/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/weebox/bgiframe.js"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/weebox/weebox.js"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/func.js?v=2015062001"></script>
+<style>
+@charset "gb2312";
+/******
+@author:lijp;
+@date:2014-12-25;
+@功能描述：个人后台
+*******/
+
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,legend,input,textarea,p,th,td{margin:0;padding:0;}
+a,input,button,select,textarea{outline:none}img{border:0;vertical-align:bottom;}em{font-style:normal}textarea{resize:none;}
+body{font:12px/1.5 \5B8B\4F53,Helvetica,Arial,sans-serif;}
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+ol,ul{list-style:none}
+h1,h2,h3,h4,h5{font-size:14px;}
+input,label,select{vertical-align:middle;font:100% Tahoma}
+.clearfix:before,.clearfix:after{content:".";display:table;height:0;font-size:0;line-height:0;visibility:hidden;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+.fl{float:left;}
+.fr{float:right;}    
+
+.resume-nav-list .r-hover{background: #fafafa;border-left: 2px solid #cb3131;width: 258px;}
+.resume-nav-list .r-hover a{color: #cd3333;}
+/* 右侧第四部分职位和公司 */
+.care-top{padding: 10px 4px 10px 10px;border-bottom: 1px solid #f1f1f1;}
+.recom-tit{font-size: 14px;color: #3d4044;}
+.job-career{font-size: 12px;color: #666;margin: 3px 0 0;}
+.recruit-posit-comp{background: #fff;border-bottom: 1px solid #d8d8d8;margin:6px 0;padding: 0 10px 15px;}
+.recruit-posit-comp li{padding:10px 0 10px 12px;border-bottom: 1px solid #f1f1f1;}
+.recruit-posit-comp ul a{display: block;font-size: 14px;color: #999;line-height: 24px;}
+.recruit-posit-comp ul .invate-posit{color: #3d4044;}
+.job-career:hover{cursor: pointer;}
+.p-bott-row{font-size: 14px;text-align: center;padding: 20px 0 10px;}
+.p-bott-row a{color: #3d4044;display: block;cursor: pointer;}
+
+/* 简历默认信息 */
+.resume-all{background: #fff; font-size:14px;padding: 0;border-bottom: 2px solid #cacaca;border-right: 2px solid #cacaca;border-left: 2px solid #cacaca;width: 900px; margin:auto;}  
+
+.top-up-change{padding:0;border-bottom: 1px solid #e6e6e6; background:#7dc43a; height:60px; text-align:right; line-height:80px;}
+.top_time{ width:auto; margin-right:480px; display:inline-block;}
+.top_time .top_tim_wd{ color:#FFFFFF; font-weight:bold;}
+.top_time .top_tim_con{ color:#FFFFFF; font-weight:bold;}
+.update-resume{font-size: 12px;color: #999;margin: 16px 0 0;padding-left: 9px;}
+.change-resume-type{}
+.change-resume-type li{width: 85px;padding: 12px 0;display: inline-block;float:right;text-align: center;}
+.change-resume-type li a{color: #3d4044;font-size: 16px;width: 85px;display: inline-block;font-weight: bold;}
+.refush-resume{color: #999;margin-left: 20px;}
+.refush-resume i{background: url(../images/sign-sys-sprite.png) no-repeat 0 -315px;display: inline-block;width: 18px;height: 16px;vertical-align: middle;margin-right: 6px;}
+
+.cur-resume{border-bottom: 4px solid #cd3333;}
+.change-resume-type .cur-resume a{color: #cd3333;}
+.resume-info{}
+/* .resume-info li{padding:36px 8px;border-bottom: 1px dashed #e6e6e6;} */
+
+.sign-moudle-area{padding:18px 0px;}
+.resume-info .sign-job{ background-color:#f3f3f3;}
+
+.basic-set-color{display:inline-block; width:69px; border-bottom:4px solid #7dc43a;}
+.basic_load_1{border-top:4px solid #f3f3f3; margin-top:-4px;}
+.res_disblock{ display:inline-block; width:160px; height:42px; line-height:42px; font-size:14px;font-weight:bold; background-color:#1f5591; color:#FFFFFF; margin:0 10px;-ms-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;cursor:pointer}
+.res_disblock_1{ display:inline-block; width:70px; height:30px; line-height:30px; font-size:14px;font-weight:bold; background-color:#1f5591; color:#FFFFFF; margin:0 10px;-ms-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;cursor:pointer; text-align:center;}
+/* 基本资料没填写内容默认样式模块 */
+.basic-tit{}
+.item-top h3{color: #3d4044;font-size: 16px;}
+.item-top .edit,.item-top .add{color: #cfd1d4;font-size: 12px;cursor: pointer;}
+.add:hover,.edit:hover{cursor: pointer;}
+.edit1,.add1{color: #eb5441;}
+.edit i{background: url(../images/sign-sys-sprite.png) no-repeat -115px -312px;display: inline-block;width: 14px;height: 14px;vertical-align: middle;margin-right: 5px;overflow: hidden;}
+.add i{background: url(../images/sign-sys-sprite.png) no-repeat -115px -332px;display: inline-block;width: 14px;height: 14px;vertical-align: middle;margin-right: 5px;overflow: hidden;}
+.edit1 i{background-position: -151px -312px;}
+.add1 i{background-position: -151px -332px;}
+.item-top h3 em{background: url(../images/sign-sys-sprite.png) no-repeat;display: inline-block;width: 26px;height: 24px;vertical-align: middle;margin-right: 7px;}
+.defa-tips{margin:15px 0 0;padding: 0 0 0 32px;}
+.defa-tips1{color: #3d4044;margin:15px 0 0;padding: 0 0 0 32px;line-height: 24px;}
+.item-top .basic-tit1 em{background-position:  -76px 0;}
+.item-top .basic-tit2 em{background-position:  -76px -28px;}
+.item-top .basic-tit3 em{background-position:  -76px -56px;}
+.item-top .basic-tit4 em{background-position:  -76px -86px;}
+.item-top .basic-tit5 em{background-position:  -76px -117px;}
+.item-top .basic-tit6 em{background-position:  -76px -149px;}
+.item-top .basic-tit7 em{background-position:  -76px -181px;}
+.item-top .basic-tit8 em{background-position:  -76px -213px;}
+.item-top .basic-tit9 em{background-position:  -76px -247px;}
+.item-top .basic-tit10 em{background-position:  -76px -284px;}
+.item-top .basic-tit11 em{background-position:  -76px -319px;}
+.item-top .basic-tit12 em{background-position: -76px -355px;}
+.item-top .basic-tit13 em{background-position: -76px -392px;}
+
+/* .l-des{color: #858c94;} */
+/* 基本资料调整 */
+.l-des{display: inline-block;width: 74px;text-align: right;color: #858c94;}
+.l-des1{display: inline-block;width: 108px;text-align: right;color: #858c94;vertical-align:top;}
+.l-des2{display: inline-block;width: auto;text-align: right;color: #858c94; margin-left:10px;}
+.l-des-data{color: #3d4044;display: inline-block;}
+.laster-basic-info,.laster-basic-info1{width: 642px;}
+.set-heigh-li li{ line-height:30px;}
+.laster-basic-info li{float: left;height: auto;line-height: 30px;display: inline-block;width: 310px;}
+.laster-basic-info1 li{float: left;height: 30px;line-height: 30px;display: inline-block;width: 320px;}  
+
+.setHeight{margin-bottom:8px;}
+
+
+/* 新增  */
+.l_des_row{line-height: 30px;}
+
+/* 填写完成以后的样式 */
+.basic-defalt-list,.apply-defalt-list{padding: 10px 0 0 30px;font-family:\5FAE\8F6F\96C5\9ED1;color: #3d4044;}
+.l-educa-time{font-size: 12px;line-height: 28px;display: inline-block;}
+.m-educa-content{width: 440px;font-size: 12px;color: #3d4044;line-height: 28px;display: inline-block;}
+
+.educa-finish-statu{margin: 10px 0 0;}
+.educa-finish-statu li{border: none;padding: 0 0 0 32px;position: relative;width:638px;}
+.main-detail-descr{border-left: 3px solid #ececec;padding:0 0 0 20px;width: 420px;}
+
+.main-major{padding:0 0 0 20px;position: relative;word-break: break-all;}
+.main-major a{color: #cd3333;}
+.top-bor-pic{background: url(../images/top-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:12px;left: -3px;width: 9px;height: 28px;}
+.top-bor-pic2{background: url(../images/bott-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:-12px;left: -3px;width: 9px;height: 28px;}
+.top-bor-pic1{background: url(../images/mid-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:-12px;left: -3px;width: 9px;height: 58px;}
+.main-detail-descr1{border: none;}
+.main-detail-descr dd{display: inline-block;float:left;width: 64px;}
+.main-detail-descr dt{display: inline-block;float:left;width: 354px;word-break: break-all;}
+.normal-tips{color: #3d4044;font-size: 12px;line-height: 28px;margin: 10px 0 0;padding: 0 0 0 32px;}      
+.add-extra-text{color: #cd3333;margin: 0 0 0 30px;}
+.add-extra-text1{color: #cd3333;}
+.add-extra-text em,.add-extra-text1 em{display: inline-block;background: url(../images/sign-sys-sprite.png) no-repeat -151px -263px;width: 18px;height: 18px;vertical-align: middle;}
+.cer-book-load{margin: 10px 0 0;padding: 0 0 0 32px;}
+.get-cer-time{color: #858c94;margin-right: 70px;}
+.del-cert{color: #cfd1d4;}
+.del-cert:hover{cursor: pointer;}  
+.del-cert i{display: inline-block;width: 12px;height: 12px;margin-right: 8px;background: url(../images/sign-sys-sprite.png) no-repeat -115px -290px;vertical-align: middle;overflow: hidden;border-right:1px solid #fff;}
+
+.l-des-init{ display:inline-block; float:left;}
+.l-des-initcon{ display:inline-block; float:left;}
+
+</style>
+</head>
+<body>
+<div class="resume-all">
+  <div class="top-up-change clearfix" id="top_up_change">
+   <div class="top_time">
+	        	     </div>
+	  </div>
+  <div class="resume-info">
+    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="basic_position"></a>
+      <div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em>钟莹莹</h3>
+        </div>
+        <div class="basic_load">
+          <div class="basic-defalt-list">
+            <ul class="laster-basic-info clearfix">
+              <li> <span class="l-des">性别：</span> <span class="l-des-data" id="resume_user_name"> 男 </span> </li>
+              <li> <span class="l-des">籍贯：</span> <span class="l-des-data"> 广州 </span> </li>
+              <li> <span class="l-des">年龄：</span> <span class="l-des-data"> 22 </span> </li>
+              <li> <span class="l-des">手机：</span> 
+								<span class="l-des-data" id="text_mobile"> 电话 15207185113 </span> 
+			  </li>
+              <li> <span class="l-des">职业：</span> <span class="l-des-data"> hrbp </span> </li>
+             
+              
+              <li> <span class="l-des">E-mail：</span> 
+			  				  <span class="l-des-data" id="text_email"> wendy9329@163.com </span> </li>
+			  <li> <span class="l-des">居住地：</span> <span class="l-des-data"> 广州-越秀区 </span> </li>
+			  <li> <span class="l-des">工作经验：</span> <span class="l-des-data">  </span> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area sign-job" style=" background-position: initial initial; background-repeat: initial initial;"> <a name="target_position"></a>
+      <div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em>求职意向</h3>
+        </div>
+        <div class="basic_load">
+          <div class="basic-defalt-list">
+            <div class="laster-basic-info clearfix" style="width:auto;">
+				<div id="div1" style="width:350px; float:left; margin-right:15px;">
+					 <p class="setHeight"><span class="l-des">到岗时间：</span> 一个月内</p>
+					 <p class="setHeight"><span class="l-des">工作性质：</span> <span class="l-des-data"> 全职 </span> </p>
+					 <p class="setHeight"><span class="l-des">希望行业：</span> 互联网/电子商务 </p>
+					 <p class="setHeight"><span class="l-des">目标地点：</span> 广州，深圳 </p>
+				</div>
+				<div id="div2" style="width:350px; float:left;">
+					<p class="setHeight"><span class="l-des">目标职能：</span>  人力资源  </p>
+					<p class="setHeight"><span class="l-des">求职状态：</span> 目前正在找工作 </p>
+					<p class="setHeight"><span class="l-des">期望月薪：</span>  面议/月  </p>
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="edus_position"></a>
+      <div class="apply-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit2 fl"><em></em>最近工作</h3>
+        </div>
+        <div class="target_load">
+          <div class="apply-defalt-list" style="width:640px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">公司：</span></td>
+                  <td width="">大众点评网</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">行业：</span></td>
+                  <td width="">互联网/电子商务</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">职位：</span></td>
+                  <td width="">hrbp</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+      <div class="apply-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit2 fl"><em></em>最高学历</h3>
+        </div>
+        <div class="target_load">
+          <div class="apply-defalt-list" style="width:640px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">学历：</span></td>
+                  <td width="">本科</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">专业：</span></td>
+                  <td width="">人力资源管理</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">学校：</span></td>
+                  <td width="">湖北工业大学</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >工作经历</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2015 /1--2015 /3大众点评网(5000-10000人) [ 2个月] 所属行业 所属行业 互联网/电子商务 人力资源部 hrbp 1.定期协助组织华西南地区培训工作。& 男 3.负责地区文化宣传海报工作，及时传达公司价值观。 男 男 5.推动公司各项政策运转实施，维护人事相关表格、文档、邮件群等。 2014 /1--2014 /2广州新东方学校 /2广州新东方学校 [ 1个月] 所属行业 教育/培训/院校 少儿部 行政助理实习生 1.接待到访家长、学员，负责前台电话及现场咨询工作，来电客户的档案的建立与数据更新。& 2.每周回访大约300位客户，进行满意度调查，通知最新课程信息。 3.每日值班日志、每周周报、每月月报表格的统计、汇报。 4.校区人事、行政日常工作管理的每月统计及汇总。 5.配合校区上级、同事的日常工作，与总部部门相关人员沟通与工作对接。 2013 /7--2013 /8广州新东方学校 [ 1个月] 所属行业 教育/培训/院校 留学直通车 助教 1.协调、管理留学直通车住宿班学生生活问题。 2.撰写学员学习报告，协助与家长每周进行学员学习情况的反溃 3.进行学员意见收集整理和分析反馈工作；进行教师教学评估。 4.进行教师、学员的通知、教室布置及设备用品的准备；妥善处理学生突发事件。          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >社会经验</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2012 /4--2012 /7 “爱心手拉手，书香伴成长”赴阳新红领巾书屋捐建 1.与其他10名成员组成的实践及调研团队，在两市一县辗转文化局，统计局等政府机关对于“公共文化均等化”课题进行了调研在湖北省黄石市5大区，2个地级县市人流量大处进行分层次问卷调查；并对黄石市文化局副局长，统计局副局长，公安分局政委等进行了访谈，得到他们的肯定与支持； 2.为湖北省黄石市阳新县木港镇田畈小学建立了1间“红领巾书屋”，与组员一起策划项目，制定团队执行日程表，通过募捐募集项目资金，采购项目所需材料，最终为小学捐建了有2个书柜，300余本书的“红领巾书屋”，得到了腾讯网，大楚网，东楚网，黄石电视台等媒体的报道宣传。 校内职务 2013 /9--至今 助理班导师 1.引导40名新生适应校园生活，组织班会和户外拓展活动。 2.配合协助学校学院、年级辅导员、班导师的工作，增强班级的凝聚力。 2.配合协助学校学院、年级辅导员、班导师的工作，增强班级的凝聚力。 2013 /6--2014 /6 11人力资源管理1班学习委员 1.创造性地通过新媒体进行每日学习事宜通知，作业收发，学科重点内容整理。 2.上传下达，配合老师的工作，营造良好的学习氛围，得到老师和同学高度评价。 2012 /9--2013 /6 湖北工业大学文体部副部长 1.制定部门规划招新规划及工作计划，并利用人力资源管理专业知识完善了招新流程。 2.策划、组织协调学生大型文艺活动、体育竞赛等，号召、组织和带领学生积极参加体育锻炼和文艺活动，有组织的开展各种有益的活动，丰富同学们的课余文化生活。 3.与兄弟院校学生会文体部门的联系合作，促进校际文体工作的交流和发展。 4.带领执行团队建设新方案学习型团队；定期团队培训；团队内部氛围建设；团队品牌建设。 2012 /9--2013 /6 湖北工业大学国际大学生职业发展联盟（CIC）公关总监 1.制定部门规划招新规划及工作计划等，运用人力资源管理专业，甄选人员组建CIC（Career& x20;CLUB）湖北工业大学公关部团队。 2.建立校企赞助专业化流程制定进程电子跟进表；完善商家反溃 3.联系并谈成了一些商家（如武汉优肯教育，旅游百事通，四季花奶茶店等）。 4.邀请企业老总，到我校作分享会及宣讲会；当天接待嘉宾。          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >培训经历</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2013 /5--2013 /5 AIESEC（国际经济学商学学生联合会）武汉分会 sales& 2013 /3--2013 /3 AIESEC（国际经济学商学学生联合会） How& x20;be& x20;good& 证 书 2014 /6 托业 820 2013 /6 大学英语六级 511 2013 /5 普通话等级职\s*位 普通话等级职\s*位 二级甲等 2012 /12 大学英语四级 2012 /5 三级企业人力资源管理师          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >教育经历</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           学　历：本科专　业：人力资源管理学　校：湖北工业大学          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >社会实践</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           荣获2012年暑期院级先进个人 2011 /9 荣获湖北工业大学“军训优秀学员”称号          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >获得荣誉</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2014 /11 荣获国家励志奖学金 2014 /10 荣获校级一等奖学金 2014 /6 考得托业（TOEIC）听力阅读考试820分 2014 /5 被评为湖北工业大学管理学院优秀学生干部 2013 /9 被评为湖北工业大学优秀团员 2013 /9 荣获校级三等奖学金；荣获湖北工业大学“优秀大学生”称号 2012 /11 荣获校第十九届“创新杯”大学生课外学术科技作品竞赛一等奖 2012 /9          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >语言能力</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           粤语（精通） 听说（精通），读写（精通） 英语（良好） 听说（良好），读写（良好） 普通话（熟练） 听说（熟练），读写（熟练） 英语等级 英语等级 英语六级 TOEIC 820          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >附加信息</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           钟莹莹 
+ 匹配度 
+ 80% 
+ 在读学生 
+ 中共党员 
+ (ID:303186969)          </div>
+        </div>
+      </div>
+    </div>
+	<div class="sign-moudle-area" style=" background-position: initial initial; background-repeat: initial initial; text-align:center; height:80px;">
+    </div>
+  </div>
+</div>
+</body>
+<script>
+function daocLoca(url){
+	location.href =url;
+}
+</script>
+</html>

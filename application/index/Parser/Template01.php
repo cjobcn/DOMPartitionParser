@@ -85,6 +85,18 @@ class Template01 extends AbstractParser {
         return $this->pregParse($content, false, false);
     }
 
+    public function evaluation($data, $start, $end, &$record) {
+        $i = $start;
+        $evaluation = '';
+        while($i <= $end){
+            $evaluation .= $data[$i++];
+        }
+        $evaluation = preg_replace('/.*自我评价：/s','',$evaluation);
+        $record['self_str'] = $evaluation;
+
+        return $evaluation;
+    }
+
     public function career($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
@@ -138,12 +150,13 @@ class Template01 extends AbstractParser {
         $k = 0;
         $sequence = array('school');
         $rules = array(
+            array('school', '学校：', 0),
             array('major', '-?专业：', 0),
             array('degree', '-?学历：', 0),
         );
         $education = array();
         while($i < $length) {
-            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)$/', $data[$i], $match)) {
+            if(preg_match('/^(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)) {
                 $edu = array();
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);

@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>刘记的简历 | 预览简历</title>
+<script src="http://jianli.zhaopinchina.com/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/weebox/bgiframe.js"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/weebox/weebox.js"></script>
+<script type="text/javascript" src="http://jianli.zhaopinchina.com/js/func.js?v=2015062001"></script>
+<style>
+@charset "gb2312";
+/******
+@author:lijp;
+@date:2014-12-25;
+@功能描述：个人后台
+*******/
+
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,legend,input,textarea,p,th,td{margin:0;padding:0;}
+a,input,button,select,textarea{outline:none}img{border:0;vertical-align:bottom;}em{font-style:normal}textarea{resize:none;}
+body{font:12px/1.5 \5B8B\4F53,Helvetica,Arial,sans-serif;}
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+ol,ul{list-style:none}
+h1,h2,h3,h4,h5{font-size:14px;}
+input,label,select{vertical-align:middle;font:100% Tahoma}
+.clearfix:before,.clearfix:after{content:".";display:table;height:0;font-size:0;line-height:0;visibility:hidden;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+.fl{float:left;}
+.fr{float:right;}    
+
+.resume-nav-list .r-hover{background: #fafafa;border-left: 2px solid #cb3131;width: 258px;}
+.resume-nav-list .r-hover a{color: #cd3333;}
+/* 右侧第四部分职位和公司 */
+.care-top{padding: 10px 4px 10px 10px;border-bottom: 1px solid #f1f1f1;}
+.recom-tit{font-size: 14px;color: #3d4044;}
+.job-career{font-size: 12px;color: #666;margin: 3px 0 0;}
+.recruit-posit-comp{background: #fff;border-bottom: 1px solid #d8d8d8;margin:6px 0;padding: 0 10px 15px;}
+.recruit-posit-comp li{padding:10px 0 10px 12px;border-bottom: 1px solid #f1f1f1;}
+.recruit-posit-comp ul a{display: block;font-size: 14px;color: #999;line-height: 24px;}
+.recruit-posit-comp ul .invate-posit{color: #3d4044;}
+.job-career:hover{cursor: pointer;}
+.p-bott-row{font-size: 14px;text-align: center;padding: 20px 0 10px;}
+.p-bott-row a{color: #3d4044;display: block;cursor: pointer;}
+
+/* 简历默认信息 */
+.resume-all{background: #fff; font-size:14px;padding: 0;border-bottom: 2px solid #cacaca;border-right: 2px solid #cacaca;border-left: 2px solid #cacaca;width: 900px; margin:auto;}  
+
+.top-up-change{padding:0;border-bottom: 1px solid #e6e6e6; background:#7dc43a; height:60px; text-align:right; line-height:80px;}
+.top_time{ width:auto; margin-right:480px; display:inline-block;}
+.top_time .top_tim_wd{ color:#FFFFFF; font-weight:bold;}
+.top_time .top_tim_con{ color:#FFFFFF; font-weight:bold;}
+.update-resume{font-size: 12px;color: #999;margin: 16px 0 0;padding-left: 9px;}
+.change-resume-type{}
+.change-resume-type li{width: 85px;padding: 12px 0;display: inline-block;float:right;text-align: center;}
+.change-resume-type li a{color: #3d4044;font-size: 16px;width: 85px;display: inline-block;font-weight: bold;}
+.refush-resume{color: #999;margin-left: 20px;}
+.refush-resume i{background: url(../images/sign-sys-sprite.png) no-repeat 0 -315px;display: inline-block;width: 18px;height: 16px;vertical-align: middle;margin-right: 6px;}
+
+.cur-resume{border-bottom: 4px solid #cd3333;}
+.change-resume-type .cur-resume a{color: #cd3333;}
+.resume-info{}
+/* .resume-info li{padding:36px 8px;border-bottom: 1px dashed #e6e6e6;} */
+
+.sign-moudle-area{padding:18px 0px;}
+.resume-info .sign-job{ background-color:#f3f3f3;}
+
+.basic-set-color{display:inline-block; width:69px; border-bottom:4px solid #7dc43a;}
+.basic_load_1{border-top:4px solid #f3f3f3; margin-top:-4px;}
+.res_disblock{ display:inline-block; width:160px; height:42px; line-height:42px; font-size:14px;font-weight:bold; background-color:#1f5591; color:#FFFFFF; margin:0 10px;-ms-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;cursor:pointer}
+.res_disblock_1{ display:inline-block; width:70px; height:30px; line-height:30px; font-size:14px;font-weight:bold; background-color:#1f5591; color:#FFFFFF; margin:0 10px;-ms-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;cursor:pointer; text-align:center;}
+/* 基本资料没填写内容默认样式模块 */
+.basic-tit{}
+.item-top h3{color: #3d4044;font-size: 16px;}
+.item-top .edit,.item-top .add{color: #cfd1d4;font-size: 12px;cursor: pointer;}
+.add:hover,.edit:hover{cursor: pointer;}
+.edit1,.add1{color: #eb5441;}
+.edit i{background: url(../images/sign-sys-sprite.png) no-repeat -115px -312px;display: inline-block;width: 14px;height: 14px;vertical-align: middle;margin-right: 5px;overflow: hidden;}
+.add i{background: url(../images/sign-sys-sprite.png) no-repeat -115px -332px;display: inline-block;width: 14px;height: 14px;vertical-align: middle;margin-right: 5px;overflow: hidden;}
+.edit1 i{background-position: -151px -312px;}
+.add1 i{background-position: -151px -332px;}
+.item-top h3 em{background: url(../images/sign-sys-sprite.png) no-repeat;display: inline-block;width: 26px;height: 24px;vertical-align: middle;margin-right: 7px;}
+.defa-tips{margin:15px 0 0;padding: 0 0 0 32px;}
+.defa-tips1{color: #3d4044;margin:15px 0 0;padding: 0 0 0 32px;line-height: 24px;}
+.item-top .basic-tit1 em{background-position:  -76px 0;}
+.item-top .basic-tit2 em{background-position:  -76px -28px;}
+.item-top .basic-tit3 em{background-position:  -76px -56px;}
+.item-top .basic-tit4 em{background-position:  -76px -86px;}
+.item-top .basic-tit5 em{background-position:  -76px -117px;}
+.item-top .basic-tit6 em{background-position:  -76px -149px;}
+.item-top .basic-tit7 em{background-position:  -76px -181px;}
+.item-top .basic-tit8 em{background-position:  -76px -213px;}
+.item-top .basic-tit9 em{background-position:  -76px -247px;}
+.item-top .basic-tit10 em{background-position:  -76px -284px;}
+.item-top .basic-tit11 em{background-position:  -76px -319px;}
+.item-top .basic-tit12 em{background-position: -76px -355px;}
+.item-top .basic-tit13 em{background-position: -76px -392px;}
+
+/* .l-des{color: #858c94;} */
+/* 基本资料调整 */
+.l-des{display: inline-block;width: 74px;text-align: right;color: #858c94;}
+.l-des1{display: inline-block;width: 108px;text-align: right;color: #858c94;vertical-align:top;}
+.l-des2{display: inline-block;width: auto;text-align: right;color: #858c94; margin-left:10px;}
+.l-des-data{color: #3d4044;display: inline-block;}
+.laster-basic-info,.laster-basic-info1{width: 642px;}
+.set-heigh-li li{ line-height:30px;}
+.laster-basic-info li{float: left;height: auto;line-height: 30px;display: inline-block;width: 310px;}
+.laster-basic-info1 li{float: left;height: 30px;line-height: 30px;display: inline-block;width: 320px;}  
+
+.setHeight{margin-bottom:8px;}
+
+
+/* 新增  */
+.l_des_row{line-height: 30px;}
+
+/* 填写完成以后的样式 */
+.basic-defalt-list,.apply-defalt-list{padding: 10px 0 0 30px;font-family:\5FAE\8F6F\96C5\9ED1;color: #3d4044;}
+.l-educa-time{font-size: 12px;line-height: 28px;display: inline-block;}
+.m-educa-content{width: 440px;font-size: 12px;color: #3d4044;line-height: 28px;display: inline-block;}
+
+.educa-finish-statu{margin: 10px 0 0;}
+.educa-finish-statu li{border: none;padding: 0 0 0 32px;position: relative;width:638px;}
+.main-detail-descr{border-left: 3px solid #ececec;padding:0 0 0 20px;width: 420px;}
+
+.main-major{padding:0 0 0 20px;position: relative;word-break: break-all;}
+.main-major a{color: #cd3333;}
+.top-bor-pic{background: url(../images/top-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:12px;left: -3px;width: 9px;height: 28px;}
+.top-bor-pic2{background: url(../images/bott-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:-12px;left: -3px;width: 9px;height: 28px;}
+.top-bor-pic1{background: url(../images/mid-border-pic.png) no-repeat top center;display: inline-block;position: absolute;top:-12px;left: -3px;width: 9px;height: 58px;}
+.main-detail-descr1{border: none;}
+.main-detail-descr dd{display: inline-block;float:left;width: 64px;}
+.main-detail-descr dt{display: inline-block;float:left;width: 354px;word-break: break-all;}
+.normal-tips{color: #3d4044;font-size: 12px;line-height: 28px;margin: 10px 0 0;padding: 0 0 0 32px;}      
+.add-extra-text{color: #cd3333;margin: 0 0 0 30px;}
+.add-extra-text1{color: #cd3333;}
+.add-extra-text em,.add-extra-text1 em{display: inline-block;background: url(../images/sign-sys-sprite.png) no-repeat -151px -263px;width: 18px;height: 18px;vertical-align: middle;}
+.cer-book-load{margin: 10px 0 0;padding: 0 0 0 32px;}
+.get-cer-time{color: #858c94;margin-right: 70px;}
+.del-cert{color: #cfd1d4;}
+.del-cert:hover{cursor: pointer;}  
+.del-cert i{display: inline-block;width: 12px;height: 12px;margin-right: 8px;background: url(../images/sign-sys-sprite.png) no-repeat -115px -290px;vertical-align: middle;overflow: hidden;border-right:1px solid #fff;}
+
+.l-des-init{ display:inline-block; float:left;}
+.l-des-initcon{ display:inline-block; float:left;}
+
+</style>
+</head>
+<body>
+<div class="resume-all">
+  <div class="top-up-change clearfix" id="top_up_change">
+   <div class="top_time">
+	        	     </div>
+	  </div>
+  <div class="resume-info">
+    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="basic_position"></a>
+      <div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em>刘记</h3>
+        </div>
+        <div class="basic_load">
+          <div class="basic-defalt-list">
+            <ul class="laster-basic-info clearfix">
+              <li> <span class="l-des">性别：</span> <span class="l-des-data" id="resume_user_name"> 男 </span> </li>
+              <li> <span class="l-des">籍贯：</span> <span class="l-des-data"> 上海 </span> </li>
+              <li> <span class="l-des">年龄：</span> <span class="l-des-data"> 32 </span> </li>
+              <li> <span class="l-des">手机：</span> 
+								<span class="l-des-data" id="text_mobile"> 电话 15914031796 </span> 
+			  </li>
+              <li> <span class="l-des">职业：</span> <span class="l-des-data"> 系统工程师 </span> </li>
+             
+              
+              <li> <span class="l-des">E-mail：</span> 
+			  				  <span class="l-des-data" id="text_email"> liuji2006@gmail.com </span> </li>
+			  <li> <span class="l-des">居住地：</span> <span class="l-des-data"> 深圳-龙岗区 </span> </li>
+			  <li> <span class="l-des">工作经验：</span> <span class="l-des-data"> 二年 </span> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area sign-job" style=" background-position: initial initial; background-repeat: initial initial;"> <a name="target_position"></a>
+      <div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em>求职意向</h3>
+        </div>
+        <div class="basic_load">
+          <div class="basic-defalt-list">
+            <div class="laster-basic-info clearfix" style="width:auto;">
+				<div id="div1" style="width:350px; float:left; margin-right:15px;">
+					 <p class="setHeight"><span class="l-des">到岗时间：</span> 一个月内</p>
+					 <p class="setHeight"><span class="l-des">工作性质：</span> <span class="l-des-data"> 全职 </span> </p>
+					 <p class="setHeight"><span class="l-des">希望行业：</span> 计算机软件 </p>
+					 <p class="setHeight"><span class="l-des">目标地点：</span> 深圳 </p>
+				</div>
+				<div id="div2" style="width:350px; float:left;">
+					<p class="setHeight"><span class="l-des">目标职能：</span>  商务助理，采购，销售管理，贸易，市场/营销  </p>
+					<p class="setHeight"><span class="l-des">求职状态：</span>  </p>
+					<p class="setHeight"><span class="l-des">期望月薪：</span>  面议/月  </p>
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="edus_position"></a>
+      <div class="apply-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit2 fl"><em></em>最近工作</h3>
+        </div>
+        <div class="target_load">
+          <div class="apply-defalt-list" style="width:640px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">公司：</span></td>
+                  <td width="">自主研发</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">行业：</span></td>
+                  <td width="">计算机软件</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">职位：</span></td>
+                  <td width="">系统工程师</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+      <div class="apply-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit2 fl"><em></em>最高学历</h3>
+        </div>
+        <div class="target_load">
+          <div class="apply-defalt-list" style="width:640px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">学历：</span></td>
+                  <td width="">硕士</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">专业：</span></td>
+                  <td width="">电子科学与技术</td>
+                </tr>
+                <tr>
+                  <td width="74" align="right" height="30"><span class="l-des">学校：</span></td>
+                  <td width="">西安交通大学</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+		    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >自我评价</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           有较强的责任心，诚实守信； 善于学习，吸收新知识速度快； 实践能力较强，能迅速适应不同环境； 注重团队精神，喜欢与人打交道； 性格不够果断，凡事考虑的过多；          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >工作经历</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2011 /3至今自主研发(少于50人) [ 5个月] 所属行业 所属行业 计算机软件 研发部门 系统工程师 自主开发EMenu系统 包括服务器和客户端两部分 2009 /62011 /3上海久游网络有限公司(500人以上) [ 1 年9个月] 所属行业 计算机软件 研发部门 软件工程师 负责客户端开发          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >项目经验</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           2011 /3至今Emenu系统开发 开发工具 java + as 项目描述 开了了一套Emenu电子菜单系统 该系统是基于Android的平板电脑应用系统 可通过无线模块进行点菜 基本框架及流程已经实现。 责任描述 负责服务器开发，包括一款餐饮管理软件以及通信管理模块； 负责客户端开发，主要就是电子菜单的实现； 2006 /92011 /3仙之岭 开发工具 Unreal + c++ 项目描述 《仙之岭》是一款由世界顶级引擎虚幻3开发的3D奇幻唯美史诗级大作。 责任描述 玩家移动及同步系统，游戏中所有玩家及怪物的移动及同步设计； 玩家交易系统； 好友系统组队系统； 幻兽系统； 载具系统，类似于骑宠系统，但比其复杂，可以同时承载多人的一种载具          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >教育经历</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           学　历：硕士专　业：电子科学与技术学　校：西安交通大学          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >语言能力</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           英语（熟练） 听说（良好），读写（良好） 英语等级 英语等级 英语六级 IT 技能 技能名称 熟练程度 使用时间 Java 精通 4月 C/C++ 熟练 24月 SQL 熟练 4月          </div>
+        </div>
+      </div>
+    </div>
+	    <div class="sign-moudle-area" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"> <a name="work_position"></a>
+	<div class="basic-info">
+        <div class="item-top clearfix">
+          <h3 class="basic-tit1 fl"><em></em><span class="basic-set-color" >附加信息</span></h3>
+        </div>
+        <div class="basic_load basic_load_1" >
+          <div class="basic-defalt-list">
+           刘记 
+ 未婚 
+ 176cm 
+ (ID:59991436)          </div>
+        </div>
+      </div>
+    </div>
+	<div class="sign-moudle-area" style=" background-position: initial initial; background-repeat: initial initial; text-align:center; height:80px;">
+    </div>
+  </div>
+</div>
+</body>
+<script>
+function daocLoca(url){
+	location.href =url;
+}
+</script>
+</html>
