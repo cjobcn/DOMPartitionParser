@@ -39,4 +39,36 @@ class ParserLog {
         }
         return $filePath;
     }
+
+    static function classify($dirName) {
+        $patterns = array(
+            '14' => '/121\.41\.112\.72\:12885/'
+        );
+        $path = self::LOG_DIR.$dirName.'/';
+        dump($path);
+        //$path = $dirName;
+        $dir = dir($path);
+        if(!$dir) {
+            echo '目录不存在！';
+            return false;
+        }
+        while (($file = $dir->read()) !== false){
+            if(is_file($path.$file)){
+                $content = Utility::readDocument($path.$file);
+                foreach($patterns as $key => $pattern) {
+                    if(preg_match($pattern, $content)){
+                        $newPath= $path.'/'.$key.'/';
+                        if(!file_exists($newPath)){
+                            mkdir($newPath);
+                        }
+                        copy($path.$file, $newPath.$file);
+                        unlink($path.$file);
+                        break;
+                    }
+                }
+            }
+        }
+        echo "归类结束！";
+        return true;
+    }
 }
