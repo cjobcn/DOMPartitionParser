@@ -16,7 +16,7 @@ class Template09 extends AbstractParser {
         array('trainings', '培训经历'),
         array('certs', '证书'),
         array('prizes', '所获奖励'),
-        array('practices', '社会实践'),
+        array('practices', '社会实践|学生实践经验'),
         array('languages', '语言能力'), 
         array('skills', 'IT技能'), 
         array('addition', '附加信息'),
