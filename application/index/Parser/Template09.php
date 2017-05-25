@@ -20,7 +20,7 @@ class Template09 extends AbstractParser {
         array('languages', '语言能力'), 
         array('skills', 'IT技能'), 
         array('addition', '附加信息'),
-        array('others', '其他信息')
+        array('others', '其他信息|简历小精灵')
     );
 
     //关键字解析规则
@@ -114,7 +114,7 @@ class Template09 extends AbstractParser {
             array('true_id', '/\(ID:(\d{5,})\)/', 1),
             array('sex', '/男|女/'),
             array('marriage', '/未婚|已婚/'),
-            array('birth_year', '/(\d{4})\s*年/', 1),
+            array('birth_year', '/（(\d{4})\s*年/', 1),
             array('work_year', '/(.+?年(以上)?)工作经验/', 1),
         );
         $i = 0;
@@ -130,16 +130,15 @@ class Template09 extends AbstractParser {
             $i++;
         }
         if(!isset($record['name'])) {
+
             $k = $extracted[0] - 1;
-            if (!$this->isKeyword($data[$k])) {
-                $record['name'] = $data[$k];
-                if (preg_match('/匹配度/', $record['name'])) {
-                    $record['name'] = $data[$k - 1];
+            while($k >= 0){
+                if (!preg_match('/匹配度|标签：|应届毕业生|\%/', $data[$k]) &&
+                    !$this->isKeyword($data[$k])) {
+                    $record['name'] = $data[$k];
+                    break;
                 }
-                if (preg_match('/流程状态：/', $record['name'])) {
-                    preg_match('/(?<=流程状态：).+?(?= 标签：)/', $record['name'], $name);
-                    $record['name'] = $name[0];
-                }
+                $k --;
             }
         }
         //各模块解析
@@ -200,6 +199,7 @@ class Template09 extends AbstractParser {
                 $job['end_time'] = Utility::str2time($match[2]);
                 $job['company'] = preg_split('/\(\d|\[/',$match[3])[0];
                 $jobs[$j++] = $job;
+                $k = 1;
             //关键字匹配
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $jobs[$j-1][$KV[0]] = $KV[1];

@@ -68,8 +68,16 @@ class Utility {
      * @return bool|string
      */
     static public function readDocument($path) {
-        $path = iconv("UTF-8", "GBK", $path);
-        $content = file_get_contents($path);
+        if(!$path) return '';
+        $gbkPath = iconv("UTF-8", "GBK", $path);
+        if(file_exists($gbkPath)) {
+            $content = file_get_contents($gbkPath);
+            if(preg_match('/\.mht$/',$path)){
+                $content = Utility::mht2html($content);
+            }
+        }
+        else
+            $content = '';
         return $content;
     }
 
@@ -104,5 +112,41 @@ class Utility {
         $str = preg_replace('/\D+/', '-', $str);
         $str = preg_replace(array('/^-/','/-$/'), '', $str);
         return strtotime($str);
+    }
+
+    /*
+     * 读取mht
+     * @author 宋佳宇
+     */
+    static function mht2html($content) {
+        $content_header = '/Content-Transfer-Encoding:([\s\S]*?)\n/ims';
+        preg_match($content_header,$content,$item_results);
+        if(!$item_results){
+            return $content;
+        }
+        $bianma=trim($item_results[1]);
+        if($bianma === 'quoted-printable'){
+            $contents ='';
+            $pregcont = '/content-transfer-encoding: quoted-printable(.+?)content-type: image\/gif; name=logo.gif/is';
+            preg_match($pregcont, $content, $conts);
+            foreach ($conts as $k=>$v){
+                $contents=quoted_printable_decode($v);
+            }
+            //print_r($conts[1]);die;
+            //进行编码解压
+            return $contents;
+        }elseif($bianma==="base64"){
+            $pregcont = '/Content-Transfer-Encoding:base64(\n\n)(.+?)Content-Type:image\/gif/is';
+            preg_match($pregcont, $content, $conts);
+            preg_match('/[\s\S]+?(?<=-)/',$conts[2],$temp);
+            $contents=base64_decode($temp[0]);
+            if(!$contents)
+                return $content;
+            //$contents = preg_replace('/(?<=<\/html>).+?$/','',$contents);
+            return $contents;
+        }else{
+            //  echo '编码失败';
+            return false;
+        }
     }
 }

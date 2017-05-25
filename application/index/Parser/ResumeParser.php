@@ -27,9 +27,13 @@ class ResumeParser {
      */
     public function readDocument($path) {
         if(!$path) return '';
-        $path = iconv("UTF-8", "GBK", $path);
-        if(file_exists($path))
-            $content = file_get_contents($path);
+        $gbkPath = iconv("UTF-8", "GBK", $path);
+        if(file_exists($gbkPath)) {
+            $content = file_get_contents($gbkPath);
+            if(preg_match('/\.mht$/',$path)){
+                $content = Utility::mht2html($content);
+            }
+        }
         else
             $content = '';
         return $content;
