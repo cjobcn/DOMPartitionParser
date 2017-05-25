@@ -26,14 +26,15 @@ class Parser extends Controller {
             $Parser = new ResumeParser();
             $content = $Parser->convert2UTF8($originContent);
             $data = $Parser->parse($content, $templateId);
-            if($data){
+            if($data && $templateId != "14"){
                 $info = array(
                     'template' => $templateId,
                     'data' => $data,
                     'status' => 1,
                 );
             }else{
-                ParserLog::toSupport($originContent);
+                if($templateId != "14")
+                    ParserLog::toSupport($originContent);
                 //通用解析
                 $Parser = new ParseCommon();
                 $data = $Parser->parse($content);
