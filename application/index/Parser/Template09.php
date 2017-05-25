@@ -15,8 +15,8 @@ class Template09 extends AbstractParser {
         array('education', '教育经历'), 
         array('trainings', '培训经历'),
         array('certs', '证书'),
-        array('prizes', '所获奖励'),
-        array('practices', '社会实践|学生实践经验'),
+        array('prizes', '所获奖励|所获奖项'),
+        array('practices', '社会实践|学生实践经验|校内职务|社会经验'),
         array('languages', '语言能力'), 
         array('skills', 'IT技能'), 
         array('addition', '附加信息'),
@@ -112,8 +112,8 @@ class Template09 extends AbstractParser {
         }
         $patterns = array(
             array('true_id', '/\(ID:(\d{5,})\)/', 1),
-            array('sex', '/男|女/'),
-            array('marriage', '/未婚|已婚/'),
+            array('sex', '/^(男|女)$/', 1),
+            array('marriage', '/^(未婚|已婚)$/', 1),
             array('birth_year', '/（(\d{4})\s*年/', 1),
             array('work_year', '/(.+?年(以上)?)工作经验/', 1),
         );
@@ -129,8 +129,8 @@ class Template09 extends AbstractParser {
             }
             $i++;
         }
+        //dump($extracted);
         if(!isset($record['name'])) {
-
             $k = $extracted[0] - 1;
             while($k >= 0){
                 if (!preg_match('/匹配度|标签：|应届毕业生|\%/', $data[$k]) &&
