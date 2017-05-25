@@ -29,11 +29,12 @@ class Template14 extends AbstractParser {
         array('degree', '学历：'),
         array('birth_year', '出生年：'),
         array('target_city', '意向地区：'),
+        array('industry', '所属行业：'),
         array('phone', '联系方式：|手机：'),
         array('email', '邮箱：'),
         array('update_time', '创建时间：'),
         array('last_company', '当前所在公司：|目前公司：'),
-        array('last_position', '目前职位：'),
+        array('last_position', '目前职位：|最近职位：'),
         array('work_year', '工作年限：'),
         array('age', '年龄：'),
         array('marriage', '婚姻状况：'),
@@ -60,8 +61,8 @@ class Template14 extends AbstractParser {
             '/<style.*?>.+?<\/style>/is',
         );
         $content = preg_replace($redundancy, '', $content);
-        $content = str_replace(array('年  龄：', '手  机：', '国  籍：', '邮  箱：', '户  籍：','<h1>'),
-            array('年龄：', '手机：', '国籍：', '邮箱：', '户籍：','姓名：'), $content);
+        $content = str_replace(array('年  龄：', '手  机：', '国  籍：', '邮  箱：', '户  籍：','<h1>', '<h3>'),
+            array('年龄：', '手机：', '国籍：', '邮箱：', '户籍：','姓名：', '最近职位：'), $content);
         //两个空格作为分隔符
         $content = str_replace(array('  ','&nbsp;&nbsp;'), '|', $content);
         return $content;
@@ -77,7 +78,7 @@ class Template14 extends AbstractParser {
         //dump($blocks);
 
         //其他解析
-        $length = $blocks[0][1]-1?:count($data)-1;
+        $length = $blocks[0][1]-1 > 0 ?$blocks[0][1]-1:count($data)-1;
         $basic = array_slice($data,0, $length);
         $this->basic($basic, 0, $length - 1, $record);
         //各模块解析

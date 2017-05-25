@@ -30,6 +30,7 @@ class TemplateTest extends Controller {
 	//查看简历内容
 	public function resume() {
 		$content = $this->getResume();
+		//dump($content);
 		//ParserLog::toSupport($content);
 		echo $content;
 	}
@@ -149,6 +150,7 @@ class TemplateTest extends Controller {
             '1495079821.html',
         ),
         '14' => array(
+            '1495623578.html',
             '1495436749.html',
             '1495436748.html'
         ),
