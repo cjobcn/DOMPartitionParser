@@ -136,7 +136,7 @@ class Utility {
             //进行编码解压
             return $contents;
         }elseif($bianma==="base64"){
-            $pregcont = '/Content-Transfer-Encoding:base64(\n\n)(.+?)Content-Type:image\/gif/is';
+            $pregcont = '/Content-Transfer-Encoding:base64(\n*)(.+?)Content-Type:image\/gif/is';
             preg_match($pregcont, $content, $conts);
             preg_match('/[\s\S]+?(?<=-)/',$conts[2],$temp);
             $contents=base64_decode($temp[0]);
