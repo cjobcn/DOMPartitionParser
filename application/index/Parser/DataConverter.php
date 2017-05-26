@@ -17,6 +17,7 @@ class DataConverter {
 
     //属性到转换方法的映射关系
     protected $MethodMap = array(
+        'name'        => 'clean',
         'update_time' => 'str2time',
         'email'       => 'email',
         'phone'       => 'phone',
@@ -125,6 +126,14 @@ class DataConverter {
         }else{
             return '';
         }
+    }
+
+    public function clean($data) {
+        $data = html_entity_decode(strip_tags($data));
+        $find = array("\n","\t","\r");
+        $data = str_replace($find,"",$data);
+        $data = str_replace("，",",",$data);
+        return trim($data);
     }
 
 }
