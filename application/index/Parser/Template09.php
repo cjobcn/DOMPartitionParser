@@ -25,6 +25,8 @@ class Template09 extends AbstractParser {
 
     //关键字解析规则
     protected $rules = array(
+        array('applicant_company', '应聘职位：'),
+        array('applicant_position', '应聘公司：'),
         array('update_time', '更新时间：|投递时间：'),
         array('resume_keywords', '简历关键字：'),
         array('name', '姓名：'),
@@ -111,6 +113,7 @@ class Template09 extends AbstractParser {
             }
         }
         $patterns = array(
+            array('name', '/(.+)\s*\(ID:(\d{5,})\)/', 1),
             array('true_id', '/\(ID:(\d{5,})\)/', 1),
             array('sex', '/^(男|女)$/', 1),
             array('marriage', '/^(未婚|已婚)$/', 1),
