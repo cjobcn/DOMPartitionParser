@@ -62,7 +62,7 @@ class ResumeParser {
     public function getTemplateID($resume) {
         foreach($this->templateIDs as $id => $pattern){
             if(preg_match($pattern, $resume)){
-                return $id;
+                return strval($id);
             }            
         }
         return false;
@@ -92,7 +92,7 @@ class ResumeParser {
      */
     public function parse($resume, &$templateId = '') {
         $namespace = __NAMESPACE__;
-        $templateId = strval($this->getTemplateID($resume));
+        $templateId = $this->getTemplateID($resume);
         if($templateId)
             $templateClass = $namespace.'\Template'.$templateId;
         //dump($templateClass);
