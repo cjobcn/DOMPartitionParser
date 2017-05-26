@@ -30,6 +30,8 @@ class Template09 extends AbstractParser {
         array('update_time', '更新时间：|投递时间：'),
         array('resume_keywords', '简历关键字：'),
         array('name', '姓名：'),
+        array('height', '身高：'),
+        array('marriage', '婚姻状况：'),
         array('sex', '性别：'),
         array('birth_year', '出生日期：'), 
         array('city', '居住地：'), 
@@ -105,7 +107,18 @@ class Template09 extends AbstractParser {
         //dump($data);
         //其他解析
         $length = $blocks[0][1]?$blocks[0][1] - 1:count($data);
-        $this->basic($data,0,$length ,$record);
+        $basic = array_slice($data, 0 , $length);
+        $i = 0;
+        while($i < $length) {
+            $KV = $this->parseElement($basic, $i);
+            if($KV){
+                $record[$KV[0]] = $KV[1];
+                unset($basic[$i]);
+                $i = $i + $KV[2];
+                unset($basic[$i]);
+            }
+            $i++;
+        }
         if(isset($record['address'])) {
             if(preg_match('/(.+?)（邮编：(\d+)）/s',$record['address'], $match)) {
                 $record['address'] = trim($match[1]);
@@ -122,12 +135,16 @@ class Template09 extends AbstractParser {
         );
         $i = 0;
         $extracted = array();
-        while($i < $length){
-            foreach($patterns as $key=>$pattern){
-                if(preg_match($pattern[1], $data[$i], $match)) {
-                    $index = $pattern[2]?:0;
-                    $record[$pattern[0]] = $match[$index];
-                    $extracted[] = $i;
+        $restBasic = array_values($basic);
+        //dump($basic);
+        while($i < count($restBasic)){
+            if($restBasic[$i]){
+                foreach($patterns as $key=>$pattern){
+                    if(preg_match($pattern[1], $restBasic[$i], $match)) {
+                        $index = $pattern[2]?:0;
+                        $record[$pattern[0]] = $match[$index];
+                        $extracted[] = $i;
+                    }
                 }
             }
             $i++;
@@ -136,9 +153,9 @@ class Template09 extends AbstractParser {
         if(!isset($record['name'])) {
             $k = $extracted[0] - 1;
             while($k >= 0){
-                if (!preg_match('/匹配度|标签：|应届毕业生|\%/', $data[$k]) &&
-                    !$this->isKeyword($data[$k])) {
-                    $record['name'] = $data[$k];
+                if (!preg_match('/匹配度|标签：|应届毕业生|\%/', $restBasic[$k]) &&
+                    !$this->isKeyword($restBasic[$k])) {
+                    $record['name'] = $restBasic[$k];
                     break;
                 }
                 $k --;
@@ -161,19 +178,6 @@ class Template09 extends AbstractParser {
             return $this->domParse($content, 'td', false, false);
         }else{
             return $this->pregParse($content, false, false);
-        }
-    }
-
-    public function basic($data, $start, $end, &$record) {
-        $length = $end - $start + 1;
-        $data = array_slice($data,$start, $length);
-        $i = 0;
-        while($i < $length) {
-            $KV = $this->parseElement($data, $i);
-            if($KV){
-                $record[$KV[0]] = $KV[1];
-            }
-            $i++;
         }
     }
 

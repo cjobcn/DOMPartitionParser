@@ -64,30 +64,49 @@ class Template10 extends AbstractParser {
         //dump($data);
         //if(!$blocks) return false;
         //其他解析
-        $end = $blocks[0][1] - 2?:count($data) - 1;
-        $this->basic($data, 0, $end, $record);
+        $length = $blocks[0][1]?$blocks[0][1] - 1:count($data);
+        $basic = array_slice($data, 0 , $length);
         $i = 0;
+        while($i < $length) {
+            $KV = $this->parseElement($basic, $i);
+            if($KV){
+                $record[$KV[0]] = $KV[1];
+                unset($basic[$i]);
+                $i = $i + $KV[2];
+                unset($basic[$i]);
+            }
+            $i++;
+        }
         $patterns = array(
             array('sex', '/男|女/'),
             array('marriage', '/未婚|已婚/'),
             array('birth_year', '/(\d{4})\s*年/', 1),
             array('phone', '/(\d{11})\s*\(手机\)/', 1),
-            array('work_year', '/(.+?年)工作经验/', 1),
+            array('work_year', '/(\S+年)工作经验/', 1),
         );
-        while($i <= $end) {
+        $i = 0;
+        $extracted = array();
+        $restBasic = array_values($basic);
+        //dump($basic);
+        while($i < count($restBasic)){
             foreach($patterns as $key=>$pattern){
-                if(preg_match($pattern[1], $data[$i], $match)) {
+                if(preg_match($pattern[1], $restBasic[$i], $match)) {
                     $index = $pattern[2]?:0;
                     $record[$pattern[0]] = $match[$index];
-                    if($pattern[0] == 'sex'){
-                        if(preg_match('/手机：/',$data[$i-1]))
-                            $record['name'] = $data[$i-2];
-                        else
-                            $record['name'] = $data[$i-1];
-                    }
+                    $extracted[] = $i;
                 }
             }
             $i++;
+        }
+        if(!isset($record['name'])) {
+            $k = $extracted[0] - 1;
+            while($k >= 0){
+                if (!$this->isKeyword($restBasic[$k])) {
+                    $record['name'] = $restBasic[$k];
+                    break;
+                }
+                $k --;
+            }
         }
         //各模块解析
         foreach($blocks as $block){
