@@ -20,13 +20,15 @@ class Parser extends Controller {
         $request = request();
         if($request->isPost()) {
             $originContent = $request->post('content');
+            $id = $request->post('id');
+            //内容丢失
             if(!$originContent)
                 return json(array('status' => -2));
             //$type = $request->post('type');
             $Parser = new ResumeParser();
             $content = $Parser->convert2UTF8($originContent);
             $data = $Parser->parse($content, $templateId);
-            if($data && $templateId != "14"){
+            if($data && $templateId !== "14"){
                 $info = array(
                     'template' => $templateId,
                     'data' => $data,
@@ -34,7 +36,7 @@ class Parser extends Controller {
                 );
             }else{
                 if($templateId != "14")
-                    ParserLog::toSupport($originContent);
+                    ParserLog::toSupport($originContent, $id);
                 //通用解析
                 $Parser = new ParseCommon();
                 $data = $Parser->parse($content);

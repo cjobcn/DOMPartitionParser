@@ -14,7 +14,7 @@ class ParserLog {
     const  LOG_DIR = 'G:/to_support/';
     const  SAME_NAME_MAX = 100;
 
-    static function toSupport($content) {
+    static function toSupport($content, $filename = '') {
         if(!file_exists(self::LOG_DIR)){
             mkdir(self::LOG_DIR);
         }
@@ -22,7 +22,7 @@ class ParserLog {
         if(!file_exists($current_dir)){
             mkdir($current_dir);
         }
-        $filename = time();         //时间戳作为文件名
+        $filename = $filename?:time();         //时间戳作为文件名
         $ext = '.html';
         $i = 0;
         $filePath = $current_dir.$filename.$ext;
