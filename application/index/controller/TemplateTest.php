@@ -68,7 +68,7 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '01';
+	protected $templateId = '09';
     protected $pathIndex = 0;
 
     protected $path = array(
@@ -115,6 +115,7 @@ class TemplateTest extends Controller {
             '6000000004278595陈乙文(13917403172).htm'
         ),
 		'09' => array(
+		    '1495711621.html',
 		    '319646526(2015-01-04).mht',
 		    '51job_胡晨奕(304023727).mht',
 		    '51job_方冬杰(317207780).mht',
