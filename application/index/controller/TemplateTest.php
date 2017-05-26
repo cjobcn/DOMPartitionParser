@@ -68,8 +68,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '09';
-    protected $pathIndex = 10;
+	protected $templateId = '10';
+    protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(
@@ -134,6 +134,7 @@ class TemplateTest extends Controller {
             '1495622019.html'
         ),
 		'10' => array(
+		    '智联招聘_邓樊_实习生_中文_20150604_23263415.doc',
             'JM192230554R90250000000.doc',
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',
             '(Zhaopin.com) 应聘 python工程师-南京-闫运.htm',

@@ -101,7 +101,8 @@ class Template10 extends AbstractParser {
         if(!isset($record['name'])) {
             $k = $extracted[0] - 1;
             while($k >= 0){
-                if (!$this->isKeyword($restBasic[$k])) {
+                if (!preg_match('/当前状态：|待处理/', $restBasic[$k]) &&
+                    !$this->isKeyword($restBasic[$k])) {
                     $record['name'] = $restBasic[$k];
                     break;
                 }
