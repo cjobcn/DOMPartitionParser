@@ -92,7 +92,7 @@ class ResumeParser {
      */
     public function parse($resume, &$templateId = '') {
         $namespace = __NAMESPACE__;
-        $templateId = $this->getTemplateID($resume);
+        $templateId = strval($this->getTemplateID($resume));
         if($templateId)
             $templateClass = $namespace.'\Template'.$templateId;
         //dump($templateClass);
