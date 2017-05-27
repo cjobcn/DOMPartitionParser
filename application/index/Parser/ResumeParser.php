@@ -20,6 +20,11 @@ class ResumeParser {
         '13' => '/<title>简历ID：\d{5,}<\/title>.+?51job/s',  //新版51job
     );
 
+    /**
+     * 判断是否为英文简历
+     * @param $content string 简历内容
+     * @return bool
+     */
     public function isEnglish($content) {
         if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment/', $content) &&
             !preg_match('/最近工作|最高学历|工作|自我评价/', $content)) {
