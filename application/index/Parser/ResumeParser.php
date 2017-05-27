@@ -20,6 +20,14 @@ class ResumeParser {
         '13' => '/<title>简历ID：\d{5,}<\/title>.+?51job/s',  //新版51job
     );
 
+    public function isEnglish($content) {
+        if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment/', $content) &&
+            !preg_match('/最近工作|最高学历|工作|自我评价/', $content)) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 读取文档(windows下需要将路径转为GBK)
      * @param $path
@@ -91,6 +99,7 @@ class ResumeParser {
      * @return mixed
      */
     public function parse($resume, &$templateId = '') {
+        if($this->isEnglish($resume)) return false;
         $namespace = __NAMESPACE__;
         $templateId = $this->getTemplateID($resume);
         if($templateId)
