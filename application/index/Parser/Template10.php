@@ -100,6 +100,9 @@ class Template10 extends AbstractParser {
         }
         if(!isset($record['name'])) {
             $k = $extracted[0] - 1;
+            if(preg_match('/简历名称/', $restBasic[$k])){
+                $k = $extracted[1] - 1;
+            }
             while($k >= 0){
                 if (!preg_match('/当前状态：|待处理/', $restBasic[$k]) &&
                     !$this->isKeyword($restBasic[$k])) {
@@ -113,7 +116,6 @@ class Template10 extends AbstractParser {
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
-
         //dump($record);
         return $record;
     }

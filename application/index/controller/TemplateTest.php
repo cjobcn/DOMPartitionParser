@@ -134,6 +134,8 @@ class TemplateTest extends Controller {
             '1495622019.html'
         ),
 		'10' => array(
+		    '黄涛-男-大专-Unity3D客户端开发工程师-4年.doc',
+		    '孙盟盟-男-本科-开发工程师Android-91年.doc',
 		    '智联招聘_邓樊_实习生_中文_20150604_23263415.doc',
             'JM192230554R90250000000.doc',
 		    '(Zhaopin.com) 应聘 Production Manager 生产经理-扬州-王立志.htm',

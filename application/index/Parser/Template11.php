@@ -106,6 +106,11 @@ class Template11 extends AbstractParser {
             if(preg_match('/resumeUpdateTime.innerHTML = "(.+?)";/',$content,$match));
                 $record['update_time'] = $match[1];
         }
+        if(isset($record['name'])) {
+            if(preg_match('/工作经验|\d+年/', $record['name'])) {
+                $record['name'] = '';
+            }
+        }
 
         //各模块解析
         foreach($blocks as $block){
