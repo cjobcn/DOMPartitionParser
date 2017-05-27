@@ -27,6 +27,8 @@ class Parser extends Controller {
             //$type = $request->post('type');
             $Parser = new ResumeParser();
             $content = $Parser->convert2UTF8($originContent);
+            //英文不考虑
+            if($Parser->isEnglish($content)) return json(array('status' => -3));
             $data = $Parser->parse($content, $templateId);
             if($data && $templateId !== "14"){
                 $info = array(
