@@ -268,8 +268,9 @@ class Template09 extends AbstractParser {
         $k = 0;
         $education = array();
         $sequence = array('school', 'major', 'degree', 'class');
+        $degreeDict = array('初中及以下', '高中', '中技', '中专', '大专', '本科', '硕士', '博士', 'MBA');
         while($i < $length) {
-            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)){
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)$/', $data[$i], $match)){
                 $edu = array();
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);
@@ -284,6 +285,16 @@ class Template09 extends AbstractParser {
                 }                                            
             }
             $i++;
+        }
+        foreach($education as $key => $edu) {
+            if(in_array($edu['major'], $degreeDict)){
+                $education[$key]['class'] = $edu['degree']?:'';
+                $education[$key]['degree'] = $edu['major'];
+                $education[$key]['major'] = '';
+            }elseif(!in_array($edu['degree'], $degreeDict)){
+                $education[$key]['class'] = $edu['degree'];
+                $education[$key]['degree'] = '';
+            }
         }
         //dump($education);
         $record['education'] = $education;
