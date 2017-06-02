@@ -68,8 +68,8 @@ class TemplateTest extends Controller {
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '09';
-    protected $pathIndex = 1;
+	protected $templateId = '13';
+    protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(
@@ -164,6 +164,7 @@ class TemplateTest extends Controller {
 
 		),
         '13' => array(
+            '9209062.html',
             '1495079819.html',
             '1495079822.html',
             '1495079828.html',

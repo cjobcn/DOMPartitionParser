@@ -47,10 +47,11 @@ class Template13 extends AbstractParser {
             '/<script.*?>.+?<\/script>/is',
             '/<style.*?>.+?<\/style>/is',
             '/(&nbsp;)+标签：/',
-            '/<span class="guan">已关联<\/span>/'
+            '/<span class="guan">已关联<\/span>/',
+            '/<span class="small_lab" id="spanProcessStatusHead" style="display:none;">流程状态：/'
         );
         $content = preg_replace($redundancy, '', $content);
-        $content = str_replace('class="name">','>姓名：', $content);
+        $content = preg_replace('/class="name".*?>/','>姓名：', $content);
         return $content;
     }
 
@@ -127,6 +128,9 @@ class Template13 extends AbstractParser {
         $data = array_slice($data,$start, $length);
         $rules = array(
             array('duty', '工作描述：'),
+            array('underlings', '下属：'),
+            array('report_to', '汇报对象：'),
+            array('performance', '主要业绩：'),
         );
         $natures = '外资（欧美）,外资（非欧美）,合资,国企,民营公司,上市公司,创业公司,外企代表处,政府机关,事业单位,非营利机构';
         $i = 0;
@@ -134,39 +138,48 @@ class Template13 extends AbstractParser {
         $extracted = array();
         $currentKey = '';
         $jobs = array();
+        $status = 0;
         while($i < $length) {
             //正则匹配
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/', $data[$i], $match)) {
                 $job = array();
                 $job['start_time'] = Utility::str2time($match[1]);
                 $job['end_time'] = Utility::str2time($match[2]);
-                $job['company'] = $data[++$i];
-                $extracted[] = $i;
-                $i++;
-                $extracted[] = $i;
-                $job['industry'] = $data[++$i];
-                $extracted[] = $i;
                 $jobs[$j++] = $job;
-                $k = 1;
                 //关键字匹配
-            }if(preg_match('/\d+人/',$data[$i])){
-                $jobs[$j-1]["size"] = $data[$i];
+            }elseif(preg_match('/^\(\d.+?\)$/',$data[$i])){
+                $jobs[$j-1]['company'] = $data[$i-1];
+                $extracted[] = $i-1;
                 $extracted[] = $i;
-            }if(strpos($natures, $data[$i]) !== false){
+                $jobs[$j-1]['industry'] = $data[++$i];
+                $extracted[] = $i;
+                $status = 1;
+            }elseif(preg_match('/^\[\d.+?\]$/',$data[$i])){
+                $jobs[$j-1]['position'] = $data[$i-3];
+                $jobs[$j-1]['department'] = $data[$i-2];
+                $jobs[$j-1]['company'] = $data[$i-1];
+                $jobs[$j-1]['industry'] = $data[++$i];
+                $status = 2;
+            }elseif(preg_match('/^(少于)?\d+(-\d+)?人/',$data[$i])){
+                    $jobs[$j-1]["size"] = $data[$i];
+                    $extracted[] = $i;
+            }elseif(strpos($natures, $data[$i]) !== false){
                 $jobs[$j-1]["nature"] = $data[$i];
                 $extracted[] = $i;
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
-                if($data[$i-1] == '(兼职)'){
-                    $k = $i-2;
-                }else{
-                    $k = $i-1;
-                }
-                $jobs[$j-1]['position'] = $data[$k];
-                if(in_array($k, $extracted)) {
-                    unset($jobs[$j-1]['industry']);
-                }
-                if(!in_array($k-1, $extracted)){
-                    $jobs[$j-1]['department'] = $data[$k-1];
+                if($KV[0] == 'duty' && $status == 1) {
+                    if($data[$i-1] == '(兼职)'){
+                        $k = $i-2;
+                    }else{
+                        $k = $i-1;
+                    }
+                    $jobs[$j-1]['position'] = $data[$k];
+                    if(in_array($k, $extracted)) {
+                        unset($jobs[$j-1]['industry']);
+                    }
+                    if(!in_array($k-1, $extracted)){
+                        $jobs[$j-1]['department'] = $data[$k-1];
+                    }
                 }
                 $jobs[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
