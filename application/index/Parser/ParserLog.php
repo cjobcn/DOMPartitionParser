@@ -59,7 +59,7 @@ class ParserLog {
             '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',       //智联招聘
             '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',    //智联招聘
             '12' => '/来源ID:[\d\w]+<br>/',     //已被处理过的简历
-            '13' => '/<title>简历ID：\d{1,}<\/title>.+?51job|ID:\d{1,}<\td>/s',  //新版51job
+            '13' => '/<title>简历ID：\d{1,}<\/title>.+?51job|ID:\d{1,}<\/td>/s',  //新版51job
         );
         $path = self::LOG_DIR.$dirName.'/';
         //dump($path);
