@@ -5,7 +5,7 @@ class ResumeParser {
 
     protected $templateIDs = array(
         '14' => '/121\.41\.112\.72\:12885/',
-        '01' => '/简历编号(：|: )\d{5,8}[^\d\|]/',                //猎聘网
+        '01' => '/简历编号(：|: )\d{3,8}[^\d\|]/',                //猎聘网
         '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
         '03' => '/<title>我的简历<\/title>.+?<div class="index">/s',         //可能是智联招聘
         '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
@@ -28,6 +28,23 @@ class ResumeParser {
     public function isEnglish($content) {
         if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment/', $content) &&
             !preg_match('/最近工作|最高学历|工作|自我评价/', $content)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断简历是否无效
+     * @param $content
+     * @return bool
+     */
+    public function isInvalid($content) {
+        $invalidPatterns = array(
+            '该简历已被求职者删除，无法查看!',  //简历已被删除
+            '^\{\"',                        //json格式
+        );
+        $pattern = '/'.implode('|', $invalidPatterns).'/';
+        if(preg_match($pattern, $content)){
             return true;
         }
         return false;
@@ -104,7 +121,7 @@ class ResumeParser {
      * @return mixed
      */
     public function parse($resume, &$templateId = '') {
-        if($this->isEnglish($resume)) return false;
+        if($this->isEnglish($resume) || $this->isInvalid($resume)) return false;
         $namespace = __NAMESPACE__;
         $templateId = $this->getTemplateID($resume);
         if($templateId)

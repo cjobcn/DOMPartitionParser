@@ -45,8 +45,9 @@ class ParserLog {
             'json'=> '/^\{\"/',
             'English' => '/Career Objective|Self-Assessment|Work Experience|Education/',
             'wujiegou' => '/\.barp \{/',
+            'deleted' => '/该简历已被求职者删除，无法查看!/',
             '14' => '/121\.41\.112\.72\:12885/',
-            '01' => '/简历编号(：|: )\d{5,8}[^\d\|]/',                //猎聘网
+            '01' => '/简历编号(：|: )\d{3,8}[^\d\|]/',                //猎聘网
             '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
             '03' => '/<title>我的简历<\/title>.+?<div class="index">/s',         //可能是智联招聘
             '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
