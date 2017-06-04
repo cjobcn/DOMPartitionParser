@@ -27,7 +27,7 @@ class ResumeParser {
      */
     public function isEnglish($content) {
         if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment/', $content) &&
-            !preg_match('/最近工作|最高学历|工作|自我评价/', $content)) {
+            !preg_match('/最近工作|最高学历|工作经|自我评价/', $content)) {
             return true;
         }
         return false;
