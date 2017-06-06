@@ -154,7 +154,7 @@ class Template13 extends AbstractParser {
                 $jobs[$j-1]['industry'] = $data[++$i];
                 $extracted[] = $i;
                 $status = 1;
-            }elseif(preg_match('/^\[\d.+?\]$/',$data[$i])){
+            }elseif(preg_match('/^\[\d.+?\]$/s',$data[$i])){
                 $jobs[$j-1]['position'] = $data[$i-3];
                 $jobs[$j-1]['department'] = $data[$i-2];
                 $jobs[$j-1]['company'] = $data[$i-1];

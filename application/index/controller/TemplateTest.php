@@ -164,6 +164,7 @@ class TemplateTest extends Controller {
 
 		),
         '13' => array(
+            '51job_陈炎森(57896284)_new.html',
             '9209062.html',
             '1495079819.html',
             '1495079822.html',
