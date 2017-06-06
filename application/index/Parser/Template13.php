@@ -46,7 +46,7 @@ class Template13 extends AbstractParser {
             '/<head>.+?<\/head>/is',
             '/<script.*?>.+?<\/script>/is',
             '/<style.*?>.+?<\/style>/is',
-            '/(&nbsp;)+标签：/',
+            '/(&nbsp;)*标签：/',
             '/<span class="guan">已关联<\/span>/',
             '/<span class="small_lab" id="spanProcessStatusHead" style="display:none;">流程状态：/'
         );
