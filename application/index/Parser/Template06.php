@@ -44,6 +44,7 @@ class Template06 extends AbstractParser {
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $redundancy = array(
+            chr(239).chr(187).chr(191), //去除UTF-的BOM头
             '<head>.+?<\/head>',
             '<script.*?>.+?<\/script>',
             '<style.*?>.+?<\/style>',
@@ -66,8 +67,9 @@ class Template06 extends AbstractParser {
         //dump($blocks);
         //dump($data);
         if(!$blocks) return false;
+        dump($data[0][0].$data[0][1].$data[0][2]);
         //其他解析
-        
+        //$this->basic($data, 0 , $blocks[0][1]-1, $record);
         //各模块解析
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
