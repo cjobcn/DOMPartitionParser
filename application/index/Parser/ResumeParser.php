@@ -11,7 +11,7 @@ class ResumeParser {
         '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
         '05' => '/简历编号(:|：)\d{8}\|猎聘通/',                    //猎聘网
         '06' => '/<title>.+?举贤网.+?<\/title>/i',            //举贤网
-        '07' => '/编号\s+\d{16}\D/',                           //中华英才
+        '07' => '/<span>\s*编号\s+\d{16}\D/',                           //中华英才
         '08' => '/简历编号：\d{16}/',
         '09' => '/\(ID:\d{1,}\)|(51job\.com|^简_历|简历).+?基 本 信 息|个 人 简 历<\/b>/s',//51job(前程无忧)
         '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',       //智联招聘
@@ -26,7 +26,7 @@ class ResumeParser {
      * @return bool
      */
     public function isEnglish($content) {
-        if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment/', $content) &&
+        if(preg_match('/The latest work|The highest education|Career Objective|Self-Assessment|Work Experiences/i', $content) &&
             !preg_match('/最近工作|最高学历|工作经|自我评价/', $content)) {
             return true;
         }
