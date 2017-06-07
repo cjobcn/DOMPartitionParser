@@ -268,7 +268,7 @@ class Template09 extends AbstractParser {
         $k = 0;
         $education = array();
         $sequence = array('school', 'major', 'degree', 'class');
-        $degreeDict = array('初中及以下', '高中', '中技', '中专', '大专', '本科', '硕士', '博士', 'MBA');
+        $degreeDict = array('初中及以下', '初中', '高中', '中技', '中专', '大专', '本科', '硕士', '博士', 'MBA');
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)$/', $data[$i], $match)){
                 $edu = array();
