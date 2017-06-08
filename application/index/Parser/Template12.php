@@ -72,11 +72,11 @@ class Template12 extends AbstractParser {
         list($data, $blocks) = $this->domParse($content, 'div', false);
         //dump($blocks);
         //dump($data);
-        $end = $blocks[0][1] - 2?:count($data) - 1;
+        $length = $blocks[0][1] - 1 > 0?$blocks[0][1] - 1:count($data);
         //其他解析
         $i = 0;
         $currentKey = '';
-        while($i <= $end) {
+        while($i < $length) {
             if($KV = $this->parseElement($data, $i)) {
                 $record[$KV[0]] = $KV[1];
                 $i = $i + $KV[2];

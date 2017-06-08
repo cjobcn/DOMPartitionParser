@@ -33,11 +33,6 @@ class Template08 extends AbstractParser {
         array('target_salary', '期望薪水：')
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        
-    }
-
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $patterns = array(

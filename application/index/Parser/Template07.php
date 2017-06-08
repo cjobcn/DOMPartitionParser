@@ -31,11 +31,6 @@ class Template07 extends AbstractParser {
         array('self_str', '自我评价：'),
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        
-    }
-
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $patterns = array(

@@ -41,11 +41,6 @@ class Template04 extends AbstractParser {
         array('address', '通信地址：'),
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        return preg_match('/\(编号:J\d{7}\)的简历/',$content);
-    }
-
     //根据模板解析简历
     public function parse($content) {
         $record = array();

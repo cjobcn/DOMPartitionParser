@@ -34,11 +34,6 @@ class Template02 extends AbstractParser {
         array('target_city', '期望地点：'), 
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        return preg_match('/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',$content);
-    }
-
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $patterns = array(

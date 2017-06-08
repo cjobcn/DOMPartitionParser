@@ -73,7 +73,7 @@ class Template13 extends AbstractParser {
             array('work_year', '/\d+(?=年工作经验)/'),
 
         );
-        $length = $blocks[0][1]-1?:count($data)-1;
+        $length = $blocks[0][1]-1 > 0 ?$blocks[0][1]-1 : count($data);
         $basic = array_slice($data,0, $length);
         $this->basic($basic, 0, $length - 1, $record);
         $i = 0;
@@ -146,6 +146,7 @@ class Template13 extends AbstractParser {
                 $job['start_time'] = Utility::str2time($match[1]);
                 $job['end_time'] = Utility::str2time($match[2]);
                 $jobs[$j++] = $job;
+                $currentKey = '';
                 //关键字匹配
             }elseif(preg_match('/^\(\d.+?\)$/',$data[$i])){
                 $jobs[$j-1]['company'] = $data[$i-1];
@@ -155,10 +156,15 @@ class Template13 extends AbstractParser {
                 $extracted[] = $i;
                 $status = 1;
             }elseif(preg_match('/^\[\d.+?\]$/s',$data[$i])){
-                $jobs[$j-1]['position'] = $data[$i-3];
-                $jobs[$j-1]['department'] = $data[$i-2];
-                $jobs[$j-1]['company'] = $data[$i-1];
-                $jobs[$j-1]['industry'] = $data[++$i];
+                if($data[$i-2] == '(兼职)'){
+                    $jobs[$j-1]['position'] = $data[$i-3];
+                    $jobs[$j-1]['company'] = $data[$i-1];
+                }else{
+                    $jobs[$j-1]['position'] = $data[$i-3];
+                    $jobs[$j-1]['department'] = $data[$i-2];
+                    $jobs[$j-1]['company'] = $data[$i-1];
+                    $jobs[$j-1]['industry'] = $data[++$i];
+                }
                 $status = 2;
             }elseif(preg_match('/^(少于)?\d+(-\d+)?人/',$data[$i])){
                     $jobs[$j-1]["size"] = $data[$i];

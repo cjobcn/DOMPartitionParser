@@ -39,11 +39,6 @@ class Template11 extends AbstractParser {
         array('target_industry', '期望从事行业：'),
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        $pattern = '/<div (id="userName" )?class="main-title-fl fc6699cc"/';
-        return preg_match($pattern, $content);
-    }
 
     //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
@@ -72,7 +67,7 @@ class Template11 extends AbstractParser {
         list($data, $blocks) = $this->domParse($content, 'div');
         //dump($blocks);
         //dump($data);
-        $end = $blocks[0][1] - 2?:count($data) - 1;
+        $end = $blocks[0][1] - 2 > 0?$blocks[0][1] - 2:count($data) - 1;
         $this->basic($data, 0 , $end, $record);
         //其他解析
         $i = 0;

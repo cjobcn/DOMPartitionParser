@@ -45,10 +45,6 @@ class Template05 extends AbstractParser {
         array('target_salary', '期望年薪：'), 
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-
-    }
 
     //对简历内容预处理,使内容可以被解析
     public function preprocess($content) {

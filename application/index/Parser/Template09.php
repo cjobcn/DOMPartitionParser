@@ -73,11 +73,6 @@ class Template09 extends AbstractParser {
         // '\r\n'
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-        
-    }
-
      //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $redundancy = array(
