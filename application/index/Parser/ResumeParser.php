@@ -2,22 +2,25 @@
 namespace app\index\Parser;
 
 class ResumeParser {
-
-    protected $templateIDs = array(
+    /**
+     * 模板序号对应的匹配正则，采用顺序匹配
+     * @var array
+     */
+    public $templateIDs = array(
         '14' => '/121\.41\.112\.72\:12885/',
-        '01' => '/简历编号(：|: )\d{1,8}[^\d\|]/',                //猎聘网
+        //'01' => '/简历编号(：|: )\d{1,8}[^\d\|]/',                       //猎聘网
         '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
-        '03' => '/<title>我的简历<\/title>.+?<div class="index">/s',         //可能是智联招聘
-        '04' => '/\(编号:J\d{7}\)的简历/i',                   //中国人才热线
-        '05' => '/简历编号(:|：)\d{8}\|猎聘通/',                    //猎聘网
-        '06' => '/<title>.+?举贤网.+?<\/title>/i',            //举贤网
-        '07' => '/<span>\s*编号\s+\d{16}\D/',                           //中华英才
-        '08' => '/<div class="flt_r">简历编号：\d{16}/',
-        '09' => '/\(ID:\d{1,}\)|(51job\.com|^简_历|简历).+?基 本 信 息|个 人 简 历<\/b>/s',//51job(前程无忧)
-        '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',       //智联招聘
-        '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',    //智联招聘
-        '12' => '/来源ID:[\d\w]+<br>/',     //已被处理过的简历
-        '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>/s',  //新版51job
+        '03' => '/<title>我的简历<\/title>.+?<div class="index">/s',     //可能是智联招聘
+        '04' => '/\(编号:J\d{7}\)的简历/i',                              //中国人才热线
+        '05' => '/简历编号(:|：)\d{8}\|猎聘通/',                         //猎聘网
+        '06' => '/<title>.+?举贤网.+?<\/title>/i',                       //举贤网
+        '07' => '/<span>\s*编号\s+\d{16}\D/',                            //中华英才
+        '08' => '/<div class="flt_r">简历编号：\d{16}/',                  //中华英才网
+        '09' => '/\(ID:\d{1,}\)|(51job\.com|^简_历|简历).+?基 本 信 息|个 人 简 历<\/b>/s',  //51job(前程无忧)
+        '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',                   //智联招聘
+        '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',                  //智联招聘
+        '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>/s',      //新版51job
+        '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
     );
 
     /**
@@ -56,32 +59,12 @@ class ResumeParser {
      * @return bool|string
      */
     public function readDocument($path) {
-        if(!$path) return '';
-        $gbkPath = iconv("UTF-8", "GBK", $path);
-        if(file_exists($gbkPath)) {
-            $content = file_get_contents($gbkPath);
-            if(preg_match('/\.mht$/',$path)){
-                $content = Utility::mht2html($content);
-            }
-        }
-        else
-            $content = '';
-        return $content;
+        return Utility::readDocument($path);
     }
 
     //转码为UTF-8
     public function convert2UTF8($content) {
-        $encodingList = array('UTF-8','GBK','GB2312');
-        $encoding = mb_detect_encoding($content,$encodingList,true);
-
-        if(!$encoding){
-            $content = iconv('UCS-2', "UTF-8", $content);
-            if(!$content) return false;       
-        }elseif($encoding != 'UTF-8'){
-            $content = mb_convert_encoding($content,'UTF-8',$encoding); 
-        }
-        $content = str_ireplace(array('gb2312', 'gbk'),'UTF-8',$content);
-        return $content;
+        return Utility::convert2UTF8($content);
     }
 
     /**
@@ -93,7 +76,7 @@ class ResumeParser {
         foreach($this->templateIDs as $id => $pattern){
             if(preg_match($pattern, $resume)){
                 return strval($id);
-            }            
+            }
         }
         return false;
     }
@@ -109,19 +92,21 @@ class ResumeParser {
             if(preg_match($pattern, $resume)){
                 $templateClass = $namespace.'\Template'.$id;
                 return $templateClass;
-            }            
+            }
         }
         return false;
     }
 
     /**
      * 解析简历
-     * @param $resume
+     * @param $resume string 简历内容
      * @param $templateId string  简历模板编号
      * @return mixed
      */
     public function parse($resume, &$templateId = '') {
+        //排除英文简历和不合法的简历
         if($this->isEnglish($resume) || $this->isInvalid($resume)) return false;
+        //配对简历模板
         $namespace = __NAMESPACE__;
         $templateId = $this->getTemplateID($resume);
         if($templateId)
@@ -140,7 +125,7 @@ class ResumeParser {
     }
 
     /**
-     * 获取DOM数组
+     * 获取DOM数组(pregParse或domParse获得)
      * @param $resume
      * @return mixed
      */
@@ -154,7 +139,6 @@ class ResumeParser {
 
         return $data;
     }
-
 
     /**
      * 获取正则分割后的数组

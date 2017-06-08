@@ -206,8 +206,9 @@ class Template11 extends AbstractParser {
                 $edu = array();
                 $edu['start_time'] = Utility::str2time($match[1]);
                 $edu['end_time'] = Utility::str2time($match[2]);
-                $info = explode(' ', $match[3]);
+                $info = preg_split('/\s+/', $match[3]);
                 if(($info_length = count($info)) > 1){
+                    //dump($info);
                     $edu['school'] = implode(' ', array_slice($info, 0 ,$info_length-2));
                     $edu['major'] = $info[$info_length - 2];
                     $edu['degree'] = $info[$info_length - 1];

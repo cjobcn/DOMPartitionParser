@@ -69,6 +69,7 @@ class Utility {
      */
     static public function readDocument($path) {
         if(!$path) return '';
+        //windows下需要将路径转为GBK
         $gbkPath = iconv("UTF-8", "GBK", $path);
         if(file_exists($gbkPath)) {
             $content = file_get_contents($gbkPath);

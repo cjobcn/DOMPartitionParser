@@ -21,7 +21,7 @@ abstract class AbstractParser {
 
     //区块标题（空格已被处理，不要包含空格）
     //格式：array("区块处理方法名", "区块标题关键字")
-    //同模块处理方法名的不同关键字使用“|”隔开
+    //同模块处理方法名对应的不同关键字使用“|”隔开
     protected $titles = array();
 
     //关键字解析规则（空格已被处理，不要包含空格）
@@ -33,7 +33,7 @@ abstract class AbstractParser {
     //模板中所有关键字
     protected $keywords = '';
 
-    //判断模板是否匹配
+    //判断模板是否匹配(移到ResumeParse统一判断)
     //abstract protected function isMatched($content);
 
     //根据模板解析简历
@@ -60,12 +60,13 @@ abstract class AbstractParser {
 
     /*
      * 分区块,同时将dom转换为数组（因为可以在一个循环中实现）
-     * @param string $content 待解析内容
-     * @param string $tag     包含数据的标签
-     * @param boolean $partition 是否分区块，默认为true
-     * @param boolean $all     是否保留空字符串数据
-     * @return array $data dom解析后得到的数组（保存的是文本） 
-     *               $blocks  分区块数组array('标题名', 区块开始索引，区块结束索引)
+     * @param string  $content    待解析内容
+     * @param string  $tag        包含数据的标签
+     * @param boolean $all        是否保留空字符串数据，默认为true
+     * @param boolean $partition  是否分区块，默认为true
+     * @param array   $html       带html标签的数组
+     * @return array  $data       dom解析后得到的数组（保存的是文本）
+     *                $blocks     分区块数组array('标题名', 区块开始索引，区块结束索引)
      */
     public function domParse($content, $tag ='td',$all = true, $partition = true, &$htmls = null) {
         $titles = $this->titles;
@@ -88,15 +89,11 @@ abstract class AbstractParser {
                 $data[$i] = $text;
                 $htmls[$i] = $td->html();
                 if($partition) {
-                    foreach($titles as $key=>$title){
-                        $text = preg_replace('/\s+/','',$text); 
-                        if(preg_match('/^('.$title[1].')$/', $text)){
-                            $blocks[$j] = array($title[0], $i + 1);
-                            if($j > 0)
-                                $blocks[$j-1][2] = $i - 1;
-                            $j ++;
-                            unset($titles[$key]);
-                        }
+                    if($method = $this->isTitle($text, $titles)){
+                        $blocks[$j] = array($method, $i + 1);
+                        if($j > 0)
+                            $blocks[$j-1][2] = $i - 1;
+                        $j ++;
                     }
                 }     
                 $i ++ ;
@@ -104,7 +101,7 @@ abstract class AbstractParser {
         }
         if($j > 0)
             $blocks[$j-1][2] = count($data) - 1;       
-        // dump($blocks);
+        //dump($blocks);
         //dump($data);
         return $partition?array($data, $blocks):$data;
     }
@@ -134,15 +131,11 @@ abstract class AbstractParser {
             if($text || $all){
                 $data[$i] = $text;
                 if($partition) {
-                    foreach($titles as $key=>$title){
-                        $text = preg_replace('/\s+/','',$text);
-                        if(preg_match('/^('.$title[1].')$/', $text)){
-                            $blocks[$j] = array($title[0], $i + 1);
-                            if($j > 0)
-                                $blocks[$j-1][2] = $i - 1;
-                            $j ++;
-                            unset($titles[$key]);
-                        }
+                    if($method = $this->isTitle($text, $titles)){
+                        $blocks[$j] = array($method, $i + 1);
+                        if($j > 0)
+                            $blocks[$j-1][2] = $i - 1;
+                        $j ++;
                     }
                 }
                 $i ++ ;
@@ -161,27 +154,42 @@ abstract class AbstractParser {
         $j = 0;
         $blocks = array();
         foreach($data as $i => $text){
-            foreach($titles as $key=>$title){
-                $text = preg_replace('/\s+/','',$text);
-                if(preg_match('/^('.$title[1].')$/', $text)){
-                    $blocks[$j] = array($title[0], $i);
-                    if($j > 0)
-                        $blocks[$j-1][2] = $i;
-                    $j ++;
-                    unset($titles[$key]);
-                }
+            if($method = $this->isTitle($text, $titles)){
+                $blocks[$j] = array($method, $i + 1);
+                if($j > 0)
+                    $blocks[$j-1][2] = $i - 1;
+                $j ++;
             }
         }
         if($j > 0)
-            $blocks[$j-1][2] = count($data); 
+            $blocks[$j-1][2] = count($data) - 1;
         return $blocks;
         
+    }
+
+    /**
+     * 是否是区块标题，如果是，返回区块对应方法
+     * @param $text string 文本内容
+     * @param null $titles 标题列表
+     * @return string|bool 标题对应方法名
+     */
+    public function isTitle($text, &$titles=null) {
+        if(!$titles) $titles = $this->titles;
+        foreach($titles as $key=>$title){
+            //去除空格等符号
+            $text = preg_replace('/\s+/','',$text);
+            if(preg_match('/^('.$title[1].')$/', $text)){
+                unset($titles[$key]);
+                return $title[0];
+            }
+        }
+        return false;
     }
 
     /* 
      * 根据关键字规则解析关键字对应的值
      * @param string $keyword 关键字字段
-     * @param $value null: 去下一个值   int:取下$value个值 string: 值为value
+     * @param $value null: 下一个值   int:取下$value个值 string: 值为value
      * @param array $rules 关键字解析规则，默认使用类的关键字解析规则
      * @return string 关键字对应键名 
      */
@@ -288,6 +296,14 @@ abstract class AbstractParser {
         return $evaluation;
     }
 
+    /**
+     * 区块解析通用方法
+     * @param $data
+     * @param $start
+     * @param $end
+     * @param $conditions
+     * @return array
+     */
     public function blockParse($data, $start, $end, $conditions) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);

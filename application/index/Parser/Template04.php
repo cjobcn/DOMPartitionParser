@@ -44,8 +44,6 @@ class Template04 extends AbstractParser {
     //根据模板解析简历
     public function parse($content) {
         $record = array();
-        if(!$this->isMatched($content)) return false;
-
         list($data, $blocks) = $this->domParse($content);
         //dump($blocks);
         //dump($data);

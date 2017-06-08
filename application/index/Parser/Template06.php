@@ -119,7 +119,10 @@ class Template06 extends AbstractParser {
                         $jobs[$j-1]['start_time'] = Utility::str2time($match[1]);
                         $jobs[$j-1]['end_time'] = Utility::str2time($match[2]);
                     }
+                }elseif($KV[0] == 'duty'){
+                    $KV[1] = $this->clean($KV[1]);
                 }
+
                 $jobs[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
@@ -129,9 +132,7 @@ class Template06 extends AbstractParser {
                     $k = 0;
                 }
             }elseif($currentKey){
-
                 $jobs[$j-1][$currentKey] .= '|'.$data[$i];
-
             }
             $i++;                                
         }
