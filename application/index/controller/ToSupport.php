@@ -11,7 +11,7 @@ use app\index\Parser\ParserLog;
 use app\index\Parser\ResumeParser;
 use think\Controller;
 
-class FileHandler extends Controller {
+class ToSupport extends Controller {
 
 
     /**对文件分类
@@ -30,10 +30,30 @@ class FileHandler extends Controller {
     public function getResume($dir, $id, $template = '') {
         $Parser = new ResumeParser();
         $path = ParserLog::LOG_DIR.$dir.'/'.$template.'/'.$id.'.html';
-        dump($path);
+        //dump($path);
         $content = $Parser->readDocument($path);
         //dump($content);
         $content = $Parser->convert2UTF8($content);
         return $content;
+    }
+
+    public function dom($dir, $id, $template = '') {
+        $Parser = new ResumeParser();
+        $content = $this->getResume($dir, $id, $template);
+
+        $data = $Parser->getDomArray($content);
+        //dump($data);
+        $this->assign('data',$data);
+        return $this->fetch('dom');
+    }
+
+    public function test($dir, $id, $template = '') {
+        $content = $this->getResume($dir, $id, $template);
+        //echo $content;
+        $ResumeParser = new ResumeParser();
+        $record = $ResumeParser->parse($content,$templateId);
+        dump($templateId);
+        dump($record);
+        //return json($record);
     }
 }
