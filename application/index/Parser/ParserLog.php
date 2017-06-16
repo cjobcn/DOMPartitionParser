@@ -60,7 +60,7 @@ class ParserLog {
         );
         $parser = new ResumeParser();
         $patterns = $patterns + $parser->templateIDs;
-        dump($patterns);
+        //dump($patterns);
         $path = self::LOG_DIR.$dirName.'/';
         //dump($path);
         //$path = $dirName;
