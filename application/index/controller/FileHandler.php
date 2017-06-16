@@ -30,7 +30,7 @@ class FileHandler extends Controller {
     public function getResume($dir, $id, $template = '') {
         $Parser = new ResumeParser();
         $path = ParserLog::LOG_DIR.$dir.'/'.$template.'/'.$id.'.html';
-        //dump($path);
+        dump($path);
         $content = $Parser->readDocument($path);
         //dump($content);
         $content = $Parser->convert2UTF8($content);
