@@ -140,37 +140,8 @@ class Template01 extends AbstractParser {
     public function education($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
-        $i = 0;
-        $j = 0;
-        $k = 0;
-        $sequence = array('school');
-        $rules = array(
-            array('school', '学校：', 0),
-            array('major', '-?专业：', 0),
-            array('degree', '-?学历：', 0),
-        );
-        $education = array();
-        while($i < $length) {
-            if(preg_match('/^(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/', $data[$i], $match)) {
-                $edu = array();
-                $edu['start_time'] = Utility::str2time($match[1]);
-                $edu['end_time'] = Utility::str2time($match[2]);
-                $education[$j++] = $edu;
-                $k = 1;
-            }elseif($KV = $this->parseElement($data, $i, $rules)) {
-                $education[$j-1][$KV[0]] = $KV[1];
-                $i = $i + $KV[2];
-            }elseif($k > 0){
-                if($key = $sequence[$k-1]){
-                    $education[$j-1][$key] = $data[$i];
-                    $k++;
-                }else{
-                    $k = 0;
-                }
-            }
-            $i++;
-        }
-        //dump($education);
+        $BlockEdu = new BlockEdu();
+        $education = $BlockEdu->parse($data, '1,2');
         $record['education'] = $education;
         return $education;
     }
