@@ -10,7 +10,7 @@ namespace app\index\Parser;
 
 // 教育经历模块解析方法
 class BlockEdu extends  AbstractParser {
-    //通用正则
+
     protected $patterns = array(
         1=> '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)：(.+)/',
         2=> '/(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(月)?$/'
@@ -40,15 +40,18 @@ class BlockEdu extends  AbstractParser {
 
     //教育经历提取方案一
     public function extract1($data) {
+        //初始化
         $length = count($data);
         $i = 0;
         $j = 0;
         $k = 0;
         $education = array();
+        //规则
         $patterns = array(
             '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)：(.+)/'
         );
         $sequence = array('major', 'degree');
+        //循环
         while($i < $length) {
             if(preg_match($patterns[0], $data[$i], $match)) {
                 $edu = array();

@@ -95,43 +95,8 @@ class Template01 extends AbstractParser {
     public function career($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
-        $rules = array(
-            array('city', '-所在地区：', 0),
-            array('report_to', '-汇报对象：', 0),
-            array('underlings', '-下属人数：', 0),
-            array('duty', '-工作职责：|主要工作:'),
-            array('performance', '-工作业绩：'),
-        );
-        $i = 0;
-        $j = 0;
-        $currentKey = '';
-        $jobs = array();
-        $job = array();
-        while($i < $length) {
-            //正则匹配
-            if(preg_match('/(.+) (?P<start_time>\d{4}\D+\d{1,2})\D+(?P<end_time>\d{4}\D+\d{1,2}|至今|现在)$/',
-                $data[$i], $match)) {
-
-                $job = array();
-                $job['company'] = $match[1];
-                $job['start_time'] = Utility::str2time($match["start_time"]);
-                $job['end_time'] = Utility::str2time($match['end_time']);
-            }elseif(preg_match('/^(?P<start_time>\d{4}\D+\d{1,2})\D+(?P<end_time>\d{4}\D+\d{1,2}|至今|现在)$/',
-                $data[$i], $match)) {
-
-                $jobs[$j++] = $job;
-                $jobs[$j-1]['position'] = $data[$i-1];
-                $jobs[$j-1]['start_time'] = Utility::str2time($match["start_time"]);
-                $jobs[$j-1]['end_time'] = Utility::str2time($match['end_time']);
-            }elseif($KV = $this->parseElement($data, $i, $rules)) {
-                $jobs[$j-1][$KV[0]] = $KV[1];
-                $i = $i + $KV[2];
-                $currentKey = $KV[0];
-            }elseif($currentKey){
-                $jobs[$j-1][$currentKey] .=  $data[$i];
-            }
-            $i++;
-        }
+        $BlockCareer = new BlockCareer();
+        $jobs = $BlockCareer->parse($data, '1');
         //dump($jobs);
         $record['career'] = $jobs;
         return $jobs;
