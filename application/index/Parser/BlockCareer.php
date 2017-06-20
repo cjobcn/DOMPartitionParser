@@ -12,6 +12,7 @@ namespace app\index\Parser;
 class BlockCareer extends AbstractParser {
     protected $patterns = array(
         1=> '/(.+) (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
+        2=> '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
     );
 
     /**
@@ -72,6 +73,60 @@ class BlockCareer extends AbstractParser {
             }elseif($currentKey){
                 $jobs[$j-1][$currentKey] .=  $data[$i];
             }
+            $i++;
+        }
+        return $jobs;
+    }
+
+    public function extract2($data) {
+        $length = count($data);
+        $i = 0;
+        $j = 0;
+        $currentKey = '';
+        $timeSpan = '';
+        $jobs = array();
+        $job = array();
+        $rules1 = array(
+            array('industry', '公司行业：'),
+            array('description', '公司描述：'),
+            array('nature', '公司性质：'),
+            array('size', '公司规模：'),
+        );
+        $rules2 = array(
+            array('city', '工作地点：'),
+            array('underlings', '下属人数：'),
+            array('duty', '职责业绩：'),
+            array('salary', '薪酬状况：'),
+            array('department', '所在部门：'),
+            array('report_to', '汇报对象：'),
+        );
+        $patterns = array(
+            '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)$/'
+        );
+        while($i < $length) {
+            if(preg_match($patterns[0], $data[$i], $match)){
+                if($timeSpan != $data[$i]){
+                    $job = array();
+                    $timeSpan = $data[$i];
+                    $job['company'] = $data[++$i];
+                }else{
+                    $job['start_time'] = Utility::str2time($match[1]);
+                    $job['end_time'] = Utility::str2time($match[2]);
+                    $jobs[$j++] = $job;
+                    $jobs[$j-1]['position'] = $data[$i-1];
+                }
+            }elseif($KV = $this->parseElement($data, $i, $rules1)){
+                $job[$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+                $currentKey = $KV[0];
+            }elseif($KV = $this->parseElement($data, $i, $rules2)){
+                $jobs[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+                $currentKey = $KV[0];
+            }elseif($j > 0 && $currentKey == 'description' || $currentKey == 'duty'){
+                $jobs[$j-1][$currentKey] .=  $data[$i];
+            }
+
             $i++;
         }
         return $jobs;

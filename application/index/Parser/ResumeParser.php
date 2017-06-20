@@ -21,6 +21,7 @@ class ResumeParser {
         '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',                  //智联招聘
         '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>/s',      //新版51job
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
+        '15' => '/中文简历_\d+/',
     );
 
     /**

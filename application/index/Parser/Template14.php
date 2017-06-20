@@ -49,10 +49,6 @@ class Template14 extends AbstractParser {
         array('current_salary', '目前年薪：'),
     );
 
-    //判断模板是否匹配
-    protected function isMatched($content) {
-
-    }
 
     public function preprocess($content) {
         $redundancy = array(
