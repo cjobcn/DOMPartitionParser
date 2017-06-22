@@ -95,7 +95,8 @@ class BlockCareer extends AbstractParser {
         $rules2 = array(
             array('city', '工作地点：'),
             array('underlings', '下属人数：'),
-            array('duty', '职责业绩：'),
+            array('duty', '职责业绩：|工作职责：'),
+            array('performance', '工作业绩：'),
             array('salary', '薪酬状况：'),
             array('department', '所在部门：'),
             array('report_to', '汇报对象：'),
@@ -105,13 +106,15 @@ class BlockCareer extends AbstractParser {
         );
         while($i < $length) {
             if(preg_match($patterns[0], $data[$i], $match)){
-                if($timeSpan != $data[$i]){
+                $start = Utility::str2time($match[1]);
+                $end = Utility::str2time($match[2]);
+                if(!$timeSpan || ($timeSpan[0] < $start || $timeSpan[1] > $end)){
                     $job = array();
-                    $timeSpan = $data[$i];
+                    $timeSpan = array($start, $end);
                     $job['company'] = $data[++$i];
                 }else{
-                    $job['start_time'] = Utility::str2time($match[1]);
-                    $job['end_time'] = Utility::str2time($match[2]);
+                    $job['start_time'] = $start;
+                    $job['end_time'] = $end;
                     $jobs[$j++] = $job;
                     $jobs[$j-1]['position'] = $data[$i-1];
                 }
@@ -123,7 +126,7 @@ class BlockCareer extends AbstractParser {
                 $jobs[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
-            }elseif($j > 0 && $currentKey == 'description' || $currentKey == 'duty'){
+            }elseif($j > 0 &&  in_array($currentKey, array('description', 'duty', 'performance'))) {
                 $jobs[$j-1][$currentKey] .=  $data[$i];
             }
 

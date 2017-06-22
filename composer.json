@@ -1,0 +1,11 @@
+{
+  "require": {
+    "fukuball/jieba-php": "0.25"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}
