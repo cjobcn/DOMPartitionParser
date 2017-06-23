@@ -4,7 +4,7 @@ use think\Db;
 //解析不规则的通用模板
 class ParseCommon{
 	protected $autoCheckFields = false;
-
+	protected $project = "";
 	//返回姓名
 	public function getName($CN_ENG_array){
 //		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
@@ -15,7 +15,6 @@ class ParseCommon{
 				$name = $CN_ENG_array[$i+2];
 				break;
 			}elseif((strstr($CN_ENG_array[$i],"姓名") || strstr($CN_ENG_array[$i],"Name"))&& (strlen($CN_ENG_array[$i+1]) == 6 || strlen($CN_ENG_array[$i+1]) == 9) ){ //姓名为2个或3个汉字
-
 				$name = $CN_ENG_array[$i+1];
 				break;
 			}else if(strstr($CN_ENG_array[$i],"姓名") && strlen($CN_ENG_array[$i+1]) < 6){ //姓名分开
@@ -70,27 +69,24 @@ class ParseCommon{
 				}
 			}
 		}
-
 		return $name;
 	}
-
 	//返回性别 ?
 	public function getSex($resume){
 		preg_match("/(?:男|女|male|female|Female){1}/u",$resume,$sex);
 		//如果没有找到男，默认为男
 		if($sex[0] == '女' || $sex[0] == 'female' || $sex[0] == 'Female')
-			$ret = 2;
+			$ret = '女';
 		elseif($sex[0] == '男' || $sex[0] == 'male' || $sex[0] == 'Male')
-			$ret = 1;
-		if($ret>0)
+			$ret = '男';
+		if($ret)
 			return $ret;
 	}
-
 	//获取所在地
 	public function getCity($CN_ENG_array, $last_company){
 		//vde($CN_ENG_array);
 		for($i = 0; $i < count($CN_ENG_array); $i++){
-			if(strstr($CN_ENG_array[$i],"居住地")||strstr($CN_ENG_array[$i],"所在地")||strstr($CN_ENG_array[$i],"现所在")||strstr($CN_ENG_array[$i],"工作地")||strstr($CN_ENG_array[$i],"所在城市")||strstr($CN_ENG_array[$i],"期望地点")||strstr($CN_ENG_array[$i],"Location")||strstr($CN_ENG_array[$i],"意向城市"))
+			if(strstr($CN_ENG_array[$i],"意向地区")||strstr($CN_ENG_array[$i],"居住地")||strstr($CN_ENG_array[$i],"所在地")||strstr($CN_ENG_array[$i],"现所在")||strstr($CN_ENG_array[$i],"工作地")||strstr($CN_ENG_array[$i],"所在城市")||strstr($CN_ENG_array[$i],"期望地点")||strstr($CN_ENG_array[$i],"Location")||strstr($CN_ENG_array[$i],"意向城市"))
 				if(strstr($CN_ENG_array[$i+1],"籍贯")||strstr($CN_ENG_array[$i+1],"户口")||strstr($CN_ENG_array[$i+1],"居住地")||strstr($CN_ENG_array[$i+1],"所在地")||strstr($CN_ENG_array[$i+1],"工作地")||strstr($CN_ENG_array[$i+1],"所在城市"))
 					$city = $CN_ENG_array[$i+2];
 				else
@@ -135,14 +131,12 @@ class ParseCommon{
 			}
 		}
 		//dump($cityId);
-		return $cityId;
+		return $workCity;
 	}
-
 	public function parseSalary($strSalary){
 		$multiple = 1;
 		if(preg_match("/(k|K|千)/u",$strSalary)) $multiple = 1000;
 		if(preg_match("/(w|W|万)/u",$strSalary)) $multiple = 10000;
-
 		if(!preg_match("/(?:\/|每|\*)/u",$strSalary)){       //如果没有 每*/ 则认为是最简单的模式
 			preg_match("/\d+/",$strSalary,$arrSalary);
 			$salary = $arrSalary[0];
@@ -152,26 +146,20 @@ class ParseCommon{
 				$strSalary = preg_replace("/(?:\/|每)(?:\d+|月|M|m|薪)/u", '*12', $strSalary);  //把月薪转换成年薪
 				$strSalary = preg_replace("/(?:\/|每)(?:\d+|年|Y|y)/u", '*1', $strSalary);
 			}
-
 			//支持小数点
 			preg_match_all("/(?:\d{1,2}\.\d)|(?:\d{2,}|\*|1)/",$strSalary,$arrSalary);
-
 			foreach($arrSalary[0] as $k1=>$v1){
 				if($v1=="*")
 					$salary = $arrSalary[0][$k1-1]*$arrSalary[0][$k1+1];  //运算
 			}
 		}
-
 		$salary *= $multiple;
 		if($salary<=1000)  //如果最后小于1000则认为是k
 			$salary *= 1000;
-
 		if($salary<=100000)  //如果最后小于10W则认为是月薪
 			$salary *= 12;
-
 		return $salary/1000; //转为k
 	}
-
 	//获取目前\期望年薪 不支持加，支持乘
 	public function getSalary($details){
 		$details =  preg_replace("/\s/","",$details);
@@ -179,7 +167,6 @@ class ParseCommon{
 		$temp[] = $details[0][0];
 		$temp[] = $details[0][1];
 		$temp[] = $details[0][2];
-
 		foreach($temp as $k=>$v){
 			if(!$salary['now'] && preg_match("/(?:薪|收入)?(?:现有|当前|目前|薪资).?(?:薪|收入)?.*?/u",$v)&&preg_match("/薪|收入|资/u",$v))    {//匹配当前薪资
 				if(!preg_match("/面议|待议/u", $v))       //如果存在面议字样 就认为不是当前
@@ -192,25 +179,22 @@ class ParseCommon{
 				break;
 			}
 		}
-
 		return $salary;
 	}
-
 	//获取手机或电话
 	public function getphone($details){
-		$mobile = "/13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}/";
+		$mobile = "/13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
 		$telephone = "/[0-9]{3,4}[-][0-9]{7,8}/";
 		preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[-])+/u",$details,$arr);
 		$num = count($arr[0]);
 		for($i=0;$i<$num;$i++){
-			if(preg_match($mobile,$arr[0][$i])||preg_match($telephone,$arr[0][$i])) {
-				$phone = $arr[0][$i];
+			if(preg_match($mobile,$arr[0][$i],$phoneArr)||preg_match($telephone,$arr[0][$i],$phoneArr)) {
+				$phone = $phoneArr[0];
 				break;
 			}
 		}
 		return $phone;
 	}
-
 	//获取邮箱
 	public function getemail($details){
 		$mail = "/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/";
@@ -225,12 +209,10 @@ class ParseCommon{
 		}
 		return $email;
 	}
-
 	public function getBirth($details){
 		$temp = preg_replace('/\s/',' ',$details);
 		$temp = preg_replace('/nbsp/','',$details);
 		$regular = "/[0-9]{2}.{0,2}岁/u";
-
 		preg_match($regular,$temp,$match);
 		if($match) {
 			$birth = substr($match[0], 0, 2);
@@ -262,7 +244,7 @@ class ParseCommon{
 								$birth = $year;
 						}
 					}
-				} elseif (strstr($arr[0][$i], "出生年月")) {
+				} elseif (strstr($arr[0][$i], "出生年")) {
 					$year = $arr[0][$i + 1];
 					if(preg_match("/\d/",$year)) {
 						$len = strlen($year);
@@ -290,7 +272,7 @@ class ParseCommon{
 							break;
 						}
 					}
-				} elseif (strstr($arr[0][$i], "年龄") || strstr($arr[0][$i], "年纪") || strstr($arr[0][$i], "Age")) {
+				}elseif (strstr($arr[0][$i], "年龄") || strstr($arr[0][$i], "年纪") || strstr($arr[0][$i], "Age")) {
 					$year_old = $arr[0][$i + 1];
 					if(preg_match("/\d/",$year_old)) {
 						if (strstr($year_old, "年")) {
@@ -338,14 +320,11 @@ class ParseCommon{
 		//dump($birth);
 		return $birth;
 	}
-
 	public function getWorkExperiences($details){
 		$details =  preg_replace("/\s/"," ",$details);
 		$details = str_replace("&nbsp;"," ",$details);
-
 		//标准2016*01
 		//$yeaymonth = "/(?:19[7-9][0-9]|20[0-1][0-9])\D?(?:\d{1,2})?/u";
-
 		//支持年份带空格
 		$date = "(?:19[7-9][0-9]|20[0-1][0-9])\D{0,2}(?:\d{0,2}\D?)?";
 		//$date = "(?:19[7-9][0-9]|20[0-1][0-9])\s*\D?\s*(?:\d{1,2}\s*\D?\s*)?";
@@ -356,14 +335,12 @@ class ParseCommon{
 		$nextStartDate = "(?=(". $date;
 		$nextEndDate = $endDate . ")|(?:$))/u";
 		$match =  $startDate . $interval . $endDate . $content. $nextStartDate . $interval . $nextEndDate;
-
 		//得到工作经历列表
 		preg_match_all($match,$details,$detail1);
 		//preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[.]|[\/]|[-]|[\（]|[\）])+/u",$details,$arr);
 		$workExperiencesList = $detail1[0];
-
 		//提取教育经历
-		$school = array("本科","学士","专科","中专","统招","大专","硕士","研究生","博士","MBA","EMBA","学位");
+		$school = array("本科","学士","专科","中专","统招","大专","硕士","研究生","博士","MBA","EMBA","学位","大学");
 		for($i=0;$i<count($workExperiencesList);$i++){
 			$is_education = false;
 			foreach($school as $key=>$value){
@@ -376,22 +353,17 @@ class ParseCommon{
 			if(!$is_education)
 				$workExperiences[]['content'] = $workExperiencesList[$i];
 		}
-
 		//合并项目经历到工作经历
 		$dealexperiences = $this->dealExperiences($workExperiences);
 		for($i=0;$i<count($dealexperiences);$i++){
 			if($dealexperiences[$i]){
-
 				//判断公司是在年份的前面还是后面
 				$content = $dealexperiences[$i]['content'];
-
 				//如果工作经历长度大于120个汉字，且没有找到公司名，就去前面找公司名  ”2014年09月-2016年01月      平安好房（上海）电子商务有限公司“
 				$content_front = mb_substr($content,0,120,'utf-8');
 				$companyName = $this->getCompany($content_front,1);
-
 				//当前工作经历前面没有找到公司名，在前面字符串里找公司名，如果找到，基本可以认为公司名在年份前面
 				if(!$companyName) {
-
 					$lastlength = 180;
 					if($i == 0){
 						//如果是第一段工作经历，在整个字符串定位
@@ -409,7 +381,6 @@ class ParseCommon{
 						//vde($laststr);
 					}
 					$companyName = $this->getCompany($laststr,2);
-
 					//如果找到，将公司放在年份后面
 					/*if($companyName){
 						$match =  $startDate . $interval . $endDate ."/u";
@@ -418,14 +389,12 @@ class ParseCommon{
 						$dealexperiences[$i] = strstr($content, 0, $start) .  $companyName . strstr($content, $start);
 					}	*/
 				}
-				$dealexperiences[$i]['companyName'] = $companyName;
-
+				$dealexperiences[$i]['company'] = $companyName;
 				//去掉公司名称,职位经常和公司搞混
 				$strNoCompany=str_replace($companyName,'',$dealexperiences[$i]);
-				$dealexperiences[$i]['positionName'] = $this->getPosition($strNoCompany);
+				$dealexperiences[$i]['position'] = $this->getPosition($strNoCompany);
 			}
 		}
-
 		return array($dealexperiences,$education);
 	}
 	//合并工作经历
@@ -440,57 +409,54 @@ class ParseCommon{
 				foreach($v1 as $k2=>$v2){
 					if(preg_match("/.*至今|现在.*/u",$v2)){
 						$times[$k][$k1][$k2] = date("Y/m");
-
 					}
 				}
 			}
 			$starttime[$k] = $times[$k][$k1][0];
 			$endtime[$k] = $times[$k][$k1][1];
 		}
-
-
 		$year = "/\d{4}/";
 		$month = "/\d{1,2}/";
 		for ($i = 0; $i < count($experiences); $i++) {
 			//得到4位数字
 			preg_match_all($year, $starttime[$i], $startyeardate);
 			$startyear[$i] = $startyeardate;
-
 			//从第四位得到1或2位数字
 			preg_match_all($month, substr($starttime[$i], 4), $startmonthdate);
 			$startmonth[$i] = $startmonthdate;
 			if(strlen($startmonth[$i][0][0])==1){
 				$startmonth[$i][0][0] = "0".$startmonth[$i][0][0];
 			}
-
 			preg_match_all($year, $endtime[$i], $endyeardate);
 			$endyear[$i] = $endyeardate;
-
 			preg_match_all($month, substr($endtime[$i], 4), $endmonthdate);
 			$endmonth[$i] = $endmonthdate;
 			if(strlen($endmonth[$i][0][0])==1){
 				$endmonth[$i][0][0] = "0".$endmonth[$i][0][0];
 			}
-
-			$experiences[$i]['startdate'] = intval($startyear[$i][0][0].$startmonth[$i][0][0]);
-			$experiences[$i]['enddate'] = intval($endyear[$i][0][0].$endmonth[$i][0][0]);
+//			$experiences[$i]['startdate'] = intval($startyear[$i][0][0].$startmonth[$i][0][0]);
+//			$experiences[$i]['enddate'] = intval($endyear[$i][0][0].$endmonth[$i][0][0]);
+			$experiences[$i]['start_time'] = strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01');
+			$experiences[$i]['end_time'] = strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01');
 		}
-
 		$num = count($experiences);
 		for ($k = 1; $k < $num; $k++) {
 			for ($j = 0; $j < $k; $j++) {
 				if ($experiences[$j]) {
-					if (($experiences[$k]['startdate'] >= $experiences[$j]['startdate']) && ($experiences[$k]['enddate'] <= $experiences[$j]['enddate'])) {
-						$experiences[$j]['projectExperiences'][] = $experiences[$k]['content'];
+					if (($experiences[$k]['start_time'] >= $experiences[$j]['start_time']) && ($experiences[$k]['end_time'] <= $experiences[$j]['end_time'])) {
+						//$experiences[$j]['projectExperiences'][] = $experiences[$k]['content'];
+						$projectExperiences[] = $experiences[$k]['content'];
 						unset($experiences[$k]);
 					}
 				}
 			}
 		}
+		if($projectExperiences){
+			$this->project = $projectExperiences;
+		}
 		$experiences = array_values($experiences);
 		return $experiences;
 	}
-
 	//获取工作过的公司,暂不支持英文公司名
 	/**
 	 * @param $workExperience 文本内容
@@ -501,9 +467,6 @@ class ParseCommon{
 		//支持**(上海)**有限公司
 		$companyName = "/(?:(?:[\x{4e00}-\x{9fa5}]){2,20}(?:\(|\（)(?:[\x{4e00}-\x{9fa5}]){2,4}(?:\)|\）)(?:[\x{4e00}-\x{9fa5}]){0,4}有限公司)/u";
 		preg_match_all($companyName,$workExperience,$company);
-//		preg_match($companyName,$workExperience,$company);
-//		if($company[0])
-//			return $company[0];
 		if($company[0]){
 			if($type==1){
 				return $company[0][0];
@@ -511,7 +474,6 @@ class ParseCommon{
 				return $company[0][count($company[0])-1];
 			}
 		}
-
 		//提取数据库已有公司
 		$companyName = '';
 		//$companylist = M('real_estate')->field('name')->select();
@@ -522,9 +484,6 @@ class ParseCommon{
 		$companyName[strlen($companyName) -1] = ")";
 		$companyName = "/(?:".$companyName."/u";
 		preg_match_all($companyName,$workExperience,$company);
-//		preg_match($companyName,$workExperience,$company);
-//		if($company[0])
-//			return $company[0];
 		if($company[0]){
 			if($type==1){
 				return $company[0][0];
@@ -532,7 +491,6 @@ class ParseCommon{
 				return $company[0][count($company[0])-1];
 			}
 		}
-
 		$companyNameEnd = "(?:有限公司|集团|地产|置地|科技|网络|金融|资本|基金|证券|人寿|信托|研究所|移动|联通|电信|银行|网|中心|研究院|电视台)";
 		$companyName = "/(?:[\x{4e00}-\x{9fa5}]){2,20}" . $companyNameEnd ."/u";
 		preg_match_all($companyName,$workExperience,$company);
@@ -544,33 +502,28 @@ class ParseCommon{
 			}
 		}
 	}
-
 	//获取职位
 	public function getPosition($workExperiences){
 		//vde($workExperiences);
 		$positionName = "(?:总裁|助理|总监|主任|经理|师|主管|员|负责人|副总|总工|开发|美工|顾问|策划|行长|工程师|管理|Leader|leader|DBA|CTO)";
 		$positionName = "/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z]){0,10}".$positionName."$/u";
-
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$workExperiences['content'],$contentArr);
 		//vde($contentArr);
 		foreach($contentArr[0] as $key=>$value){
 			if(preg_match($positionName, $value, $position))
 				return $position[0];
 		}
-		if(!$position[0]){
-			for($i=0;$i<count($workExperiences['projectExperiences']);$i++){
-
-				preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$workExperiences['projectExperiences'][$i],$contentArr);
-
-				//preg_match("/[\x{4e00}-\x{9fa5}]*".$positionName."/u", $workExperiences['projectExperiences'][0], $position);
-				foreach($contentArr[0] as $key=>$value){
-					if(preg_match($positionName, $value, $position))
-						return $position[0];
-				}
-			}
-		}
+//		if(!$position[0]){
+//			for($i=0;$i<count($workExperiences['projectExperiences']);$i++){
+//				preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$workExperiences['projectExperiences'][$i],$contentArr);
+//				//preg_match("/[\x{4e00}-\x{9fa5}]*".$positionName."/u", $workExperiences['projectExperiences'][0], $position);
+//				foreach($contentArr[0] as $key=>$value){
+//					if(preg_match($positionName, $value, $position))
+//						return $position[0];
+//				}
+//			}
+//		}
 	}
-
 	//提取学校
 	public function getSchool($details){
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$details,$educationArr);
@@ -585,7 +538,6 @@ class ParseCommon{
 		}
 		return $school;
 	}
-
 	public function getFirstTopDegree($tmpDegree){
 		foreach($tmpDegree as $k=>$v){
 			if($v == "大专"){
@@ -595,12 +547,10 @@ class ParseCommon{
 			}elseif($v == "本科" || $v == "学位" || $v == "MBA" || $v == "硕士"){
 				$firstDegree = "本科";
 				$firstDegree = "2";
-				break;
 			}
 		}
 		if($firstDegree)
 			$education['firstDegree'] = $firstDegree;
-
 		foreach($tmpDegree as $k=>$v){
 			if($v == "MBA" || $v == "EMBA"){
 				//$topDegree = "MBA";
@@ -610,29 +560,26 @@ class ParseCommon{
 			if($v == "博士后")
 				//$topDegree = "博士后";
 				$topDegree = "5";
-
 			if($v == "博士" && $topDegree != "博士后")
 				//$topDegree = "博士";
 				$topDegree = "4";
-
 			if($v == "硕士" && $topDegree != "博士后"&& $topDegree != "博士")
 				//$topDegree = "硕士";
 				$topDegree = "3";
-
 			if(($topDegree == "大专" || !$topDegree) && ($v == "本科" || $v == "学位"))
 				//$topDegree = "本科";
 				$topDegree = "2";
-
-			if($v == "大专" && !$topDegree)
+			if($v == "大专")
 				//$topDegree = "大专";
 				$topDegree = "1";
+			else
+				$topDegree = "0";
 		}
 		if($topDegree)
 			$education['topDegree'] = $topDegree;
 		return $education;
 	}
-
-	public function getEducationInfo($educationExperiences,$content){
+	/*public function getEducationInfo($educationExperiences,$content){
 		//学校提取
 		//vde($educationExperiences);
 		foreach($educationExperiences as $key=>$value){
@@ -688,10 +635,8 @@ class ParseCommon{
 		}
 		$education['topDegree'] = $degree['topDegree'];
 		$education['firstDegree'] = $degree['firstDegree'];
-
 		return $education;
-	}
-
+	}*/
 	//得到专业
 	public function getMajor($details){
 		//屏蔽汉字年、至今和月
@@ -704,7 +649,6 @@ class ParseCommon{
 		$details = str_replace("mba","工商管理",$details);
 		$details = str_replace("MB A","工商管理",$details);//372专业出现问题
 		$details = str_replace("mb a","工商管理",$details);
-
 		preg_match_all("/[\x{4e00}-\x{9fa5}]+/u",$details,$educationArr);
 		$num = count($educationArr[0]);
 		//dump($educationArr);
@@ -746,7 +690,6 @@ class ParseCommon{
 		}*/
 		return $major;
 	}
-
 	public function getDegree($details){
 		$degreeMatch1 = "/.*专科|大专.*/u";
 		$degreeMatch2 = "/.*本科|学士|学位.*/u";
@@ -772,88 +715,183 @@ class ParseCommon{
 		}
 		return $Degree;
 	}
+	/**
+	 * @param $educationExperiences
+	 * @param $educationExperiences
+	 * @return mixed
+	 * for education
+	 */
+	public function education($educationExperiences){
+		foreach($educationExperiences as $key=>$value){
+			$educationExp[$key]['content'] = $value;
+			$educationExp[$key]['school'] = $this->getSchool($value);;
+			$educationExp[$key]['major'] = $this->getMajor($value);
+			$educationExp[$key]['degree'] = $this->getDegree($value);;
 
+			//判断学校是985还是211
+			if($educationExp[$key]['school']) {
+				$where['fullname'] = array('like', '%' . $educationExp[$key]['school'] . '%');
+				$schoolCategory = Db::table('sj_school')->where($where)->find();
+				if ($schoolCategory['985'] == 1) {
+					$educationExp[$key]['is985'] = true;
+				} elseif ($schoolCategory['985'] != 1 && $schoolCategory['211'] == 1) {
+					$educationExp[$key]['is211'] = true;
+				}
+			}
+		}
+		$partitionParse = new PartitionParse();
+		$partitionParse->fundTime($educationExp);
+
+		return $educationExp;
+	}
+	public function project($projectExperiences){
+		foreach($projectExperiences as $key=>$value){
+			$projectExp[$key]['description'] = $value;
+			$projectExp[$key]['position'] = $this->getPosition($value);
+		}
+		$partitionParse = new PartitionParse();
+		$partitionParse->fundTime($educationExp);
+
+		return $educationExp;
+	}
+	/**去除JSCSS标签
+	 * @param $str
+	 * @return mixed
+	 */
+	public function removeJsCss($document){
+		$search = array ("'<script[^>]*?>.*?</script>'si", // 去掉 javascript
+				"'<style[^>]*?>.*?</style>'si", // 去掉 css
+				"'<[/!]*?[^<>]*?>'si", // 去掉 HTML 标记
+				"'<!--[/!]*?[^<>]*?>'si", // 去掉 注释标记
+				"'([rn])[s]+'", // 去掉空白字符
+				"'&(quot|#34);'i", // 替换 HTML 实体
+				"'&(amp|#38);'i",
+				"'&(lt|#60);'i",
+				"'&(gt|#62);'i",
+				"'&(nbsp|#160);'i",
+				"'&(iexcl|#161);'i",
+				"'&(cent|#162);'i",
+				"'&(pound|#163);'i",
+				"'&(copy|#169);'i",
+				"'&#(d+);'e"); // 作为 PHP 代码运行
+
+		$replace = array ("",
+				"",
+				"",
+				"",
+				"\1",
+				"\"",
+				"&",
+				"<",
+				">",
+				" ",
+				chr(161),
+				chr(162),
+				chr(163),
+				chr(169),
+				"chr(\1)");
+		$conent = preg_replace($search, $replace, $document);
+		//将全角空格(E38080)和UTF8空格(C2A0)替换成半角空方
+		//$conent = str_replace(array(chr(194).chr(160),'　'),' ',$conent);
+		$conent = preg_replace('/\s+/',' ',$conent);
+		$conent = trim($conent);
+		return $conent;
+	}
 	public function parse($resume_content){
+		$resume_content = $this->removeJsCss($resume_content);
 		//剥去简历中的 HTML 标签, 还可以改进
 		//$resume_content = strip_tags($resume_content);
 		$resume_content = preg_replace('/<[^>]*>/','',$resume_content);
-
 		//将&nbsp;替换为空格
 		$resume_content =  str_replace("&nbsp;"," ",$resume_content);
-
-		//获得邮箱
-		$resume['email'] = $this->getemail($resume_content);
-
-		//出生年份 1981
-		//$resume['birth'] = date('Y') - intval($this->getBirth($resume_content));
-		$resume['birthday'] = $this->getBirth($resume_content);
-
-
-		//获得性别
-		$resume['sex'] = $this->getSex($resume_content);
-
-
-		//获得电话
-		$resume['mobile'] = $this->getphone($resume_content);
-
-		//目前期望薪资
-		$salary = $this->getSalary($resume_content);
-		$resume['current_salary'] = $salary['now'];
-		$resume['expectsalary'] = $salary['hope'];
-
-		//将空格,回车,换行都替换为空格，这样匹配就只考虑空格
-		//$resume =  preg_replace("/\s+/"," ",$resume);
-
-		//提取工作经历列表
-		$experiencesList = $this->getWorkExperiences($resume_content);
-		$workExperiencesList = $experiencesList[0];
-		$educationExperiences = $experiencesList[1];
-
-		foreach($workExperiencesList as $k=>$v){
-			if($workExperiencesList[$k]['companyName']){
-				$resume['company'][] = $workExperiencesList[$k]["companyName"];
-			}
-			if($workExperiencesList[$k]["positionName"]){
-				$resume['position'][] = $workExperiencesList[$k]["positionName"];
-			}
-		}
-		//默认工作经历是倒序排列？
-		$resume['workExperiences'] = $workExperiencesList;
-		//教育经历
-		$resume['educationExperiences'] = $educationExperiences;
-		//工作年份
-		$resume['workyear'] = substr($workExperiencesList[count($workExperiencesList)-1]['startdate'],0,4);
-
-		//提取最近工作过的公司
-		$resume['last_company'] = $resume['company'][0];
-
-		//提取最近职位
-		$resume['last_position'] = $resume['position'][0];
 
 		//提取中英文数组
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
 		//获得姓名
 		$resume['name'] = $this->getName($CN_ENG_array[0]);
-
 		//获得所在城市
 		$resume['target_city'] = $this->getCity($CN_ENG_array[0], $resume['last_company']);
+		//获得邮箱
+		$resume['email'] = $this->getemail($resume_content);
+		//出生年份 1981
+		//$resume['birth'] = date('Y') - intval($this->getBirth($resume_content));
+		$resume['birth_year'] = $this->getBirth($resume_content);
+		//获得性别
+		$resume['sex'] = $this->getSex($resume_content);
+		//获得电话
+		$resume['phone'] = $this->getphone($resume_content);
+		//目前期望薪资
+		$salary = $this->getSalary($resume_content);
+		$resume['current_salary'] = $salary['now'];
+		$resume['target_salary'] = $salary['hope'];
+		//将空格,回车,换行都替换为空格，这样匹配就只考虑空格
+		//$resume =  preg_replace("/\s+/"," ",$resume);
+		//提取工作经历列表
+		$experiencesList = $this->getWorkExperiences($resume_content);
+		$workExperiencesList = $experiencesList[0];
+		$educationExperiences = $experiencesList[1];
+
+		$resume['career'] = $workExperiencesList;
+		if($this->project){
+			$resume['project'] = $this->project($this->project);
+		}
+		/*foreach($workExperiencesList as $k=>$v){
+			if($workExperiencesList[$k]['company']){
+				$resume['company'][] = $workExperiencesList[$k]["company"];
+			}
+			if($workExperiencesList[$k]["position"]){
+				$resume['position'][] = $workExperiencesList[$k]["position"];
+			}
+		}*/
+		//默认工作经历是倒序排列？
+//		$resume['workExperiences'] = $workExperiencesList;
+//		//工作年份
+//		$resume['workyear'] = substr($workExperiencesList[count($workExperiencesList)-1]['startdate'],0,4);
+//		//提取最近工作过的公司
+//		$resume['last_company'] = $resume['company'][0];
+//		//提取最近职位
+//		$resume['last_position'] = $resume['position'][0];
+
+		//统一工作经历格式
+		/*$resume['career']['company'] = $resume['company'];
+		$resume['career']['position'] = $resume['position'];
+		$resume['career']['workExperiences'] = $workExperiencesList;
+		$resume['career']['last_company'] = $resume['company'][0];
+		$resume['career']['last_position'] = $resume['position'][0];
+		$resume['career']['workyear'] = substr($workExperiencesList[count($workExperiencesList)-1]['startdate'],0,4);
+		unset($resume['company']);
+		unset($resume['position']);*/
 		//vde($resume);
-		$education = $this->getEducationInfo($educationExperiences,$resume_content);
-		$resume['major'] = $education['major'];
-		$resume['first_degree'] = $education['firstDegree'];
-		$resume['top_degree'] = $education['topDegree'];
-		$resume['campus'] = $education['school'];
-//判断学校是985还是211
+
+		$resume['education'] = $this->education($educationExperiences);
+		//教育经历
+//		$resume['educationExperiences'] = $educationExperiences;
+//
+//		$education = $this->getEducationInfo($educationExperiences,$resume_content);
+//		$resume['major'] = $education['major'];
+//		$resume['first_degree'] = $education['firstDegree'];
+//		$resume['top_degree'] = $education['topDegree'];
+//		$resume['campus'] = $education['school'];
+		//统一教育经历格式
+		/*$education = $this->getEducationInfo($educationExperiences,$resume_content);
+		$resume['education']['educationExperiences'] = $educationExperiences;
+		$resume['education']['major'] = $education['major'];
+		$resume['education']['first_degree'] = $education['firstDegree'];
+		$resume['education']['top_degree'] = $education['topDegree'];
+		$resume['education']['campus'] = $education['school'];
+		//判断学校是985还是211
 		if($resume['campus']) {
 			$where['fullname'] = array('like', '%' . $resume['campus'] . '%');
 			//$schoolCategory = M('school')->where($where)->find();
 			$schoolCategory = Db::table('sj_school')->where($where)->find();
-			if ($schoolCategory['985'] == 1) {
-				$resume['is985'] = true;
+			if ($schoolCategory['985'] == 0) {
+				$resume['education']['is985'] = true;
 			} elseif ($schoolCategory['985'] != 1 && $schoolCategory['211'] == 1) {
-				$resume['is211'] = true;
+				$resume['education']['is211'] = true;
 			}
-		}
+		}*/
+
+
 		$data = false;
 		foreach($resume as $key=>$value){
 			if($value){
@@ -863,6 +901,5 @@ class ParseCommon{
 		}
 		if($data==true)
 			return $resume;
-
 	}
 }
