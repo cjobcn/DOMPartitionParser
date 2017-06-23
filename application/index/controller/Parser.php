@@ -67,7 +67,6 @@ class Parser extends Controller {
                     }
                 }
             }
-            vde($data);
         }else{
             $info = array(
                 'status' => -1,
