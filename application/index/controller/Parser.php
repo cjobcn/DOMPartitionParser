@@ -50,7 +50,7 @@ class Parser extends Controller {
                         'status' => 2,
                     );
                 }else{
-                    //通用解析2
+                    //通用解析2稍后再改
                     $Parser = new ParseCommon();
                     $data = $Parser->parse($content);
                     if($data) {
