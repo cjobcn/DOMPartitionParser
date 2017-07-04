@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+<title>会员简历|个人会员管理|猎聘网-Lietou.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link href="http://s.liepin.com/css/6.0/css_c_goldcard_cv.css" rel="stylesheet" type="text/css" />
+<link href="http://s.liepin.com/css/center/main.css" rel="stylesheet" type="text/css" />
+<script src="http://s.liepin.com/js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+<script src="http://s.liepin.com/js/facebox/facebox.js"></script>
+<style type="text/css">
+p{ padding:0px; margin:0px;line-height: 22px;}
+</style>
+
+<script>
+function refreshCV(resId)
+{
+   $.ajax({ 
+      type:'get',
+      url:'/resmng/refreshcv.do?res_id='+resId,
+      dataType:'json',
+      success:function(data){
+          alert(data.msg);
+          window.location.reload();
+      },
+      error:function(){
+        alert("系统错误请稍候再试！");
+      }
+  }); 
+}
+function whyRefresh()
+{
+    jQuery.facebox({ajax:"/membercmng/why_refreshcv.html"});
+}
+function singleAudit(resId, resCategory)
+{
+  var str = "";
+  if(resCategory == "0")
+  {
+      str = "初级人才";
+  }
+  else if(resCategory == "1")
+  {
+      str = "中级人才";
+  }
+  else if(resCategory == "2")
+  {
+      str = "高级人才";
+  }
+  else
+  {
+      return;
+  }
+  if(confirm("确信要置为" + str + "？"))
+  {
+    $.ajax({ 
+      type:'get',
+      url:'/resmng/singleaudit.do?res_id='+resId+'&res_category='+resCategory + '&time=' +  new Date().getTime(),
+      dataType:'json',
+      success:function(data){
+        if(data.flag == "1")
+        {
+          window.location.reload();
+        }
+        else
+        {
+          alert("设置失败！");
+        }
+      },
+      error:function(){
+        alert("系统错误请稍候再试！");
+      }
+    }); 
+  }
+}
+function doDelete(resId)
+{
+    if(confirm("确信要删除该简历吗？"))
+    {
+        location.href="/resmng/deleteresume.do?res_id=" + resId;
+    }
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="header_l">
+  <div class="colcont_head">
+    <table width="100%" border="0">
+      <tr>
+        <td width="12">&nbsp;</td>
+        <td width="33%" height="75" valign="middle"><img src="http://s.liepin.com/images/6.0/f_03.gif" width="230" height="54" /></td>
+        <td width="66%" align="right" valign="bottom"><table width="100%" border="0">
+            <tr>
+              <td align="right">简历编号：00223779 | 简历保密情况： 姓
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                   名
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                   电话
+                 <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                  邮件
+                <img src="http://s.liepin.com/images/center/secret_open.gif" alt="公开" title="公开"/>
+                
+                | 最后更新：2009-12-31 00:33</td>
+              <td align="right">&nbsp;</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id="contain">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="115" rowspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+    <td align="center" background="http://s.liepin.com/images/6.0/goldcard/ddd.gif">&nbsp;</td>
+    <td rowspan="2" valign="top" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="755" align="center" background="http://s.liepin.com/images/6.0/goldcard/ddd3.gif"><table width="98%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="6">&nbsp;</td>
+        <td align="left"><table width="98%" border="0" bgcolor="#FFFFFF">
+          <tr>
+            <td ><table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+              <tr>
+                <td align="center" valign="top"><table width="98%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">个人信息：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td width="75%" colspan="4" align="right"></td>
+                        <td width="25%" height="140" rowspan="6" align="center" valign="middle">
+                          <table height="127" cellspacing="1" cellpadding="0" width="104" bgcolor="#cccccc" border="0">
+                          <tbody>
+                            <tr>
+                              <td valign="center" align="middle" bgcolor="#e8e8e8"><img src="http://p.liepin.com/user/photo/default.gif" alt="" width="94" height="113" /></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       </td>
+                      </tr>
+                      <tr>
+                        <td width="12%" height="28" align="right">姓名：</td>
+                        <td width="38%" align="left">
+                        董秀斌</td>
+                        <td width="12%" align="right">性别： </td>
+                        <td width="13%" align="left" colspan="2">男</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">手机号码：</td>
+                        <td align="left">
+                        13795499730</td>
+                        <td align="right">年龄： </td>
+                        <td align="left" colspan="2">31岁</td>
+                        </tr>
+                      <tr>
+                        <td height="28" align="right">电子邮件：</td>
+                        <td align="left">
+                        bossdong@sina.com</td>
+                        <td align="right">教育程度：</td>
+                        <td align="left" colspan="2">硕士</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">婚姻状况：</td>
+                        <td align="left">
+                        未填</td>
+                        <td align="right">所在地：</td>
+                        <td align="left" colspan="2">上海</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">备用电话：</td>
+                        <td align="left">
+                        未填写</td>
+                        <td align="right">工作年限：</td>
+                        <td align="left" colspan="2">2005年</td>
+                      </tr>
+                      <tr>
+                        <td height="28" align="right">所属分类：</td>
+                        <td colspan="4" align="left">
+                          <font color="red">中级人才</font>
+                          <a href="javascript:singleAudit('223779','0');">置为初级人才</a>
+                          <a href="javascript:singleAudit('223779','1');">置为中级人才</a>
+                          <a href="javascript:singleAudit('223779','2');">置为高级人才</a>
+                          <a href="/resmng/editresume.do?res_id=223779&url=%2Fresmng%2Fresdetail.do%3Fres_id%3D223779">编辑</a>
+                          <a href="javascript:doDelete('223779')">放入回收站</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="106" align="center" valign="top">
+                <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">目前职业概况：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <tr>
+                    <td height="20" align="center">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td width="12%" height="28" align="right" height="26">所在行业：</td>
+                          <td width="38%" align="left">原材料及加工</td>
+                          <td width="12%" align="right">公司名称：</td>
+                          <td width="38%" align="left">Tyco Electronics</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">公司性质：</td>
+                          <td align="left">外商独资·外企办事处</td>
+                          <td align="right">公司规模：</td>
+                          <td align="left">10000人以上</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">所任职位：</td>
+                          <td align="left">技术工程师·项目工程师·产品工程师</td>
+                          <td align="right">目前薪金：</td>
+                          <td align="left">8000元/月 * 13个月</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">绩效奖金：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">绩效提成：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                        <tr>
+                          <td align="right" height="28">其它福利：</td>
+                          <td align="left" colspan="3">未填</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">职业发展意向：</td>
+                  </tr>
+                  <tr>
+                    <td height="1"></td>
+                  </tr>
+                  <tr>
+                    <td height="20" align="center">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td height="28" width="12%" align="right">期望行业：</td>
+                          <td align="left">化工;原材料及加工;印刷·包装·造纸</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望职位：</td>
+                          <td align="left">全部生物·制药·化工·环保类;全部电子·电器·通信技术类;全部工厂生产类</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望地点：</td>
+                          <td align="left">上海</td>
+                        </tr>
+                        <tr>
+                          <td height="28" align="right">期望月薪：</td>
+                          <td align="left">10000元/月</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">自我评价:</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top"><table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    1.本人具有丰富的电线电缆制造工艺以及相关标准文件经验。<br />2.具有独立解决工艺制造问题的能力，并能提出制造工艺改进。<br />3.具有相关塑料混料工艺经验。<br />4.与同事之间建立优良的Team work关系。<br />5.思想积极向上，抗压能力强。</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">教育经历：</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top">
+                        <table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    时间： 2003年3月到2005年7月   <br />学校： 华东理工大学 <br />专业： 高分子材料与工程  <br />学历： 硕士  <br />专业描述： 从事聚肽共聚物的合成及其载药性能的研究 <br />通过阴离子反应聚合得到生物可降解材料聚肽及其共聚物，研究其作为药物载体的一些性能。通过FTIR、1HNMR对聚合物结构进行表征采用紫外光谱，透射电镜对其在水介质中的自组装载药胶束的性质进行了讨论。在对共聚物的共混体系进行自组装胶束化行为研究的基础上，对自组装胶束作为药物载体的性质进行了研究。 <br /><br />时间： 1998年9月到2002年7月   <br />学校： 华东理工大学 <br />专业： 高分子材料与工程  <br />学历： 本科</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="1" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">工作经历：</td>
+                    </tr>
+                    <tr>
+                      <td height="1" ></td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top">
+                      <table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    时间： 2006年5月至今   <br />公司： 泰科瑞侃电子（上海）有限公司 <br />公司性质： 外资(欧美)  <br />行业： 电子技术/半导体/集成电路  <br />部门： Groble industry and commercial <br />职位： 工艺工程师 <br />工作描述： 1.负责一些相关新进电线线缆制造项目技术转移，进行试车，所有工艺参数的确立，以后后续生产的完善和改进。 <br />2.负责解决电线电缆生产制造过程中所有发生的工艺问题。 <br />3.进行相关电线电缆测试。 <br />4.起草和制定产品工艺，质量，采购，以及生产控制文件。 <br />5.相关产品BOM&Routing的建立和更新。 <br />6.计算产品生产成本。</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="28" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">项目经历：</td>
+                    </tr>
+                    <tr>
+                      <td height="1" ></td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top">
+                        <table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    时间： 2008年8月至今      <br />项目名称： Solar Cable（太阳能电缆）技术转移 开发工具：  <br />硬件环境：  软件环境：  <br />项目描述： 1.Solar Cable是一种符合新TUV和UL标准的电缆。 <br />2.太阳能市场非常广大而且前景很好，公司着重于发展符合新标准的太阳能电缆，并且通过了产品认证。 <br />3.考虑成本问题，所以公司决定在上海工程建立生产线。 <br />责任描述： 1.准备技术转移所需要的文件，工具，生产原料。 <br />2.领会新生产线操作运转，并且进行产品试车，确定工艺参数。 <br />3.计算生产成本。 <br />4.完善制造工艺。 <br />5.解决生产过程中出现的工艺问题。 <br /> <br /><br />时间： 2007年7月至今      <br />项目名称： ZHPCG机车电缆技术转移 开发工具：  <br />硬件环境：  软件环境：  <br />项目描述： 1.ZHPCG是应用于铁路的一种无卤阻燃电缆。 <br />2.由于亚洲市场需求日渐增大，所以技术转移至上海工厂。 <br />责任描述： 1.准备技术转移所需要的文件，工具，生产原料。 <br />2.领会新生产线操作运转，并且进行产品试车，确定工艺参数。 <br />3.计算生产成本。 <br />4.完善制造工艺。 <br />5.解决生产过程中出现的工艺问题。 <br /> <br /><br />时间： 2006年11月至今      <br />项目名称： 100G电线电缆（地铁用线）技术转移 开发工具：  <br />硬件环境：  软件环境：  <br />项目描述： 1.100G电线电缆（地铁用线）是一种无卤阻燃电线，相比于同类型的电线具有绝缘厚度更薄，绝缘机械性能更好的特点，广泛应用于地铁铁路机车。 <br />2.由于生产地是英国，生产成本较高，所以泰科公司打算将此电线制造技术转移至上海工厂。 <br />责任描述： 1.准备技术转移所需要的文件，工具，生产原料。 <br />2.领会新生产线操作运转，并且进行产品试车，确定工艺参数。 <br />3.计算生产成本。 <br />4.完善制造工艺。 <br />5.解决生产过程中出现的工艺问题。</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">培训经历:</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top"><table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td colspan="2" align="left">
+                                    时间： 2006年10月到2006年12月      <br />培训机构： Raychem electronics (UK) 培训地点： Swindon UK <br />培训课程： wire & cable exrusion process training 获得证书：  <br />详细描述： it's my first relative process trianning in my career, so this did deeply effect on me.i learned many process knowledge and also the correct attitdue to my job.</td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                  <table width="98%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                    <tr>
+                      <td height="22" align="left" valign="bottom" background="http://s.liepin.com/images/6.0/goldcard/jiandi.gif"  class="f12red_22">历史版本:</td>
+                    </tr>
+                    <tr>
+                      <td height="20" align="center" valign="top"><table width="97%" border="0">
+                          <tr>
+                            <td width="96%" align="left" valign="top" class="f22ge"><table width="100%" cellpadding="6" cellspacing="0">
+                                <tr>
+                                  <td align="left">
+                                    <table width="600" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td height="10" colspan="2"></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2" align="left" class="text">
+                                          
+                                          [无]
+                                          </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                            </table></td>
+                            <td width="3%" align="left" class="f22ge">&nbsp;</td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          
+        </table></td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td height="21" align="center" background="http://s.liepin.com/images/6.0/goldcard/ff.gif">&nbsp;</td>
+    <td valign="top" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" bgcolor="#FFFFFF"><table width="80%" border="0">
+      
+      <tr>
+        <td width="475" height="50" align="right">&nbsp;</td>
+        <td width="10">&nbsp;</td>
+        <td width="285" align="left">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+<div id="footer_1">
+  <div id="bom"> <a href="http://www.lietou.com/other/aboutus.shtml" title="猎聘网" target=_blank>关于猎聘网</a> | <a href="http://www.lietou.com/other/partner.shtml" target=_blank>合作伙伴</a> | <a href="http://www.lietou.com/other/product.shtml" target=_blank>产品服务</a> | <a href="http://www.lietou.com/other/notice.shtml" target=_blank>网站公告</a> | <a href="http://www.lietou.com/other/terms.shtml" target=_blank>服务条款</a> | <a href="http://www.lietou.com/other/link.jsp" target=_blank>友情链接</a> | <a href="http://www.lietou.com/other/hr.shtml" target=_blank>人才招募</a> | <a href="http://www.lietou.com/other/media.shtml" target=_blank>媒体报道</a> | <a href="http://www.lietou.com/other/declare.shtml" target=_blank>网站声明</a> | <a href="http://www.lietou.com/other/contactus.shtml" target=_blank>联系我们</a><br /> Copyright &copy; 2000-2009 lietou.com All Rights Reserved 京ICP证070419号 人才服务许可证:RC0710280 </div>
+</div>
+</body>
+</html>

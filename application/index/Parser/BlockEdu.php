@@ -81,12 +81,14 @@ class BlockEdu extends  AbstractParser {
         $i = 0;
         $j = 0;
         $k = 0;
+        $currentKey = '';
         $education = array();
         $sequence = array('school');
         $rules = array(
             array('school', '学校：', 0),
             array('major', '-?专业：', 0),
             array('degree', '-?学历：', 0),
+            array('class', '专业描述：', 0)
         );
         $patterns = array(
             '/^(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/'
@@ -101,6 +103,8 @@ class BlockEdu extends  AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $education[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
+                $currentKey = $KV[0];
+                if($k > 0) $k--;
             }elseif($k > 0){
                 if($key = $sequence[$k-1]){
                     $education[$j-1][$key] = $data[$i];
@@ -108,6 +112,8 @@ class BlockEdu extends  AbstractParser {
                 }else{
                     $k = 0;
                 }
+            }elseif($currentKey == 'class'){
+                $education[$j-1][$currentKey] .=  $data[$i];
             }
             $i++;
         }

@@ -96,7 +96,7 @@ class Template01 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $BlockCareer = new BlockCareer();
-        $jobs = $BlockCareer->parse($data, '1');
+        $jobs = $BlockCareer->parse($data, '1,3');
         //dump($jobs);
         $record['career'] = $jobs;
         return $jobs;

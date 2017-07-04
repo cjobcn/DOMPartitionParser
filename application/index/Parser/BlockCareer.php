@@ -11,8 +11,9 @@ namespace app\index\Parser;
 // 工具经历模块解析方法
 class BlockCareer extends AbstractParser {
     protected $patterns = array(
-        1=> '/(.+) (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
+        1=> '/(?<!时间：) (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
         2=> '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
+        3=> '/^时间： (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/'
     );
 
     /**
@@ -25,6 +26,7 @@ class BlockCareer extends AbstractParser {
         if($methods && is_string($methods)){
             $methods = explode(',', $methods);
         }
+
         foreach($methods as $method) {
             if(preg_match($this->patterns[$method], $data[0])) {
                 $method = 'extract'.$method;
@@ -127,6 +129,41 @@ class BlockCareer extends AbstractParser {
                 $jobs[$j-1][$currentKey] .=  $data[$i];
             }
 
+            $i++;
+        }
+        return $jobs;
+    }
+
+    public function extract3($data) {
+        $length = count($data);
+        $i = 0;
+        $j = 0;
+        $currentKey = '';
+        $jobs = array();
+        $rules = array(
+            array('company', '公司：'),
+            array('nature', '公司性质：'),
+            array('industry', '行业：'),
+            array('department', '部门：'),
+            array('position', '职位：'),
+            array('duty', '工作描述：'),
+        );
+        while($i < $length) {
+            //正则匹配
+            if(preg_match('/^时间：\s(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/',
+                $data[$i], $match)) {
+                $job = array();
+                $job['start_time'] = Utility::str2time($match[1]);
+                $job['end_time'] = Utility::str2time($match[2]);
+                $jobs[$j++] = $job;
+                $jobs[$j-1]['position'] = $data[$i-1];
+            }elseif($KV = $this->parseElement($data, $i, $rules)) {
+                $jobs[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+                $currentKey = $KV[0];
+            }elseif($currentKey == 'duty'){
+                $jobs[$j-1][$currentKey] .=  $data[$i];
+            }
             $i++;
         }
         return $jobs;

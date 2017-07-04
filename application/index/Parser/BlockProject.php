@@ -72,4 +72,8 @@ class BlockProject extends AbstractParser {
         }
         return $projects;
     }
+
+    public function extract2($data) {
+
+    }
 }
