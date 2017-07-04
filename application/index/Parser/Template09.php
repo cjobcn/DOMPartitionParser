@@ -78,7 +78,8 @@ class Template09 extends AbstractParser {
         $redundancy = array(
             '/<head>.+?<\/head>/is',
             '/<script.*?>.+?<\/script>/is',
-            '/<style.*?>.+?<\/style>/is'
+            '/<style.*?>.+?<\/style>/is',
+            '/<div class="keydiv">.+?<\/div>/s'   //删除关键字标签，否则会对分区产生影响
         );
         $content = preg_replace($redundancy, '', $content);
         $content = preg_replace(array('/\?/', '/<a name="basic_position">/'), array(' ', '姓名：'), $content);
