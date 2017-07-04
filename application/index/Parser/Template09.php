@@ -194,18 +194,34 @@ class Template09 extends AbstractParser {
         $k = 0;
         $jobs = array();
         $currentKey = '';
+        $matchType = 0;
         while($i < $length) {
             //正则匹配
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)：(.+)/', $data[$i], $match)) {
-                $job = array();
-                $job['start_time'] = Utility::str2time($match[1]);
-                $job['end_time'] = Utility::str2time($match[2]);
-                $job['company'] = preg_split('/\((少于)?\d|\[/',$match[3])[0];
-                if(preg_match('/(少于)?\d+(-\d+)?人/',$match[3], $size)){
-                    $job['size'] = $size[0];
+                if($j==0) {
+                    if(preg_match('/\((少于)?\d|\[/',$match[3]))
+                        $matchType = 1;
                 }
-                $jobs[$j++] = $job;
-                $k = 1;
+                if($matchType == 1 && preg_match('/\((少于)?\d|\[/',$match[3])) {
+                    $job = array();
+                    $job['start_time'] = Utility::str2time($match[1]);
+                    $job['end_time'] = Utility::str2time($match[2]);
+                    $job['company'] = preg_split('/\((少于)?\d|\[/',$match[3])[0];
+                    if(preg_match('/(少于)?\d+(-\d+)?人/',$match[3], $size)){
+                        $job['size'] = $size[0];
+                    }
+                    $jobs[$j++] = $job;
+                    $k = 1;
+                }elseif($matchType == 0){
+                    $job = array();
+                    $job['start_time'] = Utility::str2time($match[1]);
+                    $job['end_time'] = Utility::str2time($match[2]);
+                    $job['company'] = $match[3][0];
+                    $jobs[$j++] = $job;
+                    $k = 1;
+                }else{
+                    $jobs[$j-1]['duty'] .= $data[$i];
+                }
             //关键字匹配
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $jobs[$j-1][$KV[0]] = $KV[1];
@@ -214,6 +230,9 @@ class Template09 extends AbstractParser {
                 $currentKey = $KV[0];
             //顺序匹配
             }elseif($k > 0 && $k < count($sequence) + 1){
+                if(strlen($data[$i]) > 100){
+                    $k = count($sequence);
+                }
                 if($key = $sequence[$k-1]){
                     $jobs[$j-1][$key] = $data[$i];
                     $currentKey = $key;
