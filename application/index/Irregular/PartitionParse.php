@@ -13,9 +13,9 @@ class PartitionParse{
 
     //返回姓名
     public function getName($CN_ENG_array){
+        //vde($CN_ENG_array);
 //		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
 //		$lastName = iconv("gb2312", "utf-8//IGNORE",$lastName);
-        //dump($CN_ENG_array);die;
         for($i = 0; $i < count($CN_ENG_array); $i++){
             if(strstr($CN_ENG_array[$i],"姓名") && $CN_ENG_array[$i+1]=="曾用名"){
                 $name = $CN_ENG_array[$i+2];
@@ -39,45 +39,59 @@ class PartitionParse{
         }
         //dump($CN_ENG_array);die;
         //如果没有找到姓名关键字，提取最前面的2\3个中文字符
+        $black_list = "/(年|月|日|号|姓名|离职|性别|文件|户口|全年|李秀麟|大专|学历|居住地|家具|在开车|国籍|党员|全职|不|万多|万左右)/";
+        if(preg_match($black_list,$name)){
+            $name = null;
+        }
         if(!$name){
-            //vde($CN_ENG_array);
             foreach($CN_ENG_array as $key=>$value) {
-                if($key<10){
-                    if(strlen($value) == 3){//如果匹配到一个字符为姓氏则看之后的第一位和第二位是不是一个字
-                        //vde($value);
-                        //匹配百家姓相似查询
-                        $keyWord = substr($value,0,3);
-                        if(!strstr('年月日号',$keyWord)) {
-                            $wherename['FName'] = array('like', '%' . $keyWord . '%');
-                            $likeLastName = Db::table('sj_fname')->where($wherename)->find();
-                            if ($likeLastName) {
-                                //如果后面第一位和第二位都是一个字且不是性别则判断姓名为三个字取三个字
-                                if (strlen($CN_ENG_array[$key + 1]) == 3 && strlen($CN_ENG_array[$key + 2]) == 3 && $CN_ENG_array[$key + 2] != "男" && $CN_ENG_array[$key + 2] != "女") {
-                                    $name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1] . $CN_ENG_array[$key + 2];
-                                    break;
-                                } elseif (strlen($CN_ENG_array[$key + 1]) == 3) {//如果后面第二位不是一个字只取前两个字
-                                    $name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1];
-                                    break;
-                                }
-                            }
-                        }
-                    }elseif((strlen($value) == 6 or strlen($value) == 9)) {//如果遇到两个字或三个字且第一个字是姓氏则认为是名字
-                        //vde($value);
-                        //匹配百家姓相似查询
-                        $keyWord = substr($value,0,3);
-                        if(!strstr('年月日号',$keyWord)){
-                            $wherename['FName'] = array('like','%'.$keyWord.'%');
-                            $likeLastName = Db::table('sj_fname')->where($wherename)->find();
-                            if($likeLastName){
-                                $name = $value;
-                                break;
-                            }
-                        }
+                if($key<30){
+//                    if(strlen($value) == 3){//如果匹配到一个字符为姓氏则看之后的第一位和第二位是不是一个字
+//                        //vde($value);
+//                        //匹配百家姓相似查询
+//                        $keyWord = substr($value,0,3);
+//                        if(!strstr('年月日号姓',$keyWord)) {
+//                            $wherename['FName'] = array('like', '%' . $keyWord . '%');
+//                            $likeLastName = Db::table('sj_fname')->where($wherename)->find();
+//                            if ($likeLastName) {
+//                                //如果后面第一位和第二位都是一个字且不是性别则判断姓名为三个字取三个字
+//                                if (strlen($CN_ENG_array[$key + 1]) == 3 && strlen($CN_ENG_array[$key + 2]) == 3 && $CN_ENG_array[$key + 2] != "男" && $CN_ENG_array[$key + 2] != "女") {
+//                                    $name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1] . $CN_ENG_array[$key + 2];
+//                                    break;
+//                                } elseif (strlen($CN_ENG_array[$key + 1]) == 3) {//如果后面第二位不是一个字只取前两个字
+//                                    $name = $CN_ENG_array[$key] . $CN_ENG_array[$key + 1];
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    }elseif((strlen($value) == 6 or strlen($value) == 9)) {//如果遇到两个字或三个字且第一个字是姓氏则认为是名字
+//                        //vde($value);
+//                        //匹配百家姓相似查询
+//                        $keyWord = substr($value,0,3);
+//                        if(!strstr('年月日号姓',$keyWord)){
+//                            $wherename['FName'] = array('like','%'.$keyWord.'%');
+//                            $likeLastName = Db::table('sj_fname')->where($wherename)->find();
+//                            if($likeLastName){
+//                                $name = $value;
+//                                break;
+//                            }
+//                        }
+//                    }
+                    $flist = Db::table('sj_fname')->field('FName')->select();
+                    $fname = implode('|', array_column($flist, 'FName'));
+                    $fname = '('. $fname .')';
+                    $name = array();
+                    preg_match('/(?<=,|^)'. $fname .'[\x{4e00}-\x{9fa5}]{1,2}(?![\x{4e00}-\x{9fa5}])/u', $value, $name);
+                    if($name[0] && !preg_match($black_list,$name[0])){
+                        vde($name);
+                        $name =  $name[0];
+                        break;
                     }
+                    else
+                        continue;
                 }
             }
         }
-
         return $name;
     }
 
@@ -97,7 +111,9 @@ class PartitionParse{
     public function getCity($CN_ENG_array, $last_company){
         //vde($CN_ENG_array);
         for($i = 0; $i < count($CN_ENG_array); $i++){
-            if(strstr($CN_ENG_array[$i],"意向地区")||strstr($CN_ENG_array[$i],"居住地")||strstr($CN_ENG_array[$i],"所在地")||strstr($CN_ENG_array[$i],"现所在")||strstr($CN_ENG_array[$i],"工作地")||strstr($CN_ENG_array[$i],"所在城市")||strstr($CN_ENG_array[$i],"期望地点")||strstr($CN_ENG_array[$i],"Location")||strstr($CN_ENG_array[$i],"意向城市"))
+            if(strstr($CN_ENG_array[$i],"目标地点")||strstr($CN_ENG_array[$i],"意向地区")||strstr($CN_ENG_array[$i],"居住地")||strstr($CN_ENG_array[$i],"所在地")
+                ||strstr($CN_ENG_array[$i],"现所在")||strstr($CN_ENG_array[$i],"工作地")||strstr($CN_ENG_array[$i],"所在城市")
+                ||strstr($CN_ENG_array[$i],"期望地点")||strstr($CN_ENG_array[$i],"Location")||strstr($CN_ENG_array[$i],"意向城市"))
                 if(strstr($CN_ENG_array[$i+1],"籍贯")||strstr($CN_ENG_array[$i+1],"户口")||strstr($CN_ENG_array[$i+1],"居住地")||strstr($CN_ENG_array[$i+1],"所在地")||strstr($CN_ENG_array[$i+1],"工作地")||strstr($CN_ENG_array[$i+1],"所在城市"))
                     $city = $CN_ENG_array[$i+2];
                 else
@@ -205,13 +221,15 @@ class PartitionParse{
 
     //获取手机或电话
     public function getphone($details){
-        $mobile = "/13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
-        $telephone = "/[0-9]{3,4}[-][0-9]{7,8}/";
+        //$mobile = "/13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+        $mobile = "/13[0-9]{1}[0-9]{8}(?!\d)|15[0-9]{1}[0-9]{8}(?!\d)|17[0-9]{1}[0-9]{8}(?!\d)|18[0-9]{1}[0-9]{8}(?!\d)/";
+        $telephone = "/[0-9]{3,4}[-][0-9]{7,8}(?!\d)/";
         preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[-])+/u",$details,$arr);
         $num = count($arr[0]);
         for($i=0;$i<$num;$i++){
-            if(preg_match($mobile,$arr[0][$i])||preg_match($telephone,$arr[0][$i])) {
-                $phone = $arr[0][$i];
+            $td_str = preg_replace('/\s|　|-| /','',$arr[0][$i]);
+            if(preg_match($mobile,$td_str,$phoneArr)||preg_match($telephone,$td_str,$phoneArr)) {
+                $phone = $phoneArr[0];
                 break;
             }
         }
@@ -220,13 +238,13 @@ class PartitionParse{
 
     //获取邮箱
     public function getemail($details){
-        $mail = "/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/";
+        $mail = "/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)/";
         preg_match_all("/([\x{4e00}-\x{9fa5}]|[a-zA-Z0-9]|[_]|[@.])+/u",$details,$arr);
         //preg_match_all("/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/u",$details,$arr);
         $num = count($arr[0]);
         for($i=0;$i<$num;$i++){
-            if(preg_match($mail,$arr[0][$i])) {
-                $email = $arr[0][$i];
+            if(preg_match_all($mail,$arr[0][$i],$emailTemp)) {
+                $email = $emailTemp[0][0];
                 break;
             }
         }
@@ -238,109 +256,112 @@ class PartitionParse{
         $temp = preg_replace('/nbsp/','',$details);
         $regular = "/[0-9]{2}.{0,2}岁/u";
 
-        preg_match($regular,$temp,$match);
-        if($match) {
-            $birth = substr($match[0], 0, 2);
-            $birth = date("Y") - intval($birth);
-            return $birth;
-        }
-        else{
-            preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[a-zA-Z])+/u", $temp, $arr);
-            $num = count($arr[0]);
-            $Year = date('Y');
-            for ($i = 0; $i < $num; $i++) {
-                if (strstr($arr[0][$i], "出生日期")) {
-                    $year = $arr[0][$i + 1];
-                    if(preg_match("/\d/",$year)) {
-                        $len = strlen($year);
-                        if ($len > 4) {
-                            if (strstr($year, "岁")) {
-                                $year = str_replace('岁', '', $year);
-                                $birth = $Year - $year;
-                            } else {
-                                $year = substr($year, 0, 4);
-                                $birth = $year;
-                            }
-                        } else {
-                            //出生**：30
-                            if($len == 2 && $year < 60)
-                                $birth = $Year - $year;
-                            else
-                                $birth = $year;
-                        }
-                    }
-                } elseif (strstr($arr[0][$i], "出生年月")||strstr($arr[0][$i], "出生年")) {
-                    $year = $arr[0][$i + 1];
-                    if(preg_match("/\d/",$year)) {
-                        $len = strlen($year);
-                        if ($len > 4) {
-                            if (strstr($year, "岁")) {
-                                $year = str_replace('岁', '', $year);
-                                $birth = $Year - $year;
-                                break;
-                            } elseif (strstr($year, "年")) {
-                                $year = str_replace('年', '', $year);
-                                $year = substr($year, 0, 4);
-                                $birth = $year;
-                                break;
-                            } else {
-                                $year = substr($year, 0, 4);
-                                $birth = $year;
-                                break;
-                            }
-                        } else {
-                            //出生**：30
-                            if($len == 2 && $year < 60)
-                                $birth = $Year - $year;
-                            else
-                                $birth = $year;
-                            break;
-                        }
-                    }
-                } elseif (strstr($arr[0][$i], "年龄") || strstr($arr[0][$i], "年纪") || strstr($arr[0][$i], "Age")) {
-                    $year_old = $arr[0][$i + 1];
-                    if(preg_match("/\d/",$year_old)) {
-                        if (strstr($year_old, "年")) {
-                            $year = str_replace('年', '', $year_old);
+        preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[a-zA-Z])+/u", $temp, $arr);
+        $num = count($arr[0]);
+        $Year = date('Y');
+        for ($i = 0; $i < $num; $i++) {
+            if (strstr($arr[0][$i], "出生日期")) {
+                $year = $arr[0][$i + 1];
+                if(preg_match("/\d/",$year)) {
+                    $len = strlen($year);
+                    if ($len > 4) {
+                        if (strstr($year, "年")) {
+                            $year = str_replace('年', '', $year);
                             $year = substr($year, 0, 4);
                             $birth = $year;
                             break;
-                        } elseif (strstr($year_old, "岁")) {
-                            $year = str_replace('岁', '', $year_old);
+                        }elseif (strstr($year, "岁")) {
+                            $year = str_replace('岁', '', $year);
                             $birth = $Year - $year;
-                            break;
                         } else {
-                            //年龄：1987.3
-                            if(intval($arr[0][$i + 1]) > 1960)
-                                $birth = $arr[0][$i + 1];
-                            else
-                                $birth = $Year - $arr[0][$i + 1];
-                            break;
+                            $year = substr($year, 0, 4);
+                            $birth = $year;
                         }
+                    } else {
+                        //出生**：30
+                        if($len == 2 && $year < 60)
+                            $birth = $Year - $year;
+                        else
+                            $birth = $year;
                     }
-                } elseif ((strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "纪")) || (strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "龄"))) {
-                    $year_old = $arr[0][$i + 2];
-                    if(preg_match("/\d/",$year_old)){
-                        if (strstr($year_old, "年")) {
-                            $year = str_replace('年', '', $year_old);
+                }
+            } elseif (strstr($arr[0][$i], "出生年月")||strstr($arr[0][$i], "出生年")) {
+                $year = $arr[0][$i + 1];
+                if(preg_match("/\d/",$year)) {
+                    $len = strlen($year);
+                    if ($len > 4) {
+                        if (strstr($year, "年")) {
+                            $year = str_replace('年', '', $year);
                             $year = substr($year, 0, 4);
                             $birth = $year;
                             break;
-                        } elseif (strstr($year_old, "岁")) {
-                            $year = str_replace('岁', '', $year_old);
+                        }elseif (strstr($year, "岁")) {
+                            $year = str_replace('岁', '', $year);
                             $birth = $Year - $year;
                             break;
-                        } else {
-                            //年龄：1987.3
-                            if(intval($arr[0][$i + 2]) > 1960)
-                                $birth = $arr[0][$i + 2];
-                            else
-                                $birth = $Year - $arr[0][$i + 2];
+                        }  else {
+                            $year = substr($year, 0, 4);
+                            $birth = $year;
                             break;
                         }
+                    } else {
+                        //出生**：30
+                        if($len == 2 && $year < 60)
+                            $birth = $Year - $year;
+                        else
+                            $birth = $year;
+                        break;
+                    }
+                }
+            } elseif (strstr($arr[0][$i], "年龄") || strstr($arr[0][$i], "年纪") || strstr($arr[0][$i], "Age")) {
+                $year_old = $arr[0][$i + 1];
+                if(preg_match("/\d/",$year_old)) {
+                    if (strstr($year_old, "年")) {
+                        $year = str_replace('年', '', $year_old);
+                        $year = substr($year, 0, 4);
+                        $birth = $year;
+                        break;
+                    } elseif (strstr($year_old, "岁")) {
+                        $year = str_replace('岁', '', $year_old);
+                        $birth = $Year - $year;
+                        break;
+                    } else {
+                        //年龄：1987.3
+                        if(intval($arr[0][$i + 1]) > 1960)
+                            $birth = $arr[0][$i + 1];
+                        else
+                            $birth = $Year - $arr[0][$i + 1];
+                        break;
+                    }
+                }
+            } elseif ((strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "纪")) || (strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "龄"))) {
+                $year_old = $arr[0][$i + 2];
+                if(preg_match("/\d/",$year_old)){
+                    if (strstr($year_old, "年")) {
+                        $year = str_replace('年', '', $year_old);
+                        $year = substr($year, 0, 4);
+                        $birth = $year;
+                        break;
+                    } elseif (strstr($year_old, "岁")) {
+                        $year = str_replace('岁', '', $year_old);
+                        $birth = $Year - $year;
+                        break;
+                    } else {
+                        //年龄：1987.3
+                        if(intval($arr[0][$i + 2]) > 1960)
+                            $birth = $arr[0][$i + 2];
+                        else
+                            $birth = $Year - $arr[0][$i + 2];
+                        break;
                     }
                 }
             }
+        }
+        preg_match($regular,$temp,$match);
+        if(!$birth && $match) {
+            $birth = substr($match[0], 0, 2);
+            $birth = date("Y") - intval($birth);
+            return $birth;
         }
         //dump($birth);
         return $birth;
@@ -447,7 +468,7 @@ class PartitionParse{
             foreach($times[$k] as $k1=>$v1){
                 foreach($v1 as $k2=>$v2){
                     if(preg_match("/.*至今|现在.*/u",$v2)){
-                        $times[$k][$k1][$k2] = date("Y/m");
+                        $times[$k][$k1][$k2] = date("Y/m",2147483647);
 
                     }
                 }
@@ -795,8 +816,8 @@ class PartitionParse{
         //将空格,回车,换行都替换为空格，这样匹配就只考虑空格
         //$resume =  preg_replace("/\s+/"," ",$resume);
 
-        //提取中英文数组
-        preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
+        //提取中文数组
+        preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
         //获得姓名
         $resume['name'] = $this->getName($CN_ENG_array[0]);
 
@@ -893,7 +914,7 @@ class PartitionParse{
             foreach ($times[$k] as $k1 => $v1) {
                 foreach ($v1 as $k2 => $v2) {
                     if (preg_match("/.*至今|现在.*/u", $v2)) {
-                        $times[$k][$k1][$k2] = date("Y/m");
+                        $times[$k][$k1][$k2] = date("Y/m",2147483647);
                     }
                 }
             }

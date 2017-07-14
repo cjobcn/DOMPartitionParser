@@ -135,7 +135,14 @@ class ParseCommon1 extends AbstractParser {
         if($project){
             $this->project($project,$record);
         }
-        return $record;
+        $Pased = false;
+        if(($record['phone']||$record['email'])&&$record['career']){
+            $Pased = true;
+        }
+        if($Pased==true)
+            return $record;
+        else
+            return null;
     }
 
     //获取DOM数组
@@ -153,6 +160,10 @@ class ParseCommon1 extends AbstractParser {
             $career = $career.'<br/>'.$data[$i++];
         }
         $record['career'] = $this->careerDetail($career);
+        if($record['career']){
+            $record['last_company'] = $record['career'][0]['company'];
+            $record['last_position'] = $record['career'][0]['position'];
+        }
         //return $record;
     }
     public function careerDetail($career){
@@ -198,6 +209,11 @@ class ParseCommon1 extends AbstractParser {
             $educations = $educations.'<br/>'.$data[$i++];
         }
         $record['education'] = $this->edducationDetail($educations);
+        if($record['education']){
+            $record['school'] = $record['education'][0]['school'];
+            $record['major'] = $record['education'][0]['major'];
+            $record['degree'] = $record['education'][0]['degree'];
+        }
         //return $record;
     }
     //提取教育信息
