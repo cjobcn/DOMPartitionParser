@@ -456,53 +456,7 @@ class PartitionParse{
     }
     //合并工作经历
     public function dealExperiences($experiences){
-        $date = "(?:19[7-9][0-9]|20[0-1][0-9])\D+(?:\d{1,2}\D?)?";
-        $endDate = "(?:" . $date . "|至今|现在)";
-        //给工作经历时间进行排序
-        foreach($experiences as $k=>$v){
-            preg_match_all("/".$endDate."/u",$v['content'],$experienceTime);
-            $times[$k] =$experienceTime;
-            //dump($times[$k]);die;
-            foreach($times[$k] as $k1=>$v1){
-                foreach($v1 as $k2=>$v2){
-                    if(preg_match("/.*至今|现在.*/u",$v2)){
-                        $times[$k][$k1][$k2] = date("Y/m",2147483647);
-
-                    }
-                }
-            }
-            $starttime[$k] = $times[$k][$k1][0];
-            $endtime[$k] = $times[$k][$k1][1];
-        }
-        $year = "/\d{4}/";
-        $month = "/\d{1,2}/";
-        for ($i = 0; $i < count($experiences); $i++) {
-            //得到4位数字
-            preg_match_all($year, $starttime[$i], $startyeardate);
-            $startyear[$i] = $startyeardate;
-
-            //从第四位得到1或2位数字
-            preg_match_all($month, substr($starttime[$i], 4), $startmonthdate);
-            $startmonth[$i] = $startmonthdate;
-            if(strlen($startmonth[$i][0][0])==1){
-                $startmonth[$i][0][0] = "0".$startmonth[$i][0][0];
-            }
-
-            preg_match_all($year, $endtime[$i], $endyeardate);
-            $endyear[$i] = $endyeardate;
-
-            preg_match_all($month, substr($endtime[$i], 4), $endmonthdate);
-            $endmonth[$i] = $endmonthdate;
-            if(strlen($endmonth[$i][0][0])==1){
-                $endmonth[$i][0][0] = "0".$endmonth[$i][0][0];
-            }
-
-//            $experiences[$i]['startdate'] = intval($startyear[$i][0][0].$startmonth[$i][0][0]);
-//            $experiences[$i]['enddate'] = intval($endyear[$i][0][0].$endmonth[$i][0][0]);
-            $experiences[$i]['start_time'] = strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01');
-            $experiences[$i]['end_time'] = strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01');
-        }
-
+        $this->fundTime($experiences);
         $num = count($experiences);
         for ($k = 1; $k < $num; $k++) {
             for ($j = 0; $j < $k; $j++) {
@@ -915,38 +869,40 @@ class PartitionParse{
             foreach ($times[$k] as $k1 => $v1) {
                 foreach ($v1 as $k2 => $v2) {
                     if (preg_match("/.*至今|现在.*/u", $v2)) {
-                        $times[$k][$k1][$k2] = date("Y/m",2147483647);
+                        $times[$k][$k1][$k2] = "至今";
                     }
                 }
             }
             $starttime[$k] = $times[$k][$k1][0];
             $endtime[$k] = $times[$k][$k1][1];
-        }
 
-        $year = "/\d{4}/";
-        $month = "/\d{1,2}/";
-        for ($i = 0; $i < count($experiences); $i++) {
+            $year = "/\d{4}/";
+            $month = "/\d{1,2}/";
+
             //得到4位数字
-            preg_match_all($year, $starttime[$i], $startyeardate);
-            $startyear[$i] = $startyeardate;
+            preg_match_all($year, $starttime[$k], $startyeardate);
+            $startyear[$k] = $startyeardate;
 
             //从第四位得到1或2位数字
-            preg_match_all($month, substr($starttime[$i], 4), $startmonthdate);
-            $startmonth[$i] = $startmonthdate;
-            if (strlen($startmonth[$i][0][0]) == 1) {
-                $startmonth[$i][0][0] = "0" . $startmonth[$i][0][0];
+            preg_match_all($month, substr($starttime[$k], 4), $startmonthdate);
+            $startmonth[$k] = $startmonthdate;
+            if (strlen($startmonth[$k][0][0]) == 1) {
+                $startmonth[$k][0][0] = "0" . $startmonth[$k][0][0];
             }
+            $experiences[$k]['start_time'] = strtotime($startyear[$k][0][0] .'/'. $startmonth[$k][0][0].'/01')?strtotime($startyear[$k][0][0] .'/'. $startmonth[$k][0][0].'/01'):'';
+            if($endtime[$k]!="至今"){
+                preg_match_all($year, $endtime[$k], $endyeardate);
+                $endyear[$k] = $endyeardate;
 
-            preg_match_all($year, $endtime[$i], $endyeardate);
-            $endyear[$i] = $endyeardate;
-
-            preg_match_all($month, substr($endtime[$i], 4), $endmonthdate);
-            $endmonth[$i] = $endmonthdate;
-            if (strlen($endmonth[$i][0][0]) == 1) {
-                $endmonth[$i][0][0] = "0" . $endmonth[$i][0][0];
+                preg_match_all($month, substr($endtime[$k], 4), $endmonthdate);
+                $endmonth[$k] = $endmonthdate;
+                if (strlen($endmonth[$k][0][0]) == 1) {
+                    $endmonth[$k][0][0] = "0" . $endmonth[$k][0][0];
+                }
+                $experiences[$k]['end_time'] = strtotime($endyear[$k][0][0] .'/'. $endmonth[$k][0][0].'/01')?strtotime($endyear[$k][0][0] .'/'. $endmonth[$k][0][0].'/01'):'';
+            }else{
+                $experiences[$k]['end_time'] = 2147483647;
             }
-            $experiences[$i]['start_time'] = strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01')?strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01'):'';
-            $experiences[$i]['end_time'] = strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01')?strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01'):'';
         }
     }
 }
