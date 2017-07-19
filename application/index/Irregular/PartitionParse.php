@@ -13,7 +13,6 @@ class PartitionParse{
 
     //返回姓名
     public function getName($CN_ENG_array){
-        //vde($CN_ENG_array);
 //		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
 //		$lastName = iconv("gb2312", "utf-8//IGNORE",$lastName);
         for($i = 0; $i < count($CN_ENG_array); $i++){
@@ -83,7 +82,6 @@ class PartitionParse{
                     $name = array();
                     preg_match('/(?<=,|^)'. $fname .'[\x{4e00}-\x{9fa5}]{1,2}(?![\x{4e00}-\x{9fa5}])/u', $value, $name);
                     if($name[0] && !preg_match($black_list,$name[0])){
-                        vde($name);
                         $name =  $name[0];
                         break;
                     }
@@ -867,6 +865,9 @@ class PartitionParse{
             $educationExp[$key]['school'] = $educationInfo['school'];
             $educationExp[$key]['major'] = $educationInfo['major'];
             $educationExp[$key]['degree'] = $educationInfo['firstDegree'];
+            $educationInfo2 = $this->getEducationInfo($detail[0],$detail[0]);//获取第一学历和最高学历
+            $educationExp[$key]['firstDegree'] = $educationInfo2['firstDegree'];
+            $educationExp[$key]['topDegree'] = $educationInfo2['topDegree'];
 
             //判断学校是985还是211
             if($educationInfo['school']) {
@@ -944,8 +945,8 @@ class PartitionParse{
             if (strlen($endmonth[$i][0][0]) == 1) {
                 $endmonth[$i][0][0] = "0" . $endmonth[$i][0][0];
             }
-            $experiences[$i]['start_time'] = strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01');
-            $experiences[$i]['end_time'] = strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01');
+            $experiences[$i]['start_time'] = strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01')?strtotime($startyear[$i][0][0] .'/'. $startmonth[$i][0][0].'/01'):'';
+            $experiences[$i]['end_time'] = strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01')?strtotime($endyear[$i][0][0] .'/'. $endmonth[$i][0][0].'/01'):'';
         }
     }
 }

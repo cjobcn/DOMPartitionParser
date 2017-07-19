@@ -79,10 +79,10 @@ class ParseCommon1 extends AbstractParser {
             "'&(copy|#169);'i",
             "'&#(d+);'e"); // 作为 PHP 代码运行
 
-        $replace = array ("",
-            "",
-            "",
-            "",
+        $replace = array (" ",
+            " ",
+            " ",
+            " ",
             "\1",
             "\"",
             "&",
@@ -135,6 +135,7 @@ class ParseCommon1 extends AbstractParser {
         if($project){
             $this->project($project,$record);
         }
+        //return $record;
         $Pased = false;
         if(($record['phone']||$record['email'])&&$record['career']){
             $Pased = true;
@@ -193,10 +194,11 @@ class ParseCommon1 extends AbstractParser {
         $partitionParse = new PartitionParse();
         foreach($projectExperiences as $key=>$value){
             $projectExp[$key]['description'] = $value;
+            $projectExp[$key]['content'] = $value;
             $projectExp[$key]['position'] = $partitionParse->getPosition($value);
         }
         $partitionParse->fundTime($projectExp);
-        $record['project'] = $projectExp;
+        $record['projects'] = $projectExp;
     }
     //将教育经历拼接成一段
     public function education($data, $start, $end, &$record) {
@@ -212,7 +214,7 @@ class ParseCommon1 extends AbstractParser {
         if($record['education']){
             $record['school'] = $record['education'][0]['school'];
             $record['major'] = $record['education'][0]['major'];
-            $record['degree'] = $record['education'][0]['degree'];
+            $record['degree'] = $record['education'][0]['firstDegree'];
         }
         //return $record;
     }

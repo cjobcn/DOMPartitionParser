@@ -760,12 +760,12 @@ class ParseCommon{
 	public function project($projectExperiences){
 		foreach($projectExperiences as $key=>$value){
 			$projectExp[$key]['description'] = $value;
+			$projectExp[$key]['content'] = $value;
 			$projectExp[$key]['position'] = $this->getPosition($value);
 		}
 		$partitionParse = new PartitionParse();
-		$partitionParse->fundTime($educationExp);
-
-		return $educationExp;
+		$partitionParse->fundTime($projectExp);
+		return $projectExp;
 	}
 	/**去除JSCSS标签
 	 * @param $str
@@ -788,10 +788,10 @@ class ParseCommon{
 				"'&(copy|#169);'i",
 				"'&#(d+);'e"); // 作为 PHP 代码运行
 
-		$replace = array ("",
-				"",
-				"",
-				"",
+		$replace = array (" ",
+				" ",
+				" ",
+				" ",
 				"\1",
 				"\"",
 				"&",
@@ -821,6 +821,9 @@ class ParseCommon{
 		//提取中文数组
 		//preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
+		if(!$CN_ENG_array){
+			preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
+		}
 		//获得姓名
 		$resume['name'] = $this->getName($CN_ENG_array[0]);
 		//获得所在城市
@@ -847,7 +850,7 @@ class ParseCommon{
 
 		$resume['career'] = $workExperiencesList;
 		if($this->project){
-			$resume['project'] = $this->project($this->project);
+			$resume['projects'] = $this->project($this->project);
 		}
 		foreach($workExperiencesList as $k=>$v){
 			if($workExperiencesList[$k]['company']){
@@ -904,7 +907,9 @@ class ParseCommon{
 				$resume['education']['is211'] = true;
 			}
 		}*/
+		//vde($resume);
 
+		//return $resume;
 		$Pased = false;
 		if(($resume['phone']||$resume['email'])&&$resume['career']){
 			$Pased = true;
