@@ -175,7 +175,7 @@ class ParseCommon1 extends AbstractParser {
         foreach($experiencesList as $key=>$value){
             if($value['projectExperiences']){
                 foreach($value['projectExperiences'] as $key1=>$value1) {
-                    $projectExperiences[] = $partitionParse->getWorkExperiences($value1);;
+                    $projectExperiences[] = $value1;
                 }
             }
             unset($experiencesList[$key]['projectExperiences']);
