@@ -42,6 +42,7 @@ class Parser extends Controller {
                 if($templateId != "14")
                     ParserLog::toSupport($originContent, $id);
                 //通用解析
+                $content = unescape($content);
                 $Parser = new ParseCommon1();
                 $data = $Parser->parse($content);
                 if($data){
