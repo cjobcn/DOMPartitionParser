@@ -907,11 +907,10 @@ class ParseCommon{
 				$resume['education']['is211'] = true;
 			}
 		}*/
-		//vde($resume);
 
 		//return $resume;
 		$Pased = false;
-		if(($resume['phone']||$resume['email'])&&$resume['career']){
+		if($resume['career']){
 			$Pased = true;
 		}
 		if($Pased==true)

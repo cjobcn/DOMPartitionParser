@@ -137,7 +137,7 @@ class ParseCommon1 extends AbstractParser {
         }
         //return $record;
         $Pased = false;
-        if(($record['phone']||$record['email'])&&$record['career']){
+        if($record['career']){
             $Pased = true;
         }
         if($Pased==true)
