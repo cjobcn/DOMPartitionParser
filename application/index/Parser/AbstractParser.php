@@ -109,12 +109,13 @@ abstract class AbstractParser {
     /**
      * 正则分割
      * @param $content
-     * @param bool $all
-     * @param bool $partition
+     * @param bool  $all
+     * @param bool  $partition
      * @param array $separators
+     * @param array $hData
      * @return array
      */
-    public function pregParse($content, $all = false, $partition = true, $separators = array()) {
+    public function pregParse($content, $all = false, $partition = true, $separators = array(), &$hData = array()) {
         $titles = $this->titles;
         if(!$separators) $separators = $this->separators;
         $pattern = '/'.implode('|',$separators).'/is';
@@ -130,6 +131,7 @@ abstract class AbstractParser {
             $text = trim($text);
             if($text || $all){
                 $data[$i] = $text;
+                $hData[$i] = $value;
                 if($partition) {
                     if($method = $this->isTitle($text, $titles)){
                         $blocks[$j] = array($method, $i + 1);

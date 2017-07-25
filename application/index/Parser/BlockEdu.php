@@ -12,9 +12,10 @@ namespace app\index\Parser;
 class BlockEdu extends  AbstractParser {
 
     protected $patterns = array(
-        1=> '/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)：(.+)/',
-        2=> '/(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(月)?$/',
-        3=> '/(.+?)（ (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) ）/'
+        1 => array('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)：(.+)/', 0),
+        2 => array('/(?:时间： )?(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(月)?$/', 0 ),
+        3 => array('/(.+?)（ (\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) ）/', 0),
+        4 => array('/（(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)）/', 1)
     );
 
     /**
@@ -29,7 +30,8 @@ class BlockEdu extends  AbstractParser {
             $methods = explode(',', $methods);
         }
         foreach($methods as $method) {
-            if(preg_match($this->patterns[$method], $data[0])) {
+            if(preg_match($this->patterns[$method][0],
+                $data[$this->patterns[$method][1]])) {
                 $method = 'extract'.$method;
                 //dump($method);
                 $education = $this->$method($data);
@@ -130,7 +132,7 @@ class BlockEdu extends  AbstractParser {
             array('degree', '学历：'),
         );
         $patterns = array(
-            $this->patterns[3],
+            $this->patterns[3][0],
         );
         while($i < $length) {
             if(preg_match($patterns[0], $data[$i], $match)) {
@@ -138,6 +140,35 @@ class BlockEdu extends  AbstractParser {
                 $edu['start_time'] = Utility::str2time($match[2]);
                 $edu['end_time'] = Utility::str2time($match[3]);
                 $edu['school'] = $match[1];
+                $education[$j++] = $edu;
+            }elseif($KV = $this->parseElement($data, $i, $rules)) {
+                $education[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }
+            $i++;
+        }
+        return $education;
+    }
+
+    public function extract4($data) {
+        $length = count($data);
+        $i = 0;
+        $j = 0;
+        $education = array();
+        $rules = array(
+            array('major', '专业：'),
+            array('degree', '学历：'),
+            array('isNURS', '是否统招：')
+        );
+        $patterns = array(
+            $this->patterns[4][0],
+        );
+        while($i < $length) {
+            if(preg_match($patterns[0], $data[$i+1], $match)) {
+                $edu = array();
+                $edu['start_time'] = Utility::str2time($match[1]);
+                $edu['end_time'] = Utility::str2time($match[2]);
+                $edu['school'] = $data[$i++];
                 $education[$j++] = $edu;
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $education[$j-1][$KV[0]] = $KV[1];

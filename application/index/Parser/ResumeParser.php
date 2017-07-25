@@ -23,6 +23,7 @@ class ResumeParser {
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
         '15' => '/中文简历_\d+/',
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
+        '17' => '/简历编号：<span data-nick="res_id">\w+/',
     );
 
     /**
