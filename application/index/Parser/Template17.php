@@ -61,7 +61,7 @@ class Template17 extends AbstractParser {
         $content = $this->preprocess($content);
         list($data, $blocks) = $this->pregParse($content,
             false, true, $this->separators, $hData);
-        dump($hData);
+        //dump($hData);
         //dump($blocks);
         $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
