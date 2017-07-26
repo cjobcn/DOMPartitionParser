@@ -142,7 +142,8 @@ class DataConverter {
     }
 
     public function image2Phone($data, &$newKey) {
-        if($this->rawData['phone']) return $data;
+        if($this->phone($this->rawData['phone']))
+            return $data;
         $newKey = 'phone';
         $str = $this->image2Str($data, 'phone');
         return $str;
