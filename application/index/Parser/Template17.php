@@ -20,6 +20,7 @@ class Template17 extends AbstractParser {
         array('name', '姓名：'),
         array('sex', '性别：'),
         array('age', '年龄：'),
+        array('phone', '联系电话：'),
         array('email', '电子邮件：'),
         array('degree', '教育程度：'),
         array('marriage', '婚姻状况：'),
@@ -67,6 +68,7 @@ class Template17 extends AbstractParser {
         $this->basic($data,0,$end, $record);
         if(preg_match_all('/<img class=\"(email|telphone)\"\s+src=\"(.+?)\">/s', $content, $match)){
             foreach($match[1] as $index=>$keyword) {
+                $keyword = ($keyword == 'telphone')?'phone':'email';
                 $record[$keyword . '_image'] = $match[2][$index];
             }
         }

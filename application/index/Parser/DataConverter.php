@@ -24,6 +24,7 @@ class DataConverter {
         'birth_year'  => 'birthYear',
         'age'         => 'age',
         'work_year'   => 'workYear',
+        'phone_image' => 'image2Phone',
     );
 
     protected $rawData = array();
@@ -38,7 +39,11 @@ class DataConverter {
         $map = $this->MethodMap;
         $method = $map[$keyName];
         if($method){
-            $value = $this->$method($rawValue);
+            $newKey = '';
+            $value = $this->$method($rawValue, $newKey);
+            if($newKey){
+                return array($newKey, $value);
+            }
             return array($keyName, $value);
         }else{
             //原值返回
@@ -134,6 +139,31 @@ class DataConverter {
         $data = str_replace($find,"",$data);
         $data = str_replace("，",",",$data);
         return trim($data);
+    }
+
+    public function image2Phone($data, &$newKey) {
+        if($this->rawData['phone']) return $data;
+        $newKey = 'phone';
+        $str = $this->image2Str($data, 'phone');
+        return $str;
+    }
+
+    public function image2Str($data, $key) {
+        $image_bs64 = str_replace('data:image/png;base64,', '', $data);
+        $url = 'http://118.242.40.171:5000';
+        $res = $this->doPost(array('img_base64' => $image_bs64), $url);
+        return $res[$key];
+    }
+
+    public function doPost($data, $url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        $result = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+        return $result;
     }
 
 }
