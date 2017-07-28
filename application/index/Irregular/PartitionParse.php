@@ -917,27 +917,33 @@ class PartitionParse{
             array('performance ', '职责业绩：|参与项目：'),
             array('underlings ', '下属人数：'),
             array('left_reason  ', '离职原因：'),
-            array('city  ', '城市：'),
+            array('city  ', '城市：|所在地区：'),
         );
+        $i = $j = 0;
         foreach($rules as $key=>$value){
             $match = "/".$value[1]."/";
             if(preg_match($match,$experirnce['content'])){
                 $ruleArr = explode('|',$value[1]);
                 foreach($ruleArr as $key2=>$value2){
                     if(stripos($experirnce['content'],$value2)>0){
-                        $keyWords[$value[0]] = stripos($experirnce['content'],$value2);
+                        $keyWords[$i]['start_num'] = stripos($experirnce['content'],$value2);
+                        $keyWords[$i]['keyword'] = $value[0];
+                        $i++;
                     }
                 }
             }
         }
-        ksort($keyWords);//排序
         //循环赋值
         if($keyWords){
+            //$keyWordsNum = array_column($keyWords,'start_num');
+            asort($keyWords);//排序
+            $keyWords = array_values($keyWords);
             foreach($keyWords as $key=>$value){
-                if($keyWords[$key+1]>0){
-                    $experirnce[$key] = substr($experirnce['content'],$value,$keyWords[$key+1]);
+                //vde(substr($experirnce['content'],$value['start_num']));
+                if($keyWords[$key+1]['start_num']>$value['start_num']){
+                    $experirnce[$value['keyword']] = substr($experirnce['content'],$value['start_num'],($keyWords[$key+1]['start_num']-$value['start_num']));
                 }else{
-                    $experirnce[$key] = substr($experirnce['content'],$value);
+                    $experirnce[$value['keyword']] = substr($experirnce['content'],$value['start_num']);
                 }
             }
         }
