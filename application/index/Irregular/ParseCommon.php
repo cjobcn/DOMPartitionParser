@@ -378,6 +378,9 @@ class ParseCommon{
 			if($dealexperiences[$i]){
 				//判断公司是在年份的前面还是后面
 				$content = $dealexperiences[$i]['content'];
+				//提取工作职责和工作描述
+				$Partation = new PartitionParse();
+				$Partation->experienceDetail($dealexperiences[$i]);
 				//如果工作经历长度大于120个汉字，且没有找到公司名，就去前面找公司名  ”2014年09月-2016年01月      平安好房（上海）电子商务有限公司“
 				$content_front = mb_substr($content,0,120,'utf-8');
 				$companyName = $this->getCompany($content_front,1);

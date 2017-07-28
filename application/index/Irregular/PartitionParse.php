@@ -411,7 +411,9 @@ class PartitionParse{
 
                 //判断公司是在年份的前面还是后面
                 $content = $dealexperiences[$i]['content'];
-
+                //提取工作职责和工作描述
+                $Partation = new PartitionParse();
+                $Partation->experienceDetail($dealexperiences[$i]);
                 //如果工作经历长度大于120个汉字，且没有找到公司名，就去前面找公司名  ”2014年09月-2016年01月      平安好房（上海）电子商务有限公司“
                 $content_front = mb_substr($content,0,120,'utf-8');
                 $companyName = $this->getCompany($content_front,1);
@@ -903,6 +905,42 @@ class PartitionParse{
                 $experiences[$k]['end_time'] = strtotime($endyear[$k][0][0] .'/'. $endmonth[$k][0][0].'/01')?strtotime($endyear[$k][0][0] .'/'. $endmonth[$k][0][0].'/01'):'';
             }else{
                 $experiences[$k]['end_time'] = 2147483647;
+            }
+        }
+    }
+    //解析详细的工作经历
+    public function experienceDetail(&$experirnce){
+        $rules = array(
+            array('department', '部门：|所在部门：|任职部门：'),
+            array('salary', '薪资：|月薪：'),
+            array('duty', '工作职责：|职责描述：|工作描述：'),
+            array('description', '公司描述：|公司介绍：|企业介绍：'),
+            array('report_to', '汇报对象：'),
+            array('performance ', '职责业绩：|参与项目：'),
+            array('underlings ', '下属人数：'),
+            array('left_reason  ', '离职原因：'),
+            array('city  ', '城市：'),
+        );
+        foreach($rules as $key=>$value){
+            $match = "/".$value[1]."/";
+            if(preg_match($match,$experirnce['content'])){
+                $ruleArr = explode('|',$value[1]);
+                foreach($ruleArr as $key2=>$value2){
+                    if(stripos($experirnce['content'],$value2)>0){
+                        $keyWords[$value[0]] = stripos($experirnce['content'],$value2);
+                    }
+                }
+            }
+        }
+        ksort($keyWords);//排序
+        //循环赋值
+        if($keyWords){
+            foreach($keyWords as $key=>$value){
+                if($keyWords[$key+1]>0){
+                    $experirnce[$key] = substr($experirnce['content'],$value,$keyWords[$key+1]);
+                }else{
+                    $experirnce[$key] = substr($experirnce['content'],$value);
+                }
             }
         }
     }
