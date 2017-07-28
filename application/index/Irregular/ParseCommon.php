@@ -369,7 +369,7 @@ class ParseCommon{
 			}
 			if(!$is_education){
 				$workExperiences[]['content'] = $workExperiencesList[$i];
-				$workExperiences[]['duty'] = $workExperiencesList[$i];
+				//$workExperiences[]['duty'] = $workExperiencesList[$i];
 			}
 		}
 		//合并项目经历到工作经历

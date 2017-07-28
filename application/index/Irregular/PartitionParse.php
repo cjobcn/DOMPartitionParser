@@ -401,14 +401,12 @@ class PartitionParse{
 //            }
 //            if(!$is_education)
               $workExperiences[]['content'] = $workExperiencesList[$i];
-              $workExperiences[]['duty'] = $workExperiencesList[$i];
         }
 
         //合并项目经历到工作经历
         $dealexperiences = $this->dealExperiences($workExperiences);
         for($i=0;$i<count($dealexperiences);$i++){
             if($dealexperiences[$i]){
-
                 //判断公司是在年份的前面还是后面
                 $content = $dealexperiences[$i]['content'];
                 //提取工作职责和工作描述
