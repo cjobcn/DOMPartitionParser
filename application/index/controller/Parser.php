@@ -23,7 +23,7 @@ class Parser extends Controller {
             $originContent = $request->post('content');
             $id = $request->post('id');
             //内容丢失
-            if(!$originContent)
+            if(!$originContent || !is_string($originContent))
                 return json(array('status' => -2));
             //$type = $request->post('type');
             $Parser = new ResumeParser();
