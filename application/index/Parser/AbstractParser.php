@@ -112,7 +112,7 @@ abstract class AbstractParser {
      * @param bool  $all
      * @param bool  $partition
      * @param array $separators
-     * @param array $hData
+     * @param array $hData   带html的data数据
      * @return array
      */
     public function pregParse($content, $all = false, $partition = true, $separators = array(), &$hData = array()) {

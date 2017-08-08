@@ -240,7 +240,7 @@ class Template09 extends AbstractParser {
                     $k++;
                 }
             }elseif($currentKey == 'duty' || $currentKey == 'performance') {
-                $jobs[$j-1][$currentKey] .=  $data[$i];
+                $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }
