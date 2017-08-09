@@ -165,7 +165,7 @@ class Template12 extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }else{
-                $projects[$j-1][$currentKey] .= $data[$i];             
+                $projects[$j-1][$currentKey] .= '#br#'.$data[$i];
             }
             $i++;
         }

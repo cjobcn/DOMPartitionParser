@@ -73,7 +73,7 @@ class BlockCareer extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }elseif($currentKey){
-                $jobs[$j-1][$currentKey] .=  $data[$i];
+                $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }
@@ -129,7 +129,7 @@ class BlockCareer extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }elseif($j > 0 &&  in_array($currentKey, array('description', 'duty', 'performance'))) {
-                $jobs[$j-1][$currentKey] .=  $data[$i];
+                $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
 
             $i++;
@@ -165,7 +165,7 @@ class BlockCareer extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }elseif($currentKey == 'duty'){
-                $jobs[$j-1][$currentKey] .=  $data[$i];
+                $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }

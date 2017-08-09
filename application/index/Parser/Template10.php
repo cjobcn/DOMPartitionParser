@@ -133,7 +133,7 @@ class Template10 extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }elseif($currentKey){
-                $record[$currentKey] .= $data[$i];
+                $record[$currentKey] .= '#br#'.$data[$i];
             }
             $i++;
         }
@@ -192,7 +192,7 @@ class Template10 extends AbstractParser {
                 }
             }elseif($currentKey){
 
-                $jobs[$j-1][$currentKey] .= $data[$i];             
+                $jobs[$j-1][$currentKey] .= '#br#'.$data[$i];
             }
             $i++;
         }
@@ -251,7 +251,7 @@ class Template10 extends AbstractParser {
                 }
             }else{
                 if($currentKey == 'duty') {
-                    $jobs[$j-1][$currentKey] .= $data[$i];
+                    $jobs[$j-1][$currentKey] .= '#br#'.$data[$i];
                 }
             }
             $i++;

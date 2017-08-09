@@ -191,7 +191,7 @@ class Template13 extends AbstractParser {
                 $i = $i + $KV[2];
                 $currentKey = $KV[0];
             }elseif($currentKey){
-                $jobs[$j-1][$currentKey] .=  $data[$i];
+                $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }
