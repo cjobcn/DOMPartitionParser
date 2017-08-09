@@ -185,7 +185,7 @@ class Template11 extends AbstractParser {
                 }
             }else{
                 if($currentKey == 'duty') {
-                    $jobs[$j-1][$currentKey] .= $data[$i];
+                    $jobs[$j-1][$currentKey] .= '#br#'.$data[$i];
                 }                       
             }
             $i++;
