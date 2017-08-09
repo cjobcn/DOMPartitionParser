@@ -52,9 +52,10 @@ class Template16 extends  AbstractParser {
         $content = $this->preprocess($content);
         //echo $content;
         //分隔网页数据
-        list($data, $blocks) = $this->pregParse($content);
+        list($data, $blocks) = $this->pregParse($content, false, true, array(), $hData);
         //dump($data);
         //dump($blocks);
+        //dump($hData);
 
         //其他解析
         $length = $blocks[0][1] - 1 > 0 ? $blocks[0][1] - 1 : count($data);
@@ -63,7 +64,7 @@ class Template16 extends  AbstractParser {
         $this->basic($data, 2, $length - 1, $record);
         //各模块解析
         foreach ($blocks as $block) {
-            $this->$block[0]($data, $block[1], $block[2], $record);
+            $this->$block[0]($data, $block[1], $block[2], $record, $hData);
         }
 
         //dump($record);
@@ -76,9 +77,11 @@ class Template16 extends  AbstractParser {
         return $this->pregParse($content, false, false);
     }
 
-    public function career($data, $start, $end, &$record) {
+    public function career($data, $start, $end, &$record, $hData) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
+        $hData = array_slice($hData,$start, $length);
+        //dump($hData);
         $i = 0;
         $j = 0;
         $jobs = array();
@@ -90,7 +93,11 @@ class Template16 extends  AbstractParser {
                 $job['company'] = $data[$i-2];
                 $job['position'] = $data[$i-1];
                 $job['city'] = end(explode(")", $match[3]));
-                $job['duty'] = $data[++$i];
+                if(!preg_match('/<h4>/', $hData[$i+1]) && $i+1 < $length){
+                    $job['duty'] = $data[++$i];
+                }else{
+                    $job['duty'] = '';
+                }
                 $jobs[$j++] = $job;
             }
             $i++;

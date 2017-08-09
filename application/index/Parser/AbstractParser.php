@@ -43,6 +43,7 @@ abstract class AbstractParser {
     //abstract public function getDomArray($content);
 
     public function __construct() {
+        // 获取所有关键字，"|"分割
         $keywords = array_column($this->rules,1);
         $titles = array_column($this->titles,1);
         $keywords_str = implode('|',$keywords).'|'.implode('|',$titles);
@@ -53,22 +54,22 @@ abstract class AbstractParser {
         return '';
     }
 
-    //对简历内容预处理
+    //对简历内容预处理（默认不处理）
     public function preprocess($content) {
         return $content;
     }
 
     /*
-     * 分区块,同时将dom转换为数组（因为可以在一个循环中实现）
+     * 分区块,同时将dom树结构转换为一维数组（因为可以在一个循环中实现），这个数组这里成为DOM数组
      * @param string  $content    待解析内容
-     * @param string  $tag        包含数据的标签
+     * @param string  $tag        包裹数据的标签
      * @param boolean $all        是否保留空字符串数据，默认为true
      * @param boolean $partition  是否分区块，默认为true
-     * @param array   $html       带html标签的数组
+     * @param array   $hData       带html标签的DOM数组
      * @return array  $data       dom解析后得到的数组（保存的是文本）
      *                $blocks     分区块数组array('标题名', 区块开始索引，区块结束索引)
      */
-    public function domParse($content, $tag ='td',$all = true, $partition = true, &$htmls = null) {
+    public function domParse($content, $tag ='td',$all = true, $partition = true, &$hData = null) {
         $titles = $this->titles;
         $document = new Document($content);
         $tds = $document->find($tag);
@@ -76,18 +77,18 @@ abstract class AbstractParser {
         $j = 0;
         $blocks = array();
         $data = array();
-        $htmls = array();
+        $hData = array();
         foreach($tds as $td) {
             if(count($td->find($tag.' '.$tag)) > 0){
                 continue;
             }
             //将全角空格(E38080)和UTF8空格(C2A0)替换成半角空方
             $text = str_replace(array(chr(194).chr(160),'　'),' ',$td->text());
-            $text = preg_replace('/\s+/',' ',$text);
-            $text = trim($text);
+            //删除多余的不可见字符
+            $text = trim(preg_replace('/\s+/',' ',$text));
             if($text || $all){
                 $data[$i] = $text;
-                $htmls[$i] = $td->html();
+                $hData[$i] = $td->html();
                 if($partition) {
                     if($method = $this->isTitle($text, $titles)){
                         $blocks[$j] = array($method, $i + 1);
@@ -99,8 +100,7 @@ abstract class AbstractParser {
                 $i ++ ;
             }               
         }
-        if($j > 0)
-            $blocks[$j-1][2] = count($data) - 1;       
+        if($j > 0) $blocks[$j-1][2] = count($data) - 1;
         //dump($blocks);
         //dump($data);
         return $partition?array($data, $blocks):$data;
@@ -111,24 +111,26 @@ abstract class AbstractParser {
      * @param $content
      * @param bool  $all
      * @param bool  $partition
-     * @param array $separators
-     * @param array $hData   带html的data数据
+     * @param array $separators   分割符，默认使用成员变量
+     * @param array $hData       带html的data数据
      * @return array
      */
     public function pregParse($content, $all = false, $partition = true, $separators = array(), &$hData = array()) {
         $titles = $this->titles;
         if(!$separators) $separators = $this->separators;
         $pattern = '/'.implode('|',$separators).'/is';
+        //对文档进行分割
         $htmls = preg_split($pattern,$content);
         //dump($htmls);
-        $data = array();
-        $blocks = array();
         $i = 0;
         $j = 0;
+        $data = array();
+        $blocks = array();
+        $hData = array();
         foreach($htmls as $value) {
+            //去除html标记，转换html实体
             $text = html_entity_decode(strip_tags($value));
-            $text = str_replace(array(chr(194).chr(160),'　'),' ',$text);
-            $text = trim($text);
+            $text = trim(str_replace(array(chr(194).chr(160),'　'),' ',$text));
             if($text || $all){
                 $data[$i] = $text;
                 $hData[$i] = $value;
@@ -143,9 +145,8 @@ abstract class AbstractParser {
                 $i ++ ;
             }
         }
-        if($j > 0)
-            $blocks[$j-1][2] = count($data) - 1;
-        // dump($blocks);
+        if($j > 0) $blocks[$j-1][2] = count($data) - 1;
+        //dump($blocks);
         //dump($data);
         return $partition?array($data, $blocks):$data;
     }
@@ -163,8 +164,7 @@ abstract class AbstractParser {
                 $j ++;
             }
         }
-        if($j > 0)
-            $blocks[$j-1][2] = count($data) - 1;
+        if($j > 0) $blocks[$j-1][2] = count($data) - 1;
         return $blocks;
         
     }
@@ -191,12 +191,11 @@ abstract class AbstractParser {
     /* 
      * 根据关键字规则解析关键字对应的值
      * @param string $keyword 关键字字段
-     * @param $value null: 下一个值   int:取下$value个值 string: 值为value
+     * @param mixed $value 【int】:在DOM数组中取下$value个值 【string】: 值为value
      * @param array $rules 关键字解析规则，默认使用类的关键字解析规则
      * @return string 关键字对应键名 
      */
-    public function parseKeyword($keyword, &$value, $rules = '') {
-        $value = null;
+    public function parseKeyword($keyword, &$value, $rules = array()) {
         if(!$rules) $rules = $this->rules;
         //去除空格（所以规则中不能有空格）
         $keyword = preg_replace('/\s+/','',$keyword);
@@ -263,7 +262,7 @@ abstract class AbstractParser {
         return trim($data);
     }
 
-    //基础信息
+    //基础信息根据关键字提取
     public function basic($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
@@ -292,7 +291,7 @@ abstract class AbstractParser {
         $i = $start;
         $evaluation = '';
         while($i <= $end){  
-            $evaluation .= $data[$i++];        
+            $evaluation .= '#br#'.$data[$i++];
         }
         $record['self_str'] = $evaluation;
         return $evaluation;
@@ -300,7 +299,7 @@ abstract class AbstractParser {
 
     /**
      * 区块解析通用方法
-     * @param $data
+     * @param array $data
      * @param $start
      * @param $end
      * @param $conditions
@@ -308,7 +307,7 @@ abstract class AbstractParser {
      */
     public function blockParse($data, $start, $end, $conditions) {
         $length = $end - $start + 1;
-        $data = array_slice($data,$start, $length);
+        $data = array_slice($data, $start, $length);
         //关键字提取所用的规则
         $rules = $conditions['rules'];
         //顺序提取对应的键名
