@@ -186,12 +186,14 @@ class ParseCommon{
 		foreach($temp as $k=>$v){
 			if(!$salary['now'] && preg_match("/(?:薪|收入)?(?:现有|当前|目前|薪资).?(?:薪|收入)?.*?/u",$v)&&preg_match("/薪|收入|资/u",$v))    {//匹配当前薪资
 				if(!preg_match("/面议|待议/u", $v))       //如果存在面议字样 就认为不是当前
-					$salary['now'] = $this->parseSalary($v);
+					//$salary['now'] = $this->parseSalary($v);
+					$salary['now'] = $v;
 			}
 			elseif(preg_match("/(?:薪|收入)?期望.?(?:薪|收入)?.*?/u",$v)&&preg_match("/薪|收入|资/u",$v)) {//匹配期望薪资
 				if(preg_match("/面议|待议|面谈/u", $v,$out))       //如果存在面议字样 就认为是面议
 					$salary['hope'] = $out[0];
-				else $salary['hope'] = $this->parseSalary($v);
+				//else $salary['hope'] = $this->parseSalary($v);
+				else $salary['hope'] = $v;
 				break;
 			}
 		}
