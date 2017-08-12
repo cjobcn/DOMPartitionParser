@@ -166,4 +166,36 @@ class Template17 extends AbstractParser {
         return $education;
     }
 
+
+    public function projects($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        $j = 0;
+        $projects = array();
+        $rules = array(
+            array('position', '项目职务：'),
+            array('company', '所在公司：'),
+            array('description', '项目简介：'),
+            array('duty', '项目职责：'),
+            array('performance', '项目业绩：'),
+        );
+        while($i < $length) {
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/', $data[$i], $match)){
+                $project = array();
+                $project['start_time'] = Utility::str2time($match[1]);
+                $project['end_time'] = Utility::str2time($match[2]);
+                $project['name'] = $data[++$i];
+                $projects[$j++] = $project;
+            }elseif($KV = $this->parseElement($data, $i, $rules)){
+                $projects[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+            }
+            $i++;
+        }
+        $record['projects'] = $projects;
+        return $projects;
+
+    }
+
 }
