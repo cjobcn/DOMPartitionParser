@@ -8,7 +8,7 @@ class ResumeParser {
      */
     public $templateIDs = array(
         '14' => '/121\.41\.112\.72\:12885/',
-        '01' => '/简历编号(：|: )\d{1,8}[^\d\|]|<span class="resume-sub-info">简历编号：<span data-nick="res_id"><\/span>/',                       //猎聘网
+        '01' => '/简历编号(：|: )\d{1,8}[^\d\|]/',                       //猎聘网
         '02' => '/<title>基本信息_个人资料_会员中心_猎聘猎头网<\/title>/',  //猎聘编辑修改页面
         '03' => '/<title>我的简历<\/title>.+?<div class="index">/s',     //可能是智联招聘
         '04' => '/\(编号:J\d{7}\)的简历/i',                              //中国人才热线
@@ -23,7 +23,7 @@ class ResumeParser {
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
         '15' => '/中文简历_\d+/',
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
-        '17' => '/简历编号：<span data-nick="res_id">\w+/',
+        '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',
     );
 
     /**
