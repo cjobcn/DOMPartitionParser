@@ -217,7 +217,7 @@ class Template09 extends AbstractParser {
                     $job = array();
                     $job['start_time'] = Utility::str2time($match[1]);
                     $job['end_time'] = Utility::str2time($match[2]);
-                    $job['company'] = preg_split('/(\(|\（)(少于)?\d|\[/',$match[3])[0];
+                    $job['company'] = $match[3];
                     $jobs[$j++] = $job;
                     $k = 1;
                 }else{
