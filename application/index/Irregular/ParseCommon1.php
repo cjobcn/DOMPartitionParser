@@ -47,7 +47,7 @@ class ParseCommon1 extends AbstractParser {
         $patterns = array(
             '/<(td|h3|h2|h5|h1|span)/i',
             '/<\/(td|h3|h2|h5|h1|span)>/i',
-            '/\||<br.*?>/i',
+            '/\r|\t|\n|\||<br.*?>/i',
         );
         $replacements = array(
             '<div',

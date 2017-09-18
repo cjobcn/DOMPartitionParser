@@ -483,7 +483,9 @@ class PartitionParse{
      */
     public function getCompany($workExperience,$type){
         //支持**(上海)**有限公司
-        $companyName = "/(?:(?:[\x{4e00}-\x{9fa5}]){2,20}(?:\(|\（)(?:[\x{4e00}-\x{9fa5}]){2,4}(?:\)|\）)(?:[\x{4e00}-\x{9fa5}]){0,4}有限公司)/u";
+        //$workExperience='太平洋保险养老产业投资管理(上海)有限责任公司';
+        //$companyName = '/(?:(?:[\x{4e00}-\x{9fa5}]){2,200}(?:\(|\（)(?:[\x{4e00}-\x{9fa5}]){2,4}(?:\)|\）)(?:[\x{4e00}-\x{9fa5}]){0,40}公司)/u';
+        $companyName = '/[\x{4e00}-\x{9fa5}\(\)（\）]{2,40}公司/u';
         preg_match_all($companyName,$workExperience,$company);
         if($company[0]){
             if($type==1){
@@ -613,9 +615,10 @@ class PartitionParse{
     }
 
     public function getEducationInfo($educationExperiences,$content){
+
         //学校提取
         //vde($educationExperiences);
-        if(!array($educationExperiences)){
+        if(!is_array($educationExperiences)){
             $educationExperiences = explode(',',$educationExperiences);
         }
         foreach($educationExperiences as $key=>$value){
@@ -671,9 +674,9 @@ class PartitionParse{
         $details = str_replace("mba","工商管理",$details);
         $details = str_replace("MB A","工商管理",$details);//372专业出现问题
         $details = str_replace("mb a","工商管理",$details);
-
         preg_match_all("/[\x{4e00}-\x{9fa5}]+/u",$details,$educationArr);
         $num = count($educationArr[0]);
+
         //vde($educationArr);
         for($i=0;$i<$num;$i++){//从前向后匹配避免出现学校在专业后面
             //for($i=$num-1;$i>=0;$i--){//从后向前匹配避免出现专业在（所学专业）（学校专业）后面
@@ -807,12 +810,13 @@ class PartitionParse{
         //支持年份带空格
         $date = "(?:19[7-9][0-9]|20[0-1][0-9])\D{0,2}(?:\d{0,2}\D?)?";
         //$date = "(?:19[7-9][0-9]|20[0-1][0-9])\s*\D?\s*(?:\d{1,2}\s*\D?\s*)?";
-        $startDate = "/" . $date;
+        $startDate = "/([\x{4e00}-\x{9fa5}]{0,8}大学[\s\S]*?){0,1}" . $date;
+        //$startDate = "/" . $date;
         $interval = "\s*(?:-|—|至|–|－|~)*\s*";
         $endDate = "(?:" . $date . "|至今|现在)";
         $content = ".+?";
         $nextStartDate = "(?=(". $date;
-        $nextEndDate = $endDate . ")|(?:$))/u";
+        $nextEndDate = $endDate . "|$))/u";
         $match =  $startDate . $interval . $endDate . $content. $nextStartDate . $interval . $nextEndDate;
         //得到教育经历列表
         preg_match_all($match,$details,$detail);
@@ -825,7 +829,6 @@ class PartitionParse{
             $educationInfo2 = $this->getEducationInfo($detail[0],$detail[0]);//获取第一学历和最高学历
             $educationExp[$key]['firstDegree'] = $educationInfo2['firstDegree'];
             $educationExp[$key]['topDegree'] = $educationInfo2['topDegree'];
-
             //判断学校是985还是211
             if($educationInfo['school']) {
                 $where['fullname'] = array('like', '%' . $educationInfo['school'] . '%');
@@ -913,7 +916,7 @@ class PartitionParse{
         $rules = array(
             array('department', '部门：|所在部门：|任职部门：'),
             array('salary', '薪资：|月薪：'),
-            array('duty', '工作职责：|职责描述：|工作描述：'),
+            array('duty', '工作职责：|职责描述：|工作描述：|工作职责和业绩：'),
             array('description', '公司描述：|公司介绍：|企业介绍：'),
             array('report_to', '汇报对象：'),
             array('performance ', '职责业绩：|参与项目：'),
