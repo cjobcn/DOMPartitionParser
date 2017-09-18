@@ -203,12 +203,12 @@ class ParseCommon{
 	public function getphone($details){
 		//$mobile = "/13[0-9]{1}[0-9]{8}[\D*]|15[0-9]{1}[0-9]{8}[\D*]|17[0-9]{1}[0-9]{8}[\D*]|18[0-9]{1}[0-9]{8}[\D*]/";
 		$mobile = "/13[0-9]{1}[0-9]{8}(?!\d)|15[0-9]{1}[0-9]{8}(?!\d)|17[0-9]{1}[0-9]{8}(?!\d)|18[0-9]{1}[0-9]{8}(?!\d)/";
-		$telephone = "/[0-9]{3,4}[-][0-9]{7,8}(?!\d)/";
+		//$telephone = "/[0-9]{3,4}[-][0-9]{7,8}(?!\d)/"; 不需要固话
 		preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[-])+/u",$details,$arr);
 		$num = count($arr[0]);
 		for($i=0;$i<$num;$i++){
 			$td_str = preg_replace('/\s|　|-| /','',$arr[0][$i]);
-			if(preg_match($mobile,$td_str,$phoneArr)||preg_match($telephone,$td_str,$phoneArr)) {
+			if(preg_match($mobile,$td_str,$phoneArr)) {
 				$phone = $phoneArr[0];
 				break;
 			}
@@ -914,10 +914,9 @@ class ParseCommon{
 				$resume['education']['is211'] = true;
 			}
 		}*/
-
 		//return $resume;
 		$Pased = false;
-		if($resume['career']){
+		if($resume['career']||$resume['phone']){
 			$Pased = true;
 		}
 		if($Pased==true)
