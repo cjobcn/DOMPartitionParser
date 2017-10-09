@@ -22,6 +22,7 @@ class Parser extends Controller {
         if($request->isPost()) {
             $originContent = $request->post('content');
             $id = $request->post('id');
+            $originContent = preg_replace('/(?<!\r)\n/','\r\n',$originContent);
             //内容丢失
             if(!$originContent || !is_string($originContent))
                 return json(array('status' => -2));
@@ -43,7 +44,7 @@ class Parser extends Controller {
                     ParserLog::toSupport($originContent, $id);
                 //通用解析
                 $content = unescape($content);
-                $Parser = new ParseCommon1();
+                $Parser = new ParseCommon();
                 $data = $Parser->parse($content);
                 if($data){
                     $info = array(
