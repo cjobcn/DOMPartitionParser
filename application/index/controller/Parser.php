@@ -22,7 +22,7 @@ class Parser extends Controller {
         if($request->isPost()) {
             $originContent = $request->post('content');
             $id = $request->post('id');
-            $originContent = preg_replace('/(?<!\r)\n/','\r\n',$originContent);
+            $originContent = preg_replace('/(?<!\r)\n/',"\r\n",$originContent);
             //内容丢失
             if(!$originContent || !is_string($originContent))
                 return json(array('status' => -2));
