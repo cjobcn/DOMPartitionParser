@@ -50,7 +50,8 @@ class Template17 extends AbstractParser {
             '/<head>.+?<\/head>/is',
             '/<script.*?>.+?<\/script>/is',
             '/<style.*?>.+?<\/style>/is',
-            '/搜索同事/'
+            '/搜索同事/',
+            '/<\/font>/'
         );
         $content = preg_replace($redundancy, '', $content);
         return $content;
@@ -180,6 +181,7 @@ class Template17 extends AbstractParser {
             array('duty', '项目职责：'),
             array('performance', '项目业绩：'),
         );
+        $currentKey = '';
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/', $data[$i], $match)){
                 $project = array();
@@ -190,6 +192,9 @@ class Template17 extends AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $projects[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
+                $currentKey = $KV[0];
+            } elseif($currentKey){
+                $projects[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }

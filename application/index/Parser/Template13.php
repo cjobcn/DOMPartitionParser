@@ -213,6 +213,7 @@ class Template13 extends AbstractParser {
         $j = 0;
         $k = 0;
         $projects = array();
+        $currentKey = '';
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/', $data[$i], $match)){
                 $project = array();
@@ -223,6 +224,8 @@ class Template13 extends AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)) {
                 $projects[$j-1][$KV[0]] = $KV[1];
                 $i = $i + $KV[2];
+                $currentKey = $KV[0];
+
             }elseif($k > 0){
                 if($key = $sequence[$k-1]){
                     $projects[$j-1][$key] = $data[$i];
@@ -230,6 +233,8 @@ class Template13 extends AbstractParser {
                 }else{
                     $k = 0;
                 }
+            } elseif($currentKey) {
+                $projects[$j-1][$currentKey] .=  '#br#'.$data[$i];
             }
             $i++;
         }
