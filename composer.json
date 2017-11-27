@@ -1,6 +1,6 @@
 {
   "require": {
-    "fukuball/jieba-php": "0.25"
+    "topthink/think-testing" : "1.*"
   },
   "repositories": {
     "packagist": {

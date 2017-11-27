@@ -1,7 +1,7 @@
 <?php
 namespace app\index\controller;
 use app\index\Parser\DataExtractor;
-use app\index\Parser\ParserLog;
+use app\index\Parser\DataConverter;
 use app\index\Parser\ResumeParser;
 use think\Controller;
 
@@ -13,6 +13,10 @@ class TemplateTest extends Controller {
 		//echo $content;
 		$ResumeParser = new ResumeParser();
 		$record = $ResumeParser->parse($content,$templateId);
+        if($record){
+            $Converter = new DataConverter();
+            $Converter->multiConvert($record);
+        }
 		dump($templateId);
 		dump($record);
 		//return json($record);
@@ -60,19 +64,17 @@ class TemplateTest extends Controller {
     }
 
     public function xiace() {
-        $extractor = new DataExtractor();
-        $rawData = '邮箱：112353@qq.com 手机：17717291341';
-        $data = $extractor->extract('email', $rawData);
-        dump($data);
+        dump(input('post.name'));
 
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '16';
+	protected $templateId = '09';
     protected $pathIndex = 0;
 
     protected $path = array(
         '00' => array(
+
             '00109094.html',
             '1495433609.html',
             '智联招聘_蒋莹_中文_20131226_40902574.html',
@@ -81,6 +83,7 @@ class TemplateTest extends Controller {
             '1495079827.html'
         ),
         '01' => array(
+            '36150007.html',
             '00223779.html',
             '1505343.html',
             '1495621402.html',
@@ -118,6 +121,7 @@ class TemplateTest extends Controller {
             '6000000004278595陈乙文(13917403172).htm'
         ),
 		'09' => array(
+		    '56005998(2015-03-31).mht',
 		    '饶云飞-男-本科-架构师，技术负责人-8~9年.mht',
 		    '51job_陶琼(90100780).mht58629.htm',
 		    '51job_唐海平(770823).mht48600.htm',
@@ -188,6 +192,9 @@ class TemplateTest extends Controller {
             '60244412.html',
             '126872266.html',
             '3179411.html'
+        ),
+        '17' => array(
+            '1.html'
         ),
         'to_support' => array(
             '3110746.html',
