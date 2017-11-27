@@ -1,0 +1,76 @@
+{
+    "template": "17",
+    "data": {
+        "true_id": "fc95278fJda49b3ef",
+        "update_time": 1488470400,
+        "name": "王家新",
+        "sex": "男",
+        "work_year": "16年以上",
+        "age": 37,
+        "email": "",
+        "phone": "13538022715",
+        "marriage": "保密",
+        "city": "广东省",
+        "industry": "交通/物流/运输",
+        "last_company": "深圳市前海云达物流网络有限公司",
+        "last_position": "仓储高级经理",
+        "current_salary": "保密",
+        "target_industry": "交通/物流/运输",
+        "target_position": "仓库经理/主管",
+        "target_city": "广东省",
+        "target_salary": "面议",
+        "email_image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAZCAYAAAD5VyZAAAAHQklEQVRoQ+2aZ08rORSGHXrvvUj8/9/DF/gGSBTRS0Inq8fiyT07m8zclZiVsjeWUJKxfep7ij00Wq1We3JyMrXb7dRoNNLr62t6e3tLMzMz+bfPU0r5O4Pn/9VveH1+fma5hoeH0/j4eObNeH9/TyMjI6XyVO1Xx9HR0b/RhdfHx0emzdzLy0saGxvLa4aGhlKz2UzT09OdPf36pdH+9urDw0Oam5vLejw/PydAgdE1+O3tbVpcXMzz8buK1zUfZZDX1dVVWllZyQDQcb34/85+HA3op6amUqvV+gfQmMfpmApgONgjKPoWAM1msz0xMZEVZNzc3KSlpaVsCAyikTEC3xkYnciLv+ua18FPT085CouOr5Kvav/d3V1aWFjIzkUH1399fXUyIhnIaCfysRUB8n8YnQxgqsfQpH+MgZMZgiEqHJ/VPa+TjWacg5w4hYis4l+1X72ur6/T8vJyhx6ON+K1izJAk3mCp59HBwBEl8qcnJyk3d3djl6CgTUM1kWA1D1vVrLux3rNsyr+VfsvLi7S2tpap5eI5TA6nMgXELH89DUAKAEYVKOKehX0dzeHM8ewYTJjuPYn5nEApSgCVCCSCehRyvhX7Udm6ji0rPM0ftb3WOfNNACEIOj3+o/vOhkAZ2EEgCDqdaRNIfWSQc30WWwa65qHB7LxBw/6gH/Dv2o/TgYIAAuw+Rs7UOvhxTy2eXx8TLOzs9kOsUT0axZoXF1dtal7saEzAlBYJY02FMUwREuM8LrmiW7k0QE4gz8ikIg0A/TiX7WfKEZP+gkaPAYOPj8/z2CImQG+lAqAgu6xEe5bAHAM5AgF0jEqxta5Mcp4fn9/n3Z2dhIp0KbI5tHzdE4r3/cHzlGDt7e3s+Ogsbm5mZ0XI6gX/WhY0zHy4Zh4L1HGXxrd9gP8jY2NdHp6muUBCDqd32ZBgKTDmbcXiHwBBmuYI0iwpzYoHlnhYwnxCAu/aH/09B4jljn4m63QzWNxbIbj8TfeWeg39mXZ7u/v257/NWxUCgPwZ/PnXOwJ2IeC8YKIqEJQBoqSOjUOAsETGhq5jD7riUboo6QOg55H2DL+ZfsxLPJ5qRQBp0EBLWUv0lldXU2Xl5cdB2NMnIJs6Iru8YgKH4GD81lrBmOvwaCzdKA21WE2vbERNhAEnQCOe+TvWoIhZ0cyAKgg7cWIQhAIevkDURzGHQHrI5MIGA3oMxTd2tpKR0dH2YneN8AcAxlJvejHLISRoHF8fJzW19c7virj/7v75+fnc3ZivRdD6IpclMizs7MMNkDHPL0Iz7ETYOA3cziVPTg5BoR3DNhY2xkQ7I33CsWsagOsvTz6ugc+3loyh4040prROdYDSvyJrIeHhxmogKDx+fnZRlHSiMqBLsEAcxhQazEOxJmzUcIApHRAAQMGa2GK0RDS61pp6nRoGLm96EfAmPbNSF7KlPG3YYsREPfj+FiKiHSbWXTSoDoFQ8ZrcjMXe3iOTsgpGDA0mQL9sCPlk+/2LJ48oAMAmTO6+Y6sHsulDfhZC13kQ398Ay38Q0nxBhf7qwe2JtuhC0Dle+Pp6SkDAOIMCBL1AAKHxqMOBGiCDg4OEoaTCYoVa3JUzNobI6Jb1Paib7nBePBFgVjjqvhX7ceQRIZOAAT0LWY/6AM2MpmR7qkJPV1rvRa09kNeWhV1JrhwELbDRvE9B8+wvWCNdxOxSddnZoDIAyeTiUz3fMIPvoAs9xiUAC9KjASJ6FRA4S0ZQqEQn6amshSMs0An670nwHkIJmqr6Bc77GIfUsa/W3ce9/sOwAjHkEQyuiEnoAQQPBeAzNHUYgejFoCwT3DynGDhGQ0mPQ8pmdMF+pKZ0N+m09qOjfRH9IONuacaX05Jg99mmVhmyAjQw+HsJXtw8aWcjYeHh7ZpEiFADVHGp6nIZiamEDtehFQo0YoSsbGBrhEL8729vSyUNayMPqD0OMpnNHSse9ZBeEX+1l7pFPez1tRqzWRPfOkTTzbq4rOyQIgZj9IBaMg21n4+cSw9DaWCUYx0G89crxuNXMvpPSynUTZszB0JaygD+BEAADoA6KnCvdl+vg2EEQJFFBm5fIIcQOEa1kOIP4Gh0TA2AuMwhLaHsHlxnymzjD504G1d1uCxqSrjz1zZfs/z0DWdA8wISgMhduR22PF4pxxmHd8eAnacYbNNacFBZh2zJNkCGsUSog3jXPF0YLNrOeRTedBRmugGQPjdKQHd0uTg2c9YoFu5iZFeNf8zUvSm0skAdTP6U+nTB+zv7+d+gEFG886ArFA1X7fdBgCo2cLUX+q7KTq+1CJF01yXzRfffP60uAMA/LRFu9ArXvHaK9kDVM3XKeIAAHVaN6Xc+OFg0r3DCzCOgFXzNYv36xRQN6M/nT6nFrpvL5eK/6tYNV+X/QYZoC7LftONb/ri3YKXblXzNYs3yAB1G9gXP/GllDx9W8p5vNd8vBOoQ9ZBBqjDqn1E8y8Zkr7gVIL/hgAAAABJRU5ErkJggg==",
+        "phone_image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAZCAYAAAC1ken9AAAFIklEQVRoQ+2YV2/rMAxGle69J9D//5/62ocOdM+0SZpcHOEegzViuWibtwgIIlvi+kiRlDvD4XDU6XQSYzQa5f/4zPzz8zN9fHyk2dnZtLi4mPcw+v1+3gvd/Pz8l/fsHQwGaWFhoUg/MzOT+cJrbm4u84AOfshl/Tf6yadJf/VGFnow4hzbSvLZW7K/M/qP6v39fdre3s4C4hzFIqis39zcpL29vQwKCgJIr9dLKysr6e3t7Ysj2uhRHmDf39/T0tJSlu8cvoL+U/2Gw2FRf/Td3NysnIl8aAD78fExr9UxiboYEE32d3q93kiQAIzBM4YJIO9eXl6y4RFY3j88PKStra3sRSNPJQFP7zfRs1cn8M/Aob6LTvyJfh6rknz2RDDjvE3+6+tr2X4iGC8SfXHEdwrRaDyMwqurq9Wxgvb29jbt7u7mKIafR62N3kiNAMfo/a1+bfJjShCD+K5NvjTj7M8pQmOIUAZHNRp4d3eXdnZ28lqMahlfXV2lg4ODKlqfnp7SxsZG5a8SvcpzxMjXDOeu/Va/Nv2RR0oAVIZz9WmTX7K/MxgMRhakWGSYW9yIxnqONA2wD0WIagqSRaEOUhM9vDWg2+1mA5eXl6t3RlJ0uPPv6Ae/kv4W7nFFjhOFfSV8oCvZnyMYwzCKfMogp/rOMARAfuwhD8d1wLRQYYzPKAhfnTGOXrDq1ZrcHYH/jX4l+fHEcPIYnL54otrwKdlfRXCstgBDNOpVKz3FD2H8SCMcYbzHe/IxCZ+xvr6eLi8vq7xeoschygZQBs6q6/BT/eBfkk9B5Yet8QQTtdYE5k3ybdGa7K/aNJSgep6cnCQ8SRFbW1v7Uvj0KuAjEObk5KOjo3R+fp6VRJDpol48xtEDKiDYISgQp+FAjLYbiX06c344G3qci144nmcKjm1jaf35+TkHhCnM/5iT0akJH2wq2d/p9/u5yFncvDjEnIfyRgJGy9D8RBTHi4IgWaRK9ACiTE8ATvIdvADOSw3PRg2OjEdcudCyHzp+8bgLVly3cFsMAReg7YdL+EBbsr+KYJjBiG6B6DUKY64lIgH67OwsHR4eVtGNQTTknAD2e/GAVxu9xkdAnY9biyAaxezn1BGJ6I3jWWNu9Det856aI8jsJzCsHbEGjcNHhzXZ3+l2u/mqTB7yuKGciZsIYJiHvFDwjojzFuQ1E2UtljHNlOjNu7FNMmo4wsfHx9npsU8mfV1cXOSUhE7Kxxb0sjswlTWteyKgw2ZwgB/BgsN414ZPTIV1+6sIRhBepJ89PT3NwHlFNl3gbd6jQLwCX19fp/39/ewIFEMIx82rd4ne7xVETbwqx24EAwXKiLElVG90Qi586q0ddjWte8UlJRC1Rn50mlHchE/J/qqL8BZCPiFa+I+9a6x2MU+roG0WgBFd0I77DiFAngTzOFEXASYyjeiYPuopIh5tvhEAMsP8/9119AFg9JYWfrRsRH8TPjieYGiyP0ewSpiw2YwgLxt+keIfIAAwAgTICLJgAbJHEpDb6G3/4tcsjEWf2CrGNg75cc0Ow9rhB6noUOb19chDB9U7qBI+YFSyP0cwuZeiZVtEagBIczFr5lUjO35S9DbHsSU1CA7AIbxE7wWm/sXOPtiOALnRAfCFP/R8/yA1MfxQZJCwp7RuP0+Kw2ZPHcB7ckr42D+j3zj7v+TgmAam879BYArw3+DYyGUK8BTgCSMwYfbTCJ4CPGEEJsx+GsFTgCeMwITZTyN4wgD/Ax+sGoY7eFdpAAAAAElFTkSuQmCC",
+        "career": [
+            {
+                "start_time": 1451577600,
+                "end_time": 1485878400,
+                "company": "深圳市前海云达物流网络有限公司",
+                "industry": "交通/物流/运输",
+                "position": "仓储高级经理",
+                "underlings": "110",
+                "duty": "1.根据公司的年度战略计划制定仓储年度计划;#br#2.组织仓储团队实施仓储年度计划，并监督实施效果;#br#3.负责深圳前海保税仓、广州状元谷保税仓和香港仓的整体运作以及香港仓筹建，根据BBC、BC业务模式的不同制定不同的仓储工作流程、操作规范、岗位职责手册等;#br#4.根据公司的销售计划制定仓储月计划及实施，从入库到生产的实施过程作数据的分析，并加以改善;#br#5.处理工作中的突发事件，及时合理解决问题，将公司的损失降至最低;#br#6.负责仓储与采购、销售、客服、人力部门的沟通协调，顺利完成仓储目标;#br#7.负责仓储团队的人力资源招聘工作;负责仓储部门的培训工作;#br#8.控制物流及仓储的成本，增加公司利润，减少支出。"
+            },
+            {
+                "start_time": 1383235200,
+                "end_time": 1448899200,
+                "company": "京东商城华南区域分公司",
+                "industry": "互联网/移动互联网/电子商务",
+                "position": "仓储经理",
+                "underlings": "240",
+                "duty": "1.依据公司年度计划组织开展电商仓库的计划监督；#br#2.全面负责电商仓库的日常运营工作，组织下属制定计划，并进行监督各副经理的执行情况，完成工作总结；#br#3.对电商仓库全体人员月度、季度、年度进行绩效评定考核；#br#4.领导开展电商仓库内部的日常管理与团队建设；#br#5.统筹管理货品的收货、上架、理货、内配、拣货、复核、打包的规范系统化操作；#br#6.明确各岗位职责进行分工，并根据需要作出临时支援调配工作；#br#7.对电商仓库SOP进行优化及全员培训，提高下属的执行能力； 8.对电商仓库推行5S工作，并加强以客户为先的服务理念；#br#9.组织编制电商仓库经费预算，控制成本开支。"
+            },
+            {
+                "start_time": 1172678400,
+                "end_time": 1380556800,
+                "company": "深圳市兴千田电子科技有限公司",
+                "industry": "仪器/仪表/工业自动化/电气",
+                "description": "http://search.51job.com/list/co,c,3003607,000000,10,1.html...",
+                "position": "物流经理",
+                "underlings": "34",
+                "duty": "1．负责物流部全面工作；#br#2．制定管理方针及目标并组织、协调、督促实现其目标，控制本部门的运作成本；#br#3．统筹仓库管理、生产计划、原物料采购计划、 物料配送、出货管理日常工作；#br#4．协调、监督现场运作的进程，制定并改进不合理的运作程序；#br#5．审核仓库管理标准，控制生产物料及成品的入库验收、发放与贮存管理标准；#br#6．指导、协调生产计划，原材料采购及仓库保管的各项工作；#br#7．原物料、成品库存盘点工作安排，组织下属按期盘点；#br#8．运输商选择及供应商的考核；#br#9．原物料到货管理及库存准确的管理；#br#10．确保部门和公司环境管理体系有效运行；#br#11．负责制定相关的环境管理体系文件，并组织学习和实施；#br#12．对下属业务指导和培训；#br#13．协助上司完成改善等工作；#br#14．参与公司的各项经济管理活动；#br#15．指导、规范物流部门的仓库管理工作。"
+            },
+            {
+                "start_time": 1004544000,
+                "end_time": 1170259200,
+                "company": "华安立高文具制品(深圳)有限公司",
+                "industry": "原材料及加工",
+                "description": "本公司位于深圳市北部松岗街道洋涌河畔恒兆工业区，主要从事设计和生产文具及办公室用品.公司1985年成立，占地面积18,000平方米，建筑总面积24,000平方米，厂内配备员工宿舍及各种康乐设施。公司运行的管理体系有质量管理体系、环境管理体系及有害物质过程管理体系。#br#公司地址： 深圳市安宝安区松岗街道恒兆工业区2号#br#邮政编码： 518105#br#技术员/助理工程师[深圳-宝安区]#br#注塑QC组长[深圳-宝安区]#br#生产技术员[深圳-宝安区]#br#...",
+                "position": "仓库主管",
+                "underlings": "17",
+                "duty": "1.在公司ERP不断的建成及推行下，督导部属及时完成平时的收发料及账务工作；#br#2.在来料工厂转制独资公司期间，负责进销存财务帐及海关账的顺利推行；#br#3.对仓库整体规划，引进立体式货架，有效的利用仓库面积；#br#4.对仓库的物料进行盘点并记录，使仓库帐目由80%提高到99%以上，确保帐﹑卡﹑ 物保持一致；#br#5.针对电子产品防护各方面得到了有效的控制，发料时的FIFO，更有利于确保物料的时效性；#br#6.对工厂车辆的合理调度，便于货物按预期到达港口装船；#br#7.负责公司货仓科整个工作异常问题的处理及其后续改善并加以预防；#br#8.在公司7S的不断推行下，负责对整个仓库的实施及督导，并与其他部门配合提高仓库的工作效率;#br#9.从外来物料到成品出货进行全面监管，保证下游单位的工作顺利开展。"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1220198400,
+                "end_time": 1277913600,
+                "school": "深圳大学",
+                "major": "物流管理",
+                "degree": "大专",
+                "isNURS": "否"
+            }
+        ],
+        "self_str": "1.本人有九年物流仓储经理经验，多年的物流仓库管理经验;2.对物流、仓库及人员的管理有一套自己多年积累的经验和方法，3.具有培训下属的能力，有极强的沟通能力及团队意识；4.能熟练编写物流仓库管理程序并有效推行，使整个物流仓库运营团队快速运转；5.能熟练操作ERP.WINDOWS 2000等相关办公软件；"
+    }
+}

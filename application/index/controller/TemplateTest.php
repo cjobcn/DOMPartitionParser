@@ -7,21 +7,26 @@ use think\Controller;
 
 class TemplateTest extends Controller {
 
-	//测试解析结果
-    public function test() {
-        $content = $this->getResume();
-		//echo $content;
-		$ResumeParser = new ResumeParser();
-		$record = $ResumeParser->parse($content,$templateId);
-        if($record){
-            $Converter = new DataConverter();
-            $Converter->multiConvert($record);
-        }
-		dump($templateId);
-		dump($record);
-		//return json($record);
+	//显示解析结果
+    public function printResult() {
+        $result = $this->getResult();
+		//dump($result["template"]);
+		//dump($result["data"]);
+        return json($result);
     }
 
+    public function getResult() {
+        $content = $this->getResume();
+        $ResumeParser = new ResumeParser();
+        $record = $ResumeParser->parse($content,$templateId);
+        $result = array(
+            "template" => $templateId,
+            "data" => $record
+        );
+        return $result;
+    }
+
+    //获取简历内容，编码统一为UTF-8
     public function getResume() {       
 		$Parser = new ResumeParser();
 		$path = $this->templateDir.'/'.$this->templateId.'/'.$this->path[$this->templateId][$this->pathIndex];
@@ -32,7 +37,7 @@ class TemplateTest extends Controller {
 		return $content;
 	}
 
-	//查看简历内容
+	//打印简历内容
 	public function resume() {
 		$content = $this->getResume();
 		//dump($content);
@@ -60,21 +65,23 @@ class TemplateTest extends Controller {
         //dump($data);
         $this->assign('data',$data);
         return $this->fetch('dom');
-
     }
 
-    public function xiace() {
-        dump(input('post.name'));
-
+    public function readExpectedResult() {
+        $path = $this->expectedResultDir.'/'.$this->templateId.'/'."E01.json";
+        if(is_file($path)){
+            $result = file_get_contents($path);
+            dump($result);
+            dump(json_decode($result, true));
+        }
     }
 
     protected $templateDir = ROOT_PATH.'resumes';
-	protected $templateId = '09';
-    protected $pathIndex = 0;
+	protected $templateId = '17';
+    protected $pathIndex = 1;
 
     protected $path = array(
         '00' => array(
-
             '00109094.html',
             '1495433609.html',
             '智联招聘_蒋莹_中文_20131226_40902574.html',
@@ -194,7 +201,8 @@ class TemplateTest extends Controller {
             '3179411.html'
         ),
         '17' => array(
-            '1.html'
+            'E01.html',
+            'E02.html'
         ),
         'to_support' => array(
             '3110746.html',
