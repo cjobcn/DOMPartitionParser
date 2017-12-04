@@ -229,8 +229,7 @@ class Template13 extends AbstractParser {
             }elseif($k > 0){
                 if($key = $sequence[$k-1]){
                     $projects[$j-1][$key] = $data[$i];
-                    $k++;
-                }else{
+                    //$k++;
                     $k = 0;
                 }
             } elseif($currentKey) {

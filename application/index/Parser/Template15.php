@@ -61,7 +61,7 @@ class Template15 extends  AbstractParser {
         $record = array();
         //预处理
         $content = $this->preprocess($content);
-        echo $content;
+        //echo $content;
         //分隔网页数据
         list($data, $blocks) = $this->pregParse($content);
         //dump($data);

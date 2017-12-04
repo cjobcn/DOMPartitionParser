@@ -115,7 +115,7 @@ class Template05 extends AbstractParser {
         $j = 0;
         $jobs = array();
         while($i < $length) {
-            dump($data[$i]);
+            //dump($data[$i]);
             if(preg_match($pattern1, $data[$i], $match)){
                 $job = array();
                 $job['company'] = $match['company'];

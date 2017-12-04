@@ -61,7 +61,7 @@ class Template06 extends AbstractParser {
         //dump($blocks);
         //dump($data);
         if(!$blocks) return false;
-        dump($data[0][0].$data[0][1].$data[0][2]);
+        //dump($data[0][0].$data[0][1].$data[0][2]);
         //其他解析
         //$this->basic($data, 0 , $blocks[0][1]-1, $record);
         //各模块解析

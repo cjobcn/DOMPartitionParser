@@ -288,8 +288,8 @@ abstract class AbstractParser {
 
     //自我评价
     public function evaluation($data, $start, $end, &$record) {
-        $i = $start;
-        $evaluation = '';
+        $evaluation = $data[$start];
+        $i = $start + 1;
         while($i <= $end){  
             $evaluation .= '#br#'.$data[$i++];
         }

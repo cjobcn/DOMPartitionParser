@@ -25,8 +25,8 @@ class Template09 extends AbstractParser {
 
     //关键字解析规则
     protected $rules = array(
-        array('applicant_company', '应聘职位：'),
-        array('applicant_position', '应聘公司：'),
+        array('applicant_position', '应聘职位：'),
+        array('applicant_company', '应聘公司：'),
         array('update_time', '更新时间：|投递时间：'),
         array('resume_keywords', '简历关键字：'),
         array('name', '姓名：'),
@@ -95,6 +95,7 @@ class Template09 extends AbstractParser {
         $content = $this->preprocess($content);
         //判断是否是word转换的html文档，如果是采用DOM解析，否则采用PREG解析
         if(preg_match('/urn:schemas-microsoft-com:office:office/',$content)){
+            $content = str_replace(array('<span', 'span>'), array('<td', 'td>'), $content);
             list($data, $blocks) = $this->domParse($content, 'td', false);
         }else{
             list($data, $blocks) = $this->pregParse($content);
@@ -171,6 +172,7 @@ class Template09 extends AbstractParser {
     public function getDomArray($content) {
         $content = $this->preprocess($content);
         if(preg_match('/urn:schemas-microsoft-com:office:office/',$content)){
+            $content = str_replace(array('<span', 'span>'), array('<td', 'td>'), $content);
             return $this->domParse($content, 'td', false, false);
         }else{
             return $this->pregParse($content, false, false);
