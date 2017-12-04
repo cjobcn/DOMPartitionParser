@@ -1,0 +1,120 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "高级IOS工程师（上海-普陀区）",
+        "applicant_company": "北京创景咨询有限公司",
+        "update_time": 1416931200,
+        "resume_keywords": "linuxcshellTCP/UDP网络嵌入式",
+        "city": "上海-闵行区",
+        "residence": "绥化",
+        "phone": "13817113376",
+        "email": "wangrenpeng0923@163.com",
+        "last_company": "上海美沃精密仪器有限公司",
+        "industry": "计算机软件",
+        "last_position": "高级软件工程师",
+        "degree": "本科",
+        "major": "信息与计算科学",
+        "school": "兰州理工大学",
+        "current_salary": "10-15万人民币",
+        "work_year": "3-4年",
+        "sex": "男",
+        "birth_year": 1987,
+        "true_id": "88066262",
+        "name": "王仁鹏",
+        "self_str": "1.本专业基础扎实，努力积极，动手能力与学习能力较强。#br#2.吃苦耐劳，为人诚恳，善于倾听并采纳别人的意见，乐观向上。#br#3.细致沉稳，责任心强，善于交流沟通，富于合作精神，具有很强的组织协调能力、以及临场应变能力。#br#专业技能：#br#1.精通C语言开发，具备软件结构设计及需求分析能力，有着良好的编程习惯与编程风格。#br#2.精通shell脚本语言，makefile的编写，及gdb等调试工具的使用；#br#3.精通Linux平台上基于TCP/IP协议的网络编程及进程间通信，用户态与内核态通信的编程技术。#br#4.精通嵌入式操作系统，精通基于嵌入式Linux的软件开发平台。#br#5.熟悉内核态的开发；#br#6.了解底层软件原理，熟悉OCTOEN_CN56XX芯片架构，mips芯片架构。#br#7.熟练掌握各种交换机及路由器的配置和相关的网络配置。",
+        "jump_time": "一个月内",
+        "work_property": "全职",
+        "target_industry": "计算机软件，通信/电信/网络设备",
+        "target_city": "上海",
+        "target_position": "计算机软件，嵌入式软件开发(Linux/单片机/PLC/DSP…)，通信技术开发及应用，互联网/电子商务/网游",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1367337600,
+                "end_time": 2147483647,
+                "company": "上海美沃精密仪器有限公司",
+                "size": "150-500人",
+                "industry": "计算机软件",
+                "department": "研发部",
+                "position": "高级软件工程师",
+                "duty": "1.Linux相机端C/C++开发；#br#2.基于C/C++，Shell，Makefile等语言的编程；#br#3.第三方软件API开发使用；#br#4.整个系统的测试与调试，GDB等调试工具的使用，调试过程中问题的解决；#br#5.基于传感器驱动的色彩开发与调试；#br#6.基于Linux 多线程，多进程的编程体系研发；#br#7.基于动态库，对图像的解压缩，转换格式等操的应用；#br#8.基于linux下的TCP/IP，IPC进程间通信及RS485、RS232通讯编程；#br#9.基于arm 的嵌入式开发；#br#10.Linux操作系统裁剪；"
+            },
+            {
+                "start_time": 1291132800,
+                "end_time": 1364745600,
+                "company": "上海寰创通信科技有限公司",
+                "size": "150-500人",
+                "industry": "计算机软件",
+                "department": "软件开发部",
+                "position": "嵌入式软件开发工程师",
+                "duty": "公司主要研发和生产运营商级和企业级的wifi产品，主要产品包括AC,AP，主要的合作伙伴包括华为,华三,贝尔等著名企业。#br#主要负责:#br#1.linux系统软件开发、软件维护、测试，保证软件的稳定性和安全性；#br#2.负责为产品项目线提供快速的问题分析、解决、和技术支持；#br#3.为软件测试和稳定的运行环境提供工具，对工具的维护和开发；#br#4.基于linux下的TCP/IP，IPC进程间通信及相关netlink协议的网络编程；#br#5.基于shell语言编程，makefile的编程；#br#6.基于linux的多进程，多线程的编程；#br#7.基于OCTOEN_CN56XX芯片架构，mips芯片架构的编程；#br#8.基于系统安全的支持和维护；#br#9.工具的使用(gcc、make、gdb等)，及编译环境的维护；#br#10.基于数据库DB2，OPENSSL的开发；#br#11.svn和vss等版本控制软件的使用；"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1367337600,
+                "end_time": 2147483647,
+                "name": "图像采集系统",
+                "soft": "linux",
+                "hard": "ARM平台",
+                "description": "开发语言：C语言 Shell语言",
+                "duty": "1.Linux相机端进程通信模块的设计与开发；"
+            },
+            {
+                "start_time": 1356969600,
+                "end_time": 1364745600,
+                "name": "商用系统监控",
+                "soft": "linux操作平台",
+                "hard": "AC(X86架构)",
+                "description": "开发语言：C语言，shell语言",
+                "duty": "1.用户态程序开发，包括：监控进程模块状态的设计与开发；记录进程运行过程模块的设计与开发，保活（保持进程运行）模块的设计与开发；喂狗模块的设计与开发。"
+            },
+            {
+                "start_time": 1343750400,
+                "end_time": 1354291200,
+                "name": "定制linux系统",
+                "soft": "linux系统平台",
+                "hard": "AC(X86架构)",
+                "description": "开发语言：C语言，shell语言",
+                "duty": "1.交叉工具链的详细设计与开发；"
+            },
+            {
+                "start_time": 1328025600,
+                "end_time": 1341072000,
+                "name": "中国移动集团大AC项目（wifi产品开发）",
+                "soft": "linux系统平台",
+                "hard": "CPU（X86架构），NPU（OCTEON_CN45XX芯片）",
+                "description": "开发语言：C语言，shell语言",
+                "duty": "1.capwap模块的设计与开发"
+            },
+            {
+                "start_time": 1312128000,
+                "end_time": 1325347200,
+                "name": "华为企业wlan项目（license）",
+                "soft": "linux系统平台",
+                "hard": "AC (X86架构)",
+                "description": "开发语言：C语言，汇编语言 shell语言",
+                "duty": "1.加解密模块设计与开发；"
+            },
+            {
+                "start_time": 1296489600,
+                "end_time": 1306857600,
+                "name": "网络节点管理程序",
+                "soft": "linux操作系统平台",
+                "hard": "X86架构",
+                "description": "开发语言：C语言，shell语言",
+                "duty": "1.ARP模块的设计与开发；"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1188576000,
+                "end_time": 1306857600,
+                "school": "兰州理工大学",
+                "major": "信息与计算科学",
+                "degree": "本科",
+                "class": "C编程、嵌入式系统开发基础、计算机网络、操作系统、Shell编程、ARM体系结构与编程、UNIX环境高级编程、数据结构、算法。"
+            }
+        ]
+    }
+}

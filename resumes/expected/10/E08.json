@@ -1,0 +1,52 @@
+{
+    "template": "10",
+    "data": {
+        "residence": "北京",
+        "city": "北京",
+        "ID": "130129196210170013",
+        "email": "liu-zhy@163.com",
+        "target_position": "专业顾问",
+        "target_industry": "电气/电力/水利",
+        "target_city": "北京",
+        "target_salary": "4001-6000元/月",
+        "sex": "男",
+        "marriage": "已婚",
+        "birth_year": 1962,
+        "phone": "13321115825",
+        "name": "刘振远",
+        "career": [
+            {
+                "start_time": 1122825600,
+                "end_time": 1209571200,
+                "company": "北京天恒电气有限公司",
+                "size": "100-499人",
+                "nature": "合资",
+                "industry": "电气/电力/水利",
+                "position": "财务总监",
+                "salary": "6001-8000元/月",
+                "duty": "#br#设计企业财务规范,制订企业财务规划,分析企业财务运行,监督财务工作,规避财务风险."
+            },
+            {
+                "start_time": 980956800,
+                "end_time": 1122825600,
+                "company": "中国民族证券有限公司",
+                "duty": "#br#投资银行部#br#其他#br#金融/银行/投资/基金/证券#br#国企#br#为企业上市提供咨询服务",
+                "size": "500-999人",
+                "nature": "国企",
+                "industry": "金融/银行/投资/基金/证券",
+                "position": "其他",
+                "department": "投资银行部",
+                "salary": "4001-6000元/月"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 904579200,
+                "end_time": 962380800,
+                "school": "河北省委党校研究生院脱产学习",
+                "major": "经济管理",
+                "degree": "硕士"
+            }
+        ]
+    }
+}

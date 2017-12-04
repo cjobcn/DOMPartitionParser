@@ -1,0 +1,247 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>简历详情信息</title>
+<link href="http://121.41.112.72:12885/js/plugins/tipsy/css/tipsy.css" rel="stylesheet" type="text/css" />
+<link href="http://121.41.112.72:12885/js/plugins/art/skins/black.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://121.41.112.72:12885/js/plugins/calendar/css/calendar-win2k-1.css" />
+<link rel="stylesheet" href="http://121.41.112.72:12885/js/plugins/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" media="screen" href="http://121.41.112.72:12885/css/plugins/showLoading.css" />
+<script type="text/javascript" src="http://121.41.112.72:12885/js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/art/jquery.artDialog.source.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/art/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/custom/resume.js"></script>
+<script type="text/javascript" src="http://121.41.112.72:12885/js/plugins/tipsy/jquery.tipsy.js"></script>
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<style>
+body{font-size:12px;}
+p{line-height: 20px; padding:0px; margin:0px;}
+.messagelist h4 { font-size: 11px; color: #333; font-weight: normal; padding: 8px 10px; border-bottom: 1px solid #ccc; text-transform: uppercase; }
+.messagelist .link { padding: 8px 10px; background: #eee; font-size: 11px; border-top: 1px solid #ccc; }
+.messagelist ul { list-style: none; padding:0px; margin:0px;}
+.messagelist ul li { display: block; border-bottom: 1px dotted #ccc; padding: 5px 10px; }
+.messagelist ul li:last-child { border-bottom: 0; }
+.messagelist ul li.current { background: #fff; color: #333; }
+.messagelist ul li.current a { color: #6385ae; font-weight: bold; }
+.messagelist ul li a { display: block; color: #333; }
+.messagelist ul li a:hover { text-decoration: none; }
+.messagelist ul li span { color: #666; display: block; font-size: 11px; }
+.messagelist ul li small { font-size: 11px; color: #666; }
+.messagelist ul li:hover { background: #e8f3fe; }
+</style>
+<script>
+function showMenu(btnId, divId) {
+	var btn = $(btnId);
+	var offset = btn.offset();
+		$(divId).css({left:offset.left + "px", top:offset.top + btn.outerHeight() + "px"}).slideDown("fast");
+	$("body").bind("mousedown", onBodyDown);
+}
+
+function hideMenu() {
+	$("#applyShowResumeDiv").fadeOut("fast");
+	$("body").unbind("mousedown", onBodyDown);
+}
+
+function onBodyDown(event) {
+	if ($(event.target).parents("#applyShowResumeDiv").length==0) {
+		hideMenu();
+	}
+}
+function applyShowResume(){
+	showMenu("#applyShowResumeBtn","#applyShowResumeDiv");
+}
+function applyShowResumeConfirm(){
+	var applyResumeReason = $("#applyResumeReason");
+	var applyProjectId = $("#applyProjectId");
+	var applyProjectName = $("#applyProjectName");
+	if(applyProjectId.val()==""){
+		alert("请选择相关项目.");
+		return false;
+	}
+	var _confirm = $.dialog.confirm("你确认要申请查看此简历的联系方式吗？", function(){
+		$.post("../applyContact/4356481?rand=" + new Date(), {"applyResumeReason":applyResumeReason.val(),"applyProjectId":applyProjectId.val(),"applyProjectName":applyProjectName.val()}, function(data){
+			if(data=="success"){
+				$.dialog.alert("申请发送成功，等待所有者确认！");
+			}else if(data=="ok"){
+				window.location.reload();
+			}else{
+				$.dialog.alert(data);
+			}
+		});
+	});
+}
+function modifyOwnerUser(){
+	var ownerUserId = $("#selectOwnerUserList").val();
+	var _confirm = $.dialog.confirm("你确认此操作吗？", function(){
+   		$.get("../modifyOwnerUser/4356481?rand="+new Date(), {"ownerUserId":ownerUserId}, function(result){
+   			if(result=='success'){
+   				$.dialog.alert("恭喜您，操作成功！", function(){
+   					window.location.reload();
+   				});
+   			}else{
+   				$.dialog.alert(result);
+   				_confirm.close();
+   			}
+   		});
+	});
+}
+$(function(){
+	$('#userHelp').tipsy({html:true, fade: true, gravity: 'se'});
+	$("#createFavorite").click(function(){
+		$.dialog.prompt('请输入收藏夹名称', function(data){
+			if(data==""){
+				$.dialog.alert("请输入您新增收藏夹名称");
+				return false;
+			}
+			$.post("/resume/favorite/save?rand=" + new Date(), {id:0, fName:data}, function(result){
+				if(result=="success"){
+					showFavoriteDiv();
+				}else{
+					$.dialog.alert(result);
+				}
+			});
+		});
+	});
+	$("#applyProjectName").click(function(){
+		var detailDialog = $.dialog.open("/projectResume/selectProject/4356481?handle=apply",{
+			title:	"选择项目",
+			id:		"resume_select_project_4356481",
+			lock:	false,
+			width:	'880px',
+			height:	'500px'
+		});
+		return false;
+	});
+});
+</script>
+</head>
+
+<body style="background:#fff; padding:10px;">
+<h1>陈步桥</h1>
+
+	<h3>架构师</h3>
+
+<p>
+编号：4356481&nbsp;&nbsp;性别：男&nbsp;&nbsp;学历：&nbsp;&nbsp;出生年：
+<input type="button" id="setFavoriteBtn" value="加入简历收藏夹" onClick="showFavoriteDivResume();" />
+<div id="resumeFavoriteDiv" style="display:none; width:auto; min-width:280px; position: absolute; background: #f7f7f7; BORDER: #ccc 1px solid; z-index: 300;">
+	<div style="padding:10px;">
+		<input type="hidden" id="favoriteResuId" value="4356481" />
+		<input type="text" name="keyword" id="resumeFavoriteKeyword" value="" class="sf" style="width:120px;" />&nbsp;<input type="button" id="searchFavorite" class="button button_white" value=" 查询 " onClick="searchFavorite()" />&nbsp;<input type="button" id="createFavorite" class="button button_white" value="创建收藏夹" />
+	</div>
+	<div id="resumeFavoriteResult"></div>
+</div>
+</p>
+
+<p>意向地区：北京</p>
+
+
+
+
+
+<p>联系方式：  15201341046&nbsp;&nbsp;邮箱：
+</p>
+
+
+<p>创建者：管理员1&nbsp;&nbsp;创建时间：2016-09-29 22:36&nbsp;&nbsp;&nbsp;&nbsp;所有者：
+
+
+<select id="selectOwnerUserList" style="padding:0;">
+   	
+	<option value="1">管理员</option>
+	
+</select>
+&nbsp;&nbsp;<input type="button" value="更改所有者" class="iconlink2" onClick="modifyOwnerUser();" />
+
+</p>
+<p>当前所在公司：北京新锦成教育科技有限公司</p>
+<p style="margin-top:10px; padding-top:10px; border-top: 1px solid #ccc; word-spacing: break-word; word-break: normal; word-break:break-all; font-size:14px; line-height: 23px;">
+陈步桥 男  <br />
+目前公司：  北京新锦成教育科技有限公司  <br />
+目前职位：  技术总监/架构师  工作年限：  7 年以上  <br />
+     基本资料  <br />
+年  龄：  31  婚姻状况：  已婚  <br />
+手  机：  15201341046  邮  箱：  chenbuqiao@163.com  <br />
+国  籍：  中国  户  籍：  北京  <br />
+目前状态：  在职，看看新机会  所在地点：  北京-朝阳区   <br />
+职业意向  <br />
+期望行业：  互联网/移动互联网/电子商务;计算机软件  （我愿意考虑创业公司机会）  <br />
+期望职位：  架构师;首席技术官 CTO/首席信息官 CIO  <br />
+期望地点：  北京  <br />
+期望年薪：  65 万 50,000 元 / 月 * 13 个月  <br />
+目前年薪：  39 万 30,000 元 / 月 * 13 个月  <br />
+自我评价  <br />
+7 年以上开发经验，4 年团队管理经验，擅长敏捷开发模式 在新锦成持续 6 年以上，从初级开发工程师，逐步晋升，现任互联网产品线研发总监 某服装类电子商务首席架构顾问，从 0 开始搭建团队，进行技术架构实施，已培养多名核心开发经理  主持多个大型互联网平台升级改造 全面的计算机理论基础 IM 即时聊天工具客户端和服务器端开发经验 方式：15201341046 企鹅：279369765  <br />
+工作经历  <br />
+2014.04-至今  动批网（兼职架构顾问，每周去一次）   公司行业：  互联网/移动互联网/电子商务  <br />
+ 架构顾问/总架构师  2014.04-至今   工作地点：  北京   下属人数：  20  <br />
+ 工作职责：  1 负责动批网开发项目整体架构（软件，硬件）的搭建和实施方案制定，推进实施，并达 到预期效果 2 制定动批网开发项目的总体计划并指导实施计划 3 保证动批网稳定运行（含网站安全），针对查到的问题给出解决的具体办法 4 指导电商平台的开发流程和规范   工作业绩：  从无到有搭建了整个动批电商平台架构，已培养出多个开发经理，成为核心主力。多次针 对技术难题给出优秀解决方案。 现微批平台月交易额上亿元，年交易额达几十亿规模。  2010.04-至今  北京新锦成教育科技有限公司   公司描述：  新锦成专注为中国青年和各高校、学生、企业提供基于现代互联网技术的职业发展服务解 决方案，以打造全球最有价值的品牌为目标。至今，为全国 500 多所高校提供了卓有成效 的服务，涵盖了 98%的“985”高校、91%的“211”院校和大多数地方特色高校.   公司性质：  中外合营(合资?合作)   公司规模：  100-499 人   公司行业：  互联网/移动互联网/电子商务  <br />
+ 技术总监/架构师  2010.04-至今   薪酬状况：  20000 元 / 月   工作地点：  北京   所在部门：  技术部   汇报对象：  CTO   下属人数：  10   工作职责：  1、 负责互联网业务的技术方向、规划，保障互联网业务的平台稳定； 2、 负责互联网产品的开发、测试、运维、产品研发团队的日常管理； 3、 制定并组织实施公司的研发计划，达成目标； 4、 研发团队的培养、考核、激励，推动整个技术研发体系的人才梯队建设。 5、 制定研发流程，规范，持续推进完善敏捷开发制度，协调配合其他各部门的工作  工作业绩：  2010 年，开发公司第一版网络课堂系统 2011 年，解决高并发系统瘫痪难题（SQLServer-＞MySql 数据库更换，数据库读写分离， 分库分表数据库设计） 2011 年，完善优化平台技术方案（memcache,localcache 缓存优化，nosql 存放用户好友 信息，多系统业务分割，系统拆分，系统集成） 2012 年，企业系统总线 ESB 设计开发，服务治理 2013 年，带领团队开发，即时聊天工具&#039锦成通&#039设计、开发(C++) 2014 年，全面启动敏捷开发流程 2015 年，公司移动端产品线研发(H5，微信) 2015 年，以技术负责人身份，重头搭建团队，研发公司孵化的内部创业项目（面对招聘） <br />
+2016 年，研发负责人身份，牵头公司内部创业项目（职手可得）。 2016 年，调任公司互联网业务技术负责人（在线教育产品，线上招聘产品）  <br />
+2011 年度 “新锦成十佳优秀员工” 2012 年度 “新锦成 top4 进步奖”  2009.04-2010.04  北京捷软世纪信息技术有限公司（实习）   公司性质：  私营?民营企业   公司规模：  50-99 人   公司行业：  计算机软件  <br />
+ 软件工程师  2009.04-2010.04   薪酬状况：  0 元 / 月   工作地点：  北京   下属人数：  0   工作职责：  定制项目开发: 金马甲产权交易垂直搜索 天津机场航班信息发布系统  长城工业总公司项目管理系统  航天五院宇航部项目管理系统  民航公众信息服务平台   <br />
+教育经历  <br />
+南京航空航天大学（ 2007.09 - 2010.04 ）  <br />
+专业名称：  计算机应用技术  学历：  硕士  是否统招：  是  <br />
+内蒙古大学（ 2003.09 - 2007.07 ）  <br />
+专业名称：  计算机科学与技术  学历：  本科  是否统招：  是   <br />
+语言能力  <br />
+英语、普通话   <br />
+项目经历  <br />
+职手可得  2016.03-至今  <br />
+项目职务：  研发负责人  <br />
+项目描述：  大学生招聘平台，连接学生、高校、企业三方，通过移动 APP 解决应届生招聘信息不对称  <br />
+项目职责：  项目管理，进度把控，技术难点攻破  <br />
+项目业绩：  产品上线 3 个月，合作院校突破 100 所，入驻企业超过 200 家，学生注册下载 5 万人。初步验 证了产品商业模式  锦程职业发展教育平台 V5.0  2014.07-2016.03  <br />
+项目职务：  研发负责人  <br />
+项目描述：  加入全文搜索引擎 微信端接入 html5 页面，手机视频播放  <br />
+项目职责：  项目管理，进度把控 敏捷开发 scrum manager 技术难点攻破 自动化测试框架搭建 代码审查 员工技术培训  <br />
+项目业绩：  采用敏捷开发模式后，极大提高了项目交付速度；团队工作效率几乎提高一倍，从每月迭代一 次缩短至 2 周，经常推着产品经理出原形；一手搭建了自动化测试框架，每日自动构建，提交 代码自动运行测试用例，提高了产品质量，减少 bug 率  锦程职业发展教育平台 V4.1  2013.10-2014.06  <br />
+项目职务：  开发经理  <br />
+项目描述：  服务总线 ESB 调用效率优化，部分高并发业务优化，异地机房搭建系统改造  <br />
+项目职责：  发现总结问题，提出优化方案，并付诸实施  锦程网内容配置平台  2014.03-2014.04  <br />
+项目职务：  开发经理  <br />
+项目描述：  1 为公司市场部提供内容发布平台，实现业务人员 动态添加页面，修改内容，菜单配置等功能 2 采用类淘宝旺铺的设计思路 3 页面由组件拼装 4 设计菜单，推送，轮播图等公用可复用组件  <br />
+项目职责：  技术负责人  <br />
+项目业绩：  1 提前一周上线 2 超出用户预期的功能实现，得到市场部、产品部、运营部的高度好评 3 技术方案在整个平台推广应用  锦程职业发展教育平台 V4.0  2013.06-2013.09  <br />
+项目职务：  开发经理  <br />
+项目描述：  系统架构优化，控制层和业务层分开，是系统扩展性更强，更自然的进行了业务拆分  <br />
+项目职责：  项目总负责，带领开发人员研发，协调产品、测试、运维，进度控制  <br />
+项目业绩：  提前上线，得到公司和客户的一致好评  即时聊天工具“锦程通”  2012.11-2013.05  <br />
+项目职务：  开发主管  <br />
+项目描述：  pc 下聊天工具，配合线上业务开展，盘活用户 VC++开发  <br />
+项目职责：  技术方案调研，解决技术难题，项目进度控制  锦程职业发展教育平台 V3.2  2012.01-2012.10  <br />
+项目职务：  开发主管  <br />
+项目描述：  1 跨域，多网站 SSO 单点登录（ajax ，jsonp） 2 SQLServer-&gt;MySql 数据库更换 3 多系统业务分割，系统拆分，系统集成 4 基础业务系统对外提供统一权限认证，菜单集成  <br />
+项目职责：  设计技术方案，指导团队成员共同达成目标  锦程职业发展教育平台 V2.0  2011.09-2011.12  <br />
+项目职务：  高级软件工程师  <br />
+项目描述：  系统升级，单个 BusinessCenter 按照业务拆分，支持 ESB 总线路由  <br />
+项目职责：  ESB 总线开发  锦程职业发展教育平台 V1.0  2011.04-2011.09  <br />
+项目职务：  软件开发工程师  <br />
+项目描述：  老版本系统.net 架构，随着访问量增加，不能支撑。采用了新的设计架构，重新开发设计，支 持数据库分布，web 服务器集群，负载均衡，支持系统软硬件及数据存储的无限水平扩展  <br />
+项目职责：  代码编写，业务系统梳理，数据库设计，SSO 单点登陆  职前教育网络学堂 2010 版  2010.04-2011.03  <br />
+项目职务：  软件开发工程师  <br />
+项目描述：  全国高校职前教育线上学习系统，主要包括：课程学习，在线考试，资讯浏览，在线咨询，职 业测评  <br />
+项目职责：  开发核心模块，指导其他开发人员代码编写  金马甲产权交易垂直搜索引擎  2010.03-2010.05  <br />
+项目职务：  软件开发工程师  <br />
+项目描述：  金马甲产权交易垂直搜索引擎，通过对国内外各大产权交易机构网站信息进行爬取，聚集了全<br />
+国乃至全球的优质产权项目、投资及专业服务信息，是各类产权交易信息最大的汇集平台，为 产权交易各方提供便捷有效的信息获取工具。  <br />
+项目职责：  进行需求调研，可行性分析，数据库设计，搜索爬虫核心代码编写，系统部署上线，用户培训。<br />
+对捷软世纪垂直搜索产品的信息抽取方式进行改进，增强了通用性，灵活性，大大改善了搜索 引擎的稳定性，减少二次开发工作量行业：互联网职位：计算机·网络·技术类
+
+<p style="border-top: 1px solid #ccc; margin-top:10px;">推荐神州租车职位<br /></p>
+<p>2016-08-23 00:00</p>
+
+</p>
+</body>
+</html>

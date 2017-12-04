@@ -1,0 +1,27 @@
+{
+    "template": "09",
+    "data": {
+        "name": "刘记",
+        "sex": "男",
+        "phone": "15914031796",
+        "email": "liuji2006@gmail.com",
+        "city": "深圳-龙岗区",
+        "work_year": "二年",
+        "jump_time": "一个月内",
+        "work_property": "全职",
+        "target_industry": "计算机软件",
+        "target_city": "深圳",
+        "target_position": "商务助理，采购，销售管理，贸易，市场/营销",
+        "work_status": "期望月薪：",
+        "last_company": "自主研发",
+        "industry": "计算机软件",
+        "last_position": "系统工程师",
+        "degree": "硕士",
+        "major": "电子科学与技术",
+        "school": "西安交通大学",
+        "self_str": "有较强的责任心，诚实守信； 善于学习，吸收新知识速度快； 实践能力较强，能迅速适应不同环境； 注重团队精神，喜欢与人打交道； 性格不够果断，凡事考虑的过多；",
+        "career": [],
+        "projects": [],
+        "education": []
+    }
+}

@@ -1,0 +1,606 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>智联简历</title>
+    <link href="http://img00.zhaopin.cn/2012/css/rd/common.css" rel="stylesheet" type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/rd/rdnew_2.css?version=20150713" rel="stylesheet" type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/rd/rdnewlayer.css" rel="stylesheet"
+        type="text/css" />
+    <link href="http://img00.zhaopin.cn/2012/css/ui/jquery.zlzp.popupdiv.css" type="text/css"
+        rel="stylesheet" />
+    <link href="http://img01.zhaopin.cn/2014/rd2/css/feedbackD.css?version=20150713" type="text/css"
+          rel="stylesheet" />
+    <link href="/css/sendinfo.css" type="text/css" rel="stylesheet" />
+    <style media="print">
+        .resume-preview{
+            color:#000;
+        }
+        .resume-body-left{
+            width:auto;
+        }
+        .resume-preview-left {
+            box-shadow:none;
+            border:none;
+        }
+        .resume-preview-right,.nav-body-top
+        {
+            display:none;
+        }
+        h3 {
+            border-bottom:2px solid #ccc;
+        }
+        .similar-resume{
+            display:none
+        }
+
+    </style>
+ 
+</head>
+<body>
+    <div class="resume-preview clearfix">
+        
+
+
+<div class="resume-body-left">
+    <div class="resume-preview-head" id="resumeContentHead">
+        <img alt="" src="http://img02.zhaopin.cn/2012/img/rd/logo.png" width="133" height="71"
+            align="right" class="headerlogo" />
+            <div class="resume-preview-title">
+                <span class="resume-preview-list">简历名称：<strong id="resumeName"></strong> </span>
+                <br />
+                <span class="resume-preview-list">期望从事职业： <strong id="desireIndustry"></strong></span>
+                <br />
+                <span class="resume-preview-list">简历更新时间： <strong id="resumeUpdateTime"></strong>
+                </span>
+            </div>
+            <div class="resume-preview-center">
+<form action="/ResumePreview/resume/_Detail?extId=JR002928436R90250002000&amp;version=1&amp;coverLetterVersion=0&amp;uniqueId=5159767210&amp;gltype=0&amp;positionId=0" data-ajax="true" data-ajax-mode="replace" data-ajax-success="changeLanguageTag" data-ajax-update="#resumeDetail" id="frmResumeDetail" method="post">                    <div class="center-left">
+                        <div class="resume-left-tips">
+                            <div class="resume-left-tips-span">
+                                <span class="resume-left-tips-id">ID:JR002928436R90250002000</span></div>
+
+<div class="resume-left-tips-span" id="tagDiv">
+    
+        <span class="editor-layer-icon check smpevent"  title="" id="tagClassHeader" data-smpaction="addtags" data-smpposition="resumedetail"></span>
+        <span class="resume-left-tips-id tips-id-color smpevent" id="addTagHeader" data-smpaction="addtags" data-smpposition="resumedetail">添加标签</span>
+        <span class="check-close" title="" id="deleteTagHeader" dev_guid="5159767210" style="display:none"></span>
+</div>
+                                <div class="resume-left-tips-span tips-span-right">
+                                    <img id="changeLanguageImg" src="/img/ajaxLoading.gif" alt="loading" style="display: none" />
+                                    <span class="resume-left-tips-right"><a href="javascript:void(0);" id="changeLanguage">英文简历</a></span>
+                                </div>
+                        </div>
+                    </div>
+                    <!--<div class="center-right">你可能对这些简历感兴趣</div>-->
+                    <input type="hidden" value="Chinese" name ="language" id="language" />
+                    <input type="hidden" value="English" name ="anotherLanguage" id="anotherLanguage" />
+</form>            </div>
+            <input type="hidden" id="guid" name="guid" value="5159767210" />
+    </div>
+
+
+
+<style type="text/css">
+    .posR
+    {
+        position: relative;
+        border: 1px solid #ccc;
+        height: 32px;
+    }
+    .nameMatching, .nameMatchings
+    {
+        line-height: 32px;
+        font-size: 12px;
+        float: left;
+        font-weight: normal;
+    }
+    .nameMatching
+    {
+        margin-left: 28px;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/Pmatching.png) no-repeat 7px 7px;
+        padding-left: 50px;
+        height: 22px;
+        padding-top: 10px;
+    }
+    .nameMatching .star
+    {
+        width: 50px;
+        height: 9px;
+        display: block;
+        font-size: 0;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/matching-mark.png) no-repeat;
+    }
+    .nameMatching .star5
+    {
+        background-position: 0 0;
+    }
+    .nameMatching .star4
+    {
+        background-position: 0 -9px;
+    }
+    .nameMatching .star3
+    {
+        background-position: 0 -18px;
+    }
+    .nameMatching .star2
+    {
+        background-position: 0 -27px;
+    }
+    .nameMatching .star1
+    {
+        background-position: 0 -36px;
+    }
+    .nameMatching .star0
+    {
+        background-position: 0 -45px;
+    }
+    
+    .nameMatchings
+    {
+        cursor: pointer;
+        margin-left: 10px;
+        background: url(http://img02.zhaopin.cn/2012/img/rd/Pcell.png) no-repeat 0 7px;
+        height: 22px;
+        width: 35px;
+    }
+    /*给我推荐更多相似人才 按钮*/
+    .acceptInvite {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .preview3 { 
+        float: left;
+    }
+
+    .preview3 span{
+        font-size:14px;
+    }
+    .moreRecom {
+        float: left;
+        width: 155px;
+        height: 25px;
+        background-color: #ff6600;
+        border-radius: 3px;
+        margin-left: 5px;
+        margin-top: 25px;
+        font: 12px/25px '微软雅黑';
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+    }
+
+
+
+</style>
+
+<style>
+    .fbtips {
+        width: 748px;
+        background-color: #fef8e0;
+        line-height: 28px;
+        border: 1px #eeebde solid;
+        border-bottom: 1px #ffd138 solid;
+        padding-left: 20px;
+        font-size: 12px;
+        color: #777;
+        letter-spacing: 1px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+        .fbtips span {
+            float: left;
+        }
+
+            .fbtips span.textsty {
+                color: #222;
+                font-weight: bold;
+            }
+
+            .fbtips span.textstyone {
+                color: #222;
+                font-weight: bold;
+                width: 180px;
+                float: left;
+                word-wrap: break-word;
+            }
+</style>
+
+
+
+<script type="text/javascript">
+    function showMatchDesc(id, rootcompanyId, name) {
+        $(".MatchingDescriptionBtn").match({
+            url: "http://rd2.zhaopin.com/s/resuadmi/resumematchingdescription.asp",
+            type: "Get",
+            data: { id: id, rootcompanyId: rootcompanyId, name: name },
+            callback: "matchingcallback"
+        });
+    }
+</script>
+<link type="text/css" rel="stylesheet" href="http://img00.zhaopin.cn/2012/css/rd/rdmatching.css">
+<div id="resumeDetail">
+     <div class="resume-preview-main">
+        <div class="resume-preview-left">
+
+            <div id="resumeContentBody">
+                <div class="resume-preview-main-title posR">
+                        <div id="userName" class="main-title-fl fc6699cc" style="height: 54px;" alt="周莉娜">
+                            周莉娜
+                              
+                       </div>
+ 
+
+    
+    
+</div>
+        <div class="summary">
+            <a target="_blank" href="http://my.zhaopin.com"><img alt="" src="http://my.zhaopin.com" width="93" height="131" align="right" class="headerImg" /></a>
+            <div class="summary-top">
+                <span>女&nbsp;&nbsp;&nbsp;&nbsp;35岁(1980年8月)&nbsp;&nbsp;&nbsp;&nbsp;12年工作经验&nbsp;&nbsp;&nbsp;&nbsp;硕士&nbsp;&nbsp;&nbsp;&nbsp;已婚</span>
+                <br />
+                现居住地：西安  | 户口：西安 | 中共党员(含预备党员) | 有海外工作/学习经验
+            </div>
+            <div class="summary-bottom">
+                <!--普通简历显示联系方式-->
+                  <div class="feedbackD_show" style="display:block;">
+                    <div class="feedbackD_cont">
+                        <div class="feedbackD" id="feedbackD02">
+                            <div>
+                                <span>
+                                <em><b>18629609633</b></em>
+                                <em><i class="mail">yoyo_shamash@163.com</i></em>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end显示联系方式-->
+
+
+                <!--橄榄枝显示联系方式-->
+                <!--end显示联系方式-->
+
+                <!--橄榄枝-->
+                <!--end橄榄枝-->
+
+
+        </div>
+        </div>
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">求职意向</h3>
+                <div class="resume-preview-top">
+                    <table cellpadding="0" cellspacing="0" >
+                        <tr valign="top">
+                            <td width="85" align="right">期望工作地区：</td>
+                            <td>西安、北京</td>
+                        </tr>   
+                        <tr valign="top">
+                            <td width="85" align="right">期望月薪：</td>
+                            <td>不显示职位月薪范围</td>
+                        </tr>   
+                        <tr valign="top">
+                            <td width="85" align="right">目前状况：</td>
+                            <td>我目前在职，正考虑换个新环境（如有合适的工作机会，到岗时间一个月左右）</td>
+                        </tr>
+                        <tr valign="top">
+                            <td width="85" align="right">期望工作性质：</td>
+                            <td>全职</td>
+                        </tr>                        
+                        <tr valign="top">
+                            <td width="85" align="right">期望从事职业：</td>
+                            <td>销售总监、区域销售总监</td>                   
+                        </tr>
+                        <tr valign="top">
+                            <td width="85" align="right">期望从事行业：</td>
+                            <td>计算机硬件、IT服务(系统/数据/维护)、电气/电力/水利、计算机软件、仪器仪表及工业自动化、通信/电信/网络设备</td>
+                        </tr>   
+                    </table>
+                </div>
+	        </div>
+        
+                <div class="resume-preview-all">
+                    <h3 class="fc6699cc">自我评价</h3>          
+                    <div class="resume-preview-dl rd-break">.Objectives:<br /><br />Seek a challenging and management position<br /><br /></div>
+                </div>   
+        
+            <div class="resume-preview-all workExperience">
+                <h3 class="fc6699cc">工作经历</h3>
+                    <h2>2013.12 - 至今&nbsp;&nbsp;三星（中国）投资有限公司&nbsp;&nbsp;（1年8个月）</h2>
+                    <h5>Senior Manager</h5>
+                    <div class="resume-preview-dl">
+                        通信/电信/网络设备 | 企业性质：外商独资 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td><br />Sustain 335% business revenue growth from 2013 to 2014,<br />160% overachieved 2015 1H Quota, <br />2015 sales quota: 70M USD, 1H Quota: 34M USD, 2H: 36M USD，<br />Lead 2 regional teams, 21 team members.<br /><br />Take full responsibility for all commercial product sales and improving market share. <br /><br />主要产品群：监控设备和大型商用显示设备， 楼宇中央空调系统和独立空调系统，智能楼宇系统集成解决方案，个人电脑与打印成像系统移动应用方案，MPS方案，医疗设备解决方案.<br /><br />覆盖主要行业为：制造业，机场能源交通行业，建筑研究设计院和业主方，重点建筑工程施工单位，酒店地产行业，酒店地产设备协会，政府教育和医疗卫生，军队医院后勤，电信，金融银行，物流业等.<br /><br />成功客户：大唐电力集团，中广核集团，南方电网，中交第二公路工程局有限公司，深圳高速公路有限公司，天狮集团，平安集团，太平集团，顺丰速运集团，华为技术有限公司，中兴通讯股份有限公司，招商银行，广发银行，农业银行，深圳证券交易所，南方航空，深圳航空，深圳机场，沃尔玛，比亚迪，香格里拉亚太管理公司，万豪集团中国公司，碧桂园等.<br /><br />主要成功项目：大唐电力终端信息安全集成项目，中广核集团终端信息安全集成项目，南方电网下属地市局61局系统采购及数据中心统购项目，中交二工局珠港澳大桥商用显示设备项目，深圳高速公路有限公司监控设备项目，天狮集团数据集成统购项目，平安集团数据安全集成项目，平安集团健康项目，平安集团勘察项目，签订三星和平安集团战略合作协议，太平集团打印机系统项目及终端业务员移动办公项目，顺丰速运全国监控系统，全国打印系统。签订三星和顺丰集团双向战略合作协议，华为智侦系统项目，中兴生产资料项目，招商银行全国信息安全项目，招商银行全国移动支付项目，招商银行电视供应商，签订三星和招商银行战略合作协议，广发银行移动终端项目，农业银行全国移动数据打印及机房空调项目，沃尔玛中国区打印机综合外包项目，万豪集团楼宇中央空调系统及商用电视项目，香格里拉亚太管理公司智能楼宇项目，碧桂园地产酒店电视供应商及空调系统项目等.<br /><br />团队精神培养和业务模式调整： <br />建立团队可持续稳定的业绩提升管理机制， 危机意识管理，进攻型销售氛围，培养团队互相竞争文化，销售人员最终用户拜访和控标订单管理.<br /><br />创建三角形业务管理模式达到合作伙伴公司和客户多赢局面：<br /><br />建立中大型商机Funnel管理机制， 重点行业pipeline 大型订单亲自跟进，销售团队业绩Daily review.<br /><br />调动协调公司内部不同部门资源达成销售目标，快速提高Sales productivity，Sales loading，管理Sales behavior,周客户拜访10个最终用户.<br /><br />成功创建行业灯塔大型订单.<br /><br />提高和实现单一客户多产品销售比例达到32%以上，成为大中国区成长和达成最优秀团队.<br /><br />建立区域型和全国型合作伙伴体系，做到点对点项目跟踪，搭建从立项到项目实施的全时跟进，构建行业客户与公司的战略合作签署MOU.<br /><br /><br />运用SCM监控及管理项目订单，控制风险及成本：<br />建立销售12周业务预测，4周订单风险预测，对风险订单亲自跟进，最大限度调动公司内外资源解决问题，提高销售及整个团队监控管理项目的能力.</td>
+                                </tr>
+                            </table>
+                        </div>    
+                    <h2>2010.06 - 2013.12&nbsp;&nbsp;惠普&nbsp;&nbsp;（3年6个月）</h2>
+                    <h5>NorthWest Regional Sales Manager</h5>
+                    <div class="resume-preview-dl">
+                        计算机硬件 | 企业性质：外商独资 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td><br />Key business relationship customers:<br /><br />西北五省（陕西，新疆，甘肃，青海，宁夏）财政厅，卫生厅，教育厅，公检法系统，国税局，工商局，安全厅，发改委，人力资源及社会保障局，能源局，电力设计院，煤炭院，市政，热力公司<br />大唐电力集团西北五省各分公司及下属火电厂，陕煤化集团及下属各分公司和煤炭公司，延长石油集团，陕西有色金属控股集团，陕西汽车控股集团，新疆能源集团，新疆中泰集团，新疆新能源集团，国家电网下属西北5个分公司，新疆第一工业设计院<br />陕西省军区，兰空，新疆建设兵团等<br /><br />Take full responsibility for public sector P&amp;L. Lead 18 sles forces to achieve 55M revenue quota. Increased business market share from 11% to 46%.<br /><br />Strengthen group business with 54% YoY growth.<br />Balance internal resources and carry forward team work spirit. <br />Reorganize and build a strong sales team and management team to expand large customer business quickly.<br /><br />Draw up annual sales plan, achievement target, marketing plan, deliver new product to market. <br />Set up industry target and strategy. Guide team to know how much revenue we need to grow.<br />Drive team to catch revenue account and margin account base on different industry and region. <br />Create a regional platform of government specialist to control business bidding. <br /><br />Get a good alignment with provincial government and management commission like State Development commission and Provincial and urban GPC, CCGP, State Aviation, Transportation ministry, Public Security, China Human Resource Ministry. China Aviation Administration of China, National Development and Reform Commission, Xin Jiang Environmental Protection Bureau, Shaanxi Provincial Department of Land Resources , Gansu Public Security Department and so on.<br />Manage large deal to improve win rate and train team to find out the win chance. For Example: Provincial Government Center, Public Security Bureau, Education Bureau, Health Care Bureau…<br /><br />Build industry key account solution partner to expand our business coverage. <br />Help local sales to call High level to stabilize business relationship. Also make sure all sales team will cover L1 to L5 city level customers. Visit the end user to get the yearly budget, buying power, Annual bidding time and request. Work out partner management rule and implement it, work with team to execute the awards and promotion program for faithful partner together. <br />Establish a triangular form business model to achieve profit share and continued business.<br />Get align with internal team &amp;external partners like china digital/Intel/Microsoft/AMD to win OEM projects.</td>
+                                </tr>
+                            </table>
+                        </div>    
+                    <h2>2006.10 - 2010.06&nbsp;&nbsp;联想集团&nbsp;&nbsp;（3年8个月）</h2>
+                    <h5>Sales Manager (京津冀地区)</h5>
+                    <div class="resume-preview-dl">
+                        计算机硬件 | 企业性质：合资 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td><br />Enhanced annual business revenue growth about 140% from FY2006 to FY2010,<br />FY2010 achieved total revenue about $160m.<br />Leading 25 team members, including 15 inside-sales and 10 field sales in total<br /><br />Manage sales and operation team to achieve sales revenue and margin quota. Teach team understanding the marketing event and promotion concept. Solve issues and customer major complains; solve the different internal problems. Manage relationship with distributors and resellers. Develop some key resellers’ business in china mainland region. Coach team to understand company’s internal resource such as: supply chain, Support team, product team, Finance team etc.<br /><br />In charge of overall responsibility for the accomplishment of the annual sales target set by the Company and draw up the detailed sales and marketing plans and measures for the team so as to achieve the best performance at the best operating costs<br /><br />Developing new sales method including online distributor such as JD online, China Merchants Bank credit card center online, Guangdong Development Bank and etc. During the business with JD online, achieved ~5k units per month in FY2010, about 2times ahead of other competitor such as HP/DELL. And created new business relationship with major credit card banks for installment payment solutions. <br /><br />Analyze the competitors’ marketing activities and predict their business movements so that to lead sales team working out appropriate strategies, and keep tracking whole process to ensure our sales team to take advantage to matching toward success.<br /><br />Build relationships with high level customers and introduce our product solution and service program. Base on the good relationship with customer management members; let them know the benefits if they buy our solution or outscore the hardware, IT, helpdesk and call center and Delivery process etc.<br /></td>
+                                </tr>
+                            </table>
+                        </div>    
+                    <h2>2003.07 - 2005.06&nbsp;&nbsp;IBM China&nbsp;&nbsp;（1年11个月）</h2>
+                    <h5>Account Manager</h5>
+                    <div class="resume-preview-dl">
+                        计算机硬件 | 企业性质：外商独资 | 规模：10000人以上
+                    </div>
+                        <div class="resume-preview-dl">
+                            <table cellpadding="0" cellspacing="0" >
+                                <tr valign="top">
+                                    <td width="60">工作描述：</td>
+                                    <td><br />Over-achieved sales target from2003~2005 with average 5M$ per year, winning the ‘top sales award’ in 2004.<br /><br />Responsible for top 10 account plan and implementation such as Beijing Taxation Bureau , Beijing Industry and Commerce Administration Bureau and ect.<br /><br />Develop the laptop resellers.</td>
+                                </tr>
+                            </table>
+                        </div>    
+            </div>
+        
+        
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">教育经历</h3>
+                <div class="resume-preview-dl educationContent">
+2005.08 - 2006.08&nbsp;&nbsp;University College London (UCL)&nbsp;&nbsp;市场营销&nbsp;&nbsp;硕士<br />
+1999.09 - 2003.07&nbsp;&nbsp;空军工程大学&nbsp;&nbsp;英语&nbsp;&nbsp;本科<br />
+1999.09 - 2003.07&nbsp;&nbsp;本科<br />
+                </div>
+            </div>
+    
+    
+            <div class="resume-preview-all">
+            <h3 class="fc6699cc">证书</h3>
+                    <h2>2009.10</h2>
+                    <h2>2009.10&nbsp;&nbsp;大联想客座讲师</h2>
+            </div>
+    
+     
+    
+            <div class="resume-preview-all">
+                <h3 class="fc6699cc">语言能力</h3>
+                <div class="resume-preview-dl resume-preview-line-height">
+英语：读写能力良好 | 听说能力良好<br />
+                </div>
+            </div>
+
+     
+        
+    
+            <div id="commentBlock">
+
+            </div>
+
+
+        </div>
+<div class="resume-preview-right">
+
+            <div class="resume-preview-button previewLayer1 smpevent" data-smpaction="savetocomputer" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon1"></span>保存到我的电脑</div>
+            <div class="resume-preview-button previewLayer2 smpevent" data-smpaction="forwardemail" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon2"></span>转发简历到邮箱</div>
+            <div class="resume-preview-button previewLayer3 smpevent" data-smpaction="movefavoritefolder" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon3"></span>移到简历夹</div>
+           <div class="resume-preview-button previewLayer4 smpevent" data-smpaction="recommendposition" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon4"></span>推荐职位</div>
+            <div class="resume-preview-button previewLayer5 smpevent" data-smpaction="sendmessage" data-smpposition="resumedetail" rdmodule="sendInfoFac" id="sendInfoTrigger" sender="西安立峰伟业家居有限公司" reply="302746624@qq.com" cvbox="document.getElementById('sendNotify')" tdindex="-1">
+                <span class="resume-preview-button-span preview-icon5"></span>发通知信</div>
+            <div class="resume-preview-button previewLayer6 smpevent" data-smpaction="movetoresumebank" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon6"></span>保存到人才储备</div>
+            <div class="resume-preview-button previewLayer7" isdelete="2">
+                <span class="resume-preview-button-span preview-icon7"></span>放入回收箱</div>
+            <div class="resume-preview-button previewLayer9 smpevent" data-smpaction="addcomments" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon9"></span>添加评语</div>
+            <div class="resume-preview-button previewLayer14 smpevent" data-smpaction="addtags" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon13"></span>添加标签</div>
+            <div class="resume-preview-button complaints-resume"> <span class="resume-preview-button-span
+            complaints-icon"></span>举报该简历 </div>
+            <div class="resume-preview-button previewLayer8 smpevent" data-smpaction="printresume" data-smpposition="resumedetail">
+                <span class="resume-preview-button-span preview-icon8"></span>打印简历</div>
+
+    <a class="similar-button-gray previewLayer_xsjl" style="display:none" target="_blank"><span class="preview-icon_xsjl resume-preview-button-span preview-icon-similar-gray">
+    </span><span id="xsjl_count">相似简历(<img id="xsjldd" src="http://img02.zhaopin.cn/2012/img/rd/xsjldd.gif" />)</span>
+        <span class="new-icon"></span></a>
+    <!--<div class="resume-preview-button previewLayer10">
+        <span class="resume-preview-button-span preview-icon10"></span>返回顶部</div>-->
+</div>
+<div class="back-to">
+</div>
+<div class="szmr_over">
+    <div class="szmr_overts">
+        <div id="subWindowMain" class="tanchuang_main">
+        </div>
+    </div>
+</div>
+<div id="downfile" style="display: none">
+</div>
+
+      
+  
+    </div>
+    </div>
+</div>
+
+
+
+    <input type="checkbox" name="chkid_sendinfo" userinfo_forsend="周莉娜$100292843$yoyo_shamash@163.com$18629609633$5159767210$" id="sendNotify" checked="checked" style="display:none;" />    
+<!--随手聘-->
+<input type="hidden" name="posttype" id="posttype" value="0" />
+<input type="hidden" name="labeltype" id="labeltype" value="0" />
+<input type="hidden" name="positionid" id="positionid" value="0" />
+<!--反馈通D期-->
+<input type="hidden" name="tt_username" id="tt_username" value="周莉娜" />
+<input type="hidden" name="tt_sourceid" id="tt_sourceid" value="3" />
+
+
+<input type="hidden" name="resume_id" id="resume_id" value="141806770" />
+<input type="hidden" name="extId" id="extId" value="JR002928436R90250002000" />    
+<input type="hidden" name="resume_version" id="resume_version" value="1" />    
+<input type="hidden" name="resume_language" id="resume_language" value="1" />
+<input type="hidden" name="resume_Name" id="resume_Name" value="Resume from Lina ZHOU" />
+<input type="hidden" name="resumeUserId" id="resumeUserId" value="100292843" />
+<input type="hidden" name="currentCompanyName" id="currentCompanyName" value="西安立峰伟业家居有限公司" />
+
+
+<input type="hidden" name="PositionNumber" id="PositionNumber" value="" />
+<input type="hidden" name="gltype" id="gltype" value="0" />
+<input type="hidden" name="GlStatus" id="GlStatus" value="" />
+
+<input type="hidden" name="ApplyResume" id="ApplyResume" value="" />
+<input type="hidden" name="rootCompanyId" id="rootCompanyId" value="46312271" />
+
+<!-- Trace Data Block Start -->
+<input type="hidden" name="dda_kpi" id="dda_kpi" value="M3" />
+<input type="hidden" name="dda_operatorid" id="dda_operatorid" value="651568052" />
+<input type="hidden" name="dda_companyid" id="dda_companyid" value="46312271" />
+<input type="hidden" name="dda_custom" id="dda_custom" value="" />
+<input type="hidden" name="dda_ownerid" id="dda_ownerid" value="5159767210" />
+<input type="hidden" name="dda_cvid" id="dda_cvid" value="JR002928436R90250002000_1" />
+<input type="hidden" name="dda_position" id="dda_position" value="resumedetail" />
+<input type="hidden" name="dda_action" id="dda_action" value="viewdetail" />
+<input type="hidden" name="dda_xtable" id="dda_xtable" value="2" />
+<input type="hidden" name="dda_type" id="dda_type" value="cvinterview" />
+<!-- Trace Data Block End   -->
+<a id="fileLink" href="" style="display:none"></a>
+
+<script type="text/javascript" language="javascript">
+    var desire = document.getElementById("desireIndustry");
+    if (desire != null) {
+        desire.innerHTML = "销售总监、区域销售总监";
+    }
+
+    var resumeName = document.getElementById("resumeName");
+    if (resumeName != null) {
+        resumeName.innerHTML = "Resume from Lina ZHOU";
+    }
+
+    var resumeUpdateTime = document.getElementById("resumeUpdateTime");
+    if (resumeUpdateTime != null) {
+        resumeUpdateTime.innerHTML = "2015年08月10日";    
+    }
+
+   
+</script>
+
+
+
+</div>
+
+    <div id="smilarresume" class="similar-resume" style="display:none">
+        <h1>相似简历</h1>
+        <table width="100%" cellspacing="0" cellpadding="0">
+             <thead>
+                <tr>
+                    <td nowrap>简历名称</td>
+                    <td nowrap width="135">职位名称</td>
+                    <td nowrap width="30">学历</td>
+                    <td nowrap width="30">性别</td>
+                    <td nowrap width="30">年龄</td>
+                    <td nowrap width="70">期望月薪</td>
+                    <td nowrap width="30">状态</td>
+                    <td nowrap width="60">现居住地</td>
+                    <td nowrap class="similar-td-padding" width="68">更新时间</td>
+                </tr>
+             </thead>
+             <tbody id="sr_tobdy">
+             </tbody>
+             <tfoot>
+                <tr>
+                    <td colspan="10">
+                        <a id="sr_all" target="_blank"></a>
+                        <div class="satisfaction-ul">
+                            <span>您对“相似简历”的功能是否满意？</span>
+                            <span id="smilarResumeFeedback"><a class="satisfaction-yes" href="javascript:void(0);">满意</a><a class="satisfaction-no" href="javascript:void(0)">不满意</a></span>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div><input type="hidden" name="viewSource" id="viewSource" value="1" />
+<input type="hidden" name="keyword_search" id="keyword_search" value="" />
+<input type="hidden" name="college_search" id="college_search" value="" />
+<input type="hidden" name="company_search" id="company_search" value="" />
+<input type="hidden" name="dda_source" id="dda_source" value="" />
+
+
+    </div>
+    <div class="editor-layer-add">
+        <div class="editor-layer-icon cvLabelColor1 dev_label_icon_list" dev_classname="cvLabelColor1">
+        </div>
+        <div class="editor-layer-icon cvLabelColor2 dev_label_icon_list" dev_classname="cvLabelColor2">
+        </div>
+        <div class="editor-layer-icon cvLabelColor3 dev_label_icon_list" dev_classname="cvLabelColor3">
+        </div>
+        <div class="editor-layer-icon cvLabelColor4 dev_label_icon_list" dev_classname="cvLabelColor4">
+        </div>
+        <div class="editor-layer-icon cvLabelColor5 dev_label_icon_list" dev_classname="cvLabelColor5">
+        </div>
+        <div class="editor-layer-icon cvLabelColor6 dev_label_icon_list" dev_classname="cvLabelColor6">
+        </div>
+        <div class="editor-layer-icon cvLabelColor7 dev_label_icon_list" dev_classname="cvLabelColor7">
+        </div>
+        <div class="editor-layer-icon cvLabelColor8 dev_label_icon_list" dev_classname="cvLabelColor8">
+        </div>
+        <div class="editor-layer-icon cvLabelColor9 dev_label_icon_list" dev_classname="cvLabelColor9">
+        </div>
+        <div class="editor-layer-icon cvLabelColor10 dev_label_icon_list" dev_classname="cvLabelColor10">
+        </div>
+        <div class="editor-layer-icon cvLabelColor11 dev_label_icon_list" dev_classname="cvLabelColor11">
+        </div>
+        <div class="editor-layer-icon cvLabelColor12 dev_label_icon_list" dev_classname="cvLabelColor12">
+        </div>
+    </div>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/zlzp.app.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.popupdiv.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.popupbase.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/common.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/utilscript.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/fnresuadmi.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/ui/jquery.zlzp.autocomplete.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/za/smp.min.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2012/js/rd/previewlayer.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/rd2/js/fktResumeActive.js"></script>
+    <!--反馈通D期-->
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/common/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/rd2/js/feedbackD.js?version=20150723"></script>
+    <script type="text/javascript" src="http://img01.zhaopin.cn/2014/common/js/za/ga.js"></script>
+
+
+        
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                //SMP监控
+                smppv.pageView();
+            });
+
+
+        </script>
+    </body>
+    </html>

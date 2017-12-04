@@ -1,0 +1,50 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "行政人事专员/主管（男）（深圳-福田区）",
+        "applicant_company": "深圳市澳德华信息咨询有限公司",
+        "update_time": 1421164800,
+        "city": "韶关",
+        "phone": "13924667263",
+        "email": "2654758697@qq.com",
+        "last_company": "深圳欢乐颂文化发展有限公司",
+        "industry": "影视/媒体/艺术/文化传播",
+        "last_position": "人事专员",
+        "degree": "大专",
+        "major": "人力资源管理",
+        "school": "潮汕学院",
+        "work_year": "1年",
+        "sex": "女",
+        "birth_year": 1992,
+        "true_id": "319646526",
+        "name": "张立平",
+        "self_str": "本人性格开朗、稳重、有活力，待人热情、真诚；工作认真负责，积极主动，能吃苦耐劳，用于承受压力，勇于创新；有很强的组织能力和团队协作精神，具有较强的适应能力；纪律性强，工作积极配合；意志坚强，具有较强的无私奉献精神。",
+        "jump_time": "一周以内",
+        "work_property": "全职",
+        "target_industry": "娱乐/休闲/体育",
+        "target_position": "人事专员",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1383235200,
+                "end_time": 1414771200,
+                "company": "深圳欢乐颂文化发展有限公司",
+                "size": "500-1000人",
+                "industry": "影视/媒体/艺术/文化传播",
+                "department": "人事部",
+                "position": "人事专员",
+                "duty": "1、每周/月的人员招聘#br#2、考勤卡的记录#br#3、绩效考核资料的准备与票数的统计#br#4、劳动合同的签订#br#5、工资的录入"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1377964800,
+                "end_time": 1401552000,
+                "school": "潮汕学院",
+                "major": "人力资源管理",
+                "degree": "大专",
+                "class": "人力资源规划、招聘与配置、培训与开发、绩效管理、薪酬福利管理、劳动关系管理"
+            }
+        ]
+    }
+}

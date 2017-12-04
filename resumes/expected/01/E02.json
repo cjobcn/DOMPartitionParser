@@ -1,0 +1,29 @@
+{
+    "template": "01",
+    "data": {
+        "true_id": "00109094",
+        "update_time": 1214841600,
+        "name": "曹胜利",
+        "sex": "男",
+        "phone": "13486191303",
+        "age": 34,
+        "email": "shenglicao2@yahoo.com.cn",
+        "degree": "本科",
+        "marriage": "",
+        "city": "杭州",
+        "work_year": "",
+        "industry": "计算机软件",
+        "last_company": "",
+        "last_position": "软件工程师",
+        "current_salary": "",
+        "bonus": "",
+        "target_industry": "计算机软件;互联网·电子商务",
+        "target_position": "软件工程师;研发工程师",
+        "target_city": "杭州",
+        "target_salary": "1000元/月",
+        "self_str": "自律性强，自学能力强，同学关系融洽，有较强责任感；但有事处事过于急躁。",
+        "education": [],
+        "career": [],
+        "projects": []
+    }
+}

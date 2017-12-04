@@ -1,0 +1,43 @@
+{
+    "template": "12",
+    "data": {
+        "true_id": "335202968",
+        "name": "王宁",
+        "sex": "女",
+        "birth_year": 1991,
+        "marriage": "未婚",
+        "height": "",
+        "degree": "硕士",
+        "work_begin": "",
+        "residence": "",
+        "city": "杭州-下城区",
+        "phone": "17767132556",
+        "address": "",
+        "email": "185338715@qq.com",
+        "qq": "185338715",
+        "postcode": "",
+        "target_city": "上海，杭州",
+        "target_position": "其他",
+        "target_industry": "政府/公共事业",
+        "current_salary": "",
+        "self_str": "1.熟悉国内药学发展的最新动态。具备良好的英语听说读写能力。2.做人诚恳，勤劳，踏实，责任心强。最大的优点是不怕吃苦，具备理性的头脑，迎难而上。具备团队合作精神，善于学习新知识。3.能积极服从公司安排，完成任务。",
+        "photo": "",
+        "homepage": "",
+        "update_time": 1445443200,
+        "career": [
+            {
+                "start_time": 1425139200,
+                "end_time": 2147483647,
+                "city": "",
+                "company": "浙江省食品药品监督管理局 ",
+                "nature": "",
+                "size": "500-1000人",
+                "industry": "政府/公共事业",
+                "salary": "",
+                "duty": "1.协助药品安全监管处的监管人员完成工作，主要包括药品生产许可证发放，药品GMP证书的发放。",
+                "left_reason": ""
+            }
+        ],
+        "projects": []
+    }
+}

@@ -1,0 +1,392 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "信息技术部副总（上海）",
+        "applicant_company": "上海泽银资产管理有限公司",
+        "update_time": 1444233600,
+        "city": "上海-黄浦区",
+        "residence": "上海",
+        "address": "上海市宝山区海滨四村35号602室",
+        "phone": "13764924790",
+        "email": "thp@citiz.net",
+        "last_company": "斯菲尔股份有限公司",
+        "industry": "互联网/电子商务",
+        "last_position": "首席技术执行官CTO/首席信息官CIO",
+        "degree": "MBA",
+        "major": "工商管理",
+        "school": "亚洲城市大学",
+        "current_salary": "年薪 40-50万 人民币",
+        "postcode": "200940",
+        "birth_year": 1980,
+        "work_year": "10年以上",
+        "true_id": "770823",
+        "name": "唐海平",
+        "self_str": "自信,有上进心,善于学习,熟悉团队建设，系统规划，预算控制，项目管理和开发流程有PMP,CMMI证书,实际项目经验丰富,成功领导开发和实施过多个大型项目#br#关键词：ERP 总监 TMS WMS OMS SCM Oracle POS HEX OA",
+        "jump_time": "一个月内",
+        "work_property": "全职",
+        "target_industry": "计算机服务(系统、数据服务、维修)，交通/运输/物流，餐饮业，快速消费品(食品、饮料、化妆品)，服装/纺织/皮革",
+        "target_city": "上海，苏州，杭州",
+        "target_salary": "月薪 30000-39999",
+        "target_position": "首席技术执行官CTO/首席信息官CIO，信息技术经理/主管，项目总监，项目经理，技术总监/经理",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1404144000,
+                "end_time": 2147483647,
+                "company": "斯菲尔股份有限公司",
+                "size": "少于50人",
+                "industry": "互联网/电子商务",
+                "department": "IT",
+                "position": "首席技术执行官CTO/首席信息官CIO",
+                "duty": "1.建立IT团队，定义各种流程与项目管理方法#br#2.创建物流O2O平台，包括后台SAS、前端APP、微信等#br#3.管理在建和新建的各项目#br#4.为关键用户提供IT解决方案#br#5.规划短期和长期的IT系统建立预算成本,"
+            },
+            {
+                "start_time": 1362067200,
+                "end_time": 1404144000,
+                "company": "BreadTalk",
+                "size": "5000-10000人",
+                "industry": "快速消费品(食品、饮料、化妆品)",
+                "department": "IT",
+                "position": "IT总监",
+                "duty": "1. 改进IT团队的工作效率，整合各种资源#br#2.根据业务发展需要规划IT团队的发展，评估IT团队成员的绩效并给予指导#br#3.系统优化及新系统规划，包括软件和硬件#br#4.管理所有应用程序和各项目的实施与建设#br#5.根据当前业务情况评估与提出解决方案#br#6.优化供应商与IT服务流程，建立多极SLA服务支持体系#br#7.实现跨部门与外部供应商的SLA支持与管理#br#8.预算费用管理，尽可能为集团节省开支",
+                "report_to": "中国区ＣＯＯ，新加坡ＩＴ ＳＶＰ",
+                "underlings": "8",
+                "referees": "sasa",
+                "left_reason": "公司实际情况与面试所谈情况差异较大",
+                "performance": "1.中国集团网络重建#br#2.完成各品牌IT与业务整合的支持（共享服务share service）#br#3.在全国范围内完成考勤,排班系统实施#br#4.帮助财务部门提升工作效率减少手工作业#br#5.POS（DRS）与ERP（FUJITSU HEX）系统优化,替换规划，从每小时6万条提升到12万条处理量#br#6.结合微信等工具的网络蛋糕项目，实现O2O的蛋糕销售模式#br#7.改善门店新开店和维护服务及各种业务流程支持，提升人均可支持门店数"
+            },
+            {
+                "start_time": 1277913600,
+                "end_time": 1362067200,
+                "company": "佳宇物流（卡行天下）有限公司",
+                "size": "10000人",
+                "industry": "交通/运输/物流",
+                "department": "IT部",
+                "position": "IT总监",
+                "duty": "兼KXTX供应链公司IT总监，金百达公司副总裁#br#1.建立IDC机房保证系统正常运行#br#2.建立IT团队，定义各种流程与项目管理方法#br#3.带领创建电子商务平台支持企业转型#br#4.管理在建和新建的各项目#br#5.协调总部IT，帮助实施全球系统#br#6.跨部门和外部供应商的SLA实施与管理#br#7.为关键用户提供IT解决方案#br#8.规划短期和长期的IT系统建立预算成本,",
+                "report_to": "CEO",
+                "underlings": "22",
+                "referees": "龚杰",
+                "left_reason": "外方撤资",
+                "performance": "1. 开发团队的建立与管理#br#2. 建立O2O的卡行天下供应链电子交易平台，整合各种物流资源#br#3. 统一通信平台#br#4. 佳宇业务平台优化升级#br#5. IT 服务流程创建及持续改进#br#6. 业务系统发展规划与实施#br#7. IDC机房建设#br#8. OA系统实施#br#9. 帮助企业融资#br#10. Oracle OTM实施#br#11.SAP FICO实施"
+            },
+            {
+                "start_time": 1201795200,
+                "end_time": 1270051200,
+                "company": "TNT北亚区总部",
+                "size": "10000人",
+                "industry": "计算机软件",
+                "department": "IT 部",
+                "position": "高级技术顾问",
+                "duty": "1.带领团队交付各种IT项目，涉及运营操作，销售市场，财务与客户服务各部门#br#2.通过各种方式主动为客户提供各种系统支持和专业的技术支持#br#3.系统总部IT并协助实施全球性的系统#br#4.管理软件开发供应商，定义各种工作流程#br#5.为内外部客户提供各种IT解决方案#br#6.根据中国区的业务发展开发和整合中国区的通用管理系统2007 /1--2008 /2：富士通(中国)信息系统有限公司2003 /3--2007 /1：亿马物流系统有限公司（EMP&MAERSK DATA）2001 /7--2003 /3：金硅科技发展有限公司",
+                "report_to": "部门经理",
+                "underlings": "5",
+                "referees": "应夏巳",
+                "left_reason": "公司倒闭",
+                "performance": "金盾工程特行管理信息系统"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1383235200,
+                "end_time": 1404144000,
+                "name": "POS与ERP系统优化",
+                "description": "由于DRS POS 系统与 HEX ERP均出现性能问题，经过检查最终发现为IO问题，通过改善线程通道和RAID模式解决此问题，每小时业务处理能力从6万条变成12万条。",
+                "duty": "系统分析，方案设计，实施"
+            },
+            {
+                "start_time": 1377964800,
+                "end_time": 2147483647,
+                "name": "星语云端",
+                "description": "项目为蛋糕电子商务网站，该项目一期包括微信，电子商务网站，呼叫中心，订单管理系统等。面包新语通过该网站销售与线下完全不同的蛋糕产品,实现O2O的销售模式。",
+                "duty": "负责项目管理，RFP的定义，需求控制，项目供应商的管理，保证系统按时交付。"
+            },
+            {
+                "start_time": 1362067200,
+                "end_time": 1385827200,
+                "name": "考勤排班系统",
+                "dev": ".net",
+                "description": "为全国BREADTALK的各品牌门店提供系统排班与考勤管理，最终为工资计算提供 依据",
+                "duty": "负责项目的项目管理，预算控制，需求分析等"
+            },
+            {
+                "start_time": 1351699200,
+                "end_time": 1362067200,
+                "name": "集团财务",
+                "dev": "SAP FICO",
+                "description": "SAP FICO实施，解决集团财务问题",
+                "duty": "可行性分析，差异化分析，项目管理，预算管理等"
+            },
+            {
+                "start_time": 1351699200,
+                "end_time": 1362067200,
+                "name": "TMS",
+                "dev": "Oracle OTM",
+                "description": "实施Oracle OTM系统作为TMS，全面解决运输管理的整个过程",
+                "duty": "可行性分析，差异化分析，项目管理，预算管理等"
+            },
+            {
+                "start_time": 1322668800,
+                "end_time": 1330531200,
+                "name": "OA",
+                "dev": "Sharepoint",
+                "description": "实施蓝菱OA系统，解决无纸化办公",
+                "duty": "可行性分析，差异化分析，项目管理，预算管理等"
+            },
+            {
+                "start_time": 1322668800,
+                "end_time": 1349020800,
+                "name": "卡行天下电子商务交易平台",
+                "description": "为专线公司，第3方物流，渠道发货人提供全方位的 ，交易，运营，管理平台，提升中小物流公司的综合竞争能力。支持在线交易，运输管理，支付，在途跟踪，呼叫中心，客户服务，保险理赔等功能。",
+                "duty": "系统规划，架构设计，预算管理，营销方案等"
+            },
+            {
+                "start_time": 1277913600,
+                "end_time": 1283270400,
+                "name": "集团IDC机房建设",
+                "description": "在公司内建立IDC机房，包含16台服务器，提供BGP线路支持",
+                "duty": "评估项目可行性,审批及检查项目预算，实施计划，进度，方案 等."
+            },
+            {
+                "start_time": 1277913600,
+                "end_time": 1285862400,
+                "name": "统一通信平台",
+                "description": "建立统一的通信通道, 提供 SMS, QQ, MSN, Voice, Mail 等通信功能",
+                "duty": "评估项目可行性,审批及检查项目预算，计划，进度，方案 等."
+            },
+            {
+                "start_time": 1277913600,
+                "end_time": 1338480000,
+                "name": "佳宇供应链管理平台",
+                "dev": "VS.NET",
+                "description": "建立YRC佳宇的整体业务平台，提供业务的支持,包括订单管理OMS，客户关系管理CRM，仓储管理WMS，运输管理TMS，费用结算Billing，监控，优化等",
+                "duty": "建立项目的整体解决方案, 项目预算控制，向董事会回报立项，系统架构设计。"
+            },
+            {
+                "start_time": 1233417600,
+                "end_time": 1254326400,
+                "name": "浦东口岸主单管理信息系统",
+                "soft": "windows",
+                "dev": "j2ee, oracle 10G",
+                "description": "为浦东口岸提供主单模版管理，费率管理，主单管理等功能。",
+                "duty": "担任该项目项目经理，评估，预算，进度控制，内外部协调，需求，设计，代码的走查，文档管理,测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1233417600,
+                "end_time": 1259596800,
+                "name": "TNT Orange Club System",
+                "soft": "windows",
+                "dev": ".Net 2005, SQL Server2005",
+                "description": "为sales&marketing部门提供礼品兑换服务，管理的服务",
+                "duty": "担任该项目的技术经理，需求分析，架构设计，数据库设计，核心代码开发，代码的走查，文档管理,测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1206979200,
+                "end_time": 1233417600,
+                "name": "TNT Personal Tariff System",
+                "soft": "j2ee, oracle 10G",
+                "description": "为商务部门提供报价申请,报价分析,流程控制等功能",
+                "duty": "担任该项目项目经理，评估，预算，进度控制，内外部协调，需求，设计，代码的走查，文档管理,测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1206979200,
+                "end_time": 1228060800,
+                "name": "TNT Tax Invoice Printing System",
+                "soft": "j2ee, oracle 10G",
+                "description": "为全国各分公司提供不同税务发票格式打印的功能",
+                "duty": "担任该项目项目经理，评估，预算，进度控制，内外部协调，需求，设计，代码的走查，文档管理,测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1201795200,
+                "end_time": 1217520000,
+                "name": "TNT Price Online System",
+                "soft": "j2ee, oracle 10G",
+                "description": "提供RFQ申请,成本分析,费率管理等",
+                "duty": "担任该项目项目经理，评估，预算，进度控制，内外部协调，需求，设计，代码的走查，文档管理,测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1196438400,
+                "end_time": 1196438400,
+                "name": "Fujitsu CMM3 级评审",
+                "description": "Fujitsu CMM3 级评审",
+                "duty": "负责审计项目过程文档，面谈项目经理及工程师，并提交ＳＥＩ"
+            },
+            {
+                "start_time": 1188576000,
+                "end_time": 1196438400,
+                "name": "OCS Billing System",
+                "description": "管理运单，收入，成本，并能每月自动产生会计分录",
+                "duty": "担任该项目项目经理，售前，评估，预算，报价，进度控制，内外部协调，需求，设计，代码的走查，测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1177948800,
+                "end_time": 1196438400,
+                "name": "BMW Claim Tool",
+                "dev": ".Net 2005, SQL Server2005",
+                "description": "控制BMW零部件的Claim流程，帮助优化及减少人工作业．",
+                "duty": "担任该项目项目经理，售前，评估，预算，报价，进度控制，内外部协调，需求，设计，代码的走查，测试及实施监督控制等．"
+            },
+            {
+                "start_time": 1167580800,
+                "end_time": 1177948800,
+                "name": "Cold Stone后台管理系统",
+                "dev": ".net 2005,oracle10",
+                "description": "Cold Stone门店配送的管理控制，并与ＰＯＳ系统接口",
+                "duty": "担任该项目经理，负责内外部关系协调，进度控制，开发标准定义，核心需求，设计及代码的走查等"
+            },
+            {
+                "start_time": 1154361600,
+                "end_time": 1167580800,
+                "name": "SPC（上海石化）物流系统二期",
+                "description": "针对一期项目的不足之处进行优化，完善，并进行适当的二次开发．",
+                "duty": "担任项目经理，负责与客户的沟通，需求分析，内部协调，控制项目的进度，部分代码的开发．"
+            },
+            {
+                "start_time": 1146412800,
+                "end_time": 1167580800,
+                "name": "中国铁道部洋山港铁路中心站场站管理系统",
+                "soft": "unix,windows,oracle 8",
+                "hard": "pc server，ibm RS 6000,pda",
+                "dev": "oracle developer 2000,vc 6",
+                "description": "与美国ＮＡＶＩＳ系统公司，中铁信，和中创公司合作，在洋山深水港铁路中心站实施ＮＡＶＩＸ ＥＸＰＲＥＳＳ和ＳＰＡＲＣＳ系统，实现对铁路场站的管理．",
+                "duty": "担任项目经理，负责与最终客户，软件供应商等之间的协调，制定计划，项目进度的控制，参与软件汉化，接口的开发等工作．"
+            },
+            {
+                "start_time": 1117555200,
+                "end_time": 1151683200,
+                "name": "中国海运集装箱集团修箱系统",
+                "soft": "LINUX，ORACLE 9I，WINDOWS2003，CRYSTAL 10",
+                "hard": "IBM SERVER",
+                "dev": "WEBSPHERE，J2EE，JSP，IDEA，ROSE，ERWIN，PROJECT",
+                "description": "该项目是作为替代临时修箱系统的升级产品，数据库服务器为LINUX环境，应用程序服务器为WINDOWS环境，系统采用J2EE架构并使用CRYSTAL ENTERPRISE10作为报表服务器，目前已经验收结束．",
+                "duty": "项目经理，方案编写，项目进度控制，风险控制，成本控制"
+            },
+            {
+                "start_time": 1104508800,
+                "end_time": 1117555200,
+                "name": "中国海运集装箱集团堆场管理系统",
+                "soft": "IIS，WINDOWS2003，SQL SERVER",
+                "hard": "IBM SERVER",
+                "dev": "ASP,ASP.NET,C#，ROSE，POWERDESGINER，PROJECT，CRYSTAL 9",
+                "description": "该项目一期包括MRTEMP和eTERM２个系统，eterm是场站管理系统，MRTEMP是临时修箱系统，通过这2个系统实现对整个中集集团各堆场的管理,目前已经验收结束",
+                "duty": "担任该项目的项目经理和架构师,负责方案编写，人力分配,成本预算，系统分析，架构设计,项目进度控制等"
+            },
+            {
+                "start_time": 1086019200,
+                "end_time": 1099238400,
+                "name": "MLOG（MAERSK LOGISTIC） AIR FREIGHT",
+                "soft": "IE6",
+                "dev": "ASP.net，SQL SERVER 2000，PROJECT，VISIO",
+                "description": "该项目是为马士基物流开发一个空运系统，项目将使用基于.NET的BS架构，并且与MAERSK的CBAS系统接口，用户数将在6000左右，并发数在200以上。",
+                "duty": "担任项目经理,负责该项目的建议书，投标，系统分析，设计等工作。"
+            },
+            {
+                "start_time": 1078070400,
+                "end_time": 1112284800,
+                "name": "SPC（上海石化）物流系统",
+                "description": "项目包括物流平台，TMS，WMS三部分（其中物流平台用JAVA开发，TMS用VB，WMS用DEPHI）",
+                "duty": "担任该项目的投标，系统分析，和架构及详细设计，实施培训等并且负责TMS和WMS2个系统的项目管理工作。"
+            },
+            {
+                "start_time": 1054396800,
+                "end_time": 1078070400,
+                "name": "ADVANCE LOGISTIC SYSTEM",
+                "soft": "AIX,LINUX,WINDOWS2000",
+                "hard": "SERVER端为高端服务器,客户端P4级别PC",
+                "dev": "J2EE,ORACLE9I,JWS,JDO，POWERDESGINER，ROSE",
+                "description": "整合包括空运,海运,WAREHOUSE,展览物流,陆上运输等物流子系统的开发.成为一套功能强大的高集成的物流信息平台.",
+                "duty": "参与系统设计和数据库设计，对WAREHOUSE和报表子系统进行设计开发,并兼任网管ADMIN和集成测试工作。"
+            },
+            {
+                "start_time": 1046448000,
+                "end_time": 1078070400,
+                "name": "ICMS",
+                "soft": "WIN2000,WIN98,WINXP,WINNT等",
+                "hard": "P2 400/64M/10G",
+                "dev": "VB6,COM/COM+",
+                "description": "是一套包括海,空运的物流系统,基于微软的多层次系统结构设计,支持多数据库,多语言,拥有完善的网上注册等功能.有包括中外运和马士基在内的大型物流公司使用.",
+                "duty": "系统的2次开发，对客户的SUPPORT,软件的测试，版本管理，并要安排程序员的工作和给予技术上的帮助，并兼产品及公司网络的ADMIN。"
+            },
+            {
+                "start_time": 1022860800,
+                "end_time": 1046448000,
+                "name": "印刷业治安管理信息系统",
+                "soft": "WIN98，WIN2000",
+                "hard": "P4/PC，MODEM，IBM/RS6000",
+                "dev": "VB，VC，ORACLE 8.17，ROSE",
+                "description": "实现公安部和新闻出版局对印刷行业的管理和数据的实时上传分析和比对",
+                "duty": "负责系统的总体设计，主体程序设计和协调其他程序员的模块编写，并在苏州负责指挥系统的试点和实施。"
+            },
+            {
+                "start_time": 999273600,
+                "end_time": 1041350400,
+                "name": "公安部治安综合系统",
+                "soft": "SERVER端WIN2000，客户端和业务终端WIN2000、WIN98",
+                "hard": "P3 CLIENT P3 SERVER",
+                "dev": "VB、VC、SQL SERVER7或者2000、OEACLE 8I,ROSE",
+                "description": "一套三层结构的系统，包括N个客户端和数台应用程序服务器、一台据库服务器及业务定义服务器的大系统，可以实现业务的无限增长，使用了DCOM技术实现模块的通讯用ADO技术对数据库操作，用VB开发用户界面，VC实现一些底层DLL的开发]",
+                "duty": "负责前,后台的开发"
+            },
+            {
+                "start_time": 993916800,
+                "end_time": 1022860800,
+                "name": "金硅旅业系统",
+                "soft": "客户端 WIN98 服务器端 WIN 2000",
+                "hard": "P3 CLIENT P3 SERVER 或者 IBM小型机数据库服务器",
+                "dev": "VB、VC、ORACLE 8I、SQL SERVER、",
+                "description": "包括宾馆、暂住人口、印刷3个子系统通过自定的数据传输协议实现各中断间的数据传输及比对报警。其中还开发了IC卡制作",
+                "duty": "开发了所有客户端软件和服务端软件，另外基于对硬件的二次开发工作都由我负责。所以对IC卡，手持POS机和无线通讯设备比较熟悉。"
+            },
+            {
+                "start_time": 954518400,
+                "end_time": 993916800,
+                "name": "自动仓库管理系统",
+                "soft": "SERVER BY WIN2000, CLIENT BY WIN2000、WIN98",
+                "dev": "Powerbuilder、VC,SQL SERVER",
+                "description": "管理仓库的进出库管理和盘点,另外用来产生堆垛机运行的指令",
+                "duty": "负责开发WMS系统以及与自动堆垛机的接口."
+            },
+            {
+                "start_time": 954518400,
+                "end_time": 959788800,
+                "name": "海关 EDI接口",
+                "soft": "SERVER BY WIN2000 CLIENT BY WIN2000、WIN98",
+                "dev": "Visual Foxpore",
+                "description": "海关EDI接口,用来上传装箱清单给电子口岸",
+                "duty": "负责数据库设计,和系统的设计,开发"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1404144000,
+                "end_time": 2147483647,
+                "school": "亚洲城市大学",
+                "major": "工商管理",
+                "degree": "MBA"
+            },
+            {
+                "start_time": 1151683200,
+                "end_time": 1212249600,
+                "school": "西南科技大学",
+                "major": "工商管理",
+                "degree": "本科",
+                "class": "取得学士学位"
+            },
+            {
+                "start_time": 809884800,
+                "end_time": 962380800,
+                "school": "上海东沪学院(现第二工业大学)",
+                "major": "计算机应用",
+                "degree": "大专"
+            },
+            {
+                "start_time": 715276800,
+                "end_time": 809884800,
+                "school": "上海市培新中学",
+                "major": "",
+                "class": "",
+                "degree": "初中及以下"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "template": "09",
+    "data": {
+        "name": "桑宇",
+        "sex": "男",
+        "birth_year": 1978,
+        "residence": "上海",
+        "current_salary": "2-3万人民币",
+        "work_year": "三年以上",
+        "email": "sanghoney@sina.com",
+        "phone": "13813120350",
+        "self_str": "本人是一个工作认真负责、积极主动、善于团队工作的人，思维严谨，具有较高的技术水平和丰富的管理经验。4年国企工作经验，电脑操作熟练，熟悉新规范，能适应各种环境。",
+        "work_property": "全职",
+        "target_industry": "建筑与工程 , 房地产开发",
+        "target_city": "武汉市",
+        "target_salary": "1500-1999/月",
+        "target_position": "建筑工程管理/项目经理, 工程监理",
+        "career": [
+            {
+                "start_time": 954518400,
+                "end_time": 2147483647,
+                "company": "中国核工业华兴建设公司",
+                "industry": "建筑与工程",
+                "department": "技术组",
+                "position": "技术、质检",
+                "duty": "主要负责编制施工组织设计、施工进度计划等一些施工中所用的技术资料，及现场施工质量的控制。"
+            },
+            {
+                "start_time": 954518400,
+                "end_time": 2147483647,
+                "company": "中国核工业华兴建设公司",
+                "industry": "建筑与工程",
+                "department": "技术组",
+                "position": "技术、质检",
+                "duty": "主要负责编制施工组织设计、施工进度计划等一些施工中所用的技术资料，及现场施工质量的控制。"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 862416000,
+                "end_time": 946656000,
+                "school": "扬州大学",
+                "major": "建筑工程",
+                "degree": "大专",
+                "class": "主要是工程现场管理，包括质量和技术工作。"
+            }
+        ]
+    }
+}

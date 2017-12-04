@@ -1,0 +1,91 @@
+{
+    "template": "12",
+    "data": {
+        "true_id": "JM307095523R90250000000",
+        "name": "马超",
+        "sex": "男",
+        "birth_year": 1989,
+        "marriage": "已婚",
+        "height": "",
+        "degree": "本科",
+        "work_begin": "",
+        "residence": "朝阳",
+        "city": "北京",
+        "phone": "17710193375",
+        "address": "",
+        "email": "machao_vanceinfo@163.com",
+        "qq": "",
+        "postcode": "",
+        "target_city": "北京、沈阳",
+        "target_position": "WEB前端开发、软件工程师、互联网软件工程师、软件测试、系统测试",
+        "target_industry": "计算机软件、通信/电信运营、增值服务、IT服务(系统/数据/维护)、通信/电信/网络设备",
+        "current_salary": "",
+        "self_str": "上至与客户沟通,下至制定测试计划,任务分配,监督测试执行过程,对最终结果进行整理总结乃至上报,熟悉CTA,CMCC,C+G,等测试标准，曾独立编写过测试WindowsPhone安全性的APP，熟悉本地化测试详细的测试流程，独立负责过自动化项目，测试架构采用的是:Java+Junit+SeleniumWebdriver+PageObjectMode+Jenkins,熟悉精通C#和Java编程语言，能够熟练操控Linux系统和SQL数据库",
+        "photo": "",
+        "homepage": "",
+        "update_time": 1446048000,
+        "career": [
+            {
+                "start_time": 1409500800,
+                "end_time": 2147483647,
+                "city": "",
+                "company": "同方鼎欣信息技术有限公司",
+                "nature": "上市公司",
+                "size": "10000人以上",
+                "industry": "计算机软件 ",
+                "salary": "8001-10000元/月",
+                "duty": "1、熟悉产品本地化测试整体流程，参与到测试生命周期的每一部分（我认为一个好的Tester必须要做到能够准确的描述出测试过程编写好测试cases，如遇到bug能够简洁清晰的的描述问题，并且要进行简单的自我分析，判断问题所在。）",
+                "left_reason": ""
+            },
+            {
+                "start_time": 1325347200,
+                "end_time": 1409500800,
+                "city": "",
+                "company": "文思海辉技术有限公司",
+                "nature": "上市公司",
+                "size": "10000人以上",
+                "industry": "通信/电信/网络设备 ",
+                "salary": "6001-8000元/月",
+                "duty": "1.长期从事于WindowsPhone手机测试，熟悉WindowsPhone的发展历程，W7-W8--至今，日常工作上至与客户沟通，下至制定测试计划，任务分配，监督测试执行过程，对最终结果进行整理总结乃至上报；",
+                "left_reason": ""
+            },
+            {
+                "start_time": 1309449600,
+                "end_time": 1314806400,
+                "city": "",
+                "company": "天津科仕盟公司",
+                "nature": "民营",
+                "size": "20-99人",
+                "industry": "通信/电信/网络设备 ",
+                "salary": "1000-2000元/月",
+                "duty": "主要负责是小区网络优化普查，检测小区内移动、联通、电信各运营商信号强度，",
+                "left_reason": ""
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1409500800,
+                "end_time": 1443628800,
+                "name": "IBM Websphere Portal",
+                "description": "IBM WebSphere Portal 产品的本地化测试，主要负责每个版本release后的本地化工作，需要了解产品新Feature，比对N&C的PII，编写测试case，然后通过自动化+手动的方式进行截图以备TVT所用，正式的TVT一般分为3轮，由各个负责各个国家语言的Tester的检测本地化情况，发现情况及时反馈给，由我们申报Defect给DEV，及时申报问题、解决问题、验证,争取在这3轮TVT中解决掉所有问题。",
+                "duty": "1.编写测试cases.#br#我认为一个好的Tester 必须要做到能够准确的描述出测试过程编写好测试cases#br#2.PII Handler.#br#主要负责相关PII文件的筛选和送翻、整理,起到一个联调沟通的作用，上至DEV下至TSC，再到组内人员的沟通和协调，需要尽快的整理好PII文件出来，给编写case人员留出充足的时间。#br#3.搭建测试server#br#测试server主要分两种系统，第一种就是Windows系统，第二种是Linux系统，Linux系统较常用，因此对Linux也是有所了解熟悉基本的操作。#br#4.独立负责项目中自动化部分#br#自动化架构: Java +Selenium Webdriver +Junit+Page Object mode +Jenkins"
+            },
+            {
+                "start_time": 1325347200,
+                "end_time": 1409500800,
+                "name": "Windows Phone Team",
+                "description": "该项目主要是对Windows Phone OS进行测试，配合支持微软解决测试过程中遇到的问题，使之能顺利通过中国入网认证测试（CTA）以及CMCC等标准测试，随着Windows Phone的蓬勃发展，所开展的测试也越来越多，比如说MTBF测试，双卡双待的C+G测试等等。",
+                "duty": "1.负责与客户之间的沟通，制定测试计划，以及汇报每周工作进程；#br#2.安排分配测试任务，监督测试执行过程，最终测试结果的整理总结乃至上报；#br#3.相关技术文档的总结积累；#br#4. Bug report review 以及bug report 编写；#br#5.带新来的实习生，使之更快的融入团队。"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1220198400,
+                "end_time": 1341072000,
+                "school": "辽宁工程技术大学",
+                "major": "电子信息科学与技术",
+                "degree": "本科"
+            }
+        ]
+    }
+}

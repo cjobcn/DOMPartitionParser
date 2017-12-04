@@ -1,0 +1,30 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "行政助理（蚌埠）",
+        "applicant_company": "中国电子科技集团公司第四十、第四十一研究所",
+        "update_time": 1424880000,
+        "city": "蚌埠",
+        "phone": "18225906933",
+        "email": "819048747@qq.com",
+        "last_position": "最高学历",
+        "degree": "本科",
+        "major": "汉语言文学",
+        "school": "蚌埠学院",
+        "sex": "女",
+        "birth_year": 1993,
+        "true_id": "319451522",
+        "name": "王轩宇",
+        "work_property": "全职",
+        "work_status": "目前正在找工作",
+        "education": [
+            {
+                "start_time": 1314806400,
+                "end_time": 2147483647,
+                "school": "蚌埠学院",
+                "major": "汉语言文学",
+                "degree": "本科"
+            }
+        ]
+    }
+}

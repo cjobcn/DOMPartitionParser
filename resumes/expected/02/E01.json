@@ -1,0 +1,69 @@
+{
+    "template": "02",
+    "data": {
+        "name": "李先生",
+        "sex": "男",
+        "email": "adj2009@sina.com",
+        "birth_year": 1986,
+        "phone": "18602701703",
+        "city": "深圳",
+        "marriage": "保密",
+        "work_begin": "2009",
+        "industry": "IT服务·系统集成",
+        "last_company": "",
+        "last_position": "项目工程师",
+        "degree": "大专",
+        "current_salary": "6.0万",
+        "target_salary": "6000",
+        "target_industry": "房地产开发·建筑与工程;IT服务·系统集成",
+        "target_position": "项目管理类",
+        "target_city": "深圳",
+        "career": [
+            {
+                "company": "安博哲科技（深圳）有限公司",
+                "description": "",
+                "nature": "其他",
+                "size": "50-99人",
+                "industry": "IT服务·系统集成",
+                "position": "项目工程师",
+                "start_time": 1296489600,
+                "end_time": 2147483647,
+                "salary": "",
+                "city": "深圳",
+                "department": "",
+                "report_to": "",
+                "underlings": "",
+                "duty": "配合工程项目弱电专业设计，审核电气图纸和施工方案；2、跟踪最新的专业技术和设备；策划最适合本项目要求的专业方案，并就合理性、经济性、科学性作综合评估及报告上级；3、负责项目施工工程中弱电方面的技术支持与审核；4、负责弱电系统工程施工，系统调试，竣工技术文件编写；5、组织、协调、监督项目工程施工各个环节中弱电方面的工作；6、组织弱电工程的验收",
+                "performance": ""
+            },
+            {
+                "company": "湖北瑞特威网络工程有限公司",
+                "description": "",
+                "nature": "",
+                "size": "",
+                "industry": "IT服务·系统集成",
+                "position": "系统集成工程师",
+                "start_time": 1246377600,
+                "end_time": 1293811200,
+                "salary": "",
+                "city": "深圳",
+                "department": "",
+                "report_to": "",
+                "underlings": "",
+                "duty": "主要在法院做计算机、综合布线以及相关设备的安装调试以及安装，如数字法庭(直播和点播），视频会议，数据交换，门禁，监控等和维护客户关系，兼电脑软硬件维护..",
+                "performance": ""
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1157040000,
+                "end_time": 1243785600,
+                "school": "武汉科技职业学院",
+                "major": "计算机应用技术",
+                "degree": "大专"
+            }
+        ],
+        "projects": [],
+        "self_str": "我对工作认真负责，善于沟通，学习能力强"
+    }
+}

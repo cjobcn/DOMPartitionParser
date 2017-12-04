@@ -1,0 +1,124 @@
+{
+    "template": "05",
+    "data": {
+        "true_id": "18840522",
+        "update_time": 1445270400,
+        "name": "罗杭金",
+        "sex": "男",
+        "phone": "18957170312",
+        "age": 28,
+        "email": "470462922@qq.com",
+        "degree": "本科",
+        "work_year": "6年",
+        "marriage": "保密",
+        "work_status": "离职，正在找工作",
+        "city": "杭州",
+        "nationality": "中国",
+        "industry": "互联网/移动互联网/电子商务",
+        "last_company": "浙江助跑者网络科技有限公司",
+        "last_position": "设计总监",
+        "current_salary": "保密",
+        "target_industry": "互联网/移动互联网/电子商务",
+        "target_position": "UI设计师/顾问;网页设计/制作/美工;平面设计总监",
+        "target_city": "杭州",
+        "target_salary": "14.40万（12000元/月 * 12个月）",
+        "career": [
+            {
+                "company": "浙江助跑者网络科技有限公司",
+                "nature": "",
+                "size": "",
+                "industry": "互联网/移动互联网/电子商务",
+                "description": "",
+                "position": "设计总监",
+                "start_time": 1438358400,
+                "end_time": 2147483647,
+                "city": "杭州",
+                "department": "",
+                "report_to": "",
+                "underlings": "7",
+                "salary": "保密",
+                "duty": "1.制定团队目标，并带队执行； 2.团队能力建设； 3.团队工作业绩把控； 4.承接电商设计工作，网店首页、详情页、二级页等等，众筹页面等 5.团队规章制度、考核制度制订等等。"
+            },
+            {
+                "company": "杭州百阳教育科技有限公司",
+                "nature": "",
+                "size": "",
+                "industry": "教育/培训/学术/科研/院校",
+                "description": "",
+                "position": "专业培训师",
+                "start_time": 1391184000,
+                "end_time": 1438358400,
+                "city": "杭州",
+                "department": "",
+                "report_to": "",
+                "underlings": "0",
+                "salary": "保密",
+                "duty": "1.电子商务专业，设计板块的教学培训工作，主要针对电商平台进行教学，教学项目为photoshop和dreamweaver2.从业期间作为带班班主任，有一定的管理经验；3.负责公司宣传广告等设计工作。"
+            },
+            {
+                "company": "杭州唯典服饰有限公司",
+                "nature": "",
+                "size": "",
+                "industry": "互联网/移动互联网/电子商务",
+                "description": "",
+                "position": "视觉设计师",
+                "start_time": 1343750400,
+                "end_time": 1385827200,
+                "city": "杭州",
+                "department": "电商部",
+                "report_to": "",
+                "underlings": "0",
+                "salary": "保密",
+                "duty": "1.公司两个天猫店，一个淘宝店的设计装修；2.协助产品拍摄"
+            },
+            {
+                "company": "杭州唛歌餐饮娱乐管理有限公司",
+                "nature": "",
+                "size": "",
+                "industry": "娱乐/休闲/体育",
+                "description": "",
+                "position": "平面设计",
+                "start_time": 1277913600,
+                "end_time": 1343750400,
+                "city": "杭州",
+                "department": "企划部",
+                "report_to": "",
+                "underlings": "0",
+                "salary": "保密",
+                "duty": "杭州三家门店的户外宣传设计、店内宣传设计、灯箱片、门店菜单、VI设计等等。"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1438358400,
+                "end_time": 1443628800,
+                "name": "护具整店装修",
+                "position": "设计总监",
+                "company": "浙江助跑者网络科技有限公司",
+                "description": "5.8W的大单子，对该公司天猫店铺的整体装修，包括首页设计、所有详情页模版设计与套版、三个二级页设计以及一些banner和直通车主图等工作。",
+                "duty": "负责总体把控跟进，与客户对接，工作分配，整体创意、风格、色调的确立。",
+                "performance": "有了服务大客户的经验"
+            },
+            {
+                "start_time": 1441036800,
+                "end_time": 1443628800,
+                "name": "灯具淘宝店铺整店装修",
+                "position": "",
+                "company": "",
+                "description": "对该店铺的首页、六个详情页、9个详情页套版以及主图的设计装修，总价10950元",
+                "duty": "对该店铺的接洽、沟通并且设计",
+                "performance": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "湖州师范学院求真学院 ",
+                "start_time": 1157040000,
+                "end_time": 1277913600,
+                "major": "广告学",
+                "degree": "本科"
+            }
+        ],
+        "self_str": "【自我评价】：5年设计经验，传统平面与互联网行业都有丰富经验；有带领团队的经验。【职业技能】：Photoshop、Dreamweaver、CorelDRAW、AI、摄影、Premiere、摄像【职业目标】：希望深入发展自己的专业技能，给我一个平台，让我发光发热！"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "template": "10",
+    "data": {
+        "city": "东莞",
+        "residence": "湛江",
+        "phone": "15975945803",
+        "email": "denglewis@163.com",
+        "target_city": "东莞",
+        "target_salary": "2001-4000元/月",
+        "work_status": "应届毕业生",
+        "target_position": "人力资源专员/助理、招聘专员/助理、网络运营专员/助理",
+        "target_industry": "互联网/电子商务、通信/电信运营、增值服务",
+        "sex": "男",
+        "marriage": "未婚",
+        "birth_year": 1991,
+        "name": "邓樊",
+        "self_str": "#br#热爱学习，做事认真，能吃苦耐劳，积极主动。",
+        "education": [
+            {
+                "start_time": 1346428800,
+                "end_time": 2147483647,
+                "school": "广东科贸职业学院",
+                "major": "生物技术",
+                "degree": "大专"
+            }
+        ]
+    }
+}

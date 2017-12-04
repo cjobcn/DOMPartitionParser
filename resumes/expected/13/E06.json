@@ -1,0 +1,144 @@
+{
+    "template": "13",
+    "data": {
+        "update_time": 1465833600,
+        "name": "雍鹏亮",
+        "city": "苏州-工业园区",
+        "last_position": "iOS高级工程师",
+        "last_company": "天宫科技有限公司",
+        "industry": "互联网/电子商务",
+        "major": "电子信息工程",
+        "school": "常熟理工学院",
+        "degree": "本科",
+        "residence": "泰州",
+        "height": "180cm",
+        "marriage": "未婚",
+        "current_salary": "20万元",
+        "phone": "13338007474",
+        "email": "yong_pliang@163.com",
+        "sex": "男",
+        "work_year": "",
+        "target_salary": "20000-24999元/月",
+        "target_city": "上海",
+        "target_position": "软件工程师",
+        "target_industry": "计算机软件",
+        "jump_time": "1个月内",
+        "self_str": "具有一年的客户端团队管理经验。",
+        "career": [
+            {
+                "start_time": 1425139200,
+                "end_time": 2147483647,
+                "position": "iOS高级工程师",
+                "department": "技术部",
+                "company": "天宫科技有限公司",
+                "industry": "互联网/电子商务",
+                "size": "50-150人",
+                "nature": "民营公司",
+                "duty": "iOS客户端的开发及维护,协调移动端和产品部门对接,工作计划编写."
+            },
+            {
+                "start_time": 1362067200,
+                "end_time": 1425139200,
+                "position": "iOS工程师",
+                "department": "移动开发部",
+                "company": "苏州盟拓软件有限公司",
+                "industry": "计算机软件",
+                "size": "150-500人",
+                "nature": "民营公司",
+                "duty": "iOS开发"
+            },
+            {
+                "start_time": 1309449600,
+                "end_time": 1362067200,
+                "position": "程序员、java组技术负责人",
+                "department": "开发部",
+                "company": "苏州达科智能软件公司",
+                "industry": "计算机软件",
+                "size": "少于50人",
+                "nature": "民营公司",
+                "duty": "2011.7-2013.1 程序员，主要任务项目框架的搭建、数据库的设计、编码。"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1425139200,
+                "end_time": 2147483647,
+                "name": "PU口袋校园",
+                "description": "Xcode(开发工具)PU口袋校园是天宫科技针对在校大学生退出的一款集社交、活动、资讯、金融于一体的第二课堂app。#br#appStore地址：https://itunes.apple.com/cn/app/pu/id685777413?mt=8",
+                "duty": "整个app开发计划及评估，部分功能文档和代码的编写，AppStore的提交。"
+            },
+            {
+                "start_time": 1414771200,
+                "end_time": 1427817600,
+                "name": "恒优米",
+                "description": "xcode(开发工具)恒优米是恒大集团推出的一款手机移动粮油电商app，具有功能：首页产品分地区展示、活动产品、产品分类、产品列表、产品详情、购物车、优米卡（钱包）、支付宝对接、个人信息管理、千里眼（视频播放）、百问百答等。",
+                "duty": "iPhone端独立完成"
+            },
+            {
+                "start_time": 1388505600,
+                "end_time": 1404144000,
+                "name": "CKC",
+                "description": "xcode(开发工具)CKC是charles&keith推出的一款以鞋帽为主要商品的移动端app，具有功能：首页商品展示、商品列表展示（瀑布流）、购物袋、支付宝对接、会员卡二维码扫描、优惠券、个人信息管理、周围零售店查找。",
+                "duty": "iPhone端独立完成"
+            },
+            {
+                "start_time": 1375286400,
+                "end_time": 1388505600,
+                "name": "新城经纪人",
+                "description": "xcode(开发工具)新城经纪人app，是一款面大大众的推荐好友购房的app。app具有定位、位置选择、楼盘展示、新闻动态、推荐好友看房、我要预约看房、和推荐成功获得佣金功能。",
+                "duty": "iPhone端独立完成"
+            },
+            {
+                "start_time": 1364745600,
+                "end_time": 1372608000,
+                "name": "Mind GYM",
+                "description": "xcode(开发工具)通过使用Mind GYM是一款西郊利物浦大学推出的可以帮助有一定的心理疾病的同学使用，以起到辅助治疗作用。app通过丰富的主题，主题中打包了有趣的视频、音乐、文本、图片、游戏（H5）以帮助同学治疗，app中还包含问卷功能、新闻功能、心理测试功能。",
+                "duty": "iPhone端独立完成"
+            },
+            {
+                "start_time": 1343750400,
+                "end_time": 1356969600,
+                "name": "达科项目管理软件",
+                "description": "idea(开发工具)#br#window2003+tomcat+mysql(软件环境)系统架构：jsp+SpringMVC+shiro+spring+JPA2.0.#br#模块：项目管理、计划管理、任务管理、日报管理、资源管理。整个项目以项目管理模块为核心，计划管理依附于项目管理，并支持版本控制。采用事件驱动模式，在计划审核通过时，生成生成相应的任务。在审核任务完毕后，并用事件驱动的方式修改计划进度。日报模块、任务模块都采用事件驱动模式进行模块间解耦，填写日报可从任务拖拉进去，并由用户作选择性关联。在这个项目中SpringMVC+shiro+spring+JPA2.0框架做了大幅度完善，提供了更多的公共方法，并支持可选的回调函数功能，在面向对象设计实体bean基础上，自定义一套查询对象导航功能，并重新封装了List、Map、Json支持静态工厂、链式编程大幅度降低后台代码量。",
+                "duty": "角色：项目负责人#br#任务：需求分析、概要设计、详细设计、数据库设计、全部后台代码、部分前台代码#br#团队人数：3"
+            },
+            {
+                "start_time": 1341072000,
+                "end_time": 1343750400,
+                "name": "网络质量监控",
+                "description": "idea(开发工具)#br#linux+tomcat+oracle(软件环境)整个项目由B/S及C/S构成，主要针对于校园用户，可以进行网速测试，ping命令执行、telnet命令执行、运行商测试并把响应的结果以webservice的方式反馈给服务器。",
+                "duty": "C/S部分客服端的设计、开发"
+            },
+            {
+                "start_time": 1333209600,
+                "end_time": 1341072000,
+                "name": "华达91买手机网上商城",
+                "description": "idea(开发工具)#br#linux+tomcat+mysql(软件环境)系统架构：jsp+SpringMVC+shiro+spring+JPA2.0,采用最新JPA2.0的技术，支持任何主流的关系型数据库，自动生成表结构及约束。spirngMVC的完全REST风格，便于多终端的服务支持及扩展。#br#功能：手机、配件及电信业务在在线浏览、添加购物车及在线支付功能，用户可进行单点登录、个人基础信息及订单管理管理。网站管理员，可具有对订单、商品、商品图片、网站用户、后台操作人员、及模块权限的编辑功能。",
+                "duty": "角色：项目负责人#br#任务：需求分析、原型设计、数据库设计、项目框架搭建#br#银联在线支付、网站客户单点登录集成、后台订单管理、后台产品管理、人员角色权限管理#br#项目成员人数：5人"
+            },
+            {
+                "start_time": 1325347200,
+                "end_time": 1333209600,
+                "name": "苏州电信门店系统",
+                "description": "idea(开发工具)#br#linux+tomcat+oracle(软件环境)1.系统架构：jsp+springMVC+spring+Hibernate技术，既是一个浏览器访问的企业web应用，同时也是一个手机客户端调用接口的web服务。#br#2.主要功能：管理苏州电信各个门店的led显示及营业厅展示手机屏幕显示#br#3.系统模块：led模块、门店电脑模块、门店展示手机模块、机构管理、人员管理、权限管理、报表模块",
+                "duty": "角色：程序员#br#任务：#br#1.机构管理#br#2.人员管理#br#3.权限管理#br#5.报表模块"
+            },
+            {
+                "start_time": 1309449600,
+                "end_time": 1325347200,
+                "name": "苏州电信校园销售渠道系统",
+                "description": "idea(开发工具)#br#linux+tomcat+oracle(软件环境)1.系统架构：jsp+springMVC+spring+Hibernate技术，既是一个浏览器访问的企业web应用，同时也是一个手机客户端调用接口的web服务。#br#2.系统模块：系统分营销支撑、基础资料、库存管理、任务派单、信息发布、系统管理、代理考核、通知公告等8个大的模块。",
+                "duty": "角色：程序员#br#任务：#br#1.机构管理#br#2.人员管理#br#3.权限管理#br#4.通知公告发布、编辑、审核#br#5.库存管理#br#6.点单管理"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1188576000,
+                "end_time": 1306857600,
+                "school": "常熟理工学院",
+                "degree": "本科",
+                "major": "电子信息工程"
+            }
+        ]
+    }
+}

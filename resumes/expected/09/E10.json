@@ -1,0 +1,53 @@
+{
+    "template": "09",
+    "data": {
+        "update_time": 1375718400,
+        "city": "上海-闵行区",
+        "residence": "许昌",
+        "address": "上海市闵行",
+        "phone": "15802130868",
+        "email": "james_ck2008@aliyun.com",
+        "last_company": "艾默生传导系统（上海）有限公司",
+        "industry": "通信/电信/网络设备",
+        "last_position": "电子技术研发工程师",
+        "degree": "本科",
+        "major": "电子信息工程",
+        "school": "湖南大学",
+        "current_salary": "10-15万人民币",
+        "postcode": "201702",
+        "work_year": "八年以上",
+        "sex": "男",
+        "birth_year": 1981,
+        "marriage": "未婚",
+        "true_id": "17637850",
+        "name": "常珂",
+        "self_str": "熟练掌握AUTOCAD,PRO/E,SLOIDWORKS等常用二维,三维绘图软件的使用。#br#熟练使用ANSYS 公司的HFSS高频结构分析软件及ANSYS 机械结构分析软件。#br#熟练使用矢量网络分析仪（VNA）。#br#能独立完成射频同轴连接器,滤波连接器设计。#br#熟悉通用连接器、连接器电缆组件、滤波连接器的设计，制造及应用。",
+        "jump_time": "1-3个月",
+        "work_property": "全职",
+        "target_industry": "航天/航空，电力/水利，电子技术/半导体/集成电路，通信/电信运营、增值服务",
+        "target_city": "上海，郑州",
+        "target_position": "电气工程师/技术员，嵌入式软件开发(Linux/单片机/DLC/DSP…)，集成电路IC设计/应用工程师，电路工程师/技术员(模拟/数字)，电子工程师/技术员",
+        "career": [
+            {
+                "start_time": 1335801600,
+                "end_time": 2147483647,
+                "company": "艾默生传导系统（上海）有限公司",
+                "size": "50-150人",
+                "industry": "航天/航空",
+                "department": "工程部",
+                "position": "电子技术研发工程师",
+                "duty": "1.负责射频连接器，负载的研发设计，图纸绘制，仿真，样品装配及测试。#br#2.负责母公司产品线转产。#br#3.负责国内销售团队的技术支持。#br#4.负责供应商，质量部门的技术支持。2008\r\n      /2--2012\r\n      /2：上海菲尼克斯通讯技术有限公司\r\n                        [ 4 年]2005\r\n      /7--2008\r\n      /2：中国航天科工集团061基地   贵州航天电器股份有限公司\r\n                        [ 2 年7个月]"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 999273600,
+                "end_time": 1117555200,
+                "school": "湖南大学",
+                "major": "电子信息工程",
+                "degree": "本科",
+                "class": "本专业主修数字电路、模拟电路设计，单片机设计及应用，"
+            }
+        ]
+    }
+}

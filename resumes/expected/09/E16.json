@@ -1,0 +1,80 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "客房服务员/楼面服务员（大连-中山区）",
+        "applicant_company": "大连恒利德实业发展有限公司",
+        "update_time": 1418227200,
+        "city": "大连-中山区",
+        "phone": "13322229508",
+        "email": "964188840@qq.com",
+        "last_company": "大连嘉汇教育集团",
+        "industry": "教育/培训/院校",
+        "last_position": "后勤食堂主管",
+        "degree": "大专",
+        "major": "汉语言文学",
+        "school": "辽宁大学",
+        "work_year": "10年以上",
+        "sex": "女",
+        "birth_year": 1963,
+        "true_id": "317527749",
+        "name": "王红",
+        "self_str": "爱岗敬业，有团队精神，有多年的酒店管理经验，有亲和力",
+        "jump_time": "即时",
+        "work_property": "全职",
+        "target_industry": "餐饮业，酒店/旅游",
+        "target_city": "大连",
+        "target_position": "餐饮/娱乐",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1270051200,
+                "end_time": 1409500800,
+                "company": "大连嘉汇教育集团",
+                "size": "500-1000人",
+                "industry": "教育/培训/院校",
+                "department": "阳光学校",
+                "position": "后勤食堂主管",
+                "duty": "阳光学校是私立的寄宿学校，负责学校小卖部库房，图书室管理。餐饮食堂（厨师、面点师、勤杂工、洗碗工，服务员，保管员）的管理工作"
+            },
+            {
+                "start_time": 1170259200,
+                "end_time": 1249056000,
+                "company": "大连凯宾斯基酒店",
+                "size": "150-500人",
+                "industry": "酒店/旅游",
+                "department": "餐饮部",
+                "position": "管事部主管",
+                "duty": "负责餐饮部的库房的管理，餐具和厨具厨房清洁的检查工作，合理安排员工的工作，考核培训员工 等"
+            },
+            {
+                "start_time": 1072886400,
+                "end_time": 1159632000,
+                "company": "大连星海假日酒店",
+                "size": "150-500人",
+                "industry": "酒店/旅游",
+                "department": "餐饮部",
+                "position": "管事部主管",
+                "duty": "负责库房的管理和员工的行政管理等"
+            },
+            {
+                "start_time": 965059200,
+                "end_time": 1070208000,
+                "company": "大连丽景大酒店",
+                "size": "150-500人",
+                "industry": "酒店/旅游",
+                "department": "财务部",
+                "position": "库管员",
+                "duty": "负责酒店一级库房的进入库和盘点记账工作"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 488995200,
+                "end_time": 552063600,
+                "school": "辽宁大学",
+                "major": "汉语言文学",
+                "degree": "大专"
+            }
+        ]
+    }
+}

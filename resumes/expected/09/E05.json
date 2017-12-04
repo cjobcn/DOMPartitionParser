@@ -1,0 +1,180 @@
+{
+    "template": "09",
+    "data": {
+        "update_time": 1463760000,
+        "city": "杭州-江干区",
+        "residence": "杭州",
+        "phone": "18658135865",
+        "email": "ryf5315386@163.com",
+        "last_company": "杭州万乐极信息技术服务有限公司",
+        "industry": "互联网/电子商务",
+        "last_position": "架构师，技术负责人",
+        "degree": "本科",
+        "major": "计算机科学与技术",
+        "school": "江西师范大学",
+        "work_year": "8-9年",
+        "sex": "男",
+        "birth_year": 1985,
+        "marriage": "未婚",
+        "true_id": "29670151",
+        "name": "饶云飞",
+        "self_str": "英文：良好#br#2007.5荣获江西省第十八届电脑知识竞赛二等奖。#br#8年的软件开发经验，熟悉java。可担任项目架构、项目管理#br#1.有高并发、分布式项目编程经验。#br#2、熟悉国际前沿技术及工具。如rest,ldap,IntelliJ IDEA,jenkins,puppet,maven,jmeter等#br#3 熟悉java相关技术,熟悉j2se,j2ee,struts2,spring, hibernate,mybatis等框架。熟悉svn，Eclipse，tomcat、apache开发工具。熟悉B/S结构相关技术。#br#4.熟悉分布式系统及系统交互相关技术。#br#5熟悉javascript及常用js，ajax框架。#br#6 熟悉oracle,mysql数据库.#br#7.熟悉linux系统：shell,linux命令.#br#8 熟悉perl,cgi语言.#br#9 熟悉软件工程相关：如敏捷开发流程",
+        "jump_time": "一个月内",
+        "work_property": "全职",
+        "target_city": "杭州",
+        "target_salary": "月薪25000-29999",
+        "target_position": "计算机软件",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1441036800,
+                "end_time": 2147483647,
+                "company": "杭州万乐极信息技术服务有限公司",
+                "size": "少于50人",
+                "industry": "互联网/电子商务",
+                "department": "研发部",
+                "position": "架构师，技术负责人",
+                "duty": "公司产品家政帮 app，移动互联网，o2o家政。目前主要提供上门保洁服务、家电清洗。#br#负责整个app后台架构、开发、项目管理"
+            },
+            {
+                "start_time": 1398873600,
+                "end_time": 1441036800,
+                "company": "杭州微客门科技有限公司",
+                "size": "少于50人",
+                "industry": "计算机软件",
+                "department": "开发部",
+                "position": "架构师",
+                "duty": "公司主要是做b2b电商项目。有道易行电动车电商平台、太阳能B2B商城、政采云（浙江省政府采购平台）等项目。#br#项目技术负责人：项目框架搭建、,核心功能编写，技术难点解决，新技术研究，团队技术指导等"
+            },
+            {
+                "start_time": 1385827200,
+                "end_time": 1401552000,
+                "company": "思科(外包性质)",
+                "size": "10000人",
+                "industry": "通信/电信/网络设备",
+                "department": "cloud service",
+                "position": "高级软件工程师",
+                "duty": "负责思科内部工具系统开发，提升team工作效率。#br#oncall-center排班系统架构开发。"
+            },
+            {
+                "start_time": 1338480000,
+                "end_time": 1385827200,
+                "company": "华数传媒网络有限公司",
+                "size": "1000-5000人",
+                "industry": "通信/电信/网络设备",
+                "department": "技术部",
+                "position": "软件工程师",
+                "duty": "负责数字电视相关软件的开发。"
+            },
+            {
+                "start_time": 1275321600,
+                "end_time": 1338480000,
+                "company": "华为(外包性质)",
+                "size": "10000人",
+                "industry": "计算机软件",
+                "department": "手机阅读项目组",
+                "position": "软件开发",
+                "duty": "项目是做手机阅读书籍的，客户为中国移动。#br#我负责中国移动手机阅读网站开发。"
+            },
+            {
+                "start_time": 1214841600,
+                "end_time": 1272643200,
+                "company": "浙江网盛生意宝股份有限公司",
+                "size": "500-1000人",
+                "industry": "互联网/电子商务",
+                "department": "技术部",
+                "position": "软件开发",
+                "duty": "公司是做专业的B2B网站的，主要产品有中国化工网和生意宝。#br#我负责机械专家网与中国化工网的开发与维护"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1093968000,
+                "end_time": 1214841600,
+                "school": "江西师范大学",
+                "major": "计算机科学与技术",
+                "degree": "本科"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1441036800,
+                "end_time": 2147483647,
+                "name": "家政帮 app",
+                "company": "杭州万乐极信息技术服务有限公司",
+                "soft": "JDK/mysql/tomcat/linux/niginx/keeplive",
+                "dev": "IntelliJIDEA、svn",
+                "description": "移动互联网o2o家政app。目前主要提供上门保洁服务。有iso端，android端，微信html5端。另外有阿姨端app,产品类似滴滴打车。目前用户数6万，每天300订单。有100左右并发。项目soa架构，分为8个子项目。有server端api项目，后台管理系统，定时任务系统等。编码要对并发做控制。",
+                "duty": "架构师。负责整个后台java的架构及开发。后期项目管理。"
+            },
+            {
+                "start_time": 1425139200,
+                "end_time": 1441036800,
+                "name": "政采云（浙江省政府采购平台）",
+                "company": "杭州微客门科技有限公司",
+                "soft": "JDK/mysql,mogodb/tomcat/linux",
+                "dev": "IntelliJIDEA、svn",
+                "description": "该项目为浙江省财政厅签头的浙江省政府采购平台，面向全国的。为b2b电商平台，厂家上传商品，省政府组织平台管理，面向全国各级政府机构销售。商品数据将从天猫、京东等电商平台录入。",
+                "duty": "架构师。负责项目的框架架构。"
+            },
+            {
+                "start_time": 1401552000,
+                "end_time": 1409500800,
+                "name": "道易行b2b电动车电商平台",
+                "company": "杭州微客门科技有限公司"
+            },
+            {
+                "start_time": 1385827200,
+                "end_time": 1398873600,
+                "name": "maestro oncall-center排班系统",
+                "company": "思科",
+                "soft": "JDK/mysql/tomcat/linux",
+                "dev": "IntelliJIDEA、svn",
+                "description": "该系统主要用于思科公司内部team使用，用于各team排班及查看排班。主要功能有查询当天排班人员，日历查询排班，排班，组管理，联系人管理，shift管理等。",
+                "duty": "负责整个系统的架构及后台serviceapi开发。"
+            },
+            {
+                "start_time": 1354291200,
+                "end_time": 1385827200,
+                "name": "全媒体",
+                "company": "华数传媒网络有限公司"
+            },
+            {
+                "start_time": 1338480000,
+                "end_time": 1354291200,
+                "name": "气象灾害预警信息审核发布平台",
+                "company": "华数传媒网络有限公司",
+                "soft": "JDK/oracle/tomcat/linux",
+                "dev": "Eclipse、svn",
+                "description": "主要用于杭州市气象局在数字电视直播频道机顶盒中发布气象灾害预警信息。支持按机顶盒发送、全网发送、分区域发送。气象局系统发消息到我们平台或我们平台直接发消息调utoc服务器接口推送到dvb通道到机顶盒显示。主要工作有完成自身预警系统功能开发、与utoc服务器、气象局系统对接。功能有消息发送核心功能(消息发送、审核、停",
+                "duty": "负责整个系统的架构、开发、维护。"
+            },
+            {
+                "start_time": 1275321600,
+                "end_time": 1338480000,
+                "name": "中国移动手机阅读网站",
+                "company": "华为",
+                "soft": "JDK1.6/oracle/tomcat/linux",
+                "dev": "Eclipse、svn",
+                "description": "移动手机阅读是个大平台，提供通过手机wap、www互联网、手机客户端软件等各种终端进行图书阅读。该项目是其中一部分，允许用户通过www互联网在线阅读书籍。有书库、排行榜、包月专区、专题、杂志、书籍阅读、资费订购、个人空间等功能。图书的阅读可通过网站与手机阅读两种方式。个人空间有直播间、好友管理、站内信等娱乐功能。",
+                "duty": "参与整个项目各个模块的开发。主要有收费章节阅读-预下载、杂志、专题、信息机、网络大学等。平时各模块问题单的修改。"
+            },
+            {
+                "start_time": 1264953600,
+                "end_time": 1272643200,
+                "name": "九星导热油网",
+                "company": "浙江网盛生意宝股份有限公司"
+            },
+            {
+                "start_time": 1214841600,
+                "end_time": 1272643200,
+                "name": "中国化工网，机械专家网",
+                "company": "浙江网盛生意宝股份有限公司",
+                "soft": "apache/Mysql/linux",
+                "dev": "ultraedit",
+                "description": "中国化工网与机械专家网都是B2B的专业门户网站。为公司提供化工和机械产品的销售。其中化工网主要功能有新闻、产品、产品求购、化工助手(化工信息库)、REACH、企业展台、会员中心等。",
+                "duty": "负责机械专家网的架构开发与维护,完成机械专家网整个网站的风格改版。负责化工网的开发,化工网主要做了化工助手、企业展台等。"
+            }
+        ]
+    }
+}

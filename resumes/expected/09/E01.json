@@ -1,0 +1,58 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "医疗器械业务（工作地点银川）（北京）",
+        "applicant_company": "北京凯文金克商贸有限公司",
+        "update_time": 1417968000,
+        "city": "北京-通州区",
+        "phone": "15810602430",
+        "email": "2093991405@qq.com",
+        "last_company": "北京富兴华工贸集团",
+        "industry": "医疗/护理/卫生",
+        "last_position": "医药销售代表",
+        "degree": "中技",
+        "major": "自动化",
+        "school": "天津立博学院",
+        "work_year": "5-7年",
+        "sex": "女",
+        "birth_year": 1987,
+        "true_id": "311224388",
+        "name": "何俏",
+        "self_str": "有充满激情的工作态度，能够在没有监督的情况下按质按量主动完成工作任务、团队协同作战能力强、一定的组织能力和协调能力、擅于发现问题、执行力强、思维缜密、保密性好、承担责任，能够接受加班和出差。",
+        "jump_time": "一周以内",
+        "work_property": "全职",
+        "target_city": "北京",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1328025600,
+                "end_time": 2147483647,
+                "company": "北京富兴华工贸集团",
+                "size": "50-150人",
+                "industry": "医疗/护理/卫生",
+                "department": "销售部",
+                "position": "医药销售代表",
+                "duty": "负责单位新老客户的开发与公司产品的推广"
+            },
+            {
+                "start_time": 1293811200,
+                "end_time": 1328025600,
+                "company": "北京伟康盛平医疗器械有限公司",
+                "size": "50-150人",
+                "industry": "医疗/护理/卫生",
+                "department": "销售部",
+                "position": "医药销售代表",
+                "duty": "负责公司医疗器械的销售与新老客户的开发与维护工作"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1072886400,
+                "end_time": 1167580800,
+                "school": "天津立博学院",
+                "major": "自动化",
+                "degree": "中技"
+            }
+        ]
+    }
+}

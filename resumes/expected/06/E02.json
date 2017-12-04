@@ -1,0 +1,69 @@
+{
+    "template": "06",
+    "data": {
+        "name": "王利伟",
+        "sex": "男",
+        "email": "wangliwei230@163.com",
+        "birth_year": 1990,
+        "phone": "13716043902",
+        "city": "北京",
+        "marriage": "未婚",
+        "work_begin": "2010",
+        "degree": "大专                            (统招)",
+        "work_status": null,
+        "target_industry": "IT服务/系统集成,IT服务/系统集成,系统分析员",
+        "target_city": "北京",
+        "target_salary": "7500 元/月",
+        "current_salary": "7500 元/月 * 12 个月",
+        "self_str": "对PHP技术有一定的理解、热爱软件开发、乐于面对挑战、为人谦虚好学、踏实肯干",
+        "career": [
+            {
+                "start_time": 1362067200,
+                "end_time": 2147483647,
+                "company": "抠抠(福建)电子商务有限公司北京分公司",
+                "nature": "民营",
+                "size": "20-99人",
+                "position": "互联网研发工程师",
+                "department": "技术部",
+                "duty": "主要负责商家后台商家发布商品流程,包括:       1. 商品的发布、编辑       2.商家分类的添加、编辑       3.前台店铺页面       4.商品数据库的搭建"
+            },
+            {
+                "start_time": 1309449600,
+                "end_time": 1359648000,
+                "company": "北京易众集信科技有限公司",
+                "nature": "民营",
+                "size": "20人",
+                "position": "互联网研发工程师",
+                "department": "技术部",
+                "duty": "社区网(www.sq165.cn)  软件环境:win+wamp5,lamp     开发工具:zend studio9.0"
+            },
+            {
+                "start_time": 1285862400,
+                "end_time": 1309449600,
+                "company": "北京点阵世纪企业管理顾问有限公司",
+                "nature": "民营",
+                "size": "20-99人",
+                "position": "php程序员",
+                "department": "网络部",
+                "duty": "9个月#br#互联网/电子商务#br#企业性质:"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1217520000,
+                "end_time": 1275321600,
+                "school": "北京八维研修学院",
+                "major": "大专",
+                "degree": "软件工程"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1285862400,
+                "end_time": 1309449600,
+                "name": "本商场是基于ecshop网上商城进行开发的一套买女装的商城系统",
+                "description": "互联网/电子商务|企业性质:民营|2010-10 ~ 2011-07: 致力于打造全民的网上家园,致力于打造和谐、诚信、绿色的服务体系,建立服务于居民、商家、政府的网络服务体系。是一个社区类的网站,方便社区中居民的交流,可以了解社区周边有哪些服务和社区动态,主要功能有用于交流的论坛、用于获取信息的社区新闻、地图和社区店铺。  责任描述:  负责整个网站框架的搭建和社区之间系统的整合,使用到了康盛的discuz+uc+brand进行二次开发。实现div+css编写,ajax js数据交互 北京点阵世纪企业管理顾问有限公司(9个月网络部|php程序员"
+            }
+        ]
+    }
+}

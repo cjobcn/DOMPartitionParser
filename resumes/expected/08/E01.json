@@ -1,0 +1,44 @@
+{
+    "template": "08",
+    "data": {
+        "name": "陈乙文",
+        "update_time": 1287417600,
+        "sex": "男",
+        "last_position": "软件工程师",
+        "last_company": "捷顶微电子（上海）有限公司",
+        "industry": "[互联网·电子商务]",
+        "degree": "本科",
+        "major": "[计算机科学与技术]",
+        "school": "西北工业大学",
+        "target_salary": "税前14000RMB/月",
+        "phone": "13917403172",
+        "email": "NetworkMadman@21cn.com",
+        "city": "上海",
+        "work_status": "我正在主动找工作，可快速到岗",
+        "birth_year": 1981,
+        "self_str": "较为丰富的程序设计、开发和调试经验。熟悉Linux/Windows系统程序（如驱动，系统移植等）开发调试。熟悉Linux/Unix TCP/IP协议栈结构和代码，有较为丰富的网络开发调试经验。熟悉USB，PCI等常用总线结构。",
+        "career": [
+            {
+                "start_time": 1112284800,
+                "end_time": 2147483647,
+                "company": "捷顶微电子（上海）有限公司",
+                "position": "软件工程师",
+                "industry": "互联网·电子商务",
+                "city": "上海",
+                "nature": "全职",
+                "position_class": "高级软件工程师",
+                "position_level": "高级职位(非管理类)",
+                "duty": "设计和实现Bluetooth芯片各个功能模块的测试（主要对实现各个模块的驱动来验证芯片是否能正常工作），参与Bluetooth SoC开发。主要工作：开发Bluetooth芯片的Firmware程序，包括BootLoader，Flash Driver，USB Device/Host Driver，SSP/UART driver，以及部分网络协议栈的开发。"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 936115200,
+                "end_time": 1056988800,
+                "school": "西北工业大学[西安]",
+                "degree": "本科[学士]",
+                "major": "计算机科学与技术[电气信息类]"
+            }
+        ]
+    }
+}

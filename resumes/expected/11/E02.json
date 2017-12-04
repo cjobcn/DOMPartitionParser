@@ -1,0 +1,241 @@
+{
+    "template": "11",
+    "data": {
+        "target_position": "WEB前端开发",
+        "update_time": 1428595200,
+        "true_id": "JR428720634R90250000000",
+        "name": "蒋建爽",
+        "phone": "13817980857",
+        "city": "上海浦东新区",
+        "residence": "温州",
+        "ID": "330381198506023419",
+        "email": "395475789@qq.com",
+        "sex": "男",
+        "birth_year": 1985,
+        "marriage": "已婚",
+        "work_year": "",
+        "target_city": "上海",
+        "target_salary": "15000-25000元/月",
+        "work_status": "我目前处于离职状态，可立即上岗",
+        "target_industry": "互联网/电子商务、基金/证券/期货/投资、通信/电信运营、增值服务、外包服务",
+        "self_str": "本人有8年的JAVASCRIPT，HTML开发经验,熟练使用jquery ,angular,backbone,underscore框架。熟练css3,less,熟悉html5,熟练Eclipse, VS,Dreamweaver,谷歌或者火狐css调试器制作div+ css兼容各个浏览器,熟练谷歌和火狐javascript 调试器和谷歌插件Postman 对json 跟踪查询，熟练Photoshop，熟练各语言正则表达式,熟练java,.net,perl 制作网站,熟练数据库mssql 、网站缓存",
+        "career": [
+            {
+                "start_time": 1404144000,
+                "end_time": 1427817600,
+                "company": "SAP",
+                "salary": "25000元/月以上",
+                "position": "WEB高级前端开发工程师",
+                "nature": "外商独资",
+                "industry": "计算机软件",
+                "size": "10000人以上",
+                "duty": "(1) 负责Service Billboard UI方面的视图和功能模块的开发,采用sap.m库#br#(2) 负责自定义控件的开发和公用模块的开发，公用模块独立为common最终生成jar 包，供多个系统引入使用#br#(3) 负责项目地图功能模块的开发采用“sap.ui.vbm.VBI”库制作#br#(4) 负责在SAP Launchpad Theming 里面配置整个系统的css 样式（根据客户Digital Style Guide）#br#(5) 负责整个系统java spring mvc 的维护和配置，以及项目的bug 测试"
+            },
+            {
+                "start_time": 1398873600,
+                "end_time": 1404144000,
+                "company": "ATA",
+                "duty": "签约博彦外派到ATA做系统，博彦外包项目，赴ATA做证券运营系统，工作中主要是负责前端javascript开发，html,css 的开发,以及部分图片的制作和切割，同时负责java 后台的部分代码开发，指导同事一些开发思想，例如权限的开发，如何结合菜单；同时负责前端菜单的展现，以及页面分页插件的开发，结合编写后台数据库代码实现软翻页和硬翻页的例子，提供Java后台人员参考。同时协助Java后台开发人员解决开发中遇到前端问题，以及协助他们整合自己开发的插件，表单验证框架验证遇到问题的情况，以及复杂表单界面排版结合验证提示的布局情况的微调。同时负责ajax 页面用户体验的优化，比如详细页面如果回到上一个列表页面所对应的分页的页面。系统分页全部采用ajax 分页。",
+                "salary": "15000-25000元/月",
+                "position": "高级软件工程师",
+                "nature": "外商独资",
+                "industry": "计算机软件",
+                "size": "1000-9999人"
+            },
+            {
+                "start_time": 1372608000,
+                "end_time": 1398873600,
+                "company": "SAP",
+                "duty": "项目网址：https://rapid.sap.com/sx#br#负责前端javascript，html 开发，系统UI界面制作，Java少量后端开发，Perl 统计该网站apache 日志开发,并对制作好的系统做浏览器兼容性测试和bug 测试。#br#负责VarFiler 编辑器系统开发，系统采用个人独立开发，采用C# winfrom 开发。",
+                "salary": "15000-25000元/月",
+                "position": "WEB前端开发",
+                "nature": "外商独资",
+                "industry": "计算机软件",
+                "size": "10000人以上"
+            },
+            {
+                "start_time": 1314806400,
+                "end_time": 1367337600,
+                "company": "文思海辉技术有限公司",
+                "duty": "外派到中国银联带团队，兼主力前端开发#br#客户网站：https://online.unionpay.com/#br#1.负责项目核心模块开发，包括编写javascriprt脚本，写div css 代码实现从视觉photoshop 设计图到html 的转变，兼容各个浏览器#br#2.负责收集员工考勤；收集填写工作周报；填写季度报告；通知组员公司最新动向；#br#3.负责和客户沟通分析项目进度和对项目安排，以及协助公司领导对组员的调度和客户协商，根据项目情况和客户的意思来通知公司领导是否增派工作人员加入团队。#br#4.负责项目核心开发，并解决项目中的困难问题，分析项目安排人员寻找最佳解决方案。第一时间交出客户满意的作品。#br#5.收集并研究学习新技术用于组员开发中的解决疑难问题。#br#6.负责和客户技术部沟通寻找前端开发和程序后台开发的磨合和页面的扩展性，减少客户技术开发人员对我们作品的挑刺，力求拿过去的作品直接能用或者现场调试少量改动。",
+                "salary": "10001-15000元/月",
+                "position": "UI/UE设计师/顾问，前端开发",
+                "department": "视觉前端",
+                "nature": "股份制企业",
+                "industry": "计算机软件",
+                "size": "10000人以上"
+            },
+            {
+                "start_time": 1285862400,
+                "end_time": 1314806400,
+                "company": "中国医师协会",
+                "duty": "参与公司门户网站开发",
+                "salary": "6001-8000元/月",
+                "position": "软件工程师",
+                "department": "开发部",
+                "nature": "民营",
+                "industry": "计算机软件",
+                "size": "100-499人"
+            },
+            {
+                "start_time": 1254326400,
+                "end_time": 1283270400,
+                "company": "东蓝数码有限公司",
+                "duty": "东蓝数码公司网站是公司继在英国退市后在国内准备上市而重新要开发的网站系统，在网站上面体现了公司的组织结构，产品，客户群等信息。系统采用C#+sql2000开发。#br#责任描述： 根据设计师平面图和公司策划部的需求，使用photoshop切图存成web格式存成最小的图片而不失去效果，采用CSS+DIV 制作的html页面通过多个浏览器兼容测试通过。负责公司网站开发制作，同时在SEO方面做了优化推广。同时参加公司其他比如OA系统的开发实施。",
+                "salary": "6001-8000元/月",
+                "position": "高级软件工程师",
+                "department": "开发部",
+                "nature": "上市公司",
+                "industry": "计算机硬件",
+                "size": "1000-9999人"
+            },
+            {
+                "start_time": 1188576000,
+                "end_time": 1254326400,
+                "company": "海讯科技有限公司",
+                "duty": "负责OA系统工作流的开发和表单的设计制作，负责邮件系统的开发，邮箱系统功能类似126邮箱系统，支持多附件和用户组和信纸的调取。负责文档系统的开发，支持文档结合用户组对文档权限的树形定义；#br#海迅OA系统是面向企业级的应用，简单的流程设置和强大的表单制作系统可以满足企业在成产用对申报单的审批的统计，比如累计合同金额审批的时间段报表。系统强大的邮件系统支持批量和大附件局域网传送。强大的文档管理系统，能够实现文档的存储和共享，支持单个文档权限的控制。支持文档的迁入和迁出。#br#责任描述",
+                "salary": "4001-6000元/月",
+                "position": "软件工程师",
+                "department": "开发部",
+                "nature": "民营",
+                "industry": "计算机软件",
+                "size": "20-99人"
+            },
+            {
+                "start_time": 1167580800,
+                "end_time": 1185897600,
+                "company": "正威电子有限公司",
+                "duty": "负责公司酒店软件OA系统的开发",
+                "salary": "2001-4000元/月",
+                "position": "软件工程师",
+                "department": "开发部",
+                "nature": "民营",
+                "industry": "计算机软件",
+                "size": "20-99人"
+            },
+            {
+                "start_time": 1146412800,
+                "end_time": 1164902400,
+                "company": "龙冠广告策划有限公司",
+                "duty": "从事公司网站单子的开发",
+                "salary": "1000-2000元/月",
+                "position": "网页设计/制作",
+                "department": "开发部",
+                "nature": "民营",
+                "industry": "互联网/电子商务",
+                "size": "20人以下"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1404144000,
+                "end_time": 1427817600,
+                "name": "Aurizon - Service Billboard （澳洲铁路系统）",
+                "soft": "win7, java, tomcat",
+                "hard": "ThInkpad T520",
+                "dev": "eclipse,Google Chrome(调试工具),Sublime,EditPlus 3",
+                "duty": "(1) 负责Service Billboard UI方面的视图和功能模块的开发,采用sap.m库(2) 负责自定义控件的开发和公用模块的开发，公用模块独立为common最终生成jar 包，供多个系统引入使用(3) 负责项目地图功能模块的开发采用“sap.ui.vbm.VBI”库制作(4) 负责在SAP Launchpad Theming 里面配置整个系统的css 样式（根据客户Digital Style Guide）(5) 负责整个系统java spring mvc 的维护和配置，以及项目的bug 测试",
+                "description": "Aurizon - Service Billboard 是澳大利亚一个铁路公司的系统，主要用来监控火车的运行进度，停留位置和发出时间等，系统有地图上面显示火车位置点击查看可以具体列车位置"
+            },
+            {
+                "start_time": 1398873600,
+                "end_time": 1404144000,
+                "name": "ATA 证券管理系统",
+                "soft": "win7, java, tomcat,oracle, PLSQL",
+                "hard": "ThInkpad E40",
+                "dev": "eclipse,Google Chrome(调试工具),Adobe Dreamweaver CS6,EditPlus 3",
+                "duty": "负责ATA为证券协会开发的运营系统的前端开发，包括权限菜单展示，ajax 分页，表单验证框架的定制开发，以及页面浏览器兼容性指导和开发。同事协助后台人员开发部分功能，比如图片上传前端效果，后端代码实现，分页软翻页和硬翻页实现，包括后台数据库代码实现，前端分页插件封装",
+                "description": "证券运营系统是ATA为中国证券协会开发的系统，实现考试报名，课程报名等功能，后台管理系统实现各种信息的管理，比如考试管理，考后管理，报考管理，试卷管理，考点设置，系统设置等板块。其中系统设置里面有管理管理和各种角色用户能看到不同的菜单等基本功能。"
+            },
+            {
+                "start_time": 1372608000,
+                "end_time": 1398873600,
+                "name": "SAP Solution Explorer、Perl 日志系统、VarFiler 编辑器系统",
+                "soft": "win7",
+                "hard": "台式机",
+                "dev": "eclipse,谷歌浏览器，各种调试工具，VS Express 2013 for Desktop",
+                "duty": "项目网址：https://rapid.sap.com/se负责前端javascript，html 开发，系统UI界面制作，Java少量后端开发，Perl 统计该网站apache 日志开发,并对制作好的系统做浏览器兼容性测试和bug 测试。负责C# winform 界面制作，功能代码开发。",
+                "description": "SAP Solution Explorer 是SAP一个解决方案资源查询器，perl 日志系统主要是对这个网站apache 日志分析展示报表给内部人员看VarFiler 编辑器系统是SAP 处理ABAP导出的txt 制表符数据，进行整理比较以防遗漏"
+            },
+            {
+                "start_time": 1314806400,
+                "end_time": 1367337600,
+                "name": "中国银联互联网第二代系统建设技术支持",
+                "soft": "win7",
+                "hard": "笔记本电脑",
+                "dev": "Dreamweaver，eclipse",
+                "duty": "项目网址：https://online.unionpay.com本人负责前端页面div+css+jquery的开发，负责和客户技术部沟通，给组员同事分配工作任务，解决同事遇到的问题。负责和技术部沟通，协调技术部开开发的工作。并要求每个人在开发过程中测试不同浏览器包括IE6到IE10、火狐、谷歌、苹果、360，QQ等主流浏览器。",
+                "description": "银联门户和网关项目主要是类似财付通的第三方支付系统，提供网上支付，还款，转账，购买电影票，水电煤，手机充值，信用卡还款等应用，具体请参考：https://online.unionpay.com"
+            },
+            {
+                "start_time": 1304179200,
+                "end_time": 1314806400,
+                "name": "协医网开发制作",
+                "soft": "Entity Framework平台+sql2008R2",
+                "hard": "笔记本",
+                "dev": "vs2010+ Powerdesigner+Dreamweaver+T4模版",
+                "duty": "中国医师协会运营平台针对签约医师，实现在线预约功能",
+                "description": "负责网站前台专家列表页面以及优化的开发，和网站后台的搭建"
+            },
+            {
+                "start_time": 1285862400,
+                "end_time": 1304179200,
+                "name": "寻医问药(独立开发)",
+                "soft": "DNN 平台+sql2008R2",
+                "hard": "笔记本",
+                "dev": "vs2010+Dreamweaver",
+                "duty": "负责以上3个板块的开发",
+                "description": "项目网址：http://yiyuan.cmda.org.cn/http://jibing.cmda.org.cn/http://wenyao.cmda.org.cn/"
+            },
+            {
+                "start_time": 1277913600,
+                "end_time": 1283270400,
+                "name": "浙江中烟集团OA系统",
+                "soft": "JDK1.5+Tomcat6.0",
+                "hard": "笔记本电脑",
+                "dev": "MyEclipse6.0+DB2+Dreamweaver",
+                "duty": "负责计划管理模块的开发，包括计划信息录入，审核，生成报表等信息",
+                "description": "浙江中烟集团OA系统主要实现了从SAP系统读取信息这边OA系统处理报表，OA同时实现了办公中所有工作"
+            },
+            {
+                "start_time": 1264953600,
+                "end_time": 1283270400,
+                "name": "东蓝数码公司网站",
+                "soft": "ado.net 平台+sql2000",
+                "hard": "笔记本电脑",
+                "dev": "vs2008+Dreamweaver",
+                "duty": "负责静态页面切图制作和后台程序的开发以及SEO的推广设置",
+                "description": "东蓝数码公司网站是公司继在英国退市后在国内准备上市而重新要开发的网站系统，在网站上面体现了公司的组织结构，产品，客户群等信息。系统采用C#+sql2000开发。"
+            },
+            {
+                "start_time": 1264953600,
+                "end_time": 1275321600,
+                "name": "雅戈尔采购系统",
+                "soft": ".net 平台+Sql2005",
+                "hard": "笔记本电脑",
+                "dev": "vs2008+Dreamweaverado责任描述：",
+                "duty": "负责系统入仓单、领料单、发票、报表系统板块的开发。每个板块采用js+微软自带ajax开发，确保了每个板块用户体验效果，无刷新的用户体验效果提高了用户的工作效率。",
+                "description": "雅戈尔采购系统是原来公司asp 系统升级为.net 系统而进行的项目编写，项目主要解决了asp 依托active 插件才能完成的复杂的用户交互工作的难题，.net 利用ajax 技术+js 技术解决了项目复杂的页面交互而不需要刷新。系统采用标准三层架构开发。极大的提高了项目的可维护性。在项目开发中，公用的类极大的初进了项目进度 系统采用 SVN 管理，使得项目能在多人并发开发下得以顺利进行。"
+            },
+            {
+                "start_time": 1257004800,
+                "end_time": 1267372800,
+                "name": "in妈咪B2C商城(独立开发)",
+                "soft": "ado.net 平台+sql2000",
+                "hard": "笔记本电脑",
+                "dev": "vs2008+Dreamweaver",
+                "duty": "负责项目(http://www.inmami.com)的独立开发测试和维护，根据设计师的设计稿和客户的需求，负责全部页面的制作包括静态DIV+CSS和后台C#代码的编写，同时在为开发SEO后台自动配置功能，和伪静态功能。",
+                "description": "in妈咪网站是一个B2C 的电子商务网站，网站实现的主要功能是客户能在后台发布商品在前台显示商品，会员注册后可以在商城购买系统，系统采用支付宝接口，用户在商城购买网站后，商城后台可以看到订单等支付情况。会员可以在会员中心查看自己的订单信息和发货情况，如果还没有支付的订单，可以与商城管理员协商价格，然后支付宝购买，系统支付货到付款和支付宝付款2种形式，强大的购物车系统支持商品超重的计算和满一定金额面运费功能。系统前台采用DIV+CSS，后台采用C#.net2008+sql2000开发，强大的微软自带的ajax功能使得商城在被使用的过程中取得了很好的用户体验效果。同时网站在sql 注入攻击方面做了特殊的处理，使得商城在安全上面多了一个保障。 改商城经过3个月的运行取得而来很好销售业绩，后台订单显示月销售过2万的业绩。客户采用实体店结合商城销售商品，客户欲购买商品，只需要给出商城供客户在上面选择自己喜欢的商品下单，支付宝支付，随后并可离开商场，商家自动发货到客户地址，同时客户可以从宣传手册得到商城地址，根据上次购买和商家取得的信任，并可以在加购买商品而无需再上门购买。"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1093968000,
+                "end_time": 1151683200,
+                "school": "浙江工业大学",
+                "major": "软件工程",
+                "degree": "大专"
+            }
+        ]
+    }
+}

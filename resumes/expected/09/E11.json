@@ -1,0 +1,109 @@
+{
+    "template": "09",
+    "data": {
+        "name": "吉卫锋",
+        "sex": "男",
+        "birth_year": 1982,
+        "city": "上海市",
+        "work_year": "二年以上",
+        "residence": "辽宁",
+        "current_salary": "4-5万人民币",
+        "email": "feng703@163.com",
+        "phone": "13482013240",
+        "self_str": "熟练应用pl/sql,c,java等语言和oracle,sql server数据库进行开发，懂英语，日语，2年工作经验，1年对日软件开发经验",
+        "work_property": "全职",
+        "target_industry": "计算机软件",
+        "target_city": "上海市",
+        "target_salary": "4500-5999/月",
+        "target_position": "软件工程师",
+        "career": [
+            {
+                "start_time": 1122825600,
+                "end_time": 1149091200,
+                "company": "上海创路信息科技有限公司",
+                "industry": "计算机软件",
+                "department": "软件开发部",
+                "position": "软件工程师",
+                "duty": "根据日文式样书进行模块的设计、编码与测试，所用语言：c,pl/sql,java等，数据库：oracle"
+            },
+            {
+                "start_time": 1080748800,
+                "end_time": 1120147200,
+                "company": "辽宁工程技术大学卓远信息技术公司",
+                "industry": "计算机软件",
+                "department": "软件开发部",
+                "position": "软件工程师",
+                "duty": "根据客户要求进行软件的开发，主要做详细设计等部分的编码，测试以及软件的后期维护升级等，主要语言：vb,pb,delphi,asp等；主要数据库：sql server"
+            }
+        ],
+        "projects": [
+            {
+                "start_time": 1136044800,
+                "end_time": 2147483647,
+                "name": "三菱GBT",
+                "soft": "oracle + pl/sql + eclipse + jsp",
+                "hard": "pc",
+                "description": "三菱POS终端软件的外包开发",
+                "duty": "根据机能式样和program式样书编码，并进行单元测试。"
+            },
+            {
+                "start_time": 1122825600,
+                "end_time": 1130774400,
+                "name": "三菱JKP",
+                "soft": "oracle + pl/sql",
+                "description": "三菱财务软件的外包项目",
+                "duty": "根据式样书编码并进行单元测试。"
+            },
+            {
+                "start_time": 1112284800,
+                "end_time": 1120147200,
+                "name": "辽宁省农村信用社贷款登记管理系统",
+                "soft": "Windows 2000",
+                "hard": "P42.4 + DDR512M",
+                "dev": "JSP+Eclipse",
+                "description": "在进行农村信贷管理的同时，也作为国家征信系统的一个信息来源。",
+                "duty": "负责“客户每月还款管理”模块的设计、编码、单元测试与维护"
+            },
+            {
+                "start_time": 1099238400,
+                "end_time": 1104508800,
+                "name": "元宝山煤矿医疗保险系统",
+                "soft": "Windows 2000",
+                "hard": "P42.0+DDR256M",
+                "dev": "ASP+dreamWeaver+SQL Server 2000",
+                "description": "元宝山煤矿职工的医疗保险管理系统",
+                "duty": "“职工保险信息的修改维护”模块的设计，编码，单元测试与维护"
+            },
+            {
+                "start_time": 1093968000,
+                "end_time": 1099238400,
+                "name": "天宏洗浴中心管理系统",
+                "soft": "WIN2000+VB6.0+SQL SERVER2000",
+                "hard": "P42.5G+DDR512M",
+                "dev": "Microsoft Visual Basic 6.0",
+                "description": "通过对天宏洗浴城的调研、分析，开发的C/S结构的MIS系统，可以有效地实现企业的现代化管理，提升企业的市场竞争力和整体形象。",
+                "duty": "主要负责前台信息管理模块的设计、编码与测试"
+            },
+            {
+                "start_time": 1078070400,
+                "end_time": 1088611200,
+                "name": "新联电子销售管理系统",
+                "soft": "windows",
+                "hard": "奔733+128M",
+                "dev": "PowerBuilder+Access",
+                "description": "作为毕业设计课题，按照软件工程标准进行了系统的开发！",
+                "duty": "需求分析、可行性研究、概要设计、详细设计、编码、测试"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 967737600,
+                "end_time": 1088611200,
+                "school": "辽宁工程技术大学",
+                "major": "计算机科学与技术",
+                "degree": "本科",
+                "class": "计算机软、硬件基础课程"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "template": "09",
+    "data": {
+        "applicant_position": "行政助理（工作地点：上海浦东新区）（上海-浦东新区）",
+        "applicant_company": "长威信息科技发展股份有限公司",
+        "update_time": 1417968000,
+        "city": "上海",
+        "residence": "上海",
+        "phone": "13764191310",
+        "email": "243571065@qq.com",
+        "last_company": "卡西欧",
+        "last_position": "其他",
+        "degree": "大专",
+        "major": "信息管理和信息系统",
+        "school": "上海工商外国语职业学院",
+        "work_year": "1年",
+        "sex": "男",
+        "birth_year": 1992,
+        "true_id": "317207780",
+        "name": "方冬杰",
+        "work_property": "全职",
+        "target_industry": "印刷/包装/造纸，外包服务，专业服务(咨询、人力资源、财会)，教育/培训/院校，非盈利机构",
+        "target_city": "上海",
+        "work_status": "目前正在找工作",
+        "career": [
+            {
+                "start_time": 1383235200,
+                "end_time": 1388505600,
+                "company": "卡西欧\r",
+                "department": "其他",
+                "position": "行政，城市经理"
+            },
+            {
+                "start_time": 1370016000,
+                "end_time": 1375286400,
+                "company": "鸿运精密模具有限公司\r",
+                "department": "行政",
+                "position": "行政，处理订单"
+            }
+        ],
+        "education": [
+            {
+                "start_time": 1314806400,
+                "end_time": 2147483647,
+                "school": "上海工商外国语职业学院",
+                "major": "信息管理和信息系统",
+                "degree": "大专"
+            }
+        ]
+    }
+}

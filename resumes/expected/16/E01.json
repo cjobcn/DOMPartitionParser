@@ -1,0 +1,79 @@
+{
+    "template": "16",
+    "data": {
+        "name": "Amy Huang-Lee",
+        "last_position": "Venture capital, mobile gaming",
+        "email": "yi_arts@yahoo.com",
+        "city": "中国 北京市区",
+        "industry": "互联网",
+        "last_company": "NetEase Capital",
+        "school": "美国宾夕法尼亚大学 - 沃顿商学院",
+        "self_str": "Amy has over 10 years of work experience in Greater China. Amy has extensive experience in corporate strategy, operations, product management through her experiences at a top tier US management consulting firm and a plethora of Internet companies in China. Amy has worked in B2C consumer retail industry in China, both as an entrepreneur and senior management for leading Chinese online retailers, which gave her a strong background in operations, sales & marketing, new BU building, negotiations, and Chinese consumer insights. Currently, Amy is focused on helping early stage start ups in China to grow into successful companies through her role as AVP at NetEase Capital, the VC arm of NetEase, Inc.\n\nAmy graduated cum laude from Wharton School and University of Pennsylvania with BA and BS degrees. Majored in finance and international studies.",
+        "career": [
+            {
+                "start_time": 1349020800,
+                "end_time": 2147483647,
+                "company": "AVP",
+                "position": "NetEase Capital",
+                "city": "中国 北京市区",
+                "duty": "Investment professional in TMT include mobile games, ecommerce, and technology, typically focuses on early stage start-up companies. Amy is the AVP of NetEase Capital, whose portfolio consists of top global game studios from San Francisco to Seattle to Tokyo to Shanghai. NetEase (NTES) is one of the largest game developer/publisher in China, long time partner of Blizzard Games in China."
+            },
+            {
+                "start_time": 1241107200,
+                "end_time": 1259596800,
+                "company": "VP Sales & Merchandising",
+                "position": "La Miu",
+                "city": "Beijing",
+                "duty": ""
+            },
+            {
+                "start_time": 1149091200,
+                "end_time": 1199116800,
+                "company": "Senior director, strategic business development",
+                "position": "Dangdang.com",
+                "city": "beijing",
+                "duty": "- Appointed to create Dangdang’s own private label products to contribute high margin returns to company’s portfolio\n- Developed short and long term strategy in product positioning, brand marketing, product line roll out, sourcing, and financial forecasts; reported directly to CEO and CFO \n- Managed team of 15 people across marketing, finance, merchandising, sourcing, and content to launch product in 3 months\n- Went on field visits to find potential manufacturers; negotiated contracts with favorable payment terms and stringent requirements on product quality, price, and delivery time \n- Successfully launched private label men’s shirts under tight time and resource constraint\n- Implemented stringent QC standards through rigorous manufacturer negotiations, created top-quality product with lowest % of return goods within all 31 product categories"
+            },
+            {
+                "start_time": 1149091200,
+                "end_time": 1199116800,
+                "company": "Senior director, merchandising",
+                "position": "Dangdang.com",
+                "city": "",
+                "duty": "- Managed sourcing & merchandising team of 8 people in cosmetics, jewelry/accessories, bags & leather goods, and health products; controlled over 4M RMB in inventory, with over 3000 SKU \n- Led sourcing team in vendor negotiations, maintained great relationship with key vendors; drastically improved accounts payable terms from 100% pre-pay to 30-60 days payment term\n- Improved inventory turnover from 120 days to 80 days through rigorous supply chain management \n- Analyzed internal customer data, and developed category assortment strategy in accordance to customer demographics and purchasing behavior\n- Planned and launched online cosmetics store in December 2006. Brought in 500 SKU"
+            },
+            {
+                "start_time": 1056988800,
+                "end_time": 1149091200,
+                "company": "Founder",
+                "position": "Yi Jewels, Inc.",
+                "city": "",
+                "duty": "- Founded a designer jewelry retail & wholesale company in the US, targeted the market opportunity of high quality, unique design independent jewelry, catered to urban middle-class and professional women clientele \n- Utilized low cost, top quality raw materials in China, created a high profit and high growth company. Maintained strong and continuous month-on-month sales growth, with over 70% gross profit margin\n- Designed full line of fine jewelry collection of over 1500 unique SKUs, developed sophisticated inventory management system with retail & wholesale e-commerce capabilities\n- Managed over 30 direct sales consultants, 40 independent retail stores across 15 states in the US, and various online partners, while overseeing China-based sourcing and production"
+            },
+            {
+                "start_time": 986054400,
+                "end_time": 1064937600,
+                "company": "consultant",
+                "position": "Bain & Company",
+                "city": "",
+                "duty": "- Worked with leading courier express company to build Euro200M China domestic network business, designed business case with 5 year financial pro forma, and developed specific project management programs for business launch in 39 cities \n- Developed market entry strategies for leading global consumer goods company, designed distribution and logistics plans, developed partnership structure based on detailed field study of 85 tier 13 cities, which impacted in savings of Euro 10M  \n- Experienced in private equity deals and due diligence\n- Worked under high level of stress, delivered top-quality products to sophisticated global clients, often key stakeholders such as company CEO, COO, and board of directors\n- Highly spirited team player, often coordinated Bain’s internal team building and social activities, built office moral, contributed to team fun while under high stress"
+            }
+        ],
+        "education": [
+            {
+                "school": ":美国宾夕法尼亚大学-沃顿商学院",
+                "major": "Finance",
+                "degree": "BS",
+                "start_time": 873043200,
+                "end_time": 991324800
+            },
+            {
+                "school": ":美国宾夕法尼亚大学",
+                "major": "finance, international studies",
+                "degree": "BS,BA",
+                "start_time": 873043200,
+                "end_time": 959788800
+            }
+        ]
+    }
+}

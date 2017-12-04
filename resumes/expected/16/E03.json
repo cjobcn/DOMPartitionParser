@@ -1,0 +1,54 @@
+{
+    "template": "16",
+    "data": {
+        "name": "Dylan Deng",
+        "last_position": "高级软件工程师 - 房多多",
+        "email": "kid7301@163.com",
+        "city": "上海 闸北区",
+        "industry": "互联网",
+        "last_company": "房多多",
+        "school": "浙江大学",
+        "career": [
+            {
+                "start_time": 1409500800,
+                "end_time": 2147483647,
+                "company": "高级软件工程师",
+                "position": "房多多",
+                "city": "中国 上海市区",
+                "duty": ""
+            },
+            {
+                "start_time": 1383235200,
+                "end_time": 1409500800,
+                "company": "软件工程师",
+                "position": "乐卓网络科技（上海）股份有限公司",
+                "city": "中国 上海市区",
+                "duty": ""
+            },
+            {
+                "start_time": 1333209600,
+                "end_time": 1383235200,
+                "company": "软件工程师",
+                "position": "华为",
+                "city": "中国 广东 深圳",
+                "duty": ""
+            }
+        ],
+        "education": [
+            {
+                "school": ":浙江大学",
+                "major": "机械设计及理论",
+                "degree": "硕士",
+                "start_time": 1251734400,
+                "end_time": 1338480000
+            },
+            {
+                "school": ":武汉大学",
+                "major": "机械设计制造及其自动化",
+                "degree": "学士",
+                "start_time": 1125504000,
+                "end_time": 1243785600
+            }
+        ]
+    }
+}
