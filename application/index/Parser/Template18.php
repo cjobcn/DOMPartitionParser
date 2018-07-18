@@ -179,6 +179,11 @@ class Template18 extends  AbstractParser {
             }
             $i++;
         }
+        if($education){
+            $record['major'] = $education[0]['major'];
+            $record['school'] = $education[0]['school'];
+            $record['degree'] = $education[0]['degree'];
+        }
         $record['education'] = $education;
         return $education;
     }
