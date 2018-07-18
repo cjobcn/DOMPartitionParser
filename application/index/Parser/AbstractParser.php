@@ -150,7 +150,7 @@ abstract class AbstractParser {
         //dump($data);
         return $partition?array($data, $blocks):$data;
     }
-    
+
     //对dom数组分块
     public function partition($data) {
         $titles = $this->titles;
@@ -166,7 +166,7 @@ abstract class AbstractParser {
         }
         if($j > 0) $blocks[$j-1][2] = count($data) - 1;
         return $blocks;
-        
+
     }
 
     /**
@@ -188,12 +188,12 @@ abstract class AbstractParser {
         return false;
     }
 
-    /* 
+    /*
      * 根据关键字规则解析关键字对应的值
      * @param string $keyword 关键字字段
      * @param mixed $value 【int】:在DOM数组中取下$value个值 【string】: 值为value
      * @param array $rules 关键字解析规则，默认使用类的关键字解析规则
-     * @return string 关键字对应键名 
+     * @return string 关键字对应键名
      */
     public function parseKeyword($keyword, &$value, $rules = array()) {
         if(!$rules) $rules = $this->rules;
@@ -218,7 +218,7 @@ abstract class AbstractParser {
                     $value = $data[2];
                     return $rule[0];
                 }
-            }           
+            }
         }
         return false;
     }
@@ -290,7 +290,7 @@ abstract class AbstractParser {
     public function evaluation($data, $start, $end, &$record) {
         $evaluation = $data[$start];
         $i = $start + 1;
-        while($i <= $end){  
+        while($i <= $end){
             $evaluation .= '#br#'.$data[$i++];
         }
         $record['self_str'] = $evaluation;
@@ -313,14 +313,14 @@ abstract class AbstractParser {
         //顺序提取对应的键名
         //格式：array('pattern'或 关键字键名, 键名列表)
         $sequence = $conditions['sequence'];
-        //正则提取所用的正则，需要用到(?<name>pattern)子组命名 
+        //正则提取所用的正则，需要用到(?<name>pattern)子组命名
         $pattern = $conditions['pattern'];
         $i = 0;
         $j = 0;
         $objects = array();
-        while($i < $length) {      
+        while($i < $length) {
             //正则提取
-            if($pattern && preg_match($pattern, $data[$i], $match)) {  
+            if($pattern && preg_match($pattern, $data[$i], $match)) {
                 $object = array();
                 foreach($match as $key=>$value){
                     if(is_string($key)){
@@ -328,10 +328,10 @@ abstract class AbstractParser {
                             $object[$key] = Utility::str2time($value);
                         else
                             $object[$key] = $value;
-                    }               
+                    }
                 }
                 $objects[$j++] = $object;
-                if($sequence[0] == 'pattern') $k = 1; 
+                if($sequence[0] == 'pattern') $k = 1;
             //关键字提取
             }elseif($rules && $KV = $this->parseElement($data, $i, $rules)){
                 $objects[$j-1][$KV[0]] = $KV[1];
@@ -344,7 +344,7 @@ abstract class AbstractParser {
                     $k++;
                 }else{
                     $k = 0;
-                }                         
+                }
             }
             $i++;
         }
