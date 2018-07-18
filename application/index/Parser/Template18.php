@@ -135,6 +135,9 @@ class Template18 extends  AbstractParser {
 
             $i++;
         }
+        if($jobs){
+            $record['work_begin'] = $jobs[count($jobs)-1]['start_time'];
+        }
         $record['career'] = $jobs;
         return $jobs;
     }
