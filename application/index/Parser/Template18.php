@@ -190,7 +190,11 @@ class Template18 extends  AbstractParser {
         $arr = array();
         $patten_last_position = '/<h2 class="pv-top-card-section__headline mt1 Sans-19px-black-85%">\s*(.*?)\s*<\/h2>/';
         preg_match_all($patten_last_position, $content, $arr);
-        $record['last_position'] = $arr[1][0];
+        if($arr[1][0]){
+            $company_position = explode('-',$arr[1][0]);
+            $record['last_company'] = $company_position[0];
+            $record['last_position'] = $company_position[1];
+        }
         $arr = array();
         $patten_last_city = '/<h3 class="pv-top-card-section__location Sans-17px-black-55%-dense mt1 inline-block">\s*(.*?)\s*<\/h3>/';
         preg_match_all($patten_last_city, $content, $arr);
