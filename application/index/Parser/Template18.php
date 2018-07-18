@@ -31,17 +31,6 @@ class Template18 extends  AbstractParser {
         array('concerned', '关注'),
     );
 
-    //关键字解析规则
-    protected $rules = array(
-        array('email', '邮箱:'),
-        array('birth', '生日:'),
-        array('city', '所在地区'),
-        array('industry', '所属行业'),
-        array('last_company', '目前就职'),
-        array('school', '教育背景'),
-        array('marriage', '婚姻状况'),
-    );
-
     //对简历内容预处理,使其可以被解析
     public function preprocess($content) {
         $redundancy = array(
