@@ -191,6 +191,7 @@ class Template18 extends  AbstractParser {
         $patten_last_position = '/<h2 class="pv-top-card-section__headline mt1 Sans-19px-black-85%">\s*(.*?)\s*<\/h2>/';
         preg_match_all($patten_last_position, $content, $arr);
         if($arr[1][0]){
+            $arr[1][0] = str_replace(' ','',$arr[1][0]);
             $company_position = explode('-',$arr[1][0]);
             $record['last_company'] = $company_position[0];
             $record['last_position'] = $company_position[1];
