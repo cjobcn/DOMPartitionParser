@@ -92,7 +92,8 @@ class Template18 extends  AbstractParser {
         $j = 0;
         $jobs = array();
         while($i < $length) {
-            if(preg_match('/^(\d{4}\D+\d{1,2})\D+((\d{4}\D+\d{1,2})?|至今|现在)(.+)/s', $data[$i], $match)) {
+            //if(preg_match('/^(\d{4}\D+\d{1,2})\D+((\d{4}\D+\d{1,2})?|至今|现在)(.+)/s', $data[$i], $match)) {
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)/s', $data[$i], $match)) {
                 $job = array();
                 $hadCompany = false;
                 $hadCity = false;
@@ -119,6 +120,7 @@ class Template18 extends  AbstractParser {
                 }
                 $job['start_time'] = Utility::str2time($match[1]);
                 $job['end_time'] = Utility::str2time($match[2]);
+                vde($match);
                 $jobs[$j++] = $job;
             }
 
