@@ -120,7 +120,6 @@ class Template18 extends  AbstractParser {
                 }
                 $job['start_time'] = Utility::str2time($match[1]);
                 $job['end_time'] = Utility::str2time($match[2]);
-                vde($match);
                 $jobs[$j++] = $job;
             }
 
