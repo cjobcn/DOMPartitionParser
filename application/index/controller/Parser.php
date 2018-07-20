@@ -23,15 +23,15 @@ class Parser extends Controller {
         if($request->isPost()) {
             $originContent = $request->post('content');
             $id = $request->post('id');
-            $isRecommendReport = $request->post('isreport')?:false;//是否是推荐报告
+            $type = $request->post('type')?:1;//默认简历 1简历 2推荐报告 3名片
             $originContent = preg_replace('/(?<!\r)\n/',"\r\n",$originContent);
             //内容丢失
             if(!$originContent || !is_string($originContent))
                 return json(array('status' => -2));
             //$type = $request->post('type');
-            if($isRecommendReport==false){
+            if($type==1){
                 $Parser = new ResumeParser();
-            }else{
+            }elseif($type==2){
                 $Parser = new ReportParser();
             }
             $content = $Parser->convert2UTF8($originContent);
@@ -80,7 +80,7 @@ class Parser extends Controller {
                 'status' => -1,
             );
         }
-        $info['isRecommendReport'] = $isRecommendReport;
+        $info['type'] = $type;
         return json($info);
     }
 }
