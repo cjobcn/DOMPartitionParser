@@ -24,7 +24,7 @@ class ReportTemplate03 extends AbstractParser {
         );
         $content = preg_replace($redundancy, '', $content);
         $content = str_replace(array('性    别', '国    籍', '籍    贯','&','一、','二、','三、','四、','五、','六、','七、'),
-            array('性别：', '国籍：', '籍贯：','</br>','','','','','','',''), $content);
+            array('性别', '国籍', '籍贯','</br>','','','','','','',''), $content);
         //两个空格作为分隔符
         $content = str_replace(array('  ','&nbsp;&nbsp;'), '|', $content);
         return $content;
@@ -82,16 +82,17 @@ class ReportTemplate03 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('name', '姓名：'),
-            array('sex', '性别：'),
-            array('residence', '籍贯：'),
-            array('birth_year', '出生日期：'),
-            array('city', '现所在地：'),
-            array('marriage', '婚姻状况：'),
-            array('degree', '学历：'),
+            array('name', '中文姓名'),
+            array('birth_year', '出生年月'),
+            array('sex', '性别'),
+            array('height', '身高'),
+            array('marriage', '婚姻状况'),
+            array('nationality', '国籍'),
+            array('residence', '籍贯'),
+            array('city', '工作所在'),
+            array('residence', '家庭所在'),
             array('phone', '联系方式：'),
-            array('email', '邮箱：'),
-            array('residence', '户口所在地：'),
+
         );
         $i = 0;
         while($i < $length) {
@@ -105,10 +106,14 @@ class ReportTemplate03 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
+            array('description', '公司背景：'),
+            array('department', '所在部门：'),
+            array('position', '担任职位：'),
             array('report_to', '汇报对象：'),
-            array('underlings', '下属人数：'),
+            array('underlings', '管辖下属：'),
             array('duty', '工作职责：'),
-            array('project', '项目经验：'),
+            array('performance', '工作业绩：'),
+            array('left_reason', '离职原因：'),
         );
         $i = 0;
         $j = 0;
@@ -129,14 +134,20 @@ class ReportTemplate03 extends AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
             }else{
-                if($jobs[$j-1]['project']){
-                    $jobs[$j-1]['project'] = $jobs[$j-1]['project'].'</br>'.$data[$i];
+                if($jobs[$j-1]['left_reason']){
+                    $jobs[$j-1]['left_reason'] = $jobs[$j-1]['left_reason'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['performance']){
+                    $jobs[$j-1]['performance'] = $jobs[$j-1]['performance'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['duty']){
                     $jobs[$j-1]['duty'] = $jobs[$j-1]['duty'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['underlings']){
                     $jobs[$j-1]['underlings'] = $jobs[$j-1]['underlings'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['report_to']){
                     $jobs[$j-1]['report_to'] = $jobs[$j-1]['report_to'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['department']){
+                    $jobs[$j-1]['department'] = $jobs[$j-1]['department'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['description']){
+                    $jobs[$j-1]['description'] = $jobs[$j-1]['description'].'</br>'.$data[$i];
                 }
             }
         }

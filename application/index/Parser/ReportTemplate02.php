@@ -91,6 +91,8 @@ class ReportTemplate02 extends AbstractParser {
             array('underlings', '下属人数：'),
             array('duty', '工作职责：'),
             array('project', '项目经验：'),
+            array('performance', '工作业绩：'),
+            array('left_reason', '离职原因：'),
         );
         $i = 0;
         $j = 0;
@@ -111,7 +113,11 @@ class ReportTemplate02 extends AbstractParser {
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
             }else{
-                if($jobs[$j-1]['project']){
+                if($jobs[$j-1]['left_reason']){
+                    $jobs[$j-1]['left_reason'] = $jobs[$j-1]['left_reason'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['performance']){
+                    $jobs[$j-1]['performance'] = $jobs[$j-1]['performance'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['project']){
                     $jobs[$j-1]['project'] = $jobs[$j-1]['project'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['duty']){
                     $jobs[$j-1]['duty'] = $jobs[$j-1]['duty'].'</br>'.$data[$i];

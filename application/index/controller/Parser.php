@@ -20,10 +20,11 @@ class Parser extends Controller {
     public function resume() {
         header('Access-Control-Allow-Origin:*');
 //        $dir = dirname(__FILE__);
-//        $path = $dir.'/lc1.txt';
+//        $path = $dir.'/zj1.txt';
 //        $originContent = file_get_contents($path);
 //        $isRecommendReport = true;
 //        if(1){
+
         $request = request();
         if($request->isPost()) {
             $originContent = $request->post('content');
