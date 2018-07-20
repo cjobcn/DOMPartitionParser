@@ -19,17 +19,11 @@ class Parser extends Controller {
     //简历解析
     public function resume() {
         header('Access-Control-Allow-Origin:*');
-//        $dir = dirname(__FILE__);
-//        $path = $dir.'/zj1.txt';
-//        $originContent = file_get_contents($path);
-//        $isRecommendReport = true;
-//        if(1){
-
         $request = request();
         if($request->isPost()) {
             $originContent = $request->post('content');
             $id = $request->post('id');
-            $isRecommendReport = $request->post('isRecommendReport')?:false;//是否是推荐报告
+            $isRecommendReport = $request->post('isreport')?:false;//是否是推荐报告
             $originContent = preg_replace('/(?<!\r)\n/',"\r\n",$originContent);
             //内容丢失
             if(!$originContent || !is_string($originContent))
@@ -86,6 +80,7 @@ class Parser extends Controller {
                 'status' => -1,
             );
         }
+        $info['isRecommendReport'] = $isRecommendReport;
         return json($info);
     }
 }
