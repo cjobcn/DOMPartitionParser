@@ -53,6 +53,7 @@ class Template18 extends  AbstractParser {
     //根据模板解析简历
     public function parse($content) {
         $record = array();
+        $record['resume'] = $content;
         //预处理
         $content = $this->preprocess($content);
         //echo $content;
@@ -176,6 +177,7 @@ class Template18 extends  AbstractParser {
             $record['major'] = $education[0]['major'];
             $record['school'] = $education[0]['school'];
             $record['degree'] = $education[0]['degree'];
+            $record['first_degree'] = $education[count($education)-1]['degree'];
         }
         $record['education'] = $education;
         return $education;

@@ -8,6 +8,7 @@
 namespace app\index\controller;
 
 use app\index\Parser\ParserLog;
+use app\index\Parser\ReportParser;
 use app\index\Parser\ResumeParser;
 use app\index\Irregular\ParseCommon;
 use app\index\Irregular\ParseCommon1;
@@ -18,16 +19,26 @@ class Parser extends Controller {
     //简历解析
     public function resume() {
         header('Access-Control-Allow-Origin:*');
-        $request = request();
-        if($request->isPost()) {
-            $originContent = $request->post('content');
-            $id = $request->post('id');
+        $dir = dirname(__FILE__);
+        $path = $dir.'/lc1.txt';
+        $originContent = file_get_contents($path);
+        $isRecommendReport = true;
+        if(1){
+//        $request = request();
+//        if($request->isPost()) {
+//            $originContent = $request->post('content');
+//            $id = $request->post('id');
+//            $isRecommendReport = $request->post('isRecommendReport')?:false;//是否是推荐报告
             $originContent = preg_replace('/(?<!\r)\n/',"\r\n",$originContent);
             //内容丢失
             if(!$originContent || !is_string($originContent))
                 return json(array('status' => -2));
             //$type = $request->post('type');
-            $Parser = new ResumeParser();
+            if($isRecommendReport==false){
+                $Parser = new ResumeParser();
+            }else{
+                $Parser = new ReportParser();
+            }
             $content = $Parser->convert2UTF8($originContent);
             //英文不考虑
             if($Parser->isEnglish($content) || $Parser->isInvalid($content))
