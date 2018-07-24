@@ -7,6 +7,7 @@
  */
 namespace app\index\controller;
 
+use app\index\Card\CardParser;
 use app\index\Parser\ParserLog;
 use app\index\Parser\ReportParser;
 use app\index\Parser\ResumeParser;
@@ -20,6 +21,10 @@ class Parser extends Controller {
     public function resume() {
         header('Access-Control-Allow-Origin:*');
         $request = request();
+//        $dir = dirname(__FILE__);
+//        $originContent = file_get_contents($dir.'/card.txt');
+//        $type = 3;
+//        if(1){
         if($request->isPost()) {
             $originContent = $request->post('content');
             $id = $request->post('id');
@@ -33,6 +38,8 @@ class Parser extends Controller {
                 $Parser = new ResumeParser();
             }elseif($type==2){
                 $Parser = new ReportParser();
+            }elseif($type==3){
+                $Parser = new CardParser();
             }
             $content = $Parser->convert2UTF8($originContent);
             //英文不考虑
