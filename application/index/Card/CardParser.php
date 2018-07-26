@@ -29,6 +29,7 @@ class CardParser {
             !preg_match('/最近工作|最高学历|工作经|自我评价/', $content)) {
             return true;
         }
+
         return false;
     }
 

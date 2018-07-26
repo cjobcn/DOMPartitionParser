@@ -2,22 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: Roy
- * Date: 2018/7/24
- * Time: 13:31
+ * Date: 2018/7/20
+ * Time: 14:37
  */
-//唯品会的推荐报告解析
 namespace app\index\Parser;
-class ReportTemplate06 extends AbstractParser{
+class ReportTemplate104 extends AbstractParser{
     //区块标题
     protected $titles = array(
         array('baseinfo', '个人信息'),
+        array('self_str', '候选人优势'),
+        array('career', '工作经历'),
+        array('project', '项目经验（选）'),
         array('education', '教育背景'),
-        array('self_str', '优势评价：'),
-        array('career', '工作经历：'),
-        array('project', '项目经验：|项目经历：'),
-        array('advisor', '猎头声明：'),
-        array('candidate', '候选人声明：'),
-
     );
 
     public function preprocess($content) {
@@ -27,14 +23,15 @@ class ReportTemplate06 extends AbstractParser{
             '/<style.*?>.+?<\/style>/is',
         );
         $content = preg_replace($redundancy, '', $content);
-        $content = str_replace(array('一、','二、','三、','四、','五、','六、','七、'),
-            '', $content);
+//        $content = str_replace(array('\\'),
+//            array(''), $content);
         //两个空格作为分隔符
         $content = str_replace(array('  ','&nbsp;&nbsp;'), '|', $content);
         return $content;
     }
     public function parse($content)
     {
+
         $record = array();
         $record['resume'] = $content;
         //预处理
@@ -52,15 +49,15 @@ class ReportTemplate06 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('name', '姓名：|名：'),
-            array('city', '现居住地：'),
-            array('sex', '性别：|别：'),
-            array('jump_time', '到岗时间：'),
-            array('birth_year', '出生日期：'),
-            array('interview_time', '面试时间：'),
-            array('phone', '联系电话：'),
-            array('email', '联系邮箱：'),
+            array('name', '姓名：'),
+            array('sex', '性别：'),
             array('residence', '籍贯：'),
+            array('birth_year', '出生年月：'),
+            array('city', '目前工作地：'),
+            array('marriage', '婚育状况：'),
+            array('current_salary', '目前薪酬：'),
+            array('target_salary', '期望薪酬：'),
+            array('jump_time', '最快到岗时间：'),
         );
         $i = 0;
         while($i < $length) {
@@ -74,8 +71,10 @@ class ReportTemplate06 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('duty', '工作职责：|工作业绩：',0),
-            array('left_reason', '离职原因：|看机会的原因：',0),
+            array('department', '所在部门：'),
+            array('report_to', '汇报上级：'),
+            array('duty', '工作职责：'),
+            array('performance', '工作业绩：'),
         );
         $j = 0;
         $job = array();
@@ -100,8 +99,8 @@ class ReportTemplate06 extends AbstractParser{
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
             }else{
-                if($jobs[$j-1]['left_reason']){
-                    $jobs[$j-1]['left_reason'] = $jobs[$j-1]['left_reason'].'</br>'.$data[$i];
+                if($jobs[$j-1]['performance']){
+                    $jobs[$j-1]['performance'] = $jobs[$j-1]['performance'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['duty']){
                     $jobs[$j-1]['duty'] = $jobs[$j-1]['duty'].'</br>'.$data[$i];
                 }
@@ -111,6 +110,7 @@ class ReportTemplate06 extends AbstractParser{
             $record['last_company'] = $jobs[0]['company'];
             $record['last_position'] = $jobs[0]['position'];
         }
+        //dump($jobs);
         $record['career'] = $jobs;
         return $jobs;
     }
@@ -146,8 +146,7 @@ class ReportTemplate06 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('description', '项目描述：|项目描述:',0),
-            array('duty', '项目职责：|项目职责:',0),
+            array('description', '项目描述：'),
         );
         $j = 0;
         $project = array();
@@ -168,8 +167,6 @@ class ReportTemplate06 extends AbstractParser{
             }else{
                 if($projects[$j-1]['description']){
                     $projects[$j-1]['description'] = $projects[$j-1]['description'].'</br>'.$data[$i];
-                }elseif($projects[$j-1]['duty']){
-                    $projects[$j-1]['duty'] = $projects[$j-1]['duty'].'</br>'.$data[$i];
                 }
             }
         }
@@ -180,11 +177,5 @@ class ReportTemplate06 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $record['self_str'] = implode('</br>',$data);
-    }
-    public function advisor(){
-
-    }
-    public function candidate(){
-
     }
 }

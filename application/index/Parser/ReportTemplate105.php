@@ -2,23 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: Roy
- * Date: 2018/7/19
- * Time: 16:21
+ * Date: 2018/7/24
+ * Time: 13:31
  */
-//正荣推荐报告模板解析
+//协骏优聘的推荐报告解析
 namespace app\index\Parser;
-class ReportTemplate01 extends AbstractParser {
+class ReportTemplate105 extends AbstractParser{
     //区块标题
     protected $titles = array(
-        array('baseinfo', '基本情况'),
-        array('education', '教育经历'),
-        array('careersummary', '工作经历概览'),
+        array('baseinfo', '个人信息|基本信息'),
+        array('self_str', '候选人优势'),
         array('career', '工作经历'),
-        array('salary', '薪酬信息'),
-        array('otherinfo', '辅助信息'),
-        array('advisorinfo', '猎头信息'),
+        array('project', '项目经验（选）'),
+        array('education', '教育背景'),
     );
-
 
     public function preprocess($content) {
         $redundancy = array(
@@ -27,14 +24,14 @@ class ReportTemplate01 extends AbstractParser {
             '/<style.*?>.+?<\/style>/is',
         );
         $content = preg_replace($redundancy, '', $content);
-        $content = str_replace(array('姓  名：', '性  别：', '籍  贯：', '学  历：','手  机：','·','一、','二、','三、','四、','五、','六、','七、'),
-            array('姓名：', '性别：', '籍贯：', '学历：','手机：','','','','','','',''), $content);
+//        $content = str_replace(array('\\'),
+//            array(''), $content);
         //两个空格作为分隔符
         $content = str_replace(array('  ','&nbsp;&nbsp;'), '|', $content);
         return $content;
     }
-
-    public function parse($content) {
+    public function parse($content)
+    {
 
         $record = array();
         $record['resume'] = $content;
@@ -42,21 +39,12 @@ class ReportTemplate01 extends AbstractParser {
         $content = $this->preprocess($content);
         //分隔网页数据
         list($data, $blocks) = $this->pregParse($content);
-        //其他解析
-        $length = $blocks[0][1]-1 > 0 ?$blocks[0][1]-1:count($data)-1;
-        $basic = array_slice($data,0, $length);
-        $this->basic($basic, 0, $length - 1, $record);
         //各模块解析
         foreach($blocks as $block){
             $function = $block[0];
             $this->$function($data, $block[1], $block[2],$record);
         }
         return $record;
-    }
-    //获取DOM数组
-    public function getDomArray($content) {
-        $content = $this->preprocess($content);
-        return $this->pregParse($content, false, false);
     }
     public function baseinfo($data, $start, $end, &$record){
         $length = $end - $start + 1;
@@ -66,13 +54,11 @@ class ReportTemplate01 extends AbstractParser {
             array('sex', '性别：'),
             array('residence', '籍贯：'),
             array('birth_year', '出生年月：'),
-            array('city', '定居地：'),
-            array('marriage', '婚姻状况：'),
-            array('degree', '学历：'),
-            array('phone', '手机：'),
-            array('email', '电子邮箱：'),
-            array('now_city', '目前工作地：'),
-            array('target_city', '期望工作地：'),
+            array('city', '目前工作地：'),
+            array('marriage', '婚育状况：'),
+            array('current_salary', '目前薪酬：'),
+            array('target_salary', '期望薪酬：'),
+            array('jump_time', '最快到岗时间：'),
         );
         $i = 0;
         while($i < $length) {
@@ -86,13 +72,11 @@ class ReportTemplate01 extends AbstractParser {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('underlings', '下属人数：'),
+            array('department', '所在部门：'),
+            array('report_to', '汇报上级：|汇报对象：'),
             array('duty', '工作职责：'),
             array('performance', '工作业绩：'),
-            array('report_to', '汇报对象：'),
-            array('left_reason', '离职原因：'),
         );
-        $i = 0;
         $j = 0;
         $job = array();
         $jobs = array();
@@ -115,6 +99,12 @@ class ReportTemplate01 extends AbstractParser {
                 $jobs[$j++] = $job;
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
+            }else{
+                if($jobs[$j-1]['performance']){
+                    $jobs[$j-1]['performance'] = $jobs[$j-1]['performance'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['duty']){
+                    $jobs[$j-1]['duty'] = $jobs[$j-1]['duty'].'</br>'.$data[$i];
+                }
             }
         }
         if($jobs){
@@ -125,18 +115,12 @@ class ReportTemplate01 extends AbstractParser {
         $record['career'] = $jobs;
         return $jobs;
     }
-
-
     public function education($data, $start, $end, &$record) {
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $i = 0;
         $j = 0;
         $education = array();
-        $rules = array(
-            array('major', '专业名称：'),
-            array('degree','学历：')
-        );
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)\D*$/', $data[$i], $match)){
                 $edu = array();
@@ -159,17 +143,40 @@ class ReportTemplate01 extends AbstractParser {
         $record['education'] = $education;
         return $education;
     }
-
-    public function careersummary($data, $start, $end, &$record){
-
+    public function project($data, $start, $end, &$record){
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $rules = array(
+            array('description', '项目描述：'),
+        );
+        $j = 0;
+        $project = array();
+        $projects = array();
+        for($i=0;$i<$length;$i++){
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)\D*$/', $data[$i], $match)){
+                $start_time = Utility::str2time($match[1]);
+                $end_time = Utility::str2time($match[2]);
+                if($start_time>=$projects[$j-1]['start_time'] && $end_time<=$projects[$j-1]['end_time']){
+                    continue;
+                }
+                $project['start_time'] = $start_time;
+                $project['end_time'] = $end_time;
+                $project['project_name'] = $data[$i+1];
+                $projects[$j++] = $project;
+            }elseif($KV = $this->parseElement($data, $i, $rules)){
+                $projects[$j-1][$KV[0]] = $KV[1];
+            }else{
+                if($projects[$j-1]['description']){
+                    $projects[$j-1]['description'] = $projects[$j-1]['description'].'</br>'.$data[$i];
+                }
+            }
+        }
+        //dump($jobs);
+        $record['projects'] = $projects;
     }
-    public function salary($data, $start, $end, &$record){
-
-    }
-    public function otherinfo($data, $start, $end, &$record){
-
-    }
-    public function advisorinfo($data, $start, $end, &$record){
-
+    public function self_str($data, $start, $end, &$record){
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $record['self_str'] = implode('</br>',$data);
     }
 }

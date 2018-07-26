@@ -40,7 +40,7 @@ class Template1001 extends AbstractParser {
             $work_time= $update_year[0]-$work_year[0];
             $record['sex'] = trim($tdInfo[0][0]);
             $record['age'] = trim($tdInfo[0][1]);
-            $record['work_year'] = $work_time;
+            $record['work_begin'] = $work_time;
             $record['update_time'] = trim($tdInfo[0][3]);
         }
         $this->caree($content,$record);
