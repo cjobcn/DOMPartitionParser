@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: Roy
- * Date: 2018/7/20
- * Time: 14:37
+ * Date: 2018/7/24
+ * Time: 16:06
  */
 namespace app\index\Parser;
-class ReportTemplate04 extends AbstractParser{
+class ReportTemplate08 extends AbstractParser{
     //区块标题
     protected $titles = array(
         array('baseinfo', '个人信息'),
@@ -58,6 +58,7 @@ class ReportTemplate04 extends AbstractParser{
             array('current_salary', '目前薪酬：'),
             array('target_salary', '期望薪酬：'),
             array('jump_time', '最快到岗时间：'),
+            array('left_reason', '看机会原因：'),
         );
         $i = 0;
         while($i < $length) {
@@ -75,6 +76,7 @@ class ReportTemplate04 extends AbstractParser{
             array('report_to', '汇报上级：'),
             array('duty', '工作职责：'),
             array('performance', '工作业绩：'),
+            array('left_reason', '离职原因：'),
         );
         $j = 0;
         $job = array();
@@ -99,7 +101,9 @@ class ReportTemplate04 extends AbstractParser{
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
             }else{
-                if($jobs[$j-1]['performance']){
+                if($jobs[$j-1]['left_reason']){
+                    $jobs[$j-1]['left_reason'] = $jobs[$j-1]['left_reason'].'</br>'.$data[$i];
+                }elseif($jobs[$j-1]['performance']){
                     $jobs[$j-1]['performance'] = $jobs[$j-1]['performance'].'</br>'.$data[$i];
                 }elseif($jobs[$j-1]['duty']){
                     $jobs[$j-1]['duty'] = $jobs[$j-1]['duty'].'</br>'.$data[$i];

@@ -22,8 +22,8 @@ class Parser extends Controller {
         header('Access-Control-Allow-Origin:*');
         $request = request();
 //        $dir = dirname(__FILE__);
-//        $originContent = file_get_contents($dir.'/card.txt');
-//        $type = 3;
+//        $originContent = file_get_contents($dir.'/dy6.txt');
+//        $type = 2;
 //        if(1){
         if($request->isPost()) {
             $originContent = $request->post('content');

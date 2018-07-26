@@ -2,14 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Roy
- * Date: 2018/7/20
- * Time: 14:37
+ * Date: 2018/7/24
+ * Time: 13:31
  */
+//协骏优聘的推荐报告解析
 namespace app\index\Parser;
-class ReportTemplate04 extends AbstractParser{
+class ReportTemplate05 extends AbstractParser{
     //区块标题
     protected $titles = array(
-        array('baseinfo', '个人信息'),
+        array('baseinfo', '个人信息|基本信息'),
         array('self_str', '候选人优势'),
         array('career', '工作经历'),
         array('project', '项目经验（选）'),
@@ -72,7 +73,7 @@ class ReportTemplate04 extends AbstractParser{
         $data = array_slice($data,$start, $length);
         $rules = array(
             array('department', '所在部门：'),
-            array('report_to', '汇报上级：'),
+            array('report_to', '汇报上级：|汇报对象：'),
             array('duty', '工作职责：'),
             array('performance', '工作业绩：'),
         );

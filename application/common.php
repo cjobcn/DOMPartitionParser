@@ -56,3 +56,9 @@ function HtmlToText($str){
     $alltext = preg_replace("/[ ]+/s"," ",$alltext);
     return $alltext;
 }
+function likeDepartment($content){
+    if(preg_match('/.+部$/',$content) || preg_match('/.+部门$/',$content) || preg_match('/.+中心$/',$content)){
+        return true;
+    }
+    return false;
+}

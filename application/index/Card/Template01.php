@@ -21,16 +21,8 @@ class Template01 extends AbstractParser {
     //解析名片
     public function parse($content) {
         $record = array();
-        $record['resume'] = $content;
         preg_match('/(?<=<strong>).+?(?=<)/', $content, $name);
         preg_match_all('/(?<=<td title=").+?(?=<|"|\s|\(|（)/', $content, $titleInfo);
-//        preg_match('/(?<=\\\\)[^\\\\]+?(?=\+)/', $content, $record['company']);
-//        preg_match('/(?<=\+)[^\\\\]+?(?=_)/', $content, $record['city']);
-//        preg_match('/(?<=pv-top-card-section__headline mt1 Sans-19px-black-85%">)[\s\S]+?(?=<)/', $content, $record['title']);
-//        preg_match_all('/(?<=<h3 class="Sans-17px-black-85%-semibold">)[\s\S]+?(?=<)/', $content, $record['positions']);
-//        preg_match('/(?<=<div class="table-list-info-r">)
-//                         [\s\S]+?
-//                    (?=<\/div>)/', $content, $record['exper']);
         if($name){
             $record['name'] = $name[0];
         }
@@ -46,6 +38,7 @@ class Template01 extends AbstractParser {
     }
     public function caree($content,&$record){
         $record['caree'] = array();
+        $record['resume'] = $content;
         preg_match('/(?<=<div class="table-list-info-r">)[\s\S]+?(?=<\/div>)/', $content, $exper);
         if($exper){
             $careeStr = preg_replace('/\s/','',$exper[0]);

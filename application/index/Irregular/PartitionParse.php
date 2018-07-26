@@ -796,11 +796,11 @@ class PartitionParse{
 
     /**
      * @param $educationExperiences
-     * @param $educationExperiences
+     * @param $educationExperiences1
      * @return mixed
      * for education
      */
-    public function getExperiencesForEdu($educationExperiences,$educationExperiences){
+    public function getExperiencesForEdu($educationExperiences,$educationExperiences1){
 
         $details =  preg_replace("/\s/"," ",$educationExperiences);
         $details = str_replace("&nbsp;"," ",$details);

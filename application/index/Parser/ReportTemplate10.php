@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: Roy
- * Date: 2018/7/20
- * Time: 14:37
+ * Date: 2018/7/25
+ * Time: 10:04
  */
 namespace app\index\Parser;
-class ReportTemplate04 extends AbstractParser{
+class ReportTemplate10 extends AbstractParser{
     //区块标题
     protected $titles = array(
         array('baseinfo', '个人信息'),
+        array('education', '教育背景'),
         array('self_str', '候选人优势'),
         array('career', '工作经历'),
-        array('project', '项目经验（选）'),
-        array('education', '教育背景'),
+        array('project', '项目经验'),
     );
 
     public function preprocess($content) {
@@ -51,13 +51,12 @@ class ReportTemplate04 extends AbstractParser{
         $rules = array(
             array('name', '姓名：'),
             array('sex', '性别：'),
-            array('residence', '籍贯：'),
             array('birth_year', '出生年月：'),
             array('city', '目前工作地：'),
             array('marriage', '婚育状况：'),
             array('current_salary', '目前薪酬：'),
             array('target_salary', '期望薪酬：'),
-            array('jump_time', '最快到岗时间：'),
+            array('left_reason', '看机会原因：'),
         );
         $i = 0;
         while($i < $length) {
@@ -71,8 +70,8 @@ class ReportTemplate04 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
-            array('department', '所在部门：'),
             array('report_to', '汇报上级：'),
+            array('underlings', '下属：'),
             array('duty', '工作职责：'),
             array('performance', '工作业绩：'),
         );
@@ -146,6 +145,7 @@ class ReportTemplate04 extends AbstractParser{
         $length = $end - $start + 1;
         $data = array_slice($data,$start, $length);
         $rules = array(
+            array('name', '项目名称：'),
             array('description', '项目描述：'),
         );
         $j = 0;

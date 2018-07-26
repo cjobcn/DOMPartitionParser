@@ -107,8 +107,13 @@ class ReportTemplate02 extends AbstractParser {
                 }
                 $job['start_time'] = $start_time;
                 $job['end_time'] = $end_time;
-                $job['company'] = $data[$i+1];
-                $job['position'] = $data[$i+2];
+                $job['company'] = strlen($data[$i+1])>50?"":$data[$i+1];
+                if(likeDepartment($data[$i+2])){
+                    $job['department'] = $data[$i+2];
+                    $job['position'] = strlen($data[$i+3])>50?"":$data[$i+3];
+                }else{
+                    $job['position'] = strlen($data[$i+2])>50?"":$data[$i+2];
+                }
                 $jobs[$j++] = $job;
             }elseif($KV = $this->parseElement($data, $i, $rules)){
                 $jobs[$j-1][$KV[0]] = $KV[1];
