@@ -16,7 +16,7 @@ class CardParser {
      * @var array
      */
     public $templateIDs = array(
-        '01' => '/data-title="智能计算简历行为，提供更多参考信息">透镜/',//列表
+        '01' => '/<a href="\/resume\/showresumedetail\//',//列表
     );
 
     /**

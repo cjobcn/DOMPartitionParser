@@ -23,6 +23,8 @@ class Template01 extends AbstractParser {
         $record = array();
         preg_match('/(?<=<strong>).+?(?=<)/', $content, $name);
         preg_match_all('/(?<=<td title=").+?(?=<|"|\s|\(|（)/', $content, $titleInfo);
+        $tdcontent = preg_replace('/\n/','',$content);
+        preg_match_all('/(?<=<td>).+?(?=<\/td>)/', $tdcontent, $tdInfo);
         if($name){
             $record['name'] = $name[0];
         }
@@ -31,6 +33,15 @@ class Template01 extends AbstractParser {
             $record['city'] = $titleInfo[0][1];
             $record['last_position'] = $titleInfo[0][2];
             $record['last_company'] = $titleInfo[0][3];
+        }
+        if($tdInfo){
+            preg_match('/(\d{1,2})(?=.*)/',trim($tdInfo[0][2]),$work_year);
+            preg_match('/\d{4}(?=.*)/',trim($tdInfo[0][3]),$update_year);
+            $work_time= $update_year[0]-$work_year[0];
+            $record['sex'] = trim($tdInfo[0][0]);
+            $record['age'] = trim($tdInfo[0][1]);
+            $record['work_year'] = $work_time;
+            $record['update_time'] = trim($tdInfo[0][3]);
         }
         $this->caree($content,$record);
         $this->education($content,$record);
