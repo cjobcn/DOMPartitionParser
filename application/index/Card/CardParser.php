@@ -16,7 +16,7 @@ class CardParser {
      * @var array
      */
     public $templateIDs = array(
-        '01' => '/<a href="\/resume\/showresumedetail\//',//列表
+        '1001' => '/<a href="\/resume\/showresumedetail\//',//列表
     );
 
     /**

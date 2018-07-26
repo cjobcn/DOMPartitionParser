@@ -4,7 +4,7 @@ namespace app\index\Card;
 use app\index\Parser\AbstractParser;
 use app\index\Parser\Utility;
 
-class Template01 extends AbstractParser {
+class Template1001 extends AbstractParser {
     public function preprocess($content) {
         $redundancy = array(
             '/<head>.+?<\/head>/is',
