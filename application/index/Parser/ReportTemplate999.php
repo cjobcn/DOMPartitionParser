@@ -7,7 +7,7 @@
  */
 //通用推荐报告模板
 namespace app\index\Parser;
-class ReportTemplate1000 extends AbstractParser{
+class ReportTemplate999 extends AbstractParser{
     //区块标题
     protected $titles = array(
         array('baseinfo', '个人信息|基本信息'),
