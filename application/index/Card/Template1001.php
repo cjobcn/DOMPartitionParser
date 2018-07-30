@@ -48,7 +48,7 @@ class Template1001 extends AbstractParser {
         return $record;
     }
     public function caree($content,&$record){
-        $record['caree'] = array();
+        $record['career'] = array();
         $record['resume'] = $content;
         preg_match('/(?<=<div class="table-list-info-r">)[\s\S]+?(?=<\/div>)/', $content, $exper);
         if($exper){
@@ -61,10 +61,10 @@ class Template1001 extends AbstractParser {
                     $arr[$k] =HtmlToText($v);
                 }
                 preg_match('/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)\D*/', $arr[0], $match);
-                $record['caree'][$key]['start_time'] = Utility::str2time($match[1]);
-                $record['caree'][$key]['end_time'] = Utility::str2time($match[2]);
-                $record['caree'][$key]['company'] = $arr[1];
-                $record['caree'][$key]['position'] = $arr[2];
+                $record['career'][$key]['start_time'] = Utility::str2time($match[1]);
+                $record['career'][$key]['end_time'] = Utility::str2time($match[2]);
+                $record['career'][$key]['company'] = $arr[1];
+                $record['career'][$key]['position'] = $arr[2];
             }
         }
     }
