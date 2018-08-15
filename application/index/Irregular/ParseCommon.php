@@ -818,7 +818,8 @@ class ParseCommon{
 		return $conent;
 	}
 	public function parse($resume_content){
-		$resume_content = $this->removeJsCss($resume_content);
+		//$resume_content = $this->removeJsCss($resume_content);
+		$resume_content = HtmlToText($resume_content);
 		//剥去简历中的 HTML 标签, 还可以改进
 		//$resume_content = strip_tags($resume_content);
 		$resume_content = preg_replace('/<[^>]*>/','',$resume_content);
