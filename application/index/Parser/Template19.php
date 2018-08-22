@@ -27,7 +27,7 @@ class Template19 extends AbstractParser{
                     $data['company'][] = $value['company'];
                     $data['position'][] = $value['position'];
                     $data['career'][$key]['start_time'] = Utility::str2time($value['start_date']);
-                    $data['career'][$key]['end_time'] = Utility::str2time($value['end_date']);
+                    $data['career'][$key]['end_time'] = Utility::str2time($value['end_date']?:'至今');
                     $data['career'][$key]['description'] = $value['description'];
                     $data['career'][$key]['position'] = $value['position'];
                     $data['update_time'] = $value['uptime'];
