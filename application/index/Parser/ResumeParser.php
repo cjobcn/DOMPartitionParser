@@ -25,6 +25,7 @@ class ResumeParser {
         '18' => "/LinkedIn领英/",        //linkedin新简历
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
         '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',
+        '19' => '/"uinfo":/',//脉脉json
     );
 
     /**
@@ -48,7 +49,7 @@ class ResumeParser {
     public function isInvalid($content) {
         $invalidPatterns = array(
             '该简历已被求职者删除，无法查看!',  //简历已被删除
-            '^\{\"',                        //json格式
+//            '^\{\"',                        //json格式
         );
         $pattern = '/'.implode('|', $invalidPatterns).'/';
         if(preg_match($pattern, $content)){
