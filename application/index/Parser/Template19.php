@@ -35,7 +35,7 @@ class Template19 extends AbstractParser{
             }
             if($uinfo['education']){
                 foreach($uinfo['education'] as $key=>$value){
-                    $data['education'][$key]['school'] = $value['company'];
+                    $data['education'][$key]['school'] = $value['school'];
                     $data['education'][$key]['start_time'] = Utility::str2time($value['start_date']);
                     $data['education'][$key]['end_time'] = Utility::str2time($value['end_date']);
                     $data['education'][$key]['degree'] = $this->getDegree($value['degree']);
