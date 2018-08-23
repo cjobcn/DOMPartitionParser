@@ -12,6 +12,8 @@ class Template19 extends AbstractParser{
         $jsonStr = preg_replace('/\r|\n/','',$jsonStr);
         $json = json_decode($jsonStr,true);
         if($json){
+            $this->testFunc($json,$resume);
+            $data['resume'] = $resume;
             $uinfo = $json['data']['uinfo'];
             $data['name'] = $uinfo['realname'];
             $data['target_city'] = $uinfo['city'];
@@ -76,5 +78,14 @@ class Template19 extends AbstractParser{
                 break;
         }
         return $degreeStr;
+    }
+    public function testFunc($array,&$str){
+        foreach ($array as $value){
+            if (is_array($value)) {
+                $this->testFunc($value,$str);
+            } else {
+                $str = $str."<br>".$value;
+            }
+        }
     }
 }
