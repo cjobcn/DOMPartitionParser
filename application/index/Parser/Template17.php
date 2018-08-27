@@ -158,35 +158,70 @@ class Template17 extends AbstractParser {
         }
         return false;
     }
-
-//    public function education($data, $start, $end, &$record) {
-//        $length = $end - $start + 1;
-//        $data = array_slice($data,$start, $length);
-//        $BlockEdu = new BlockEdu();
-//        $education = $BlockEdu->parse($data, '4');
-//        $record['education'] = $education;
-//        return $education;
-//    }
+    //老的解析
+    public function education1($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $BlockEdu = new BlockEdu();
+        $education = $BlockEdu->parse($data, '4');
+        $record['education'] = $education;
+        return $education;
+    }
+    public function education2($html){
+        if(preg_match('/<\/i>教育经历<\/h2>/',$html)){  //获取第一段学校
+            preg_match('/<h2><i class="icons32 icons32-education"><\/i>教育经历<\/h2>[\s\S]+?(?=<h2>|$)/',$html,$education);
+            preg_match_all('/<table>.+?<\/table>/',$education[0],$educations);
+            if($educations[0]){
+                //$last_education = array_pop($educations[0]);
+                $timePattern = '/（(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)）/';
+                $educationArr = array();
+                foreach($educations[0] as $key=>$value){
+                    preg_match('/(?<=<strong>).+?(?=（|<\/strong>)/',$value,$school);
+                    preg_match('/(?<=<td>专业：).+?(?=<)/',$value,$major);
+                    preg_match('/(?<=<td>学历：).+?(?=<)/',$value,$degree);
+                    //preg_match('/[^（    ]+?(?=\.)/',$value,$school_year);
+                    preg_match($timePattern,$value,$timematch);
+                    $educationArr[$key]['school'] = $school[0];
+                    $educationArr[$key]['major'] = $major[0];
+                    $educationArr[$key]['degree'] = $degree[0];
+                    $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
+                    $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
+                }
+                return $educationArr;
+            }
+        }
+        return null;
+    }
+    //有插图的解析
     public function education($data, $start, $end, &$record,$hData,$html) {
         $html = preg_replace('/\s\B/','',$html);
         preg_match('/<h2><i class="icons32 icons32-education"><\/i>教育经历<\/h2>[\s\S]+?(?=<h2>|$)/',$html,$education);
         preg_match_all('/<div class="info">.+?<\/div>/',$education[0],$educations);
-        $data = $educations[0];
-        $timePattern = '/（(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)）/';
-        foreach($data as $key=>$value){
-            preg_match('/(?<=<p>).+(?=（)/',$value,$school);
-            preg_match('/(?<=<p class="degree">).+(?=<\/p>)/',$value,$degreemajor);
-            $degreemajor = HtmlToText($degreemajor[0]);
-            $degreemajorArr = explode('|',$degreemajor);
-            $educationArr[$key]['school'] = $school[0];
-            $educationArr[$key]['degree'] = $degreemajorArr[0];
-            $educationArr[$key]['major'] = $degreemajorArr[1];
-            preg_match($timePattern,$value,$timematch);
-            $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
-            $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
+        if(!$educations[0]){
+            $educationArr = $this->education2($html);
+            if($educationArr){
+                $record['education'] = $educationArr;
+            }else{
+                $this->education1($data, $start, $end, $record);
+            }
+        }else{
+            $data = $educations[0];
+            $timePattern = '/（(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)）/';
+            foreach($data as $key=>$value){
+                preg_match('/(?<=<p>).+(?=（)/',$value,$school);
+                preg_match('/(?<=<p class="degree">).+(?=<\/p>)/',$value,$degreemajor);
+                $degreemajor = HtmlToText($degreemajor[0]);
+                $degreemajorArr = explode('|',$degreemajor);
+                $educationArr[$key]['school'] = $school[0];
+                $educationArr[$key]['degree'] = $degreemajorArr[0];
+                $educationArr[$key]['major'] = $degreemajorArr[1];
+                preg_match($timePattern,$value,$timematch);
+                $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
+                $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
+            }
+            $record['education'] = $educationArr;
+            return $education;
         }
-        $record['education'] = $educationArr;
-        return $education;
     }
 
 
