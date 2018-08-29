@@ -113,7 +113,11 @@ class ResumeParser {
         if($this->isEnglish($resume) || $this->isInvalid($resume)) return false;
         //配对简历模板
         $namespace = __NAMESPACE__;
-        $templateId = $this->getTemplateID($resume);
+        if(preg_match('/^\{\"/',$resume)){//json格式走19模板
+            $templateId = 19;
+        }else{
+            $templateId = $this->getTemplateID($resume);
+        }
         if($templateId)
             $templateClass = $namespace.'\Template'.$templateId;
         //dump($templateClass);
