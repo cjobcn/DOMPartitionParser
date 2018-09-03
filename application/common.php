@@ -62,3 +62,13 @@ function likeDepartment($content){
     }
     return false;
 }
+function str2arr($str, $glue = ','){
+    return explode($glue, $str);
+}
+function sendMail($templateId=0,$content=''){
+    $Mail = new \app\index\controller\Mail();
+    $mailInfo['to'] = '';
+    $mailInfo['title'] = '解析错误';
+    $mailInfo['content'] = '文件解析错误，templateId: '.$templateId.',详情：'.$content;
+    $Mail->sendMail($mailInfo);
+}

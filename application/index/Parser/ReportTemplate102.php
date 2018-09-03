@@ -53,6 +53,9 @@ class ReportTemplate102 extends AbstractParser {
             $function = $block[0];
             $this->$function($data, $block[1], $block[2],$record);
         }
+        if(!$record){
+            sendMail(102,$content);
+        }
         return $record;
     }
     //获取DOM数组

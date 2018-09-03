@@ -47,6 +47,9 @@ class ReportTemplate107 extends AbstractParser{
             $function = $block[0];
             $this->$function($data, $block[1], $block[2],$record);
         }
+        if(!$record){
+            sendMail(107,$content);
+        }
         return $record;
     }
     public function baseinfo1($data, $start, $end, &$record){

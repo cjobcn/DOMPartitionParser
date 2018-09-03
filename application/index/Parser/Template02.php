@@ -1,6 +1,7 @@
 <?php
 namespace app\index\Parser;
 
+
 class Template02 extends AbstractParser {
      //区块标题
     protected $titles = array(
@@ -68,7 +69,9 @@ class Template02 extends AbstractParser {
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
-        
+        if(!$record['name'] || !$record['city'] || !$record['last_company']){
+            sendMail(2,$content);
+        }
         //dump($record);
         return $record;
     }

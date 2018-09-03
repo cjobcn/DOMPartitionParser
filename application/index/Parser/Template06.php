@@ -68,7 +68,9 @@ class Template06 extends AbstractParser {
         foreach($blocks as $block){
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
-
+        if(!$record){
+            sendMail(6,$content);
+        }
         //dump($record);
         return $record;
     }

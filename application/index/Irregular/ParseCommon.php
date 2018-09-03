@@ -922,7 +922,9 @@ class ParseCommon{
 		}
 		if($Pased==true)
 			return $resume;
-		else
+		else{
+			sendMail(0,$resume_content);
 			return null;
+		}
 	}
 }

@@ -45,6 +45,9 @@ class Template1001 extends AbstractParser {
         }
         $this->caree($content,$record);
         $this->education($content,$record);
+        if(!$record){
+            sendMail(1001,$content);
+        }
         return $record;
     }
     public function caree($content,&$record){
