@@ -817,9 +817,9 @@ class ParseCommon{
 		$conent = trim($conent);
 		return $conent;
 	}
-	public function parse($resume_content){
+	public function parse($origin_resume_content){
 		//$resume_content = $this->removeJsCss($resume_content);
-		$resume_content = HtmlToText($resume_content);
+		$resume_content = HtmlToText($origin_resume_content);
 		//剥去简历中的 HTML 标签, 还可以改进
 		//$resume_content = strip_tags($resume_content);
 		$resume_content = preg_replace('/<[^>]*>/','',$resume_content);
@@ -830,7 +830,7 @@ class ParseCommon{
 		//preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
 		if(!$CN_ENG_array){
-			preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
+			preg_match_all("/(?:[\x{4e00}-\x{9fa5}] | [0-9])+/u",$resume_content,$CN_ENG_array);
 		}
 		//获得姓名
 		$resume['name'] = $this->getName($CN_ENG_array[0]);
@@ -923,7 +923,7 @@ class ParseCommon{
 		if($Pased==true)
 			return $resume;
 		else{
-			sendMail(0,$resume_content);
+			sendMail(0,$origin_resume_content);
 			return null;
 		}
 	}

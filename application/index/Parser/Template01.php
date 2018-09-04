@@ -60,9 +60,9 @@ class Template01 extends AbstractParser {
     }
 
     //根据模板解析简历
-    public function parse($content) {
+    public function parse($origin_resume_content) {
         $record = array();
-        $content = $this->preprocess($content);
+        $content = $this->preprocess($origin_resume_content);
         list($data, $blocks) = $this->pregParse($content);
         //dump($data);
         //dump($blocks);
@@ -72,7 +72,7 @@ class Template01 extends AbstractParser {
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
         if(!$record['true_id'] || !$record['name']){
-            sendMail(1,$content);
+            sendMail(1,$origin_resume_content);
         }
         //dump($record);
         return $record;

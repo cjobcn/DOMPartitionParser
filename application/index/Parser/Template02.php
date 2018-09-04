@@ -54,10 +54,10 @@ class Template02 extends AbstractParser {
     }
 
     //根据模板解析简历
-    public function parse($content) {
+    public function parse($origin_resume_content) {
         $record = array();
         //预处理
-        $content = $this->preprocess($content);
+        $content = $this->preprocess($origin_resume_content);
 
         list($data, $blocks) = $this->domParse($content, 'div');
         // dump($blocks);
@@ -70,7 +70,7 @@ class Template02 extends AbstractParser {
             $this->$block[0]($data, $block[1], $block[2],$record);
         }
         if(!$record['name'] || !$record['city'] || !$record['last_company']){
-            sendMail(2,$content);
+            sendMail(2,$origin_resume_content);
         }
         //dump($record);
         return $record;
