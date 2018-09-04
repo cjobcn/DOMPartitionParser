@@ -65,21 +65,11 @@ class Parser extends Controller {
                         'status' => 2,
                     );
                 }else{
-                    //通用解析2稍后再改
-                    $Parser = new ParseCommon();
-                    $data = $Parser->parse($content);
-                    if($data) {
-                        $info = array(
-                            'data' => $data,
-                            'status' => 2,
-                        );
-                    }else{
-                        //存储没有解析出来的简历文档（由于简历名字提取原因暂时不用）
-                        ParserIrregularLog::toSupportIrregular($originContent);
-                        $info = array(
-                            'status' => 0,
-                        );
-                    }
+                    //存储没有解析出来的简历文档（由于简历名字提取原因暂时不用）
+                    ParserIrregularLog::toSupportIrregular($originContent);
+                    $info = array(
+                        'status' => 0,
+                    );
                 }
             }
         }else{
