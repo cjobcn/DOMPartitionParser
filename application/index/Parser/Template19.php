@@ -8,9 +8,14 @@
 namespace app\index\Parser;
 class Template19 extends AbstractParser{
     public function parse($content) {
-        $jsonStr = preg_replace('/((?<=:)""(?!(,|}))|(?<!:)""(?=(,|})))/','"',$content);
+        $jsonStr = preg_replace('/((?<=:)""(?!(,|}|，))|(?<!:)""(?=(,|})))/','"',$content);
         $jsonStr = preg_replace('/\r|\n/','',$jsonStr);
         $json = json_decode($jsonStr,true);
+        if(!$json){
+            $jsonStr1 = preg_replace('/\s/','',$content);
+            $jsonStr1 = preg_replace('/\r|\n/','',$jsonStr1);
+            $json = json_decode($jsonStr1,true);
+        }
         if($json){
             $this->testFunc($json,$resume);
             $data['resume'] = $resume;
