@@ -49,9 +49,15 @@ class Template19 extends AbstractParser{
                     $data['education'][$key]['major'] = $value['department'];
                 }
             }
+            if($data['career']){//倒序排
+                sort_arr_by_field($data['career'],'start_time',true);
+            }
+            if($data['education']){//倒序排
+                sort_arr_by_field($data['education'],'start_time',true);
+            }
             $data['projects'] = $uinfo['projects'];
-            $data['last_company'] = $data['career'][count($data['career'])-1]['company'];
-            $data['last_position'] = $data['career'][count($data['career'])-1]['position'];
+            $data['last_company'] = $data['career'][0]['company'];
+            $data['last_position'] = $data['career'][0]['position'];
             $data['major'] = $data['education'][0]['major'];
             $data['degree'] = $data['education'][0]['degree'];
             $data['school'] = $data['education'][0]['school'];

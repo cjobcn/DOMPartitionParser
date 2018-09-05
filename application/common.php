@@ -72,3 +72,11 @@ function sendMail($templateId=0,$content=''){
     $mailInfo['content'] = '文件解析错误，templateId: '.$templateId.',详情：'.$content;
     $Mail->sendMail($mailInfo);
 }
+function sort_arr_by_field(&$array, $field, $desc = false){
+    $fieldArr = array();
+    foreach ($array as $k => $v) {
+        $fieldArr[$k] = $v[$field];
+    }
+    $sort = $desc == false ? SORT_ASC : SORT_DESC;
+    array_multisort($fieldArr, $sort, $array);
+}
