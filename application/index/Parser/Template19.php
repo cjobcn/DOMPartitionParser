@@ -25,7 +25,7 @@ class Template19 extends AbstractParser{
             $data['email'] = $uinfo['email'];
             $data['birth_year'] = $uinfo['birth_year'];
             $data['sex'] = $uinfo['sex'];
-            $data['phone'] = $uinfo['phone'];
+            $data['phone'] = $uinfo['mobile'];
             $data['current_salary'] = $uinfo['current_salary'];
             $data['target_salary'] = $uinfo['target_salary'];
             if($uinfo['work_exp']){

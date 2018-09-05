@@ -22,7 +22,7 @@ class ResumeParser {
         '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>/s',      //新版51job
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
         '15' => '/中文简历_\d+/',
-        '18' => "/LinkedIn领英|邀请.*成为领英好友/",        //linkedin新简历
+        '18' => "/LinkedIn领英|邀请.*成为领英好友|<header class=\"pv-contact-info__header Sans-17px-black-85%-semibold-dense\">已成为好友<\/header>/",        //linkedin新简历
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
         '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',
         '19' => '/"uinfo":/',//脉脉json
