@@ -833,7 +833,6 @@ class ParseCommon{
 		if(!$CN_ENG_array){
 			preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
 		}
-		vde($CN_ENG_array);
 		//获得姓名
 		$resume['name'] = $this->getName($CN_ENG_array[0]);
 		//获得所在城市
