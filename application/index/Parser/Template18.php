@@ -206,5 +206,17 @@ class Template18 extends  AbstractParser {
 //        $patten_last_evaluation = '/<p id="ember.*\s*(.*?)\s*<\/p>';
 //        preg_match_all($patten_last_evaluation, $content, $arr);
 //        $record['evaluation'] = $arr[1][0];
+        $length = count($data);
+        $rules = array(
+            array('phone', '电话'),
+            array('email', '邮箱'),
+        );
+        $i = 0;
+        while($i < $length) {
+            if($KV = $this->parseElement($data, $i, $rules)){
+                $record[$KV[0]] = $KV[1];
+            }
+            $i++;
+        }
     }
 }
