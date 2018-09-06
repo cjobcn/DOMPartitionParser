@@ -47,6 +47,7 @@ class Parser extends Controller {
                 return json(array('status' => -3));
             $data = $Parser->parse($content, $templateId);
             if($data && $templateId !== "14"){
+                delData($data);//二次处理
                 $info = array(
                     'template' => $templateId,
                     'data' => $data,
@@ -60,6 +61,7 @@ class Parser extends Controller {
                 $Parser = new ParseCommon();
                 $data = $Parser->parse($content);
                 if($data){
+                    delData($data);//教育经历二次处理
                     $info = array(
                         'data' => $data,
                         'status' => 2,

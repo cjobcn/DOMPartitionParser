@@ -80,3 +80,17 @@ function sort_arr_by_field(&$array, $field, $desc = false){
     $sort = $desc == false ? SORT_ASC : SORT_DESC;
     array_multisort($fieldArr, $sort, $array);
 }
+function delData(&$data){
+    delEducation($data);
+}
+function delEducation(&$data){
+    if($data['education']){
+        $blackName = '/高中/';
+        foreach($data['education'] as $key=>$value){
+            if(preg_match($blackName,$value['school'])){
+                unset($data['education'][$key]);
+            }
+        }
+        $data['education'] = array_merge($data['education']);
+    }
+}
