@@ -82,9 +82,11 @@ function sort_arr_by_field(&$array, $field, $desc = false){
 }
 function delData(&$data){
     delEducation($data);
+    delCareer($data);
 }
 function delEducation(&$data){
     if($data['education']){
+        sort_arr_by_field($data['education'],'start_time',true);
         $blackName = '/高中/';
         foreach($data['education'] as $key=>$value){
             if(preg_match($blackName,$value['school'])){
@@ -92,5 +94,10 @@ function delEducation(&$data){
             }
         }
         $data['education'] = array_merge($data['education']);
+    }
+}
+function delCareer(&$data){
+    if($data['career']){
+        sort_arr_by_field($data['career'],'start_time',true);
     }
 }
