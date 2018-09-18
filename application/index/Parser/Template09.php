@@ -160,7 +160,8 @@ class Template09 extends AbstractParser {
         }
         //各模块解析
         foreach($blocks as $block){
-            $this->$block[0]($data, $block[1], $block[2],$record);
+            $fu = $block[0];
+            $this->$fu($data, $block[1], $block[2],$record);
             //dump($record);
         }
         if(!$record){
@@ -202,6 +203,8 @@ class Template09 extends AbstractParser {
         $matchType = 0;
         while($i < $length) {
             //正则匹配
+            //先去掉不可见字符
+            $data[$i] = preg_replace('/\s/',' ',$data[$i]);
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)：(.+)/', $data[$i], $match)) {
                 if($j==0) {
                     if(preg_match('/\((少于)?\d|\[/',$match[3]))
