@@ -21,7 +21,8 @@ class Template1001 extends AbstractParser {
     //解析名片
     public function parse($content) {
         $record = array();
-        preg_match('/(?<=<strong>).+?(?=<)/', $content, $name);
+        $contentForName = preg_replace('/\s/','',$content);
+        preg_match('/(?<=<strong>).+?(?=<)/', $contentForName, $name);
         preg_match_all('/(?<=<td title=").+?(?=<|"|\s|\(|（)/', $content, $titleInfo);
         $tdcontent = preg_replace('/\n/','',$content);
         preg_match_all('/(?<=<td>).+?(?=<\/td>)/', $tdcontent, $tdInfo);
