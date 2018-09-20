@@ -342,10 +342,36 @@ class ParseCommon{
 	public function getWorkExperiences($details){
 		$details =  preg_replace("/\s/"," ",$details);
 		$details = str_replace("&nbsp;"," ",$details);
+		//工作经历和教育经历所在的位置
+		$workExperiencesFromPattern = '/工作经历|工作经验/';
+		preg_match_all($workExperiencesFromPattern, $details, $matches1,PREG_OFFSET_CAPTURE);
+		$eduExperiencesFromPattern = '/教育经历|教育背景|教育情况/';
+		preg_match_all($eduExperiencesFromPattern, $details, $matches2,PREG_OFFSET_CAPTURE);
+		$projectExperiencesFromPattern = '/项目经历|项目经验/';
+		preg_match_all($projectExperiencesFromPattern, $details, $matches3,PREG_OFFSET_CAPTURE);
+		$workExperiencesFrom = $matches1[0][0][1];
+		$eduExperiencesFrom = $matches2[0][0][1];
+		$projectExperiencesFrom = $matches3[0][0][1];
+		if($workExperiencesFrom>0 && $eduExperiencesFrom>0){
+			if($workExperiencesFrom>$eduExperiencesFrom){//教育经历在工作经历前面
+				$eduExperiencesStr = substr($details,$eduExperiencesFrom,$workExperiencesFrom-$eduExperiencesFrom);
+				$workExperiencesStr = substr($details,$workExperiencesFrom);
+			}else{
+				if($projectExperiencesFrom>$eduExperiencesFrom){//教育经历在工作经历后面但是在项目经验前面
+					$workExperiencesStr = substr($details,$workExperiencesFrom,$eduExperiencesFrom-$workExperiencesFrom);
+					$eduExperiencesStr = substr($details,$eduExperiencesFrom,$projectExperiencesFrom-$eduExperiencesFrom);
+					$projectExperiencesStr = substr($details,$projectExperiencesFrom);
+					$workExperiencesStr = $workExperiencesStr.',项目经验：'.$projectExperiencesStr;
+				}else{//教育经历在工作经历后面
+					$workExperiencesStr = substr($details,$workExperiencesFrom,$eduExperiencesFrom-$workExperiencesFrom);
+					$eduExperiencesStr = substr($details,$eduExperiencesFrom);
+				}
+			}
+		}
 		//标准2016*01
 		//$yeaymonth = "/(?:19[7-9][0-9]|20[0-1][0-9])\D?(?:\d{1,2})?/u";
 		//支持年份带空格
-		$date = "(?:19[7-9][0-9]|20[0-1][0-9])\D{0,2}(?:\d{0,2}\D?)?";
+		$date = "(?:19[7-9][0-9]|20[0-2][0-9])\D{0,2}(?:\d{0,2}\D?)?";
 		//$date = "(?:19[7-9][0-9]|20[0-1][0-9])\s*\D?\s*(?:\d{1,2}\s*\D?\s*)?";
 		$startDate = "/" . $date;
 		$interval = "\s*(?:-|—|至|–|－|~)*\s*";
@@ -354,24 +380,52 @@ class ParseCommon{
 		$nextStartDate = "(?=(". $date;
 		$nextEndDate = $endDate . ")|(?:$))/u";
 		$match =  $startDate . $interval . $endDate . $content. $nextStartDate . $interval . $nextEndDate;
-		//得到工作经历列表
-		preg_match_all($match,$details,$detail1);
-		//preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[.]|[\/]|[-]|[\（]|[\）])+/u",$details,$arr);
-		$workExperiencesList = $detail1[0];
-		//提取教育经历
-		$school = array("本科","学士","专科","中专","统招","大专","硕士","研究生","博士","MBA","EMBA","学位","大学");
-		for($i=0;$i<count($workExperiencesList);$i++){
-			$is_education = false;
-			foreach($school as $key=>$value){
-				if(strstr($workExperiencesList[$i],$value)){
-					$education[] = $workExperiencesList[$i];
-					$is_education = true;
-					break;
+		if($workExperiencesStr && $eduExperiencesStr){
+			preg_match_all($match,$workExperiencesStr,$workExperiencesArr);
+			if($workExperiencesArr){
+				foreach($workExperiencesArr[0] as $key=>$value){
+					$workExperiences[]['content'] = $value;
 				}
 			}
-			if(!$is_education){
-				$workExperiences[]['content'] = $workExperiencesList[$i];
-				//$workExperiences[]['duty'] = $workExperiencesList[$i];
+			//preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);
+			$eduExperiencesStr = preg_replace('/教育经历|教育背景|教育情况/',' ',$eduExperiencesStr);
+			preg_match($match,$eduExperiencesStr,$eduExperiencesArr1,PREG_OFFSET_CAPTURE);
+			$aheadStr = mb_substr($eduExperiencesStr,0,$eduExperiencesArr1[0][1]);
+			$aheadSchool = $this->getSchool($aheadStr);
+			preg_match_all($match,$eduExperiencesStr,$eduExperiencesArr);
+			if($eduExperiencesArr){
+				foreach($eduExperiencesArr[0] as $key=>$value){
+					if(!preg_match("/(?:[\x{4e00}-\x{9fa5}])+/u",$value)){
+						continue;
+					}else{
+						$education[] = $value;
+					}
+				}
+			}
+			if($aheadSchool){
+				$education[0] = $aheadSchool.','.$education[0];
+			}
+			//vde($education);
+		}else{
+			//得到工作经历列表
+			preg_match_all($match,$details,$detail1);
+			//preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[.]|[\/]|[-]|[\（]|[\）])+/u",$details,$arr);
+			$workExperiencesList = $detail1[0];
+			//提取教育经历
+			$school = array("本科","学士","专科","中专","统招","大专","硕士","研究生","博士","MBA","EMBA","学位","大学");
+			for($i=0;$i<count($workExperiencesList);$i++){
+				$is_education = false;
+				foreach($school as $key=>$value){
+					if(strstr($workExperiencesList[$i],$value)){
+						$education[] = $workExperiencesList[$i];
+						$is_education = true;
+						break;
+					}
+				}
+				if(!$is_education){
+					$workExperiences[]['content'] = $workExperiencesList[$i];
+					//$workExperiences[]['duty'] = $workExperiencesList[$i];
+				}
 			}
 		}
 		//合并项目经历到工作经历
@@ -546,6 +600,8 @@ class ParseCommon{
 	}
 	//提取学校
 	public function getSchool($details){
+		$details = preg_replace('/大学/','大学 ',$details);
+		$details = preg_replace('/学院/','学院 ',$details);
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$details,$educationArr);
 		$tmp_school = "/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+(?:学院|大学)$/u";
 		for($i=0;$i<count($educationArr[0]);$i++){
@@ -743,11 +799,17 @@ class ParseCommon{
 	 */
 	public function education($educationExperiences){
 		foreach($educationExperiences as $key=>$value){
+			$school = null;
 			$educationExp[$key]['content'] = $value;
-			$educationExp[$key]['school'] = $this->getSchool($value);;
+			$school = $this->getSchool($value);
+			if(!$school && $key>0){//如果没有找到学校则去上一段经历的后面30个字符串查找
+				$aheadStr = mb_substr($educationExperiences[$key-1],count($educationExperiences[$key-1])-10);
+				$educationExp[$key]['content'] = $aheadStr.','.$value;
+				$school = $this->getSchool($aheadStr.','.$value);
+			}
+			$educationExp[$key]['school'] = $school;
 			$educationExp[$key]['major'] = $this->getMajor($value);
-			$educationExp[$key]['degree'] = $this->getDegree($value);;
-
+			$educationExp[$key]['degree'] = $this->getDegree($value);
 			//判断学校是985还是211
 			if($educationExp[$key]['school']) {
 				$where['fullname'] = array('like', '%' . $educationExp[$key]['school'] . '%');
@@ -817,6 +879,12 @@ class ParseCommon{
 		$conent = trim($conent);
 		return $conent;
 	}
+	//预处理
+	public function preprocess($content){
+		$content = preg_replace('/姓名/',' 姓名 ',$content);
+		$content = preg_replace('/性别/',' 性别 ',$content);
+		return $content;
+	}
 	public function parse($origin_resume_content){
 		//$resume_content = $this->removeJsCss($resume_content);
 		$resume_content = preg_replace('/\s/',' ',$origin_resume_content);
@@ -826,7 +894,7 @@ class ParseCommon{
 		$resume_content = preg_replace('/<[^>]*>/','',$resume_content);
 		//将&nbsp;替换为空格
 		$resume_content =  str_replace("&nbsp;"," ",$resume_content);
-
+		$resume_content = $this->preprocess($resume_content);
 		//提取中文数组
 		//preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$resume_content,$CN_ENG_array);
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}])+/u",$resume_content,$CN_ENG_array);

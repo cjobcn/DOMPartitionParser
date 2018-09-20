@@ -866,7 +866,7 @@ class PartitionParse{
      * @param $experiences 经历
      */
     public function fundTime(&$experiences){
-        $date = "(?:19[7-9][0-9]|20[0-1][0-9])\D+(?:\d{1,2}\D?)?";
+        $date = "(?:19[7-9][0-9]|20[0-2][0-9])\D+(?:\d{1,2}\D?)?";
         $endDate = "(?:" . $date . "|至今|现在)";
         //给工作经历时间进行排序
         foreach ($experiences as $k => $v) {
@@ -896,7 +896,7 @@ class PartitionParse{
                 $startmonth[$k][0][0] = "0" . $startmonth[$k][0][0];
             }
             $experiences[$k]['start_time'] = strtotime($startyear[$k][0][0] .'/'. $startmonth[$k][0][0].'/01')?strtotime($startyear[$k][0][0] .'/'. $startmonth[$k][0][0].'/01'):'';
-            if($endtime[$k]!="至今"){
+            if(!preg_match('/至今|现在/',$endtime[$k])){
                 preg_match_all($year, $endtime[$k], $endyeardate);
                 $endyear[$k] = $endyeardate;
 
