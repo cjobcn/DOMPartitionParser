@@ -89,7 +89,8 @@ class Template13 extends AbstractParser {
         }
         //各模块解析
         foreach($blocks as $block){
-            $this->$block[0]($data, $block[1], $block[2],$record);
+            $fun = $block[0];
+            $this->$fun($data, $block[1], $block[2],$record);
         }
         if(!$record){
             sendMail(13,$content);
@@ -142,11 +143,14 @@ class Template13 extends AbstractParser {
         $jobs = array();
         $status = 0;
         while($i < $length) {
+            $data[$i] = preg_replace('/\s/','',$data[$i]);
             //正则匹配
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/', $data[$i], $match)) {
                 $job = array();
                 $job['start_time'] = Utility::str2time($match[1]);
                 $job['end_time'] = Utility::str2time($match[2]);
+                //$job['position'] = $data[$i-3];
+                $job['company'] = $data[$i+1];
                 $jobs[$j++] = $job;
                 $currentKey = '';
                 //关键字匹配
