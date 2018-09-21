@@ -184,9 +184,9 @@ class Template17 extends AbstractParser {
                     preg_match('/(?<=<td>学历：).+?(?=<)/',$value,$degree);
                     //preg_match('/[^（    ]+?(?=\.)/',$value,$school_year);
                     preg_match($timePattern,$value,$timematch);
-                    $educationArr[$key]['school'] = $school[0];
-                    $educationArr[$key]['major'] = $major[0];
-                    $educationArr[$key]['degree'] = $degree[0];
+                    $educationArr[$key]['school'] = HtmlToText($school[0]);
+                    $educationArr[$key]['major'] = HtmlToText($major[0]);
+                    $educationArr[$key]['degree'] = HtmlToText($degree[0]);
                     $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
                     $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
                 }
