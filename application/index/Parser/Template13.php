@@ -92,6 +92,9 @@ class Template13 extends AbstractParser {
             $fun = $block[0];
             $this->$fun($data, $block[1], $block[2],$record);
         }
+        if(preg_match('/ID/',$record['name'])){
+            $record['name'] = '';
+        }
         if(!$record){
             sendMail(13,$content);
         }
