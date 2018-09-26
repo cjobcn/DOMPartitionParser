@@ -87,7 +87,7 @@ function delData(&$data){
 function delEducation(&$data){
     if($data['education']){
         sort_arr_by_field($data['education'],'start_time',true);
-        $blackName = '/高中/';
+        $blackName = '/高中|中学/';
         foreach($data['education'] as $key=>$value){
             if(preg_match($blackName,$value['school'])){
                 unset($data['education'][$key]);
