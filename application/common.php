@@ -84,12 +84,13 @@ function delData(&$data){
     delEducation($data);
     delCareer($data);
 }
+//学校名= 中学 || 高 || 中 结尾 + major 含有 ”高中“
 function delEducation(&$data){
     if($data['education']){
         sort_arr_by_field($data['education'],'start_time',true);
-        $blackName = '/高中|中学/';
+        $blackName = '/高中$|中学$|高$|中$/';
         foreach($data['education'] as $key=>$value){
-            if(preg_match($blackName,$value['school'])){
+            if(preg_match($blackName,$value['school']) || preg_match('/高中/',$value['major'])){
                 unset($data['education'][$key]);
             }
         }
