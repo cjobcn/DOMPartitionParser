@@ -27,6 +27,7 @@ class ResumeParser {
         '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',//猎聘网
         '19' => '/"uinfo":/',//脉脉json
         '20' => '/div id="resume-detail-wrapper" class="resume-detail--bordered">/',//智联20180926版
+        '21' => '/"traceId":/',//智联20180926版
     );
 
     /**
@@ -102,6 +103,30 @@ class ResumeParser {
         }
         return false;
     }
+    /**
+     * 获取json模板
+     */
+    public function getJsonTemplateID($content){
+        if (!empty($content)) {
+            $fileType = mb_detect_encoding($content, array('UTF-8', 'GBK', 'LATIN1', 'BIG5'));
+            if ($fileType != 'UTF-8') {
+                $content = mb_convert_encoding($content, 'utf-8', 'GBK,LATIN1,BIG5');
+            }
+        }
+        $jsonStr = preg_replace('/((?<=:)""(?!(,|}|，))|(?<!:)""(?=(,|})))/','"',$content);
+        $jsonStr = preg_replace('/\r|\n/','',$jsonStr);
+        $json = json_decode($jsonStr,true);
+        if(!$json){
+            $jsonStr1 = preg_replace('/\s/','',$content);
+            $jsonStr1 = preg_replace('/\r|\n/','',$jsonStr1);
+            $json = json_decode($jsonStr1,true);
+        }
+        if($json['result']=='ok' && $json['data']){
+            return 19;
+        }elseif($json['code']==0 && $json['data'] && $json['traceId']){
+            return 21;
+        }
+    }
 
     /**
      * 解析简历
@@ -115,7 +140,7 @@ class ResumeParser {
         //配对简历模板
         $namespace = __NAMESPACE__;
         if(preg_match('/^\{\"/',$resume)){//json格式走19模板
-            $templateId = 19;
+            $templateId = $this->getJsonTemplateID($resume);
         }else{
             $templateId = $this->getTemplateID($resume);
         }

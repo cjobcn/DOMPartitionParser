@@ -62,7 +62,7 @@ class Template19 extends AbstractParser{
             $data['degree'] = $data['education'][0]['degree'];
             $data['school'] = $data['education'][0]['school'];
         }
-        if(!$data){
+        if(!$data['education'] || !$data['career'] || !$data['name']){
             sendMail(19,$content);
         }
         return $data;
