@@ -6,7 +6,7 @@
  * Time: 17:06
  */
 namespace app\index\Parser;
-class Template19 extends AbstractParser{
+class Template21 extends AbstractParser{
     protected $city = array("530"=>"北京","538"=>"上海","763"=>"广州","765"=>"深圳","531"=>"天津","736"=>"武汉",
         "854"=>"西安","801"=>"成都","600"=>"大连","613"=>"长春","599"=>"沈阳","635"=>"南京","702"=>"济南","703"=>"青岛",
         "653"=>"杭州","639"=>"苏州","636"=>"无锡","654"=>"宁波","551"=>"重庆","719"=>"郑州","749"=>"长沙","681"=>"福州",
@@ -30,7 +30,7 @@ class Template19 extends AbstractParser{
             $uinfo = $json['data'];
             $candidate = $uinfo['candidate'];
             $detail = $uinfo['detail'];
-            $data['name'] = $candidate['username'];
+            $data['name'] = $candidate['userName'];
             $cityStr = $detail['DesiredCity'];
             $cityArr = explode(',',$cityStr);
             if($cityArr){
