@@ -150,6 +150,10 @@ class Template20 extends AbstractParser {
             $i++;
         }
         $record['career'] = $jobs;
+        if($jobs){
+            $record['last_company'] = $jobs[0]['company'];
+            $record['last_position'] = $jobs[0]['position'];
+        }
         return $jobs;
     }
     public function education($data, $start, $end, &$record) {
@@ -172,6 +176,13 @@ class Template20 extends AbstractParser {
             $i++;
         }
         $record['education'] = $education;
+        if($education){
+            dealEducation($record);
+            $record['school'] = $record['education'][count($record['education'])-1]['school'];
+            $record['major'] = $record['education'][count($record['education'])-1]['major'];
+            $record['degree'] = $record['education'][count($record['education'])-1]['degree'];
+            $record['first_degree'] = $record['education'][count($record['education'])-1]['degree'];
+        }
         return $education;
     }
 
