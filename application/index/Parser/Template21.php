@@ -40,7 +40,7 @@ class Template21 extends AbstractParser{
                 $cityNameStr = implode(',',$cityNameArr);
                 $data['target_city'] = $cityNameStr;
             }
-            $data['birth_year'] = Utility::str2time($candidate['birthYear'].'/'.$candidate['birthMonth'].'/'.$candidate['birthDay']);
+            $data['birth_year'] = Utility::str2time($candidate['birthYear'].'-'.$candidate['birthMonth'].'-'.$candidate['birthDay'].' 0:0:0');
             if($detail['Gender']==1){
                 $data['sex'] = '男';
             }elseif($detail['Gender']==2){
