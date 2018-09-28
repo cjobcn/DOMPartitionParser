@@ -123,7 +123,7 @@ class ResumeParser {
         }
         if($json['code']==0 && $json['data'] && $json['traceId']){
             return 21;
-        }elseif($json['data']){
+        }elseif($json['data'] && !$json['traceId']){
             return 19;
         }
     }
