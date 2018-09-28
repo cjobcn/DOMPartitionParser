@@ -121,10 +121,10 @@ class ResumeParser {
             $jsonStr1 = preg_replace('/\r|\n/','',$jsonStr1);
             $json = json_decode($jsonStr1,true);
         }
-        if($json['result']=='ok' && $json['data']){
-            return 19;
-        }elseif($json['code']==0 && $json['data'] && $json['traceId']){
+        if($json['code']==0 && $json['data'] && $json['traceId']){
             return 21;
+        }elseif($json['data']){
+            return 19;
         }
     }
 
