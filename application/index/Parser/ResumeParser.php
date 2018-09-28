@@ -139,6 +139,12 @@ class ResumeParser {
         if($this->isEnglish($resume) || $this->isInvalid($resume)) return false;
         //配对简历模板
         $namespace = __NAMESPACE__;
+        $char1 = substr($resume,0,1);
+        $char2 = substr($resume,1,1);
+        $char3 = substr($resume,2,1);
+        if (ord($char1) == 239 && ord($char2) == 187 && ord($char3) == 191) {
+            $resume = substr($resume, 3);
+        }
         if(preg_match('/^\{\"/',$resume)){//json格式走19模板
             $templateId = $this->getJsonTemplateID($resume);
         }else{
