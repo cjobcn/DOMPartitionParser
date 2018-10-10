@@ -26,7 +26,7 @@ class ResumeParser {
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
         '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',//猎聘网
         '19' => '/"uinfo":/',//脉脉json
-        '21' => '/"traceId":|"code":0/',//智联20180926版json
+        '21' => '/traceId|"code":0/',//智联20180926版json
         '20' => '/div id="resume-detail-wrapper" class="resume-detail--bordered">/',//智联20180926版简历模板
     );
 
