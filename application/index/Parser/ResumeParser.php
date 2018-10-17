@@ -135,6 +135,9 @@ class ResumeParser {
      * @return mixed
      */
     public function parse($resume, &$templateId = '') {
+        if(ord(substr($resume,0,1))==239){
+            $resume = substr($resume,3);
+        }
         //排除英文简历和不合法的简历
         if($this->isEnglish($resume) || $this->isInvalid($resume)) return false;
         //配对简历模板
