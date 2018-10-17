@@ -28,6 +28,7 @@ class ResumeParser {
         '19' => '/"uinfo":/',//脉脉json
         '21' => '/traceId|"code":0/',//智联20180926版json
         '20' => '/div id="resume-detail-wrapper" class="resume-detail--bordered">/',//智联20180926版简历模板
+        '22' => '/"userMasterId">/',//智联cv表中的json
     );
 
     /**
@@ -125,6 +126,8 @@ class ResumeParser {
             return 21;
         }elseif($json['data'] && !$json['traceId']){
             return 19;
+        }elseif($json['userMasterId']){
+            return 22;
         }
     }
 
