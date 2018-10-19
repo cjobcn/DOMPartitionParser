@@ -112,7 +112,7 @@ class Template17 extends AbstractParser {
         $jobs = array();
         $rules = array(
             array('underlings', '下属人数：'),
-            array('city', '工作地区：'),
+            array('city', '所在地区：'),
             array('duty', '工作职责和业绩：'),
             array('report_to', '汇报对象：'),
             array('department', '所在部门：')
@@ -147,6 +147,8 @@ class Template17 extends AbstractParser {
                 $currentKey = $KV[0];
             }elseif($currentKey == 'duty' | $currentKey == 'description'){
                 $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
+            }else{
+                $jobs[$j-1]['duty'] .=  '#br#'.$data[$i];
             }
             $i++;
         }
@@ -255,6 +257,8 @@ class Template17 extends AbstractParser {
                 $currentKey = $KV[0];
             } elseif($currentKey){
                 $projects[$j-1][$currentKey] .=  '#br#'.$data[$i];
+            }else{
+                $projects[$j-1]['duty'] .=  '#br#'.$data[$i];
             }
             $i++;
         }
