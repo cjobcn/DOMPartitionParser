@@ -147,8 +147,6 @@ class Template17 extends AbstractParser {
                 $currentKey = $KV[0];
             }elseif($currentKey == 'duty' | $currentKey == 'description'){
                 $jobs[$j-1][$currentKey] .=  '#br#'.$data[$i];
-            }else{
-                $jobs[$j-1]['duty'] .=  '#br#'.$data[$i];
             }
             $i++;
         }
@@ -257,8 +255,6 @@ class Template17 extends AbstractParser {
                 $currentKey = $KV[0];
             } elseif($currentKey){
                 $projects[$j-1][$currentKey] .=  '#br#'.$data[$i];
-            }else{
-                $projects[$j-1]['duty'] .=  '#br#'.$data[$i];
             }
             $i++;
         }
