@@ -150,7 +150,7 @@ class Template17 extends AbstractParser {
             }
             $i++;
         }
-        $record['career'] = $jobs;
+        $record['career'] = array_merge($jobs);
         return $jobs;
     }
 
@@ -190,7 +190,7 @@ class Template17 extends AbstractParser {
                     $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
                     $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
                 }
-                return $educationArr;
+                return array_merge($educationArr);
             }
         }
         return null;
@@ -222,7 +222,7 @@ class Template17 extends AbstractParser {
                 $educationArr[$key]['start_time'] = Utility::str2time($timematch[1]);
                 $educationArr[$key]['end_time'] = Utility::str2time($timematch[2]);
             }
-            $record['education'] = $educationArr;
+            $record['education'] = array_merge($educationArr);
             return $education;
         }
     }
@@ -258,7 +258,7 @@ class Template17 extends AbstractParser {
             }
             $i++;
         }
-        $record['projects'] = $projects;
+        $record['projects'] = array_merge($projects);
         return $projects;
 
     }
