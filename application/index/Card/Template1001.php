@@ -58,7 +58,11 @@ class Template1001 extends AbstractParser {
         if($exper){
             $careeStr = preg_replace('/\s/','',$exper[0]);
             $careeStr = trim($careeStr);
-            $careeArr = explode('<br/>',$careeStr);
+            if(preg_match('/<br\/>/',$careeStr)){
+                $careeArr = explode('<br/>',$careeStr);
+            }elseif(preg_match('/<br>/',$careeStr)){
+                $careeArr = explode('<br>',$careeStr);
+            }
             foreach ($careeArr as $key => $value) {
                 $arr = explode('|',$value);
                 foreach($arr as $k=>$v){
@@ -79,7 +83,11 @@ class Template1001 extends AbstractParser {
             $careeStr = preg_replace('/\s/','',$exper[0]);
             $careeStr = preg_replace('/：/','|',$careeStr);
             $careeStr = trim($careeStr);
-            $careeArr = explode('<br/>',$careeStr);
+            if(preg_match('/<br\/>/',$careeStr)){
+                $careeArr = explode('<br/>',$careeStr);
+            }elseif(preg_match('/<br>/',$careeStr)){
+                $careeArr = explode('<br>',$careeStr);
+            }
             foreach ($careeArr as $key => $value) {
                 $arr = explode('|',$value);
                 foreach($arr as $k=>$v){
