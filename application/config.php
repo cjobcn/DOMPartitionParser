@@ -239,7 +239,7 @@ return [
         'list_rows' => 15,
     ],
     // 配置邮件发送服务器
-    'MAIL_HOST' => 'smtp.qq.com',//smtp服务器的名称
+    'MAIL_HOST' => 'smtp.exmail.qq.com',//smtp服务器的名称
     'MAIL_SMTPAUTH' => TRUE, //启用smtp认证
     'MAIL_USERNAME' => 'hezuo@cjobcn.com',//你的邮箱名
     'MAIL_FROM' => 'hezuo@cjobcn.com',//发件人地址
