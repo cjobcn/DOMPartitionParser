@@ -223,6 +223,10 @@ class Template11 extends AbstractParser {
         }
         //dump($education);
         $record['education'] = $education;
+        dealEducation($record);
+        if(!$record['degree']){
+            $record['degree'] = $record['education'][count($record['education'])-1]['degree'];
+        }
         return $education;
     }
 
