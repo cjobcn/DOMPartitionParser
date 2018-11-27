@@ -231,14 +231,14 @@ class ParseCommon{
 	}
 	public function getBirth($details){
 		$temp = preg_replace('/\s/',' ',$details);
-		$temp = preg_replace('/nbsp/','',$details);
+		$temp = preg_replace('/nbsp/','',$temp);
 		$regular = "/[0-9]{2}.{0,2}岁/u";
 		preg_match($regular,$temp,$match);
 		preg_match_all("/([\x{4e00}-\x{9fa5}]|[0-9]|[a-zA-Z])+/u", $temp, $arr);
 		$num = count($arr[0]);
 		$Year = date('Y');
 		for ($i = 0; $i < $num; $i++) {
-			if (strstr($arr[0][$i], "出生日期")) {
+			if (strstr($arr[0][$i], "出生日期")||strstr($arr[0][$i], "生日")) {
 				$year = $arr[0][$i + 1];
 				if(preg_match("/\d/",$year)) {
 					$len = strlen($year);
