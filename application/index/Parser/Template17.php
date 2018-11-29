@@ -211,7 +211,7 @@ class Template17 extends AbstractParser {
             $data = $educations[0];
             $timePattern = '/（(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)）/';
             foreach($data as $key=>$value){
-                preg_match('/(?<=<p>).+(?=（)/',$value,$school);
+                preg_match('/(?<=<p>).+(?=（\d)/',$value,$school);
                 preg_match('/(?<=<p class="degree">).+(?=<\/p>)/',$value,$degreemajor);
                 $degreemajor = HtmlToText($degreemajor[0]);
                 $degreemajorArr = explode('|',$degreemajor);
