@@ -17,9 +17,9 @@ class ResumeParser {
         '07' => '/<span>\s*编号\s+\d{16}\D/',                            //中华英才
         '08' => '/<div class="flt_r">简历编号：\d{16}/',                  //中华英才网
         '09' => '/\(ID:\d{1,}\)|(51job\.com|^简_历|简历).+?基 本 信 息|个 人 简 历<\/b>/s',  //51job(前程无忧)
+        '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>|进入HOUR<\/a><\/div>/s',      //新版51job(因发现51有部分简历包含智联关键字所以放在智联前面)
         '10' => '/<span[^>]*>智联招聘<\/span>|<div class="zpResumeS">/i',                   //智联招聘
         '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',                  //智联招聘
-        '13' => '/<title>\s*简历ID：\d{1,}\s*<\/title>.+?51job|ID:\d{1,}\s*<\/td>|进入HOUR<\/a><\/div>/s',      //新版51job
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
         '15' => '/中文简历_\d+/',
         '18' => "/LinkedIn领英|邀请.*成为领英好友|<header class=\"pv-contact-info__header Sans-17px-black-85%-semibold-dense\">已成为好友<\/header>/",        //linkedin新简历
