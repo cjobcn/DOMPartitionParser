@@ -178,9 +178,9 @@ class Template20 extends AbstractParser {
         $record['education'] = $education;
         if($education){
             dealEducation($record);
-            $record['school'] = $record['education'][count($record['education'])-1]['school'];
-            $record['major'] = $record['education'][count($record['education'])-1]['major'];
-            $record['degree'] = $record['education'][count($record['education'])-1]['degree'];
+            $record['school'] = $record['education'][0]['school'];
+            $record['major'] = $record['education'][0]['major'];
+            $record['degree'] = $record['education'][0]['degree'];
             $record['first_degree'] = $record['education'][count($record['education'])-1]['degree'];
         }
         return $education;
