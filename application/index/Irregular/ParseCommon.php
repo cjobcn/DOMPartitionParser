@@ -31,7 +31,7 @@ class ParseCommon{
 			}
 		}
 		//名字黑名单
-		$black_list = "/(年|月|日|号|姓名|离职|性别|文件|户口|全年|李秀麟|大专|学历|居住地|家具|在开车|国籍|党员|全职|不|万多|万左右|北京)/";
+		$black_list = "/(年|月|日|号|姓名|离职|性别|文件|户口|全年|李秀麟|大专|学历|居住地|家具|在开车|国籍|党员|全职|不|万多|万左右|北京|本科)/";
 		if(preg_match($black_list,$name)){
 			$name = null;
 		}
@@ -287,24 +287,30 @@ class ParseCommon{
 					}
 				}
 			}elseif (strstr($arr[0][$i], "年龄") || strstr($arr[0][$i], "年纪") || strstr($arr[0][$i], "Age")) {
-				$year_old = $arr[0][$i + 1];
-				if(preg_match("/\d/",$year_old)) {
-					if (strstr($year_old, "年")) {
-						$year = str_replace('年', '', $year_old);
-						$year = substr($year, 0, 4);
-						$birth = $year;
-						break;
-					} elseif (strstr($year_old, "岁")) {
-						$year = str_replace('岁', '', $year_old);
-						$birth = $Year - $year;
-						break;
-					} else {
-						//年龄：1987.3
-						if(intval($arr[0][$i + 1]) > 1960)
-							$birth = $arr[0][$i + 1];
-						else
-							$birth = $Year - $arr[0][$i + 1];
-						break;
+				if(preg_match('/\d+/',$arr[0][$i])){
+					preg_match('/\d+/',$arr[0][$i],$age_num);
+					$birth = $Year - $age_num[0];
+					break;
+				}else{
+					$year_old = $arr[0][$i + 1];
+					if(preg_match("/\d/",$year_old)) {
+						if (strstr($year_old, "年")) {
+							$year = str_replace('年', '', $year_old);
+							$year = substr($year, 0, 4);
+							$birth = $year;
+							break;
+						} elseif (strstr($year_old, "岁")) {
+							$year = str_replace('岁', '', $year_old);
+							$birth = $Year - $year;
+							break;
+						} else {
+							//年龄：1987.3
+							if(intval($arr[0][$i + 1]) > 1960)
+								$birth = $arr[0][$i + 1];
+							else
+								$birth = $Year - $arr[0][$i + 1];
+							break;
+						}
 					}
 				}
 			} elseif ((strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "纪")) || (strstr($arr[0][$i], "年") && strstr($arr[0][$i + 1], "龄"))) {
@@ -333,11 +339,9 @@ class ParseCommon{
 		if(!$birth&&$match) {
 			$birth = substr($match[0], 0, 2);
 			$birth = date("Y") - intval($birth);
-			return $birth;
+			return mb_convert_encoding($birth, 'UTF-8', 'UTF-8');
 		}
-
-		//dump($birth);
-		return $birth;
+		return mb_convert_encoding($birth, 'UTF-8', 'UTF-8');
 	}
 	public function getWorkExperiences($details){
 		$details =  preg_replace("/\s/"," ",$details);
