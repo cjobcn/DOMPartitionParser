@@ -5,6 +5,7 @@ use think\Db;
 class ParseCommon{
 	protected $autoCheckFields = false;
 	protected $project = "";
+	protected $DB_resume = "";
 	//返回姓名
 	public function getName($CN_ENG_array){
 //		$lastName = file_get_contents("Uploads/static/baijiaxing.txt");//获取百家姓
@@ -31,7 +32,8 @@ class ParseCommon{
 			}
 		}
 		//名字黑名单
-		$black_list = "/(年|月|日|号|姓名|离职|性别|文件|户口|全年|李秀麟|大专|学历|居住地|家具|在开车|国籍|党员|全职|不|万多|万左右|北京|本科)/";
+		$black_list = Db::table('resume.yp_black_name')->field('id,name,rule_name')->order('id asc')->select();
+		$black_list = implode('|',array_column($black_list,'rule_name'));
 		if(preg_match($black_list,$name)){
 			$name = null;
 		}
