@@ -73,7 +73,7 @@ class Template10 extends AbstractParser {
             $i++;
         }
         $patterns = array(
-            array('sex', '/男|女/'),
+            array('sex', '/^(男|女)$/', 1),
             array('marriage', '/未婚|已婚/'),
             array('birth_year', '/(\d{4})\s*年/', 1),
             array('phone', '/(\d{11})\s*\(手机\)/', 1),
@@ -99,7 +99,7 @@ class Template10 extends AbstractParser {
                 $k = $extracted[1] - 1;
             }
             while($k >= 0){
-                if (!preg_match('/当前状态|待处理/', $restBasic[$k]) &&
+                if (!preg_match('/当前状态|待处理|求职信/', $restBasic[$k]) &&
                     !$this->isKeyword($restBasic[$k])) {
                     $record['name'] = $restBasic[$k];
                     break;
