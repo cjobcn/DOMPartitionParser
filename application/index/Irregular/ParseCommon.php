@@ -34,6 +34,7 @@ class ParseCommon{
 		//名字黑名单
 		$black_list = Db::table('resume.yp_black_name')->field('id,name,rule_name')->order('id asc')->select();
 		$black_list = implode('|',array_column($black_list,'rule_name'));
+		$black_list = '/'.$black_list.'/';
 		if(preg_match($black_list,$name)){
 			$name = null;
 		}
