@@ -55,7 +55,7 @@ class Template23 extends AbstractParser {
         return $record;
     }
     public function career($data, $start, $end, &$record, $hData,$html) {
-        preg_match_all('/<div class="pv-entity__summary-info pv-entity__summary-info--background-section ">[\s\S]+?<\/li>/',$html,$careers);
+        preg_match_all('/<div class="pv-entity__summary-info pv-entity__summary-info--background-section [\s\S]+?<\/li>/',$html,$careers);
         if($careers[0]){
             $timePattern = '/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/';
             foreach($careers[0] as $key=>$value){
