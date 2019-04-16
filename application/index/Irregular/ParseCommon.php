@@ -619,7 +619,7 @@ class ParseCommon{
 				break;
 			}
 		}
-		return $school;
+		return str_replace('至今','',$school);
 	}
 	public function getFirstTopDegree($tmpDegree){
 		foreach($tmpDegree as $k=>$v){
