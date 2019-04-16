@@ -35,9 +35,6 @@ class Template23 extends AbstractParser {
         //姓名
         preg_match('/(?<=<h1 class="pv-top-card-section__name inline t-24 t-black t-normal">)[\s\S]*?(?=<\/h1>)/',$content,$name);
         $record['name'] = preg_replace('/\s/','',$name[0]);
-        //最近职位
-        preg_match('/(?<=<h2 class="pv-top-card-section__headline mt1 t-18 t-black t-normal">)[\s\S]*?(?=<\/h2>)/',$content,$last_position);
-        $record['last_position'] = preg_replace('/\s/','',$last_position[0]);
         //地址
         preg_match('/(?<=<h3 class="pv-top-card-section__location t-16 t-black--light t-normal mt1 inline-block">)[\s\S]*?(?=<\/h3>)/',$content,$location);
         $record['city'] = preg_replace('/\s/','',$location[0]);
@@ -56,10 +53,17 @@ class Template23 extends AbstractParser {
             $function = $block[0];
             $this->$function($data, $block[1], $block[2],$record, $hData,$content);
         }
+        if($record['career']){
+            dealCareer($record['career']);
+            $record['last_position'] = $record['career'][0]['position'];
+            $record['last_company'] = $record['career'][0]['company'];
+        }
+        //最近职位
+//        preg_match('/(?<=<h2 class="pv-top-card-section__headline mt1 t-18 t-black t-normal">)[\s\S]*?(?=<\/h2>)/',$content,$last_position);
+//        $record['last_position'] = preg_replace('/\s/','',$last_position[0]);
         if(!$record){
             sendMail(23,$content);
         }
-        //dump($record);
         return $record;
     }
     public function career($data, $start, $end, &$record, $hData,$html) {
