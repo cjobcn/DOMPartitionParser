@@ -41,6 +41,14 @@ class Template23 extends AbstractParser {
         //地址
         preg_match('/(?<=<h3 class="pv-top-card-section__location t-16 t-black--light t-normal mt1 inline-block">)[\s\S]*?(?=<\/h3>)/',$content,$location);
         $record['city'] = preg_replace('/\s/','',$location[0]);
+        //电话
+        preg_match('/(?<=<section class="pv-contact-info__contact-type ci-phone">)[\s\S]*?(?=<\/section>)/',$content,$phone);
+        preg_match('/1[3|4|5|6|7|8][0-9]{9}/',$phone[0],$phone_match);
+        $record['phone'] = preg_replace('/\s/','',$phone_match[0]);
+        //邮箱
+        preg_match('/(?<=<section class="pv-contact-info__contact-type ci-email">)[\s\S]*?(?=<\/section>)/',$content,$email);
+        preg_match('/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/',$email[0],$mail_match);
+        $record['email'] = $mail_match[0];
         //工作经历
         //教育经历
         list($data, $blocks) = $this->pregParse($content, false, true, $this->separators, $hData);
