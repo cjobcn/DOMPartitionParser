@@ -472,7 +472,7 @@ class ParseCommon{
 						$dealexperiences[$i] = strstr($content, 0, $start) .  $companyName . strstr($content, $start);
 					}	*/
 				}
-				$dealexperiences[$i]['company'] = $companyName;
+				$dealexperiences[$i]['company'] = str_replace('至今','',$companyName);
 				//去掉公司名称,职位经常和公司搞混
 				$strNoCompany=str_replace($companyName,'',$dealexperiences[$i]);
 				$dealexperiences[$i]['position'] = $this->getPosition($strNoCompany);
