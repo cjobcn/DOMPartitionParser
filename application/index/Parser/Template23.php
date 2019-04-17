@@ -67,23 +67,62 @@ class Template23 extends AbstractParser {
         return $record;
     }
     public function career($data, $start, $end, &$record, $hData,$html) {
-        preg_match_all('/<div class="pv-entity__summary-info pv-entity__summary-info--background-section [\s\S]+?<\/li>/',$html,$careers);
-        if($careers[0]){
-            $timePattern = '/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/';
-            foreach($careers[0] as $key=>$value){
-                list($career_arr, $education_blocks) = $this->pregParse($value, false, true, $this->separators, $hData);
-                $record['career'][$key]['position'] = $career_arr[0];
-                foreach ($career_arr as $k=>$v){
-                    if(preg_match('/公司名称/',$v)){
-                        $record['career'][$key]['company'] = $career_arr[$k+1];
-                    }
-                    if(preg_match('/入职日期/',$v)){
-                        preg_match($timePattern,$career_arr[$k+1],$times);
-                        if($times){
-                            $record['career'][$key]['start_time'] = Utility::str2time($times[1]);
-                            $record['career'][$key]['end_time'] = Utility::str2time($times[2]);
+        $timePattern = '/(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)/';
+        preg_match_all('/<div class="pv-entity__logo company-logo">[\s\S]+?(?=<div class="pv-entity__logo company-logo">|<\/ul>)/',$html,$projects);
+        $project_num = 0;
+        foreach ($projects[0] as $key=>$value){
+            list($project_arr, $project_block) = $this->pregParse($value, false, true, $this->separators, $hData);
+            if($project_arr){
+                if(preg_match('/职业头衔/',$value)){
+                    $company_name = '';
+                    foreach ($project_arr as $k1=>$v1){
+                        if(preg_match('/公司名称/',$v1)){
+                            $company_name = $project_arr[$k1+1];
+                            break;
                         }
-                        break;
+                    }
+                    foreach ($project_arr as $k1=>$v1){
+                        if(preg_match('/职业头衔/',$v1)){
+                            $project_num++;
+                            $record['career'][$project_num]['company'] = $company_name;
+                            $record['career'][$project_num]['position'] = $project_arr[$k1+1];
+                        }
+                        elseif(preg_match('/入职日期/',$v1)){
+                            preg_match($timePattern,$project_arr[$k1+1],$times);
+                            if($times){
+                                $record['career'][$project_num]['start_time'] = Utility::str2time($times[1]);
+                                $record['career'][$project_num]['end_time'] = Utility::str2time($times[2]);
+                            }
+                        }
+                        elseif(preg_match('/所在地区/',$v1)){
+                            $record['career'][$project_num]['city'] = $project_arr[$k1+1];
+                        }
+                        if($record['career'][$project_num]['company']){
+                            $record['career'][$project_num]['description'] .=  $v1;
+                            $record['career'][$project_num]['duty'] .=  $v1;
+                        }
+                    }
+                }else{
+                    foreach ($project_arr as $k1=>$v1){
+                        if(preg_match('/公司名称/',$v1)){
+                            $project_num++;
+                            $record['career'][$project_num]['position'] = $project_arr[$k1-1];
+                            $record['career'][$project_num]['company'] = $project_arr[$k1+1];
+                        }
+                        elseif(preg_match('/入职日期/',$v1)){
+                            preg_match($timePattern,$project_arr[$k1+1],$times);
+                            if($times){
+                                $record['career'][$project_num]['start_time'] = Utility::str2time($times[1]);
+                                $record['career'][$project_num]['end_time'] = Utility::str2time($times[2]);
+                            }
+                        }
+                        elseif(preg_match('/所在地区/',$v1)){
+                            $record['career'][$project_num]['city'] = $project_arr[$k1+1];
+                        }
+                        if($record['career'][$project_num]['company']){
+                            $record['career'][$project_num]['description'] .=  $v1;
+                            $record['career'][$project_num]['duty'] .=  $v1;
+                        }
                     }
                 }
             }
