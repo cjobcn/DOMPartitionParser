@@ -22,7 +22,7 @@ class ResumeParser {
         '11' => '/<div (id="userName" )?class="main-title-fl fc6699cc"/',                  //智联招聘
         '12' => '/来源ID:[\d\w]+<br>/',                                //已被处理过的简历
         '15' => '/中文简历_\d+/',
-        '18' => "/LinkedIn领英|邀请.*成为领英好友|<header class=\"pv-contact-info__header Sans-17px-black-85%-semibold-dense\">已成为好友<\/header>/",        //linkedin新简历
+        //'18' => "/LinkedIn领英|邀请.*成为领英好友|<header class=\"pv-contact-info__header Sans-17px-black-85%-semibold-dense\">已成为好友<\/header>/",        //linkedin新简历
         '17' => '/简历编号：<span data-nick="res_id">(\w+|<\/span>)/',//猎聘网
         '23' => '/www\.linkedin\.com\/feed\/update|www\.linkedin\.com\/search|pv-top-card-v2-section__meta-info display-flex/',//linkedin  20190415简历模板
         '16' => '/www\.linkedin\.com/',        //linkedin老简历
