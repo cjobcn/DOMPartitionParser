@@ -8,6 +8,8 @@
 
 namespace app\index\Parser;
 
+use think\Debug;
+
 /**
  * 数据转换器
  * Class DataConverter
@@ -24,7 +26,7 @@ class DataConverter {
         'birth_year'  => 'birthYear',
         'age'         => 'age',
         'work_year'   => 'workYear',
-        'phone_image' => 'image2Phone',
+        //'phone_image' => 'image2Phone',
     );
 
     protected $rawData = array();

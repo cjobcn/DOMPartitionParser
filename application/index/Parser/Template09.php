@@ -150,7 +150,7 @@ class Template09 extends AbstractParser {
         if(!isset($record['name'])) {
             $k = $extracted[0] - 1;
             while($k >= 0){
-                if (!preg_match('/匹配度|标签：|应届毕业生|在读学生|\%|51job|基 本 信 息|简历|供职过|年|专业|管理|岁|工作经验|已婚/', $restBasic[$k]) &&
+                if (!preg_match('/匹配度|标签：|应届毕业生|在读学生|\%|51job|基 本 信 息|简历|供职过|年|专业|管理|岁|工作经验|已婚|\d*/', $restBasic[$k]) &&
                     !$this->isKeyword($restBasic[$k])) {
                     $record['name'] = $restBasic[$k];
                     break;
