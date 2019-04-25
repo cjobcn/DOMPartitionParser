@@ -60,8 +60,8 @@ class ReportTemplate109 extends AbstractParser{
             array('residence', '户口所在地：'),
             array('address', '家庭所在地：'),
             array('marriage', '婚育状况：'),
-            array('phone', '联系方式：'),
-            array('email', '电子邮箱：'),
+            //array('phone', '联系方式：'),
+            //array('email', '电子邮箱：'),
         );
         $i = 0;
         while($i < $length) {

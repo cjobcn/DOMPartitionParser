@@ -61,8 +61,8 @@ class ReportTemplate106 extends AbstractParser{
             array('jump_time', '到岗时间：'),
             array('birth_year', '出生日期：'),
             array('interview_time', '面试时间：'),
-            array('phone', '联系电话：'),
-            array('email', '联系邮箱：'),
+            //array('phone', '联系电话：'),
+            //array('email', '联系邮箱：'),
             array('residence', '籍贯：'),
         );
         $i = 0;

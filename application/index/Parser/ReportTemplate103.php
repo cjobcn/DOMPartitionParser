@@ -94,7 +94,7 @@ class ReportTemplate103 extends AbstractParser {
             array('residence', '籍贯'),
             array('city', '工作所在'),
             array('residence', '家庭所在'),
-            array('phone', '联系方式：'),
+            //array('phone', '联系方式：'),
 
         );
         $i = 0;

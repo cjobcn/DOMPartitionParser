@@ -76,8 +76,8 @@ class ReportTemplate107 extends AbstractParser{
             array('birth_year', '出生日期：',0),
             array('nationality', '国籍：|籍：',0),
             array('degree', '学历：|历：',0),
-            array('phone', '电话：',0),
-            array('email', '邮箱：',0),
+            //array('phone', '电话：',0),
+            //array('email', '邮箱：',0),
             array('left_reason', '看机会原因：',0),
         );
         $i = 0;

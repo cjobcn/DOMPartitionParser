@@ -74,8 +74,8 @@ class ReportTemplate102 extends AbstractParser {
             array('city', '现所在地：'),
             array('marriage', '婚姻状况：'),
             array('degree', '学历：'),
-            array('phone', '联系方式：'),
-            array('email', '邮箱：'),
+            //array('phone', '联系方式：'),
+            //array('email', '邮箱：'),
             array('residence', '户口所在地：'),
         );
         $i = 0;
