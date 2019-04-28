@@ -61,6 +61,7 @@ class Template17 extends AbstractParser {
     public function parse($content) {
         $record = array();
         $content = $this->preprocess($content);
+        $content = preg_replace('/\s\B/','',$content);
         list($data, $blocks) = $this->pregParse($content,
             false, true, $this->separators, $hData);
         //dump($hData);
@@ -241,9 +242,11 @@ class Template17 extends AbstractParser {
             array('duty', '项目职责：'),
             array('performance', '项目业绩：'),
         );
+        //vde($data);
         $currentKey = '';
         while($i < $length) {
             if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今|现在)$/', $data[$i], $match)){
+            //if(preg_match('/^(\d{4}\D+\d{1,2})/', $data[$i], $match)){
                 $project = array();
                 $project['start_time'] = Utility::str2time($match[1]);
                 $project['end_time'] = Utility::str2time($match[2]);
