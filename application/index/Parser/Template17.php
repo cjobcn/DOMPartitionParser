@@ -69,9 +69,11 @@ class Template17 extends AbstractParser {
         $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
         if(preg_match('/<div class="face">/',$content)){
-            preg_match('/(?<=<div class="face"><img src=").*?(?=")/',$content,$faceImg);
-            if($faceImg[0]){
-                $record['photo'] = $faceImg[0];
+            preg_match('/(?<=<div class="face"><img src=").*?(?=")/',$content,$faceImgPath);
+            if($faceImgPath[0]){
+                $faceImg = file_get_contents('http:'.$faceImgPath[0]);
+                $base64_image = 'data:img;base64,' . (base64_encode($faceImg));
+                $record['photo'] = $base64_image;
             }
         }
         if(preg_match_all('/<img class=\"(email|telphone)\"\s+src=\"(.+?)\">/s', $content, $match)){
