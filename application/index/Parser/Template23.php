@@ -46,6 +46,14 @@ class Template23 extends AbstractParser {
         preg_match('/(?<=<section class="pv-contact-info__contact-type ci-email">)[\s\S]*?(?=<\/section>)/',$content,$email);
         preg_match('/\w+(?:[-+.]\w*)*@\w+(?:[-.]\w+)*\.\w+(?:[-.]\w+)*/',$email[0],$mail_match);
         $record['email'] = $mail_match[0];
+        //头像
+        preg_match('/(?<=style="background-image:url\(&quot;)[\s\S]*?(?=&quot;)/',$content,$faceImgPath);
+        if($faceImgPath[0]){
+            $faceImgPath[0] = (htmlspecialchars_decode($faceImgPath[0]));
+            $faceImg = curl_get(urldecode($faceImgPath[0]));
+            $base64_image = 'data:img;base64,' . (base64_encode($faceImg));
+            $record['photo'] = $base64_image;
+        }
         //工作经历
         //教育经历
         list($data, $blocks) = $this->pregParse($content, false, true, $this->separators, $hData);

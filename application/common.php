@@ -102,3 +102,27 @@ function dealCareer(&$data){
         sort_arr_by_field($data['career'],'start_time',true);
     }
 }
+function curl_get($url,$in_cookie,$out_cookie,$headers=''){
+    $ch = curl_init();
+    //设置选项，包括URL
+    foreach( $headers as $n => $v )
+    {
+        $headerArr[] = $n .':' . $v;
+    }
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_COOKIEJAR, $out_cookie);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, $in_cookie);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    //执行并获取HTML文档内容
+    if ($headerArr)
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArr);
+    $output = curl_exec($ch);
+    //释放curl句柄
+    curl_close($ch);
+    return $output;
+}
