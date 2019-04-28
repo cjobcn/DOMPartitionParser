@@ -68,6 +68,12 @@ class Template17 extends AbstractParser {
         //dump($blocks);
         $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
+        if(preg_match('/<div class="face">/',$content)){
+            preg_match('/(?<=<div class="face"><img src=").*?(?=")/',$content,$faceImg);
+            if($faceImg[0]){
+                $record['photo'] = $faceImg[0];
+            }
+        }
         if(preg_match_all('/<img class=\"(email|telphone)\"\s+src=\"(.+?)\">/s', $content, $match)){
             foreach($match[1] as $index=>$keyword) {
                 $keyword = ($keyword == 'telphone')?'phone':'email';
