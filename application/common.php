@@ -118,6 +118,7 @@ function curl_get($url,$in_cookie,$out_cookie,$headers=''){
     curl_setopt($ch, CURLOPT_COOKIEJAR, $out_cookie);
     curl_setopt($ch, CURLOPT_COOKIEFILE, $in_cookie);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     //执行并获取HTML文档内容
     if ($headerArr)
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArr);
