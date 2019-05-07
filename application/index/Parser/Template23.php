@@ -49,7 +49,6 @@ class Template23 extends AbstractParser {
         //头像
         preg_match('/(?<=style="background-image:url\(&quot;)[\s\S]*?(?=&quot;)/',$content,$faceImgPath);
         if($faceImgPath[0]){
-            vde($faceImgPath[0]);
             $faceImgPath[0] = (htmlspecialchars_decode($faceImgPath[0]));
             $faceImg = curl_get(urldecode($faceImgPath[0]));
             $base64_image = 'data:img;base64,' . (base64_encode($faceImg));
