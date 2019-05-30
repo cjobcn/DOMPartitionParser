@@ -92,6 +92,10 @@ function dealEducation(&$data){
         foreach($data['education'] as $key=>$value){
             if(preg_match($blackName,$value['school']) || preg_match('/高中/',$value['major']) || preg_match('/高中/',$value['degree'])){
                 unset($data['education'][$key]);
+            }else{
+                $data['education'][$key]['school'] = HtmlToText($value['school']);
+                $data['education'][$key]['major'] = HtmlToText($value['major']);
+                $data['education'][$key]['degree'] = HtmlToText($value['degree']);
             }
         }
         $data['education'] = array_merge($data['education']);
