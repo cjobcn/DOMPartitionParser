@@ -99,6 +99,22 @@ function dealEducation(&$data){
             }
         }
         $data['education'] = array_merge($data['education']);
+        //排重
+        if($data['education'] && count($data['education'])>1){
+            $eduArr = $data['education'];
+            for($i = 0;$i<count($eduArr)-1;$i++){
+                for($j = $i+1;$j<count($eduArr);$j++){
+                    if($eduArr[$j]['start_time'] == $eduArr[$i]['start_time'] &&
+                       $eduArr[$j]['end_time'] == $eduArr[$i]['end_time'] &&
+                       $eduArr[$j]['school'] == $eduArr[$i]['school'] &&
+                       $eduArr[$j]['major'] == $eduArr[$i]['major']
+                    ){
+                        unset($eduArr[$i]);
+                    }
+                }
+            }
+            $data['education'] = array_merge($eduArr);
+        }
     }
 }
 function dealCareer(&$data){
