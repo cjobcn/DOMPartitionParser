@@ -992,15 +992,11 @@ class ParseCommon{
 			}
 		}*/
 		//return $resume;
-		$Pased = false;
-		if($resume['career']||$resume['phone']){
-			$Pased = true;
+		//$Pased = false;
+		if(!$resume['career'] || $resume['phone']){
+            sendMail(0,$origin_resume_content);
 		}
-		if($Pased==true)
-			return $resume;
-		else{
-			sendMail(0,$origin_resume_content);
-			return null;
-		}
+        return $resume;
+
 	}
 }

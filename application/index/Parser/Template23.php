@@ -77,7 +77,7 @@ class Template23 extends AbstractParser {
         //最近职位
 //        preg_match('/(?<=<h2 class="pv-top-card-section__headline mt1 t-18 t-black t-normal">)[\s\S]*?(?=<\/h2>)/',$content,$last_position);
 //        $record['last_position'] = preg_replace('/\s/','',$last_position[0]);
-        if(!$record){
+        if(!$record['career'] || !$record['education']){
             sendMail(23,$content);
         }
         return $record;

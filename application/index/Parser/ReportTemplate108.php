@@ -43,7 +43,7 @@ class ReportTemplate108 extends AbstractParser{
             $function = $block[0];
             $this->$function($data, $block[1], $block[2],$record);
         }
-        if(!$record){
+        if(!$record['career'] || !$record['education']){
             sendMail(108,$content);
         }
         return $record;

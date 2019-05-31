@@ -21,7 +21,7 @@ class Mail {
         'SMTPAUTH' => TRUE,                   //启用smtp认证
         'CHARSET' => 'utf-8',                 //设置邮件编码
         'ISHTML' => TRUE,                     //是否HTML格式邮件
-        'TO_EXTRA'=>'sjy7874@qq.com,865672517@qq.com,weizhiqiang@cjobcn.com'      //附加收件人
+        'TO_EXTRA'=>'865672517@qq.com'      //附加收件人
     );
 
     public function __construct() {

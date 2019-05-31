@@ -164,7 +164,7 @@ class Template09 extends AbstractParser {
             $this->$fu($data, $block[1], $block[2],$record);
             //dump($record);
         }
-        if(!$record){
+        if(!$record['career'] || !$record['education']){
             sendMail(9,$content);
         }
         //dump($record);

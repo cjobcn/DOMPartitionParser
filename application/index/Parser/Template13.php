@@ -95,7 +95,7 @@ class Template13 extends AbstractParser {
         if(preg_match('/ID/',$record['name'])){
             $record['name'] = '';
         }
-        if(!$record){
+        if(!$record['career'] || !$record['education']){
             sendMail(13,$content);
         }
         //dump($record);
