@@ -6,6 +6,8 @@
  * Time: 10:52
  */
 namespace app\index\controller;
+use think\Cache;
+
 /**
  * Class MailService
  * 发送邮件服务
@@ -50,6 +52,9 @@ class Mail {
      * @author DFFuture<1124280842@qq.com>
      */
     public function sendMail($mailInfo,$id = 0){
+        if(Cache::get('had_mail_list')){
+            return 1;
+        }
         Vendor('phpmailer.phpmailer');
         $mail = new \PHPMailer(true);
         // 设置PHPMailer使用SMTP服务器发送Email
@@ -116,6 +121,7 @@ class Mail {
         //发送邮件
         try{
             $res = $mail->Send();
+            Cache::set('had_mail_list',1,180);
             return $res;
         }catch(\phpmailerException $e){
             $this->errorMsg =  $e->getMessage();
