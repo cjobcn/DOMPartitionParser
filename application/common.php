@@ -107,9 +107,9 @@ function dealEducation(&$data){
                     if($eduArr[$j]['start_time'] == $eduArr[$i]['start_time'] &&
                        $eduArr[$j]['end_time'] == $eduArr[$i]['end_time'] &&
                        $eduArr[$j]['school'] == $eduArr[$i]['school'] &&
-                       $eduArr[$j]['degree'] == $eduArr[$i]['degree'] &&
                        $eduArr[$j]['major'] == $eduArr[$i]['major']
                     ){
+                        $eduArr[$j] = array_merge($eduArr[$i],$eduArr[$j]);
                         unset($eduArr[$i]);
                     }
                 }
