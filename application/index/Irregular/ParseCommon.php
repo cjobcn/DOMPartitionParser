@@ -993,7 +993,7 @@ class ParseCommon{
 		}*/
 		//return $resume;
 		//$Pased = false;
-		if(!$resume['career'] || $resume['phone']){
+		if(!$resume['career'] || !$resume['phone']){
             sendMail(0,$origin_resume_content);
 		}
         return $resume;
