@@ -6,7 +6,7 @@ class Template10 extends AbstractParser {
     protected $titles = array(
         array('evaluation', '自我评价'),
         array('career', '工作经历'),
-        array('projects', '项目经验'),
+        array('projects', '项目经验|项目经历'),
         array('education', '教育经历'), 
         array('practices', '在校实践经验|在校实践经历'),
         array('trainings', '培训经历'), 
@@ -55,7 +55,7 @@ class Template10 extends AbstractParser {
 
         //list($data, $blocks) = $this->domParse($content,'td', true);
         list($data, $blocks) = $this->pregParse($content);
-        //dump($blocks);
+        //vde($blocks);
         //dump($data);
         //if(!$blocks) return false;
         //其他解析
@@ -148,6 +148,8 @@ class Template10 extends AbstractParser {
             $jobs = $this->career1($data, $start, $end, $record);
         }elseif(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (.+?) （\d.+?）/', $data[$start])){
             $jobs = $this->career2($data, $start, $end, $record);
+        }elseif(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(\D+?)(\(\d.+?\))/', $data[$start])){
+            $jobs = $this->career3($data, $start, $end, $record);
         }
         return $jobs;
     }
@@ -263,6 +265,64 @@ class Template10 extends AbstractParser {
         $record['career'] = $jobs;
         return $jobs;
     }
+    public function career3($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $rules = array(
+            array('nature', '企业性质：'),
+            array('size', '规模：'),
+            array('duty', '工作描述：'),
+            array('report_to', '汇报对象：', 0),
+            array('underlings', '下属人数：', 0),
+            array('salary', '年收入：', 0),
+            array('performance', '业绩描述：', 0),
+        );
+        $i = 0;
+        $j = 0;
+        $k = 0;
+        $currentKey = '';
+        $jobs = array();
+        while($i < $length) {
+            //正则匹配
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(\D+?)(\(\d.+?\))/', $data[$i], $match)) {
+                $job = array();
+                $job['start_time'] = Utility::str2time($match[1]);
+                $job['end_time'] = Utility::str2time($match[2]);
+                $job['company'] = $match[3];
+                $jobs[$j++] = $job;
+                $k = $i;
+                //关键字匹配
+            }elseif($KV = $this->parseElement($data, $i, $rules)) {
+                $jobs[$j-1][$KV[0]] = $KV[1];
+                $i = $i + $KV[2];
+                $currentKey = $KV[0];
+                if($currentKey == 'nature') {
+                    $jobs[$j-1]['industry'] = $data[$i-1];
+                    if(!isset($jobs[$j-1]['salary']) && $i-1 > $k+1){
+                        $jobs[$j-1]['position'] = $data[$k+1];
+                    }
+                }
+            }elseif(preg_match('/元\/月/', $data[$i])){
+                $jobs[$j-1]['salary'] = $data[$i];
+                $m = $i - 1;
+                while($m > $k) {
+                    if($jobs[$j-1]['position']){
+                        $jobs[$j-1]['department'] = $data[$m];
+                    }else{
+                        $jobs[$j-1]['position'] = $data[$m];
+                    }
+                    $m--;
+                }
+            }else{
+                if($currentKey == 'duty') {
+                    $jobs[$j-1][$currentKey] .= '#br#'.$data[$i];
+                }
+            }
+            $i++;
+        }
+        $record['career'] = $jobs;
+        return $jobs;
+    }
 
     public function projects($data, $start, $end, &$record) {
         $projects = array();
@@ -350,6 +410,8 @@ class Template10 extends AbstractParser {
             $education = $this->education1($data, $start, $end, $record);
         }elseif(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今) (.+)/', $data[$start])){
             $education = $this->education2($data, $start, $end, $record);
+        }elseif(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(\D+)/', $data[$start])){
+            $education = $this->education3($data, $start, $end, $record);
         }
         return $education;
     }
@@ -410,6 +472,31 @@ class Template10 extends AbstractParser {
             $i++;
         }
         //dump($education);
+        $record['education'] = $education;
+        return $education;
+    }
+    public function education3($data, $start, $end, &$record) {
+        $length = $end - $start + 1;
+        $data = array_slice($data,$start, $length);
+        $i = 0;
+        $j = 0;
+        $education = array();
+        while($i < $length) {
+            if(preg_match('/^(\d{4}\D+\d{1,2})\D+(\d{4}\D+\d{1,2}|至今)(\D+)/', $data[$i], $match)) {
+                $edu = array();
+                $edu['start_time'] = Utility::str2time($match[1]);
+                $edu['end_time'] = Utility::str2time($match[2]);
+                $info = preg_split('/\s+/', $match[3]);
+                if(($info_length = count($info)) > 1){
+                    $edu['school'] = trim(implode(' ', array_slice($info, 0 ,$info_length-2)));
+                    $edu['major'] = $info[$info_length - 2];
+                    $edu['degree'] = $info[$info_length - 1];
+                    $education[$j++] = $edu;
+                }
+
+            }
+            $i++;
+        }
         $record['education'] = $education;
         return $education;
     }
