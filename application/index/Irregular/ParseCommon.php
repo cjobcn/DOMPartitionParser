@@ -594,16 +594,6 @@ class ParseCommon{
 			if(preg_match($positionName, $value, $position))
 				return $position[0];
 		}
-//		if(!$position[0]){
-//			for($i=0;$i<count($workExperiences['projectExperiences']);$i++){
-//				preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$workExperiences['projectExperiences'][$i],$contentArr);
-//				//preg_match("/[\x{4e00}-\x{9fa5}]*".$positionName."/u", $workExperiences['projectExperiences'][0], $position);
-//				foreach($contentArr[0] as $key=>$value){
-//					if(preg_match($positionName, $value, $position))
-//						return $position[0];
-//				}
-//			}
-//		}
 	}
 	//提取学校
 	public function getSchool($details){
@@ -944,25 +934,10 @@ class ParseCommon{
 				$resume['position'][] = $workExperiencesList[$k]["position"];
 			}
 		}
-		//默认工作经历是倒序排列？
-//		$resume['workExperiences'] = $workExperiencesList;
-//		//工作年份
-//		$resume['workyear'] = substr($workExperiencesList[count($workExperiencesList)-1]['startdate'],0,4);
 		//提取最近工作过的公司
 		$resume['last_company'] = $resume['company'][0];
 		//提取最近职位
 		$resume['last_position'] = $resume['position'][0];
-
-		//统一工作经历格式
-		/*$resume['career']['company'] = $resume['company'];
-		$resume['career']['position'] = $resume['position'];
-		$resume['career']['workExperiences'] = $workExperiencesList;
-		$resume['career']['last_company'] = $resume['company'][0];
-		$resume['career']['last_position'] = $resume['position'][0];
-		$resume['career']['workyear'] = substr($workExperiencesList[count($workExperiencesList)-1]['startdate'],0,4);
-		unset($resume['company']);
-		unset($resume['position']);*/
-		//vde($resume);
 
 		$resume['education'] = $this->education($educationExperiences);
 		//教育经历
@@ -973,26 +948,6 @@ class ParseCommon{
 		$resume['degree'] = $education['firstDegree'];
 		//$resume['top_degree'] = $education['topDegree'];
 		$resume['school'] = $education['school'];
-		//统一教育经历格式
-		/*$education = $this->getEducationInfo($educationExperiences,$resume_content);
-		$resume['education']['educationExperiences'] = $educationExperiences;
-		$resume['education']['major'] = $education['major'];
-		$resume['education']['first_degree'] = $education['firstDegree'];
-		$resume['education']['top_degree'] = $education['topDegree'];
-		$resume['education']['campus'] = $education['school'];
-		//判断学校是985还是211
-		if($resume['campus']) {
-			$where['fullname'] = array('like', '%' . $resume['campus'] . '%');
-			//$schoolCategory = M('school')->where($where)->find();
-			$schoolCategory = Db::table('sj_school')->where($where)->find();
-			if ($schoolCategory['985'] == 0) {
-				$resume['education']['is985'] = true;
-			} elseif ($schoolCategory['985'] != 1 && $schoolCategory['211'] == 1) {
-				$resume['education']['is211'] = true;
-			}
-		}*/
-		//return $resume;
-		//$Pased = false;
 		if(!$resume['career'] || !$resume['phone']){
             sendMail(0,$origin_resume_content);
 		}
