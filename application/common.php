@@ -95,7 +95,7 @@ function dealEducation(&$data){
             }else{
                 $data['education'][$key]['school'] = HtmlToText($value['school']);
                 $data['education'][$key]['major'] = HtmlToText($value['major']);
-                $data['education'][$key]['degree'] = HtmlToText($value['degree']);
+                $data['education'][$key]['degree'] = getDegreeNum(HtmlToText($value['degree']));
             }
         }
         $data['education'] = array_merge($data['education']);
@@ -147,4 +147,28 @@ function curl_get($url,$in_cookie,$out_cookie,$headers=''){
     //释放curl句柄
     curl_close($ch);
     return $output;
+}
+function getDegreeNum($degree){
+    if(is_numeric($degree)){
+        return $degree;
+    }
+    if(preg_match('/MBA/',$degree)){
+        return 6;
+    }
+    if(preg_match('/博士后/',$degree)){
+        return 5;
+    }
+    if(preg_match('/博士/',$degree)){
+        return 4;
+    }
+    if(preg_match('/硕士/',$degree)){
+        return 3;
+    }
+    if(preg_match('/大专|非全日制|自考本科|网络教育|后读本科|中专|成人教育|中技/',$degree)){
+        return 1;
+    }
+    if(preg_match('/本科/',$degree)){
+        return 2;
+    }
+    return 0;
 }
