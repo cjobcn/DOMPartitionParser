@@ -945,7 +945,7 @@ class ParseCommon{
 
 		$education = $this->getEducationInfo($educationExperiences,$resume_content);
 		$resume['major'] = $education['major'];
-		$resume['degree'] = $education['firstDegree'];
+		$resume['degree'] = $education['topDegree'];
 		//$resume['top_degree'] = $education['topDegree'];
 		$resume['school'] = $education['school'];
 		if(!$resume['career'] || !$resume['phone']){

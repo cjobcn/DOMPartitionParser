@@ -98,7 +98,7 @@ class Template21 extends AbstractParser{
             $data['last_company'] = $data['career'][0]['company'];
             $data['last_position'] = $detail['CurrentJobTitle'];
             $data['major'] = $data['education'][0]['major'];
-            $data['degree'] = $data['education'][count( $data['education'])-1]['degree'];
+            $data['degree'] = $data['education'][0]['degree'];
             $data['school'] = $detail['GraduatedFrom'];
         }
         if(!$data['education'] || !$data['career'] || !$data['name']){

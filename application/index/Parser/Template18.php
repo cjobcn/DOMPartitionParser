@@ -175,13 +175,13 @@ class Template18 extends  AbstractParser {
             }
             $i++;
         }
+        $record['education'] = $education;
         if($education){
+            sort_arr_by_field($record['education'],'start_time',true);
             $record['major'] = $education[0]['major'];
             $record['school'] = $education[0]['school'];
-            $record['degree'] = $education[0]['degree'];
-            $record['first_degree'] = $education[count($education)-1]['degree'];
+            $record['degree'] = $record['education'][0]['degree'];
         }
-        $record['education'] = $education;
         return $education;
     }
     public function getBaseInfo($content,$data,&$record){
