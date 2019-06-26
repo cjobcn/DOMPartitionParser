@@ -630,21 +630,31 @@ class ParseCommon{
 				$topDegree = "6";
 				break;
 			}
-			if($v == "博士后")
-				//$topDegree = "博士后";
-				$topDegree = "5";
-			if($v == "博士" && $topDegree != "博士后")
-				//$topDegree = "博士";
-				$topDegree = "4";
-			if($v == "硕士" && $topDegree != "博士后"&& $topDegree != "博士")
-				//$topDegree = "硕士";
-				$topDegree = "3";
-			if(($topDegree == "大专" || !$topDegree) && ($v == "本科" || $v == "学位"))
-				//$topDegree = "本科";
-				$topDegree = "2";
-			if($v == "大专")
-				//$topDegree = "大专";
-				$topDegree = "1";
+			if($v == "博士后"){
+                //$topDegree = "博士后";
+                $topDegree = "5";
+                break;
+            }
+			if($v == "博士" && $topDegree != "博士后"){
+                //$topDegree = "博士";
+                $topDegree = "4";
+                break;
+            }
+			if($v == "硕士" && $topDegree != "博士后"&& $topDegree != "博士") {
+                //$topDegree = "硕士";
+                $topDegree = "3";
+                break;
+            }
+			if(($topDegree == "大专" || !$topDegree) && ($v == "本科" || $v == "学位")) {
+                //$topDegree = "本科";
+                $topDegree = "2";
+                break;
+            }
+			if($v == "大专") {
+                //$topDegree = "大专";
+                $topDegree = "1";
+                break;
+            }
 			else
 				$topDegree = "0";
 		}
