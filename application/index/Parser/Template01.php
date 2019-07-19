@@ -69,7 +69,8 @@ class Template01 extends AbstractParser {
         $end = $blocks?$blocks[0][1]-2:count($data)-1;
         $this->basic($data,0,$end, $record);
         foreach($blocks as $block){
-            $this->$block[0]($data, $block[1], $block[2],$record);
+            $fun = $block[0];
+            $this->$fun($data, $block[1], $block[2],$record);
         }
         if(!$record['true_id'] || !$record['name']){
             sendMail(1,$origin_resume_content);

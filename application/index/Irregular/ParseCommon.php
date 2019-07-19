@@ -705,13 +705,14 @@ class ParseCommon{
 		}
 		$education['major'] = $major;
 		//学历提取
+        $tmpDegree = array();
 		foreach($educationExperiences as $key=>$value){
 			$tmpDegree[] = $this->getDegree($value);
 		}
 		$degree = $this->getFirstTopDegree($tmpDegree);
 		//如果教育经历找不到，就全文搜索
 		if(!$degree){
-			$tmpDegree[] = $this->getDegree($content);
+			$tmpDegree = $this->getDegree($content,true);
 			$degree = $this->getFirstTopDegree($tmpDegree);
 			if(!$degree['topDegree'])
 				$degree['topDegree'] = $degree['firstDegree'];
@@ -773,7 +774,7 @@ class ParseCommon{
 		}*/
 		return $major;
 	}
-	public function getDegree($details){
+	public function getDegree($details,$needArr = false){
 		$degreeMatch1 = "/.*专科|大专.*/u";
 		$degreeMatch2 = "/.*本科|学士|学位.*/u";
 		$degreeMatch3 = "/.*硕士|研究生.*/u";
@@ -781,21 +782,31 @@ class ParseCommon{
 		$degreeMatch5 = "/.*博士后.*/u";
 		$degreeMatch6 = "/.*EMBA|MBA|工商管理硕士.*/u";
 		preg_match_all("/(?:[\x{4e00}-\x{9fa5}]|[a-zA-Z])+/u",$details,$educationArr);
+        $DegreeArr = array();
 		for($i=0;$i<count($educationArr[0]);$i++){
 			if(preg_match($degreeMatch1,$educationArr[0][$i])){
 				$Degree = "大专";
+                $DegreeArr[] = "大专";
 			}elseif(preg_match($degreeMatch2,$educationArr[0][$i])){
 				$Degree = "本科";
+                $DegreeArr[] = "本科";
 			}elseif(preg_match($degreeMatch3,$educationArr[0][$i])){
 				$Degree = "硕士";
+                $DegreeArr[] = "硕士";
 			}elseif(preg_match($degreeMatch4,$educationArr[0][$i])){
 				$Degree = "博士";
+                $DegreeArr[] = "博士";
 			}elseif(preg_match($degreeMatch5,$educationArr[0][$i])){
 				$Degree = "博士后";
+                $DegreeArr[] = "博士后";
 			}elseif(preg_match($degreeMatch6,$educationArr[0][$i])){
 				$Degree = "MBA";
+                $DegreeArr[] = "MBA";
 			}
 		}
+		if($needArr==true){
+		    return $DegreeArr;
+        }
 		return $Degree;
 	}
 	/**

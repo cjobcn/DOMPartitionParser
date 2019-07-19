@@ -79,7 +79,8 @@ class Template14 extends AbstractParser {
         $this->basic($basic, 0, $length - 1, $record);
         //各模块解析
         foreach($blocks as $block){
-            $this->$block[0]($data, $block[1], $block[2],$record);
+            $fun = $block[0];
+            $this->$fun($data, $block[1], $block[2],$record);
         }
         if(!$record['name'] || !$record['city'] || !$record['last_company']){
             sendMail(14,$content);
