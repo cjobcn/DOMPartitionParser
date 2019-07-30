@@ -821,7 +821,7 @@ class ParseCommon{
 			$educationExp[$key]['content'] = $value;
 			$school = $this->getSchool($value);
 			if(!$school && $key>0){//如果没有找到学校则去上一段经历的后面30个字符串查找
-				$aheadStr = mb_substr($educationExperiences[$key-1],count($educationExperiences[$key-1])-10);
+				$aheadStr = mb_substr($educationExperiences[$key-1],count($educationExperiences[$key-1])-30);
 				$educationExp[$key]['content'] = $aheadStr.','.$value;
 				$school = $this->getSchool($aheadStr.','.$value);
 			}
